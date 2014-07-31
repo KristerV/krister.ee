@@ -8,4 +8,7 @@ ga('send', 'pageview');
 
 Meteor.setTimeout(function(){
 	svgConvert('img.close-extra')
+}, 100)
+Meteor.setTimeout(function(){
+	svgConvert('img.close-extra')
 }, 1000)

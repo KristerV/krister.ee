@@ -22,13 +22,14 @@ Template.body.events({
 		var buttonColor = $(e.currentTarget).css('color')
 		$('#extra-wrapper').css({width: '100%', 'background-color': buttonColor})
 		$('.close-extra#first, .close-extra#third').css({fill: buttonColor})
+		$('.close-extra#first').css({right: '-19px'}) // needs to be hidden at first
 		Session.set('projectDetails', e.currentTarget.id)
 		Meteor.setTimeout(function(){
 			$('#extra-wrapper .content h1:first-child').css({'margin-top': mainTop})
 		}, 1)
 	},
 	'click .close-extra': function(e, tmpl) {
-		$('.close-extra#first, .close-extra#third').css({fill: 'transparent'})
+		$('.close-extra#first, .close-extra#third').css({fill: 'white'})
 		$('#extra-wrapper').css({width: '0%', 'background-color': 'transparent'})
 	}
 })
