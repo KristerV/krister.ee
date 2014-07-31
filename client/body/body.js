@@ -18,10 +18,14 @@ Template.body.events({
 		$(e.currentTarget).css({color: 'none'})
 	},
 	'click .project': function (e, tmpl) {
+		var mainTop = $('.title h1').offset().top
 		var buttonColor = $(e.currentTarget).css('color')
 		$('#extra-wrapper').css({width: '100%', 'background-color': buttonColor})
 		$('.close-extra').css({color: 'white'})
 		Session.set('projectDetails', e.currentTarget.id)
+		Meteor.setTimeout(function(){
+			$('#extra-wrapper .content h1:first-child').css({'margin-top': mainTop})
+		}, 1)
 	},
 	'click .close-extra': function(e, tmpl) {
 		$('#extra-wrapper').css({width: '0%', 'background-color': 'transparent'})

@@ -2,6 +2,8 @@ body {
 	overflow: hidden;
 	display: flex;
 	text-align: center;
+	line-height: 1.5em;
+	// align-items: baseline;
 	#main-wrapper {
 		display: flex;
 		align-items: center;
@@ -28,7 +30,8 @@ body {
 			font-weight: lighter;
 		}
 		.title {
-			margin-top: 3em;
+			flex-shrink: 0;
+			// margin-top: 3em;
 			margin-bottom: 0;
 			h2 {
 				margin: 0;
@@ -41,8 +44,9 @@ body {
 			}
 		}
 		.work {
+			flex-shrink: 0;
 			margin-top: 0.5em;
-			margin-bottom: 3em;
+			margin-bottom: 2em;
 			.project {
 				cursor: pointer;
 				cursor: hand;
@@ -50,6 +54,9 @@ body {
 					border-bottom: 1px solid;
 				}
 			}
+		}
+		.button {
+			// color: white;
 		}
 	}
 	#extra-wrapper {
@@ -62,6 +69,17 @@ body {
 		justify-content: center;
 		a:link, a:visited, a:active, .underline {color: white; }
 		.content {
+			padding-bottom: 2em;
+			h1 {margin-bottom: 1.4em; }
+			h2, p, li {
+				// font-size: 1.2em;
+				font-weight: lighter;
+
+			}
+			a:link, a:visited, a:active, .underline {
+				// font-size: 1.2em;
+				font-weight: lighter;
+			}
 			div:not(:last-child) {
 				margin-top: 1em;
 				h2 {
@@ -115,13 +133,16 @@ body {
 		}
 	}
 	.button {
+		flex-shrink: 0;
 		position: relative;
 		top: 0em;
 		-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-			-moz-box-sizing: border-box;    /* Firefox, other Gecko */
-			box-sizing: border-box;         /* Opera/IE 8+ */
+		-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+		box-sizing: border-box;         /* Opera/IE 8+ */
 		padding: 0.5em;
-		margin: 0.5em;
+		padding-top: 0.3em;
+		padding-bottom: 0.3em;
+		margin: 0.5em !important;
 		background-color: rgba(0,0,0,0.3);
 		-webkit-border-radius: 5px;
 		-moz-border-radius: 5px;
