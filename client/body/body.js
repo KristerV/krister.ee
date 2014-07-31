@@ -21,13 +21,14 @@ Template.body.events({
 		var mainTop = $('.title h1').offset().top
 		var buttonColor = $(e.currentTarget).css('color')
 		$('#extra-wrapper').css({width: '100%', 'background-color': buttonColor})
-		$('.close-extra').css({color: 'white'})
+		$('.close-extra#first, .close-extra#third').css({fill: buttonColor})
 		Session.set('projectDetails', e.currentTarget.id)
 		Meteor.setTimeout(function(){
 			$('#extra-wrapper .content h1:first-child').css({'margin-top': mainTop})
 		}, 1)
 	},
 	'click .close-extra': function(e, tmpl) {
+		$('.close-extra#first, .close-extra#third').css({fill: 'transparent'})
 		$('#extra-wrapper').css({width: '0%', 'background-color': 'transparent'})
 	}
 })
