@@ -7,7 +7,7 @@ Template.body.events({
 			hue: colorStep * index,
 			golden: false,
 			saturation: .7,
-			value: .7
+			value: .6
 		})
 		$(e.currentTarget).css({color: color})
 	},
