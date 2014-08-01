@@ -41,5 +41,11 @@ Template.body.helpers({
 			return Template[tmpl]
 		else
 			return null
+	},
+	image: function() {
+		var tmpl = Session.get('projectDetails')
+		console.log("here")
+		if (isset(tmpl))
+			return '/snapshots/' + tmpl + '.png'
 	}
 })

@@ -65,7 +65,7 @@ body {
 		color: white;
 		a:link, a:visited, a:active, .underline {color: white; }
 		.content {
-			padding-bottom: 2em;
+			// padding-bottom: 2em;
 			max-width: 600px;
 			h1 {margin-bottom: 1.4em; }
 			h2, p, li {
@@ -74,7 +74,7 @@ body {
 			a:link, a:visited, a:active, .underline {
 				font-weight: lighter;
 			}
-			div:not(:last-child) {
+			div {
 				margin-top: 1em;
 				h2 {
 					margin: 0;
@@ -94,12 +94,12 @@ body {
 					width: 70%;
 				}
 			}
-			#final {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				flex-direction: row;
-				flex-wrap: wrap;
+			.snapshot {
+				max-width: 90%;
+				margin-bottom: -1em;
+				margin-top: 2em;
+				-webkit-box-shadow: 0 6px 13px 2px rgba(0,0,0,0.5);
+				box-shadow: 0 6px 13px 2px rgba(0,0,0,0.5);
 			}
 			margin: auto;
 			margin-left: auto;
