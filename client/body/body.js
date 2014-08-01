@@ -40,8 +40,9 @@ Template.body.helpers({
 			return null
 	},
 	image: function() {
+		var ignore = ['about', 'contact']
 		var tmpl = Session.get('projectDetails')
-		if (isset(tmpl))
+		if (isset(tmpl) && $.inArray(tmpl, ignore) === -1)
 			return '/snapshots/' + tmpl + '.png'
 	},
 	imageStyle: function(){

@@ -7,7 +7,6 @@ template(name="body")
 			.title
 				h1 Krister Viirsaar
 				h2 Software developer
-				//- p <span class="button">About me</span> / <span class="button">Contact</span>
 				.button#about <span>About me</span> / 
 				.button#contact <span>Contact</span>
 			.work
@@ -26,4 +25,5 @@ template(name="body")
 	#extra-wrapper
 		.content
 			+projectDetails
-			img.snapshot(src=image, style=imageStyle)
+			if image
+				img.snapshot(src=image, style=imageStyle)
