@@ -1,4 +1,7 @@
 template(name="body")
+	.close-extra-wrapper
+		img.close-extra#white(src="arrow-full.svg")
+		img.close-extra#color(src="arrow.svg")
 	#main-wrapper
 		.title
 			h1 Krister Viirsaar
@@ -18,10 +21,8 @@ template(name="body")
 				h3 <span>StoryTree</span>
 				p 2012 / personal StartUp / Python, Kivy.org, Android, iOS
 		//- h2.button Contact
-		img.close-extra#first(src="arrow.svg")
 	#extra-wrapper
-		img.close-extra#second(src="arrow-full.svg")
-		img.close-extra#third(src="arrow-full.svg")
+		//- img.close-extra#third(src="arrow-full.svg")
 		.content
 			+projectDetails
 			img.snapshot(src=image)

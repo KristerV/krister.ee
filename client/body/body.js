@@ -20,17 +20,17 @@ Template.body.events({
 	'click .project': function (e, tmpl) {
 		var mainTop = $('.title h1').offset().top
 		var buttonColor = $(e.currentTarget).css('color')
-		$('#extra-wrapper').css({width: '100%', 'background-color': buttonColor})
-		$('.close-extra#first, .close-extra#third').css({fill: buttonColor})
-		$('.close-extra#first').css({right: '-19px'}) // needs to be hidden at first
+		$('#extra-wrapper').fadeIn(400).css({width: '100%', 'background-color': buttonColor})
+		$('.close-extra-wrapper').fadeIn(400)
+		$('.close-extra#color').css({fill: buttonColor})
 		Session.set('projectDetails', e.currentTarget.id)
 		Meteor.setTimeout(function(){
 			$('#extra-wrapper .content h1:first-child').css({'margin-top': mainTop})
 		}, 1)
 	},
 	'click .close-extra': function(e, tmpl) {
-		$('.close-extra#first, .close-extra#third').css({fill: 'white'})
-		$('#extra-wrapper').css({width: '0%', 'background-color': 'transparent'})
+		$('.close-extra-wrapper').fadeOut(400)
+		$('#extra-wrapper').css({width: '0%', 'background-color': 'white'}).fadeOut(400)
 	}
 })
 
