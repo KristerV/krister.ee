@@ -41,8 +41,12 @@ Template.body.helpers({
 	},
 	image: function() {
 		var tmpl = Session.get('projectDetails')
-		console.log("here")
 		if (isset(tmpl))
 			return '/snapshots/' + tmpl + '.png'
+	},
+	imageStyle: function(){
+		var tmpl = Session.get('projectDetails')
+		if (tmpl == 'storytree')
+			return '-webkit-border-top-left-radius: 17px; -webkit-border-top-right-radius: 17px; -moz-border-radius-topleft: 17px; -moz-border-radius-topright: 17px; border-top-left-radius: 17px; border-top-right-radius: 17px;'
 	}
 })
