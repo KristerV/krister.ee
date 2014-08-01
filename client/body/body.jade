@@ -7,23 +7,23 @@ template(name="body")
 			.title
 				h1 Krister Viirsaar
 				h2 Software developer
-				p  #[a(href="mailto:krister.viirsaar@gmail.com") email] / #[a(target="_blank" href="http://code.krister.ee") blog] / #[a(target="_blank" href="https://github.com/KristerV") GitHub]
+				//- p <span class="button">About me</span> / <span class="button">Contact</span>
+				.button#about <span>About me</span> / 
+				.button#contact <span>Contact</span>
 			.work
-				.project#movieatmyplace
+				.button#movieatmyplace
 					h3 <span>Movie at My Place</span>
 					p 2014 / design experiment / Meteor.js, Node.js, LESS
-				.project#studyinformationsystem
+				.button#studyinformationsystem
 					h3 <span>Study Information System</span>
 					p 2014-current / job / 60,000 users / PHP, ZendFramework
-				.project#moodle
+				.button#moodle
 					h3 <span>Moodle</span>
 					p 2013 / job / 120,000 users / PHP, Moodle
-				.project#storytree
+				.button#storytree
 					h3 <span>StoryTree</span>
 					p 2012 / personal StartUp / Python, Kivy.org, Android, iOS
-			//- h2.button Contact
 	#extra-wrapper
-		//- img.close-extra#third(src="arrow-full.svg")
 		.content
 			+projectDetails
 			img.snapshot(src=image, style=imageStyle)

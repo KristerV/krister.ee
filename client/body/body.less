@@ -46,13 +46,6 @@ body {
 			flex-shrink: 0;
 			margin-top: 0.5em;
 			margin-bottom: 2em;
-			.project {
-				cursor: pointer;
-				cursor: hand;
-				span {
-					border-bottom: 1px solid;
-				}
-			}
 		}
 	}
 	#extra-wrapper {
@@ -107,7 +100,7 @@ body {
 		}
 		
 	}
-	.button {
+	.bigAssButton {
 		flex-shrink: 0;
 		position: relative;
 		top: 0em;
@@ -167,6 +160,20 @@ body {
 		&#color {
 			z-index: 90;
 			left: -55px;
+		}
+	}
+}
+
+.button {
+	cursor: pointer;
+	cursor: hand;
+	span {
+		border-bottom: 1px solid;
+	}
+	&#about, &#contact {
+		display: inline-block;
+		span {
+			font-weight: lighter;
 		}
 	}
 }

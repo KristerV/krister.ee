@@ -1,6 +1,6 @@
 Template.body.events({
-	'mouseover .project': function (e, tmpl) {
-		var total = $('.project').length
+	'mouseover .button': function (e, tmpl) {
+		var total = $('.button').length
 		var index = $(e.currentTarget).index()
 		var colorStep = 360 / total
 		var color = Please.make_color({
@@ -11,13 +11,13 @@ Template.body.events({
 		})
 		$(e.currentTarget).css({color: color})
 	},
-	'mouseleave .project': function (e, tmpl) {
-		var total = $('.project').length
+	'mouseleave .button': function (e, tmpl) {
+		var total = $('.button').length
 		var index = $(e.currentTarget).index()
 		var colorStep = 360 / total
 		$(e.currentTarget).css({color: 'none'})
 	},
-	'click .project': function (e, tmpl) {
+	'click .button': function (e, tmpl) {
 		var buttonColor = $(e.currentTarget).css('color')
 		$('#extra-wrapper').fadeIn(400).css({width: '100%', 'background-color': buttonColor})
 		$('.close-extra-wrapper').fadeIn(400)
