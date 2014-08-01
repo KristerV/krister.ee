@@ -17,4 +17,4 @@ Meteor.setTimeout(function(){
 // Realign extra panel title to main panel title
 window.onresize = function(){
 	setExtraTopMargin()
-}; 
+};
