@@ -6,9 +6,15 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 ga('create', 'UA-52715750-3', 'auto');
 ga('send', 'pageview');
 
+// Convert svg files into inline svg, so css editing works
 Meteor.setTimeout(function(){
 	svgConvert('img.close-extra')
 }, 100)
 Meteor.setTimeout(function(){
 	svgConvert('img.close-extra')
 }, 1000)
+
+// Realign extra panel title to main panel title
+window.onresize = function(){
+	setExtraTopMargin()
+}; 
