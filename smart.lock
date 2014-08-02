@@ -7,8 +7,8 @@
     "packages": {
       "jade": {
         "git": "https://github.com/mquandalle/meteor-jade.git",
-        "tag": "v0.2.4",
-        "commit": "a47a4c59daaa57e7fe5f1544d4ea76d95a5c9abf"
+        "tag": "v0.2.6",
+        "commit": "ab1edd68dccae6f5e946d9a84547043816d57864"
       }
     }
   }
