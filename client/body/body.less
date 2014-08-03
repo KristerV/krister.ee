@@ -58,7 +58,13 @@ body {
 		color: white;
 		a:link, a:visited, a:active, .underline {color: white; }
 		.content {
-			// padding-bottom: 2em;
+			.about {
+				text-align: left;
+				h1 {
+					margin-bottom: 0;
+					margin-top: 1em;
+				}
+			}
 			max-width: 600px;
 			h1 {margin-bottom: 1.4em; }
 			h2, p, li {
@@ -67,7 +73,7 @@ body {
 			a:link, a:visited, a:active, .underline {
 				font-weight: lighter;
 			}
-			div {
+			div:not(.about) {
 				margin-top: 1em;
 				h2 {
 					margin: 0;
