@@ -8,6 +8,7 @@ Meteor.startup(function () {
 		contactEmail: function (from, body, _id) {
 
 			this.unblock();
+			console.log(body)
 
 			var subject = 'Krister.ee - email from ' + from;
 
