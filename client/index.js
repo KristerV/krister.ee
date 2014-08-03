@@ -18,3 +18,7 @@ Meteor.setTimeout(function(){
 window.onresize = function(){
 	setExtraTopMargin()
 };
+
+Meteor.startup(function () {
+	Meteor.subscribe('email', Meteor.default_connection._lastSessionId)
+});

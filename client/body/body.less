@@ -60,7 +60,6 @@ body {
 		.content {
 			max-width: 600px;
 			margin: auto;
-			margin-bottom: 2em;
 			h1 {margin-bottom: 1.4em; }
 			h2, p, li {
 				font-weight: lighter;
@@ -71,6 +70,9 @@ body {
 					margin-bottom: 0;
 					margin-top: 1em;
 				}
+			}
+			.form[name=contact] {
+				margin-bottom: 2em;
 			}
 			a:link, a:visited, a:active, .underline {
 				font-weight: lighter;
@@ -132,7 +134,25 @@ body {
 			top: 0.3em;
 			-webkit-box-shadow: 0 -0.1em 0 0 rgba(0,0,0,0.5);
 			box-shadow: 0 -0.1em 0 0 rgba(0,0,0,0.5);
-
+		}
+		&.orange {
+			background-color: rgba(255, 158, 55, 1);
+			-webkit-box-shadow: 0 0.3em 0 0 rgba(181, 99, 16, 1);
+			box-shadow: 0 0.3em 0 0 rgba(181, 99, 16, 1);
+		}
+		&.green {
+			background-color: rgba(0, 168, 0, 1);
+			-webkit-box-shadow: 0 0.3em 0 0 rgba(0, 100, 0, 1);
+			box-shadow: 0 0.3em 0 0 rgba(0, 100, 0, 1);
+		}
+		&.red {
+			background-color: rgba(168, 0, 0, 1);
+			-webkit-box-shadow: 0 0.3em 0 0 rgba(100, 0, 0, 1);
+			box-shadow: 0 0.3em 0 0 rgba(100, 0, 0, 1);
+		}
+		&.orange, &.green, &.red, {
+			&:hover {top: 0;}
+			&:active {top: 0;}
 		}
 	}
 }
