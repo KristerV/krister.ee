@@ -58,17 +58,19 @@ body {
 		color: white;
 		a:link, a:visited, a:active, .underline {color: white; }
 		.content {
+			max-width: 600px;
+			margin: auto;
+			margin-bottom: 2em;
+			h1 {margin-bottom: 1.4em; }
+			h2, p, li {
+				font-weight: lighter;
+			}
 			.about {
 				text-align: left;
 				h1 {
 					margin-bottom: 0;
 					margin-top: 1em;
 				}
-			}
-			max-width: 600px;
-			h1 {margin-bottom: 1.4em; }
-			h2, p, li {
-				font-weight: lighter;
 			}
 			a:link, a:visited, a:active, .underline {
 				font-weight: lighter;
@@ -100,13 +102,11 @@ body {
 				-webkit-box-shadow: 0 6px 13px 2px rgba(0,0,0,0.5);
 				box-shadow: 0 6px 13px 2px rgba(0,0,0,0.5);
 			}
-			margin: auto;
-			margin-left: auto;
-			margin-right: auto;
 		}
 		
 	}
 	.bigAssButton {
+		text-align: center !important;
 		flex-shrink: 0;
 		position: relative;
 		top: 0em;
