@@ -84,7 +84,7 @@ body {
 					width: 20%;
 					min-width: 3em;
 				}
-				p, ul, ol {
+				p, ul, ol, input, textarea {
 					list-style-position: inside;
 					padding: 0;
 					margin: 0;
@@ -182,6 +182,20 @@ body {
 			font-weight: lighter;
 		}
 	}
+}
+
+input, textarea {
+	padding: 0.5em !important;
+	border: none;
+	background-color: rgba(0,0,0,0.1);
+	font-size: 1.1em;
+	color: white;
+	font-weight: lighter;
+	outline: none;
+
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
 }
 
 @media all and (max-width: 900px) {

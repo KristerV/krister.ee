@@ -1,10 +1,16 @@
 template(name='contact')
 	form#contactform
-		.pm-step
-			//- p question 1
-			//- input(type='text')
-		.pm-step
-		.pm-step
-		.pm-step
-		.pm-step
-		.pm-step
+		h1 Contact
+		form(name="contact")
+			div
+				h2 To
+				p <a href="mailto:krister.viirsaar@gmail.com">krister.viirsaar@gmail.com</a>
+
+			div
+				h2 From
+				input(type='text')
+
+			div
+				h2 Body
+				textarea(type='text' style="height:10em; resize:vertical")
+
