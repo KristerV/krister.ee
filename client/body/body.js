@@ -19,7 +19,7 @@ Template.body.events({
 	},
 	'click .button': function (e, tmpl) {
 		var buttonColor = $(e.currentTarget).css('color')
-		$('#extra-wrapper').fadeIn(400).css({width: '100%', 'background-color': buttonColor})
+		$('#extra-wrapper').scrollTop(0).fadeIn(400).css({width: '100%', 'background-color': buttonColor})
 		$('.close-extra-wrapper').fadeIn(400)
 		$('.close-extra#color').css({fill: buttonColor})
 		Session.set('projectDetails', e.currentTarget.id)
