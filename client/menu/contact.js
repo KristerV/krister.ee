@@ -6,11 +6,10 @@ Template.contact.events({
 		var sessionid = Meteor.default_connection._lastSessionId
 		var _id = Email.insert({from: data.from, body: data.body, status: 'sending', sessionid: sessionid})
 		Meteor.call('contactEmail', data.from, data.body, _id)
-		$('#submitContact').removeClass('green').addClass('orange')
+		$('#submitContact').removeClass('green').removeClass('red').addClass('orange')
 		$('#submitContact').prop('value', "Sending...")
 		Email.find(_id).observeChanges({
 			changed: function(id, fields){ 
-				console.log(fields.status == 'sent')
 				if (fields.status == 'sent')
 					$('#submitContact').removeClass('orange').addClass('green').prop('value', "Sent. Thank you for your letter!")
 				else

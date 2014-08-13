@@ -81,6 +81,13 @@ body {
 			.form[name=contact] {
 				margin-bottom: 2em;
 			}
+			.subscribe {
+				input {
+					padding: 0;
+				}
+				form[name=subscribe] > div {
+				}
+			}
 			a:link, a:visited, a:active, .underline {
 				font-weight: lighter;
 			}
@@ -204,7 +211,7 @@ body {
 	span {
 		border-bottom: 1px solid;
 	}
-	&#about, &#contact {
+	&#about, &#contact, &#subscribe {
 		display: inline-block;
 		span {
 			font-weight: lighter;
@@ -224,7 +231,16 @@ input, textarea {
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;
+
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+	
 }
+::-webkit-input-placeholder {color: rgba(255,255,255,0.5); }
+:-moz-placeholder { /* Firefox 18- */ color: rgba(255,255,255,0.5); }
+::-moz-placeholder {  /* Firefox 19+ */ color: rgba(255,255,255,0.5); }
+:-ms-input-placeholder {color: rgba(255,255,255,0.5); }
 
 @media all and (max-width: 900px) {
 	body {
