@@ -1,4 +1,4 @@
-Template.body.events({
+Template.main.events({
 	'mouseover .button': function (e, tmpl) {
 		var total = $('.button').length
 		var index = $(e.currentTarget).index()
@@ -22,6 +22,7 @@ Template.body.events({
 		$('#extra-wrapper').scrollTop(0).fadeIn(400).css({width: '100%', 'background-color': buttonColor})
 		$('.close-extra-wrapper').fadeIn(400)
 		$('.close-extra#color').css({fill: buttonColor})
+		console.log(e.currentTarget.id)
 		Session.set('projectDetails', e.currentTarget.id)
 		setExtraTopMargin()
 	},
@@ -31,7 +32,7 @@ Template.body.events({
 	}
 })
 
-Template.body.helpers({
+Template.main.helpers({
 	projectDetails: function() {
 		var tmpl = Session.get('projectDetails')
 		if (isset(tmpl) && isset(Template[tmpl]))
