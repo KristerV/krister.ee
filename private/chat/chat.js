@@ -22,6 +22,7 @@ $(document).ready(function(){
 		$('#messages').empty()
 		Chat.getMessages()
 		Chat.usersInRoom = []
+		$('#users').empty()
 	});
 
 	Chat.startTimer()
