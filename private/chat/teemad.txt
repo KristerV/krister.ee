@@ -4,10 +4,10 @@ mis keeli kasutatakse - areng on olnud järk-järgult netscapest chromeni
 mida tänapäeva kasutaja ootab
 
 HTML
-	head (title, meta, link, script), body
-	b, i u, strong, hr, br, h1, h2, h3, p, sup, sub, span, a, ul, ol, img
-	div, form, input (text, checkbox, radio, password, email, range, submit), textarea, button
-	table, iframe, video, embed, section, audio
+head (title, meta, link, script), body
+b, i u, strong, hr, br, h1, h2, h3, p, sup, sub, span, a, ul, ol, img
+div, form, input (text, checkbox, radio, password, email, range, submit), textarea, button
+table, iframe, video, embed, section, audio
 0. 90ndate koduleht
 
 CSS
