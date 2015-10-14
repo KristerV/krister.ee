@@ -59,7 +59,7 @@ Chat = {
 			console.log("logged in")
 			Chat.currentUser = username
 			$('form[name="newuser"]').hide()
-			$('form[name="newmessage"]').show()
+			$('form[name="newmessage"]').show().focus()
 		} else {
 			$.ajax({
 				url:"http://krister.ee/chatAPI/registerUser",
@@ -75,7 +75,7 @@ Chat = {
 					} else {
 						Chat.currentUser = username
 						$('form[name="newuser"]').hide()
-						$('form[name="newmessage"]').show()
+						$('form[name="newmessage"]').show().focus()
 						localStorage.setItem(username, response.userId)
 						Chat.newMessage('<i style="color:rgba(0,0,0,0.4)">has joined the room</i>')
 					}
