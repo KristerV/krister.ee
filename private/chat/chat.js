@@ -32,7 +32,7 @@ Chat = {
 	usersInRoom: [],
 	'getUsersInRoom': function() {
 		$.ajax({
-			url:"http://krister.ee/chat/getUsersInRoom",
+			url:"http://krister.ee/chatAPI/getUsersInRoom",
 			type:'GET',
 			dataType:'JSONP',
 			data: {
@@ -57,7 +57,7 @@ Chat = {
 			console.log("logged in")
 		} else {
 			$.ajax({
-				url:"http://krister.ee/chat/registerUser",
+				url:"http://krister.ee/chatAPI/registerUser",
 				type:'GET',
 				dataType:'JSONP',
 				data: {
@@ -80,7 +80,7 @@ Chat = {
 	},
 	'getMessages': function() {
 		$.ajax({
-			url:"http://krister.ee/chat/getMessages",
+			url:"http://krister.ee/chatAPI/getMessages",
 			type:'GET',
 			dataType:'JSONP',
 			data: {
@@ -110,7 +110,7 @@ Chat = {
 	},
 	'newMessage': function(message) {
 		$.ajax({
-			url:"http://krister.ee/chat/newMessage",
+			url:"http://krister.ee/chatAPI/newMessage",
 			type:'GET',
 			dataType:'JSONP',
 			data: {
