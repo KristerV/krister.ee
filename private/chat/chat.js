@@ -77,7 +77,7 @@ Chat = {
 						$('form[name="newuser"]').hide()
 						$('form[name="newmessage"]').show()
 						localStorage.setItem(username, response.userId)
-						Chat.newMessage('<i>has joined the room</i>')
+						Chat.newMessage('<i style="color:rgba(0,0,0,0.4)">has joined the room</i>')
 					}
 				}
 			});
