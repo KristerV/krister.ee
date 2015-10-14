@@ -3,12 +3,14 @@ $(document).ready(function(){
 	$('form[name="newuser"]').on('submit', function(e){
 		e.preventDefault()
 		var username = $('input[name=username]').val()
+		$('input[name=username]').val('')
 		Chat.registerUser(username)
 	});
 
 	$('form[name="newmessage"]').on('submit', function(e){
 		e.preventDefault()
 		var message = $('input[name=message]').val()
+		$('input[name=message]').val('')
 		Chat.newMessage(message)
 	});
 
