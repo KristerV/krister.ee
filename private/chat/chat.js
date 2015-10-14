@@ -55,6 +55,9 @@ Chat = {
 
 		if (localStorage.getItem(username)) {
 			console.log("logged in")
+			Chat.currentUser = username
+			$('form[name="newuser"]').hide()
+			$('form[name="newmessage"]').show()
 		} else {
 			$.ajax({
 				url:"http://krister.ee/chatAPI/registerUser",
@@ -68,15 +71,16 @@ Chat = {
 					if (response.result == 'error') {
 						console.log("ERROR:", response.reason)
 					} else {
+						Chat.currentUser = username
+						$('form[name="newuser"]').hide()
+						$('form[name="newmessage"]').show()
 						localStorage.setItem(username, response.userId)
 						Chat.newMessage('<i>has joined the room</i>')
 					}
 				}
 			});
 		}
-		Chat.currentUser = username
-		$('form[name="newuser"]').hide()
-		$('form[name="newmessage"]').show()
+		
 	},
 	'getMessages': function() {
 		$.ajax({
