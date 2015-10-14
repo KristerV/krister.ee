@@ -2,14 +2,14 @@ ChatAPImessages = new Mongo.Collection('chatAPI_messages')
 ChatAPIusers = new Mongo.Collection('chatAPI_users')
 
 HTTP.methods({
-	'/chat/getUsersInRoom': function() {
+	'/chatAPI/getUsersInRoom': function() {
 		console.log('getUsersInRoom:', this.query)
 		var data = ChatAPImessages.find({room: this.query.room || 'default'}, {sort: {username: 1}}).fetch()
 		console.log(data)
 		var plucked = _.uniq(_.pluck(data, 'username'))
 		return response(this.query.callback, {result: 'success', users: plucked})
 	},
-	'/chat/registerUser': function(params) {
+	'/chatAPI/registerUser': function(params) {
 		console.log('registerUser:', this.query)
 		var username = this.query.username
 		if (!username)
@@ -22,7 +22,7 @@ HTTP.methods({
 		var id = ChatAPIusers.insert({username: username})
 		return response(this.query.callback, {result: 'success', userId: id, username: username})
 	},
-	'/chat/getMessages': function() {
+	'/chatAPI/getMessages': function() {
 		console.log('getMessages:', this.query)
 		var room = this.query.room || 'default'
 		var lastId = this.query.lastId || null // TODO
@@ -36,7 +36,7 @@ HTTP.methods({
 		var messages = ChatAPImessages.find(find).fetch()
 		return response(this.query.callback, {result: 'success', messages: messages})
 	},
-	'/chat/newMessage': function() {
+	'/chatAPI/newMessage': function() {
 		console.log('newMessage:', this.query)
 		var userId = this.query.userId
 		var username = this.query.username
