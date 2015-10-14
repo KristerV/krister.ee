@@ -43,7 +43,7 @@ Chat = {
 			success: function(response){
 				console.log('getUsersInRoom')
 				if (response.result == 'error') {
-					console.log("ERROR:", response.reason)
+					error('ERROR: ' + response.reason)
 				} else if (response.users.length > 0) {
 					$('#users').empty()
 					response.users.forEach(function(user){
@@ -71,7 +71,7 @@ Chat = {
 				success: function(response){
 					console.log('registerUser')
 					if (response.result == 'error') {
-						console.log("ERROR:", response.reason)
+						error('ERROR: ' + response.reason)
 					} else {
 						Chat.currentUser = username
 						$('form[name="newuser"]').hide()
@@ -96,7 +96,7 @@ Chat = {
 			success: function(response){
 				console.log('getMessages')
 				if (response.result == 'error') {
-					console.log("ERROR:", response.reason)
+					error('ERROR: ' + response.reason)
 				} else if (response.messages.length > 0) {
 
 					response.messages.forEach(function(item){
@@ -127,7 +127,7 @@ Chat = {
 			success: function(response){
 				console.log('newMessage')
 				if (response.result == 'error') {
-					console.log("ERROR:", response.reason)
+					error('ERROR: ' + response.reason)
 				} else {
 					Chat.getMessages()
 				}
@@ -140,4 +140,9 @@ Chat = {
 		setInterval(Chat.getMessages, 300000)
 		// setInterval(Chat.getUsersInRoom, 10000)
 	}
+}
+
+error = function(msg) {
+
+	$('#errorbox').append('<p>'+msg+'</p>').fadeOut(5000)
 }
