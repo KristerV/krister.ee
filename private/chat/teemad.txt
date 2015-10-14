@@ -1,0 +1,31 @@
+GENERAL
+kuidas internet töötab: klient - server- db
+mis keeli kasutatakse - areng on olnud järk-järgult netscapest chromeni
+mida tänapäeva kasutaja ootab
+
+HTML
+	head (title, meta, link, script), body
+	b, i u, strong, hr, br, h1, h2, h3, p, sup, sub, span, a, ul, ol, img
+	div, form, input (text, checkbox, radio, password, email, range, submit), textarea, button
+	table, iframe, video, embed, section, audio
+0. 90ndate koduleht
+
+CSS
+id, css, div p, div > p, div.class.class2
+color, background-color
+font-family, text-align, font-size, text-decoration
+padding, border, margin (auto), width, height, max-width, min-with
+:hover :first-child :-nth-child(2n+1) :nth-of-type() :not()
+display (block, inline, inline-block, none), position (static, relative, fixed, absolute), float
+shadow, border-radius, z-index, flex, grid system, mdl, animatsioonid
+0. imiteerime koos mingit lehte
+1. teeme ta veel fancimaks
+2. vali üks leht mida imiteerida
+
+JS
+muutuja (var, list, objekt), if, while, for, function, JQuery & DOM
+0. form submit
+1. form validation (with HTML5 and JS)
+2. minigame?
+
+CHAT API CONNECTOR
