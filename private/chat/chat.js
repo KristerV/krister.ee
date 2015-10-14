@@ -100,7 +100,6 @@ Chat = {
 					response.messages.forEach(function(item){
 						$('#messages').append('<p id="'+item._id+'"><b>'+item.username+'</b>: '+ item.message +'</p>')
 						if ($.inArray(item.username, Chat.usersInRoom) == -1) {
-							console.log("HERE")
 							Chat.usersInRoom.push(item.username)
 							$('#users').append('<p>'+item.username+'</p>')
 						}
