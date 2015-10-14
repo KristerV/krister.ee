@@ -52,6 +52,12 @@ HTTP.methods({
 		} else {
 			return response(this.query.callback, {result: 'error', reason: "Authentication error: userId and username don't match"})
 		}
+	},
+	'chatAPI/deleteEverything': function() {
+		console.log('deleteEverything', this.query)
+		var result1 = ChatAPImessages.remove({})
+		var result2 = ChatAPIusers.remove({})
+		return "nice job, all chat history is now gone."
 	}
 });
 
