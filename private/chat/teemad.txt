@@ -1,3 +1,8 @@
+kogemus
+miks seda tahavad
+
+mida koolitusel teeme
+
 GENERAL
 kuidas internet töötab: klient - server- db
 mis keeli kasutatakse - areng on olnud järk-järgult netscapest chromeni
