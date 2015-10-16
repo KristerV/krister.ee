@@ -1,12 +1,11 @@
-http://krister.ee/chatAPI/getUsersInRoom
-    vastu võtab: room
-    tagasi annab: {result [users]}
 http://krister.ee/chatAPI/registerUser
     vastu võtab: username
     tagasi annab: {result userId username}
+
 http://krister.ee/chatAPI/getMessages
     vastu võtab: room lastId
     tagasi annab: {result [messages]}
+
 http://krister.ee/chatAPI/newMessage
     vastu võtab: userId username room message
     tagasi annab: {result messageId}
