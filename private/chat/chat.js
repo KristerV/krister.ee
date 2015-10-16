@@ -85,7 +85,7 @@ Chat = {
 				}
 			});
 		}
-		
+
 	},
 	'getMessages': function() {
 		$.ajax({
@@ -139,9 +139,7 @@ Chat = {
 	},
 	startTimer: function() {
 		Chat.getMessages()
-		// Chat.getUsersInRoom()
-		setInterval(Chat.getMessages, 300000)
-		// setInterval(Chat.getUsersInRoom, 10000)
+		setInterval(Chat.getMessages, 1500)
 	}
 }
 
