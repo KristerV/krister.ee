@@ -139,7 +139,7 @@ Chat = {
 	},
 	startTimer: function() {
 		Chat.getMessages()
-		setInterval(Chat.getMessages, 1500)
+		setInterval(Chat.getMessages, 300000)
 	}
 }
 
