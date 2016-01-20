@@ -1,5 +1,5 @@
 <head>
-	<meta charset="utf-8" /> 
+	<meta charset="utf-8" />
 	<title>Chattt</title>
 	<link rel="stylesheet" type="text/css" href="chat.css" />
 	<script src="jquery.min.js"></script>
@@ -24,5 +24,21 @@
 			<input type="submit" value="Tere"/>
 		</form>
 		<div id="errorbox" style="color:red"></div>
+		<pre class="hidden-text">
+
+
+
+http://krister.ee/chatAPI/registerUser
+    vastu võtab: username
+    tagasi annab: {result userId username}
+
+http://krister.ee/chatAPI/getMessages
+    vastu võtab: room lastId
+    tagasi annab: {result [messages]}
+
+http://krister.ee/chatAPI/newMessage
+    vastu võtab: userId username room message
+    tagasi annab: {result messageId}
+		</pre>
 	</div>
 </body>
