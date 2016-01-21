@@ -1,6 +1,6 @@
 SISSEJUHATUS
 Minu kogemus
-Osalejate soov saavutada
+Osalejate soov saavutada, eelnev kogemus.
 Mida koolitusel teeme (nullist chatini)
 
 GENERAL
@@ -27,7 +27,11 @@ animatsioonid: transform
 ÜL: valime lehe mida imiteerida ja paremaks teha
 
 JS
-muutuja (var, list, objekt), if, while, for, function, JQuery & DOM
+muutuja (var, list, object)
+if
+while, for
+function
+JQuery & DOM
 ÜL 0. form submit
 ÜL 1. form validation (with HTML5 and JS)
 ÜL 2. minigame?

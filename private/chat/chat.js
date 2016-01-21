@@ -98,13 +98,13 @@ Chat = {
 			},
 			success: function(response){
 				console.log('getMessages')
-				if (response.result == 'error') {
-					error('ERROR: ' + response.reason)
+				if (response.result === 'error') {
+					console.error('ERROR: ' + response.reason)
 				} else if (response.messages.length > 0) {
 
 					response.messages.forEach(function(item){
 						$('#messages').append('<p id="'+item._id+'"><b>'+item.username+'</b>: '+ item.message +'</p>')
-						if ($.inArray(item.username, Chat.usersInRoom) == -1) {
+						if ($.inArray(item.username, Chat.usersInRoom) === -1) {
 							Chat.usersInRoom.push(item.username)
 							$('#users').append('<p>'+item.username+'</p>')
 						}

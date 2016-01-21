@@ -1,4 +1,4 @@
-1. Kas krister.ee/chat onb üleval?
+1. Kas krister.ee/chat on üleval?
 1. Vaata teemad üle
 1. Vaata chat üle koodis (scriptid, css import)
 1. serveri API meelde tuletada
