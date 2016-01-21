@@ -4,14 +4,14 @@ Osalejate soov saavutada, eelnev kogemus.
 Mida koolitusel teeme (nullist chatini)
 
 GENERAL
-kuidas internet töötab: klient - server- db
+kuidas internet töötab: klient - server - db
 mis keeli kasutatakse - areng on olnud järk-järgult netscapest chromeni
 mida tänapäeva kasutaja ootab
 
 HTML
 head (title, meta, link, script), body
 tekst, div, form, table, pilt, video, audio
-tekst: b, i u, strong, hr, br, h1, h2, h3, p, sup, sub, span, a, ul, ol, img
+tekst: b, i u, strong, hr, br, h1, h2, h3, p, sup, sub, span, a, ul, ol
 form: label, input (text, checkbox, radio, password, email, range, submit), textarea, button
 ÜL: 90ndate koduleht
 
