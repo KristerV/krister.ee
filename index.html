@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Krister</title>
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/marked.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+<div id="content"></div>
+<script>
+    $.get('cv.md', function(data){
+        document.getElementById('content').innerHTML =
+                marked(data);
+    })
+</script>
+</body>
+</html>
