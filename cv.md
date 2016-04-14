@@ -121,6 +121,21 @@ Tallinn, Estonia
 * Finished top 3 of the class
 * Produced [two awesome animations](https://vimeo.com/search?q=krister+viirsaar)
 
+## Languages
+
+* English: very fluent
+* Estonian: native
+
+## My Top 5 Strengths
+
+*Backed up by [StrengthsFinder 2.0](http://strengths.gallup.com/110440/About-StrengthsFinder-20.aspx)*
+
+1. Learner: Great desire to understand and improve things with powerful focus. Will move on after subject is clear.
+1. Individualization: I'm intruiged by what makes each person special.
+1. Activator: Idea to action can be extremely quick. I'm also impatient when things don't happen.
+1. Self-Assurance: I feel confident in managing my own life and work methods. Corporate rules make me less productive.
+1. Command: Indecisiveness is the devil. I take control and lead as the situation requires it.
+
 ## Reference contacts
 
 * [Hannes Lents](https://www.linkedin.com/in/hanneslents) - Partner at Toitla
