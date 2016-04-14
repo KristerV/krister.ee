@@ -123,8 +123,18 @@ Tallinn, Estonia
 
 ## Languages
 
-* English: very fluent
-* Estonian: native
+* **English**: fluent
+* **Estonian**: native
+
+## Reference contacts
+
+* [Hannes Lents](https://www.linkedin.com/in/hanneslents) - Partner at Toitla
+* [Tiit Roosma](http://www.itcollege.ee/it-kolledz/) - IT College chancellor
+* [Ene Koitla](http://www.hitsa.ee/sihtasutusest/tootajad) - HITSA board member
+
+## About me
+
+I'm very much a straight to the point kind of guy. I either get things done or figure out a better way of achieving the goal. I thrive when given real problems to solve and the freedom to implement solutions. Though quite demanding of fellow collegues I make friends easily as I am open and can communicate my ideas clearly.
 
 ## My Top 5 Strengths
 
@@ -135,12 +145,6 @@ Tallinn, Estonia
 1. Activator: Idea to action can be extremely quick. I'm also impatient when things don't happen.
 1. Self-Assurance: I feel confident in managing my own life and work methods. Corporate rules make me less productive.
 1. Command: Indecisiveness is the devil. I take control and lead as the situation requires it.
-
-## Reference contacts
-
-* [Hannes Lents](https://www.linkedin.com/in/hanneslents) - Partner at Toitla
-* [Tiit Roosma](http://www.itcollege.ee/it-kolledz/) - IT College chancellor
-* [Ene Koitla](http://www.hitsa.ee/sihtasutusest/tootajad) - HITSA board member
 
 ## Honest answers
 
