@@ -177,6 +177,7 @@ Nope, sorry. I bet I can handle any mission involving Java, but currently I have
 ## Stuff I follow
 
 * [Coding Horror](http://blog.codinghorror.com/)
+* [Medium](https://medium.com/)
 * [AJ+](https://www.youtube.com/channel/UCV3Nm3T-XAgVhKH9jT0ViRg)
 * [VICE](https://www.youtube.com/channel/UCn8zNIfYAQNdrFRrr8oibKw)
 * [Veritasium](https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA)
