@@ -67,9 +67,9 @@ h6 {
     font-size: 13px;
 }
 hr {
-    margin: 0 0 19px;
+    margin: 4em 0 1em 0;
     border: 0;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ddd;
 }
 blockquote {
     padding: 13px 13px 21px 15px;
