@@ -15,6 +15,8 @@ Tallinn, Estonia
 
 [GitHub profile](https://github.com/KristerV)
 
+-----
+
 ## Skills
 
 5 years of programming experience with startups and corporate software.
@@ -23,6 +25,8 @@ Tallinn, Estonia
 * PHP, Zend Framework
 * Python, Kivy Framework
 * Java
+
+-----
 
 ## Career
 
@@ -110,6 +114,8 @@ Tallinn, Estonia
 * Conducting interviews for lottery campaign
 * Data entry
 
+-----
+
 ## Education
 
 ### University of Bradford
@@ -121,10 +127,14 @@ Tallinn, Estonia
 * Finished top 3 of the class
 * Produced [two awesome animations](https://vimeo.com/search?q=krister+viirsaar)
 
+-----
+
 ## Languages
 
 * **English**: fluent
 * **Estonian**: native
+
+-----
 
 ## Reference contacts
 
@@ -132,9 +142,13 @@ Tallinn, Estonia
 * [Tiit Roosma](http://www.itcollege.ee/it-kolledz/) - IT College chancellor
 * [Ene Koitla](http://www.hitsa.ee/sihtasutusest/tootajad) - HITSA board member
 
+-----
+
 ## About me
 
 I'm very much a straight to the point kind of guy. I either get things done or figure out a better way of achieving the goal. I thrive when given real problems to solve and the freedom to implement solutions. Though quite demanding of fellow collegues I make friends easily as I am open and can communicate my ideas clearly.
+
+-----
 
 ## My Top 5 Strengths
 
@@ -146,6 +160,8 @@ I'm very much a straight to the point kind of guy. I either get things done or f
 1. Self-Assurance: I feel confident in managing my own life and work methods. Corporate rules make me less productive.
 1. Command: Indecisiveness is the devil. I take control and lead as the situation requires it.
 
+-----
+
 ## Honest answers
 
 #### Why haven't you been employed for more than a few years?
@@ -155,6 +171,8 @@ Aside from circumstantial reasons I seem to be very goal oriented. I take on a c
 #### So do you actually have any experience in Java?
 
 Nope, sorry. I bet I can handle any mission involving Java, but currently I have no professional experience involving Java. When I was called to teach Java to students I had a week to get my head around it and I did. I think that speaks well about my ability to learn. I learnt it so well that I ended up completely reimagining the course and producing [materials](http://i200.itcollege.ee/) for it. I like the language and look forward to working with it some day.
+
+-----
 
 ## Stuff I follow
 
