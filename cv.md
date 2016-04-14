@@ -13,6 +13,8 @@ Tallinn, Estonia
 
 1988
 
+[GitHub profile](https://github.com/KristerV)
+
 ## Skills
 
 5 years of programming experience with startups and corporate software.
@@ -23,16 +25,6 @@ Tallinn, Estonia
 * Java
 
 ## Career
-
-### AS Draka Keila Cables
-
-**Full-stack developer**
-
-2015-2016
-
-* Map out existing procedures
-* Develop webapplication to automate process
-* Deploy and maintain application server on private network
 
 ### Toitla OÜ
 
@@ -54,6 +46,15 @@ Tallinn, Estonia
 * Reimagined the course and produced **10x improvement** compared to previous year.
 * Produced [reference materials](http://i200.itcollege.ee/) for beginners - complete with [videos](http://i200.itcollege.ee/Videod) and a ["nothings working"](http://i200.itcollege.ee/hadaabi) section.
 
+### AS Draka Keila Cables
+
+**Full-stack developer**
+
+2015-2016
+
+* Map out existing procedures
+* Develop webapplication to automate process
+* Deploy and maintain application server on private network
 
 ### HITSA
 
@@ -101,7 +102,13 @@ Tallinn, Estonia
 
 ### Estonian Information Center
 
-**
+**Call Center Agent**
+
+2009 summer
+
+* Conducting survey customer satisfaction survey
+* Conducting interviews for lottery campaign
+* Data entry
 
 ## Education
 
@@ -114,6 +121,25 @@ Tallinn, Estonia
 * Finished top 3 of the class
 * Produced [two awesome animations](https://vimeo.com/search?q=krister+viirsaar)
 
-## Reference
+## Reference contacts
 
-## About me
+* [Hannes Lents](https://www.linkedin.com/in/hanneslents) - Partner at Toitla
+* [Tiit Roosma](http://www.itcollege.ee/it-kolledz/) - IT College chancellor
+* [Ene Koitla](http://www.hitsa.ee/sihtasutusest/tootajad) - HITSA board member
+
+## Honest answers
+
+#### Why haven't you been employed for more than a few years?
+
+Aside from circumstantial reasons I seem to be very goal oriented. I take on a challenge and move on. Also, according to Clifton's StrengthsFinder my nr 1. strength is learning. I am a learner. Once I've learnt a subject and implemented improvements I move on. Regardless a 10 year job is not out of the question at all, I bet there is a company for me out there somewhere.
+
+#### So do you actually have any experience in Java?
+
+Nope, sorry. I bet I can handle any mission involving Java, but currently I have no professional experience involving Java. When I was called to teach Java to students I had a week to get my head around it and I did. I think that speaks well about my ability to learn. I learnt it so well that I ended up completely reimagining the course and producing [materials](http://i200.itcollege.ee/) for it. I like the language and look forward to working with it some day.
+
+## Stuff I follow
+
+* [Coding Horror](http://blog.codinghorror.com/)
+* [AJ+](https://www.youtube.com/channel/UCV3Nm3T-XAgVhKH9jT0ViRg)
+* [VICE](https://www.youtube.com/channel/UCn8zNIfYAQNdrFRrr8oibKw)
+* [Veritasium](https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA)
