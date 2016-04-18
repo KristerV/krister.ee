@@ -21,7 +21,7 @@ Tallinn, Estonia
 
 5 years of programming experience with startups and corporate software.
 
-* JavaScript, Node.js, Meteor.js
+* JavaScript, Meteor.js, React.js
 * PHP, Zend Framework
 * Python, Kivy Framework
 * Java
