@@ -162,18 +162,6 @@ I'm very much a straight to the point kind of guy. I either get things done or f
 
 -----
 
-## Honest answers
-
-#### Why haven't you been employed for more than a few years?
-
-Aside from circumstantial reasons I seem to be very goal oriented. I take on a challenge and move on. Also, according to Clifton's StrengthsFinder my nr 1. strength is learning. I am a learner. Once I've learnt a subject and implemented improvements I move on. Regardless a 10 year job is not out of the question at all, I bet there is a company for me out there somewhere.
-
-#### So do you actually have any experience in Java?
-
-Nope, sorry. I bet I can handle any mission involving Java, but currently I have no professional experience involving Java. When I was called to teach Java to students I had a week to get my head around it and I did. I think that speaks well about my ability to learn. I learnt it so well that I ended up completely reimagining the course and producing [materials](http://i200.itcollege.ee/) for it. I like the language and look forward to working with it some day.
-
------
-
 ## Stuff I follow
 
 * [Coding Horror](http://blog.codinghorror.com/)
