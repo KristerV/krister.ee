@@ -1,3 +1,5 @@
+<dic class="center">
+
 ![profile image](http://krister.ee/face.png)
 
 # Krister Viirsaar
@@ -14,6 +16,8 @@ Tallinn, Estonia
 1988
 
 [GitHub profile](https://github.com/KristerV)
+
+</div>
 
 -----
 

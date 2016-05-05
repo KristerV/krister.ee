@@ -17,13 +17,14 @@ Gandhi [1982 Movie]
 
 ## Want to read
 
+Rework
 Linchpin - Seth Godin
 Fifty Flaw - Robert Greene
-Antifragile - Nassim Talud
 Made in America by Sam Walton
 Be So Good They Can't Ignore You
 4-hour work week
 Charlie Munger
+Peopleware: Productive Projects and Teams (3rd Edition)
 -----
 
 ## Honest answers
