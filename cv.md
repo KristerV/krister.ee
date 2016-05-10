@@ -173,3 +173,11 @@ I'm very much a straight to the point kind of guy. I either get things done or f
 * [AJ+](https://www.youtube.com/channel/UCV3Nm3T-XAgVhKH9jT0ViRg)
 * [VICE](https://www.youtube.com/channel/UCn8zNIfYAQNdrFRrr8oibKw)
 * [Veritasium](https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA)
+
+-----
+
+## Bank details
+
+**LHV**  
+Krister Viirsaar  
+EE987700771001379001
