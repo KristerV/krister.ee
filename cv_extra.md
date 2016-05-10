@@ -1,30 +1,36 @@
 
 
-## Favorite
+## Favorite books
 
 Predictably Irrational by Dan Ariely [Book]
 Genghis Khan and the Making of the Modern World [Book]
 How to Win Friends and Influence People by Dale Carnegie [Book]
 Conversations with God by Neale Donald Walsch [Book]
 
-## Second favorite
+## Second favorite books
 
+4-hour work week
 The Seven-Day Weekend by Ricardo Semler [Book]
 Design is a Job [Book]
 You Will Get All You Give Up by Tommy Hellsten [Book]
 Alan Watts - Out of your mind [audio lecture]
 Gandhi [1982 Movie]
+Rework
+Be So Good They Can't Ignore You
 
 ## Want to read
 
-Rework
+Purple Cow
+Marketing weasels
+Losing My Virginity - Branson
+Investing in Real Estate - Andrew James McLean, Gary W. Eldred
 Linchpin - Seth Godin
 Fifty Flaw - Robert Greene
 Made in America by Sam Walton
-Be So Good They Can't Ignore You
-4-hour work week
 Charlie Munger
 Peopleware: Productive Projects and Teams (3rd Edition)
+http://fourhourworkweek.com/books/
+
 -----
 
 ## Honest answers
