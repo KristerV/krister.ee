@@ -20,11 +20,11 @@ Be So Good They Can't Ignore You
 
 ## Want to read
 
-Purple Cow
+
+Raha - Kaur Kender ja Rain Lõhmus
 Marketing weasels
 Losing My Virginity - Branson
 Investing in Real Estate - Andrew James McLean, Gary W. Eldred
-Linchpin - Seth Godin
 Fifty Flaw - Robert Greene
 Made in America by Sam Walton
 Charlie Munger
