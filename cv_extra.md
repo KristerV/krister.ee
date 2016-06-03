@@ -20,7 +20,9 @@ Be So Good They Can't Ignore You
 
 ## Want to read
 
-
+The Hard Thing About Hard Things
+Life After God
+The $100 Startup
 Raha - Kaur Kender ja Rain Lõhmus
 Marketing weasels
 Losing My Virginity - Branson
