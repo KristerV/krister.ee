@@ -6,21 +6,27 @@ Predictably Irrational by Dan Ariely [Book]
 Genghis Khan and the Making of the Modern World [Book]
 How to Win Friends and Influence People by Dale Carnegie [Book]
 Conversations with God by Neale Donald Walsch [Book]
+Alan Watts - Out of your mind [audio lecture]
 
 ## Second favorite books
 
+Gandhi [1982 Movie]
 4-hour work week
 The Seven-Day Weekend by Ricardo Semler [Book]
 Design is a Job [Book]
 You Will Get All You Give Up by Tommy Hellsten [Book]
-Alan Watts - Out of your mind [audio lecture]
-Gandhi [1982 Movie]
 Rework
 Be So Good They Can't Ignore You
 
 ## Want to read
 
-
+She comes first
+Tantric sex for men: making love a meditation
+Guide to Getting it On
+The Complete Kama Sutra
+The Sex god Method
+The 4-hour body
+Awaken the Giant Within
 Raha - Kaur Kender ja Rain Lõhmus
 Marketing weasels
 Losing My Virginity - Branson
@@ -30,6 +36,7 @@ Made in America by Sam Walton
 Charlie Munger
 Peopleware: Productive Projects and Teams (3rd Edition)
 http://fourhourworkweek.com/books/
+Six Pillars of Self Esteem
 
 -----
 
