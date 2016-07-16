@@ -2,6 +2,7 @@
 
 ## Favorite books
 
+The Paradox of Choice [Book]
 Predictably Irrational by Dan Ariely [Book]
 Genghis Khan and the Making of the Modern World [Book]
 How to Win Friends and Influence People by Dale Carnegie [Book]
@@ -20,12 +21,11 @@ Be So Good They Can't Ignore You
 
 ## Want to read
 
-She comes first
+Transsurfing - guiding reality by Vadim Zeland
 Tantric sex for men: making love a meditation
 Guide to Getting it On
 The Complete Kama Sutra
 The Sex god Method
-The 4-hour body
 Awaken the Giant Within
 Raha - Kaur Kender ja Rain Lõhmus
 Marketing weasels
@@ -35,8 +35,8 @@ Fifty Flaw - Robert Greene
 Made in America by Sam Walton
 Charlie Munger
 Peopleware: Productive Projects and Teams (3rd Edition)
-http://fourhourworkweek.com/books/
 Six Pillars of Self Esteem
+Kuidas kasutada kaost.
 
 -----
 
@@ -49,3 +49,16 @@ Aside from circumstantial reasons I seem to be very goal oriented. I take on a c
 #### So do you actually have any experience in Java?
 
 Nope, sorry. I bet I can handle any mission involving Java, but currently I have no professional experience involving Java. When I was called to teach Java to students I had a week to get my head around it and I did. I think that speaks well about my ability to learn. I learnt it so well that I ended up completely reimagining the course and producing [materials](http://i200.itcollege.ee/) for it. I like the language and look forward to working with it some day.
+
+------
+
+Favorite places to eat
+
+- Green Bakery
+- Estonian Burger Factory
+- Tudengi baar
+- Mamo
+- Miku Vegan
+- Mahe Market
+- Elevant
+- Bollywood
