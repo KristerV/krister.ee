@@ -4,14 +4,15 @@
 
 The Paradox of Choice [Book]
 Predictably Irrational by Dan Ariely [Book]
-Genghis Khan and the Making of the Modern World [Book]
 How to Win Friends and Influence People by Dale Carnegie [Book]
 Conversations with God by Neale Donald Walsch [Book]
 Alan Watts - Out of your mind [audio lecture]
+Gandhi [1982 Movie]
 
 ## Second favorite books
 
-Gandhi [1982 Movie]
+Genghis Khan and the Making of the Modern World [Book]
+The $100 Startup
 4-hour work week
 The Seven-Day Weekend by Ricardo Semler [Book]
 Design is a Job [Book]
@@ -27,6 +28,7 @@ Guide to Getting it On
 The Complete Kama Sutra
 The Sex god Method
 Awaken the Giant Within
+Life After God
 Raha - Kaur Kender ja Rain Lõhmus
 Marketing weasels
 Losing My Virginity - Branson
