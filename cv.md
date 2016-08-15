@@ -3,7 +3,7 @@
 ![profile image](http://krister.ee/face.png)
 
 # Krister Viirsaar
-### *Software Engineer*
+### *Startup minded software Engineer*
 
 ## Contact
 
