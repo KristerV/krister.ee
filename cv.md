@@ -47,6 +47,17 @@ Tallinn, Estonia
 
 Happy in this startup environment. We teach cyber security through gamification by simulating the actual server environment. Awesome team, awesome project, awesome company. I learn new stuff every day and build facinating systems.
 
+### IT College
+
+**University tutor**
+
+2014 - Current
+
+* Beginners programming course taught in Java.
+* Reimagined the course and produced **4x improvement** compared to previous year.
+* Produced [thorough materials](http://i200.itcollege.ee/) for beginners.
+* This year my innovation is to move online completely and invite the whole country to participate.
+
 ### LHV Pank
 
 **Software developer**
@@ -64,16 +75,6 @@ I loved the team and environment, but the job just didn't envigorate me. The men
 * Ambitions startup organizing homechefs to offer the best fingerfood for corporate events.
 * Built comprehensive management software using Meteor.js and improved companies performance capabilities drastically.
 * Co-lead the company and tested loads of different approaches.
-
-### IT College
-
-**University tutor**
-
-2014 - Current
-
-* Beginners programming course taught in Java.
-* Reimagined the course and produced **10x improvement** compared to previous year.
-* Produced [reference materials](http://i200.itcollege.ee/) for beginners - complete with [videos](http://i200.itcollege.ee/Videod) and a ["nothings working"](http://i200.itcollege.ee/hadaabi) section.
 
 ### Guaana
 
