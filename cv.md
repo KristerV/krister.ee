@@ -75,6 +75,14 @@ I loved the team and environment, but the job just didn't envigorate me. The men
 * Reimagined the course and produced **10x improvement** compared to previous year.
 * Produced [reference materials](http://i200.itcollege.ee/) for beginners - complete with [videos](http://i200.itcollege.ee/Videod) and a ["nothings working"](http://i200.itcollege.ee/hadaabi) section.
 
+### Guaana
+
+**Software developer**
+
+1.5 months in 2015
+
+An incredible vision and an even better team. Loved working there, but as my own startup needed all of my attention just then - I quit and pursued it. Taght me a lot about how an efective team operates in these few weeks.
+
 ### AS Draka Keila Cables
 
 **Full-stack developer**
