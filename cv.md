@@ -206,6 +206,16 @@ I'm very much a straight to the point kind of guy. I either get things done or f
 
 -----
 
+## Books I love
+
+* Predictably Irrational by Dan Ariely
+* How to Win Friends and Influence People by Dale Carnegie
+* Conversations with God by Neale Donald Walsch
+* Alan Watts - Out of your mind [audio lecture]
+* Gandhi [1982 Movie]
+
+-----
+
 ## Bank details
 
 **LHV**  
