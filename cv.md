@@ -3,7 +3,7 @@
 ![profile image](http://krister.ee/face.png)
 
 # Krister Viirsaar
-### *Startup minded software Engineer*
+### *Startup minded software engineer*
 
 ## Contact
 
@@ -23,7 +23,7 @@ Tallinn, Estonia
 
 ## Skills
 
-5 years of programming experience with startups and corporate software.
+* 5 years of programming with startups and corporate software.
 
 * JavaScript, Meteor.js, React.js
 * PHP, Zend Framework
@@ -33,6 +33,22 @@ Tallinn, Estonia
 -----
 
 ## Career
+
+### Rangeforce
+
+**Software developer and a lil' bit of DevOps.**
+
+2016 - current
+
+A small, but agile startup. We teach cyber security through gamification by simulating the actual server environment. Awesome team, awesome project, awesome company. I learn new stuff every day and build facinating systems.
+
+### LHV Pank
+
+**Software developer**
+
+2 months in 2016
+
+I loved the team and environment, but the job just didn't envigorate me. The mentality and structure of roles had been really well developed and the team is clearly very productive, but I need more chaos and a multidisciplinary approach. Went back to the startup world.
 
 ### Toitla OÜ
 
