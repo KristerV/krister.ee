@@ -45,7 +45,7 @@ Tallinn, Estonia
 
 2016 - current
 
-A small, but agile startup. We teach cyber security through gamification by simulating the actual server environment. Awesome team, awesome project, awesome company. I learn new stuff every day and build facinating systems.
+Happy in this startup environment. We teach cyber security through gamification by simulating the actual server environment. Awesome team, awesome project, awesome company. I learn new stuff every day and build facinating systems.
 
 ### LHV Pank
 
@@ -53,7 +53,7 @@ A small, but agile startup. We teach cyber security through gamification by simu
 
 2 months in 2016
 
-I loved the team and environment, but the job just didn't envigorate me. The mentality and structure of roles had been really well developed and the team is clearly very productive, but I need more chaos and a multidisciplinary approach. Went back to the startup world.
+I loved the team and environment, but the job just didn't envigorate me. The mentality and structure of roles had been really well eshtablished and the team is clearly very productive, but I need chaos and a more multidisciplinary approach. Went back to the startup world. Meanwhile I advise everyone to go work there, the atmosphere is superb!
 
 ### Toitla OÜ
 
