@@ -21,14 +21,19 @@ Tallinn, Estonia
 
 -----
 
-## Skills
+## Experience
 
 * 5 years of programming with startups and corporate software.
+* Linux geek all the way
 
 * JavaScript, Meteor.js, React.js
 * PHP, Zend Framework
 * Python, Kivy Framework
 * Java
+* Bash
+
+* Server deployment
+* Docker
 
 -----
 
