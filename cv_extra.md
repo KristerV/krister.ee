@@ -22,6 +22,7 @@ Be So Good They Can't Ignore You
 
 ## Want to read
 
+Freakonomics
 Transsurfing - guiding reality by Vadim Zeland
 Tantric sex for men: making love a meditation
 Guide to Getting it On
