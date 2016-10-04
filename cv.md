@@ -230,7 +230,7 @@ I'm very much a straight to the point kind of guy. I either get things done or f
 
 
 * [Cars will be electric, autonomous and on-demand](https://www.tesla.com/blog/master-plan-part-deux)
-* [Long-haul transport will be cheap and efficient](https://en.wikipedia.org/wiki/Hyperloop)
+* [Long distance travel wiil be cheap, fast and clean](https://en.wikipedia.org/wiki/Hyperloop)
 * [You will rent instead of buy and earth will be better off](https://www.youtube.com/watch?v=oOO-pYUl9-w)
 * [The climate will indeed change - a lot](https://www.youtube.com/watch?v=OWXoRSIxyIU)
 * [Mars will be a new high-tech country](https://www.youtube.com/watch?v=TnY23KEkZPY)
