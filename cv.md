@@ -219,6 +219,7 @@ I'm very much a straight to the point kind of guy. I either get things done or f
 ### Other
 
 * [HackerNews](https://news.ycombinator.com/)
+* Various channels on [Reddit](https://www.reddit.com/) like [IAmA](https://www.reddit.com/r/iama) and 
 * [Coding Horror](http://blog.codinghorror.com/)
 * [Medium](https://medium.com/)
 * [Adam Ruins Everything](https://en.wikipedia.org/wiki/Adam_Ruins_Everything)
@@ -229,11 +230,12 @@ I'm very much a straight to the point kind of guy. I either get things done or f
 
 
 * [Cars will be electric, autonomous and on-demand](https://www.tesla.com/blog/master-plan-part-deux)
+* [Long-haul transport will be cheap and efficient](https://en.wikipedia.org/wiki/Hyperloop)
 * [You will rent instead of buy and earth will be better off](https://www.youtube.com/watch?v=oOO-pYUl9-w)
 * [The climate will indeed change - a lot](https://www.youtube.com/watch?v=OWXoRSIxyIU)
 * [Mars will be a new high-tech country](https://www.youtube.com/watch?v=TnY23KEkZPY)
-* [We have really no clue what's going to happen when AI hits](https://medium.com/ai-revolution/ai-revolution-101-8dce1d9cb62d#.lfba27w6a)
 * [Education will become more exploratory and diverse](http://lmgtfy.com/?q=ken+robinson)
+* [We have really no clue what's going to happen when AI hits](https://medium.com/ai-revolution/ai-revolution-101-8dce1d9cb62d#.lfba27w6a)
 
 -----
 
