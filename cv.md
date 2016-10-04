@@ -24,7 +24,8 @@ Tallinn, Estonia
 ## Experience
 
 * 5 years of programming with startups and corporate software.
-* Linux geek all the way
+* Linux geek all the way.
+* University tutor and online course developer.
 
 * JavaScript, Meteor.js, React.js
 * PHP, Zend Framework
@@ -161,6 +162,10 @@ An incredible vision and an even better team. Loved working there, but as my own
 * Finished top 3 of the class
 * Produced [two awesome animations](https://vimeo.com/search?q=krister+viirsaar)
 
+### VHK
+
+12 years of school. I was an average student by all means. I learnt to love learning and reading after graduation and the passion only keeps growing. Now one of my goals is help kids not lose their passion for life.
+
 -----
 
 ## Languages
@@ -198,11 +203,37 @@ I'm very much a straight to the point kind of guy. I either get things done or f
 
 ## Stuff I follow
 
-* [Coding Horror](http://blog.codinghorror.com/)
-* [Medium](https://medium.com/)
+### Youtube
+
+* [Vox](https://www.youtube.com/channel/UCLXo7UDZvByw2ixzpQCufnA)
 * [AJ+](https://www.youtube.com/channel/UCV3Nm3T-XAgVhKH9jT0ViRg)
 * [VICE](https://www.youtube.com/channel/UCn8zNIfYAQNdrFRrr8oibKw)
 * [Veritasium](https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA)
+* [vpro backlight](https://www.youtube.com/channel/UCqJ6GC0klkbFuQa-0ZePqkQ)
+* [Motherboard](https://www.youtube.com/channel/UCB6PV0cvJpzlcXRG7nz6PpQ)
+* [MinuteEarth](https://www.youtube.com/channel/UCeiYXex_fwgYDonaTcSIk6w)
+* [RocketJump Film School](https://www.youtube.com/channel/UC3KpzBeoM8lDvn85m4szzfA)
+* [Kurzgesagt – In a Nutshell](https://www.youtube.com/channel/UCsXVk37bltHxD1rDPwtNM8Q)
+* [The School of Life](https://www.youtube.com/channel/UC7IcJI8PUf5Z3zKxnZvTBog)
+
+### Other
+
+* [HackerNews](https://news.ycombinator.com/)
+* [Coding Horror](http://blog.codinghorror.com/)
+* [Medium](https://medium.com/)
+* [Adam Ruins Everything](https://en.wikipedia.org/wiki/Adam_Ruins_Everything)
+
+-----
+
+## I predict...
+
+
+* [Cars will be electric, autonomous and on-demand](https://www.tesla.com/blog/master-plan-part-deux)
+* [You will rent instead of buy and earth will be better off](https://www.youtube.com/watch?v=oOO-pYUl9-w)
+* [The climate will indeed change - a lot](https://www.youtube.com/watch?v=OWXoRSIxyIU)
+* [Mars will be a new high-tech country](https://www.youtube.com/watch?v=TnY23KEkZPY)
+* [We have really no clue what's going to happen when AI hits](https://medium.com/ai-revolution/ai-revolution-101-8dce1d9cb62d#.lfba27w6a)
+* [Education will become more exploratory and diverse](http://lmgtfy.com/?q=ken+robinson)
 
 -----
 
@@ -213,6 +244,7 @@ I'm very much a straight to the point kind of guy. I either get things done or f
 * Conversations with God by Neale Donald Walsch
 * Alan Watts - Out of your mind [audio lecture]
 * Gandhi [1982 Movie]
+* The 4 Hour Workweek by Tim Ferriss
 
 -----
 
