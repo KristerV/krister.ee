@@ -164,7 +164,7 @@ An incredible vision and an even better team. Loved working there, but as my own
 
 ### VHK
 
-12 years of school. I was an average student by all means. I learnt to love learning and reading after graduation and the passion only keeps growing. Now one of my goals is help kids not lose their passion for life.
+12 years of school. I was a bright student with below average greades. I learnt to love learning years after graduation and the passion only keeps growing. Now one of my goals is help kids not to lose theirs.
 
 -----
 
