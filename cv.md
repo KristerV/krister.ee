@@ -219,10 +219,12 @@ I'm very much a straight to the point kind of guy. I either get things done or f
 ### Other
 
 * [HackerNews](https://news.ycombinator.com/)
-* Various channels on [Reddit](https://www.reddit.com/) like [IAmA](https://www.reddit.com/r/iama) and 
+* Various channels on [Reddit](https://www.reddit.com/) like [IAmA](https://www.reddit.com/r/iama)
 * [Coding Horror](http://blog.codinghorror.com/)
 * [Medium](https://medium.com/)
 * [Adam Ruins Everything](https://en.wikipedia.org/wiki/Adam_Ruins_Everything)
+* [LHV Investeerimise Foorum](https://fp.lhv.ee/?locale=et)
+* [BlackMirror](https://www.youtube.com/watch?v=jDiYGjp5iFg) (season 3)
 
 -----
 
@@ -234,7 +236,6 @@ I'm very much a straight to the point kind of guy. I either get things done or f
 * [You will rent instead of buy and earth will be better off](https://www.youtube.com/watch?v=oOO-pYUl9-w)
 * [The climate will indeed change - a lot](https://www.youtube.com/watch?v=OWXoRSIxyIU)
 * [Mars will be a new high-tech country](https://www.youtube.com/watch?v=TnY23KEkZPY)
-* [Education will become more exploratory and diverse](http://lmgtfy.com/?q=ken+robinson)
 * [We have really no clue what's going to happen when AI hits](https://medium.com/ai-revolution/ai-revolution-101-8dce1d9cb62d#.lfba27w6a)
 
 -----
