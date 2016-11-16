@@ -22,6 +22,7 @@ Be So Good They Can't Ignore You
 
 ## Want to read
 
+How to Fail at Almost Everything and Still Win Big: Kind of the Story of My Life
 Freakonomics
 Transsurfing - guiding reality by Vadim Zeland
 Tantric sex for men: making love a meditation
