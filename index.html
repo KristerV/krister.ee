@@ -1,19 +1,34 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="UTF-8">
     <title>Krister</title>
-    <script src="lib/jquery.min.js"></script>
-    <script src="lib/marked.js"></script>
-    <link rel="stylesheet" type="text/css" href="index.css">
+
+    <!-- import libs -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/styles/monokai-sublime.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.6.0/languages/java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/7.0.1/markdown-it.min.js"></script>
+    <script src="scripts/lib/qazy.js"></script>
+    <script src="scripts/lib/markdown-it-container.js"></script>
+    <script src="scripts/lib/markdown-it-attrs.js"></script>
+    <script src="scripts/lib/markdown-it-video.js"></script>
+    <script src="scripts/lib/markdown-it-toc.js"></script>
+    <script src="scripts/analytics.js"></script>
+
+    <!-- import custom -->
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="scripts/toc.css">
+    <script src="scripts/init-markdown.js?2"></script>
+    <script src="scripts/toc.js?2"></script>
 </head>
 <body>
-<div id="content"></div>
-<script>
-    $.get('cv.md', function(data){
-        document.getElementById('content').innerHTML =
-                marked(data);
-    })
-</script>
+<!--
+    <div class="ribbon">
+        <span>
+            <a href="https://github.com/KristerV/javaCheatsheet" target="_blank">Täienda mind!</a>
+        </span>
+    </div>
+    -->
 </body>
-</html>

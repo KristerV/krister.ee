@@ -1,3 +1,7 @@
+::: toc
+@[toc]( )
+:::
+
 ![profile image](http://krister.ee/face.png)
 
 # Krister Viirsaar
@@ -38,6 +42,7 @@
 * Alan Watts - Out of your mind [audio lecture]
 * Gandhi [1982 Movie]
 * The 4 Hour Workweek by Tim Ferriss
+* Genghis Khan and the Making of the Modern World [Book]
 
 ## I predict...
 
