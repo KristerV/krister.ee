@@ -1,193 +1,24 @@
-<dic class="center">
-
 ![profile image](http://krister.ee/face.png)
 
 # Krister Viirsaar
-### *Startup minded software engineer*
 
-## Contact
+- Software engineer
+- University tutor
+- Micropeneur
 
-+372 563 55555
+## Current
 
-krister.viirsaar@gmail.com
+- Building a simulator for cyber security training at [Rangeforce](https://rangeforce.com/).
+- Teaching programmers at [IT College](http://www.itcollege.ee/en/).
+- Developing the most simple website publishing platform at [Markdownsites](http://www.markdownsites.com/).
 
-Tallinn, Estonia
+## Online profiles
 
-1988
-
-[GitHub profile](https://github.com/KristerV)
-
-</div>
-
------
-
-## Experience
-
-* 5 years of programming with startups and corporate software.
-* Linux geek all the way.
-* University tutor and online course developer.
-
-* JavaScript, Meteor.js, React.js
-* PHP, Zend Framework
-* Python, Kivy Framework
-* Java
-* Bash
-
-* Server deployment
-* Docker
-
------
-
-## Career
-
-### Rangeforce
-
-**Software developer and a lil' bit of DevOps.**
-
-2016 - current
-
-Happy in this startup environment. We teach cyber security through gamification by simulating the actual server environment. Awesome team, awesome project, awesome company. I learn new stuff every day and build facinating systems.
-
-### IT College
-
-**University tutor**
-
-2014 - Current
-
-* Beginners programming course taught in Java.
-* Reimagined the course and produced **4x improvement** compared to previous year.
-* Produced [thorough materials](http://i200.itcollege.ee/) for beginners.
-* This year my innovation is to move online completely and invite the whole country to participate.
-
-### LHV Pank
-
-**Software developer**
-
-2 months in 2016
-
-I loved the team and environment, but the job just didn't envigorate me. The mentality and structure of roles had been really well eshtablished and the team is clearly very productive, but I need chaos and a more multidisciplinary approach. Went back to the startup world. Meanwhile I advise everyone to go work there, the atmosphere is superb!
-
-### Toitla OÜ
-
-**Co-Founder / Software Developer**
-
-2014 - 2016
-
-* Ambitions startup organizing homechefs to offer the best fingerfood for corporate events.
-* Built comprehensive management software using Meteor.js and improved companies performance capabilities drastically.
-* Co-lead the company and tested loads of different approaches.
-
-### Guaana
-
-**Software developer**
-
-1.5 months in 2015
-
-An incredible vision and an even better team. Loved working there, but as my own startup needed all of my attention just then - I quit and pursued it. Taght me a lot about how an efective team operates in these few weeks.
-
-### AS Draka Keila Cables
-
-**Full-stack developer**
-
-2015-2016
-
-* Map out existing procedures
-* Develop webapplication to automate process
-* Deploy and maintain application server on private network
-
-### HITSA
-
-**Backend Developer**
-
-2013 - 2014
-
-* [Moodle](https://moodle.hitsa.ee/)is a nation wide open-source e-learning environment with 40'000 users
-    * Fixed bugs and UI layout
-    * Improved core and plugin elements
-    * Was granted manager rank by fierce community
-* [ÕIS](https://itcollege.ois.ee/) is Estonians largest Study Information System
-    * Fixed bugs and improved user experience
-    * Maintained performance for 10'000 active users
-    * Improved business logic
-    * Communicated with clients straight on
-
-### Storytree
-
-**Full-Stack developer / Founder**
-
-2012
-
-* Childrens storybook iOS/Android app with crazy features like...
-* people could add their own books to the store
-* features include audio reading text highlighting and playing with dolls
-* First large project with an investor and a pretty cool prototype.
-
-### Produktsioonigrupp
-
-**3D Animation and Special Effects**
-
-2011 - 2012
-
-* Produced memorable experiences for museum [**Lennusadam**](https://vimeo.com/48703751) and expo center [**Teletorn**](https://vimeo.com/48732518).
-
-### Nukufilm a.k.a. Puppetfilms
-
-**Visual Effects (VFX)**
-
-2010 - 2011
-
-* Editing and special effects for well known Estonian directors
-* 3D elements mimicing puppets to make the impossible happen
-
-### Estonian Information Center
-
-**Call Center Agent**
-
-2009 summer
-
-* Conducting survey customer satisfaction survey
-* Conducting interviews for lottery campaign
-* Data entry
-
------
-
-## Education
-
-### University of Bradford
-
-**BSc 3D Animation and Special Effects**
-
-2007-2010
-
-* Finished top 3 of the class
-* Produced [two awesome animations](https://vimeo.com/search?q=krister+viirsaar)
-
-### VHK
-
-12 years of school. I was a bright student with below average greades. I learnt to love learning years after graduation and the passion only keeps growing. Now one of my goals is help kids not to lose theirs.
-
------
-
-## Languages
-
-* **English**: fluent
-* **Estonian**: native
-
------
-
-## Reference contacts
-
-* [Hannes Lents](https://www.linkedin.com/in/hanneslents) - Partner at Toitla
-* [Tiit Roosma](http://www.itcollege.ee/it-kolledz/) - IT College chancellor
-* [Ene Koitla](http://www.hitsa.ee/sihtasutusest/tootajad) - HITSA board member
-
------
-
-## About me
-
-I'm very much a straight to the point kind of guy. I either get things done or figure out a better way of achieving the goal. I thrive when given real problems to solve and the freedom to implement solutions. Though quite demanding of fellow collegues I make friends easily as I am open and can communicate my ideas clearly.
-
------
+- [My blog](http://code.krister.ee/)
+- [GitHub](https://github.com/KristerV)
+- [Reddit](https://www.reddit.com/user/kristerv)
+- [StackOverflow](http://stackoverflow.com/users/1905229/krivar?tab=profile)
+- [Youtube](https://www.youtube.com/user/krivar/videos)
 
 ## My Top 5 Strengths
 
@@ -199,48 +30,7 @@ I'm very much a straight to the point kind of guy. I either get things done or f
 1. Self-Assurance: I feel confident in managing my own life and work methods. Corporate rules make me less productive.
 1. Command: Indecisiveness is the devil. I take control and lead as the situation requires it.
 
------
-
-## Stuff I follow
-
-### Youtube
-
-* [Vox](https://www.youtube.com/channel/UCLXo7UDZvByw2ixzpQCufnA)
-* [AJ+](https://www.youtube.com/channel/UCV3Nm3T-XAgVhKH9jT0ViRg)
-* [VICE](https://www.youtube.com/channel/UCn8zNIfYAQNdrFRrr8oibKw)
-* [Veritasium](https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA)
-* [vpro backlight](https://www.youtube.com/channel/UCqJ6GC0klkbFuQa-0ZePqkQ)
-* [Motherboard](https://www.youtube.com/channel/UCB6PV0cvJpzlcXRG7nz6PpQ)
-* [MinuteEarth](https://www.youtube.com/channel/UCeiYXex_fwgYDonaTcSIk6w)
-* [RocketJump Film School](https://www.youtube.com/channel/UC3KpzBeoM8lDvn85m4szzfA)
-* [Kurzgesagt – In a Nutshell](https://www.youtube.com/channel/UCsXVk37bltHxD1rDPwtNM8Q)
-* [The School of Life](https://www.youtube.com/channel/UC7IcJI8PUf5Z3zKxnZvTBog)
-
-### Other
-
-* [HackerNews](https://news.ycombinator.com/)
-* Various channels on [Reddit](https://www.reddit.com/) like [IAmA](https://www.reddit.com/r/iama)
-* [Coding Horror](http://blog.codinghorror.com/)
-* [Medium](https://medium.com/)
-* [Adam Ruins Everything](https://en.wikipedia.org/wiki/Adam_Ruins_Everything)
-* [LHV Investeerimise Foorum](https://fp.lhv.ee/?locale=et)
-* [BlackMirror](https://www.youtube.com/watch?v=jDiYGjp5iFg) (season 3)
-
------
-
-## I predict...
-
-
-* [Cars will be electric, autonomous and on-demand](https://www.tesla.com/blog/master-plan-part-deux)
-* [Long distance travel will be cheap, fast and clean](https://en.wikipedia.org/wiki/Hyperloop)
-* [You will rent instead of buy and earth will be better off](https://www.youtube.com/watch?v=oOO-pYUl9-w)
-* [The climate will indeed change - a lot](https://www.youtube.com/watch?v=OWXoRSIxyIU)
-* [Mars will be a new high-tech country](https://www.youtube.com/watch?v=TnY23KEkZPY)
-* [We have really no clue what's going to happen when AI hits](https://medium.com/ai-revolution/ai-revolution-101-8dce1d9cb62d#.lfba27w6a)
-
------
-
-## Books I love
+## Favorite Books
 
 * Predictably Irrational by Dan Ariely
 * How to Win Friends and Influence People by Dale Carnegie
@@ -249,10 +39,191 @@ I'm very much a straight to the point kind of guy. I either get things done or f
 * Gandhi [1982 Movie]
 * The 4 Hour Workweek by Tim Ferriss
 
------
+## I predict...
 
-## Bank details
+* [Cars will be electric, autonomous and on-demand](https://www.tesla.com/blog/master-plan-part-deux)
+* [Long distance travel will be cheap, fast and clean](https://en.wikipedia.org/wiki/Hyperloop)
+* [You will rent instead of buy and earth will be better off](https://www.youtube.com/watch?v=oOO-pYUl9-w)
+* [The climate will indeed change - a lot](https://www.youtube.com/watch?v=OWXoRSIxyIU)
+* [Mars will be a new high-tech country](https://www.youtube.com/watch?v=TnY23KEkZPY)
+* [We have really no clue what's going to happen when AI hits](https://medium.com/ai-revolution/ai-revolution-101-8dce1d9cb62d#.lfba27w6a)
 
-**LHV**  
-Krister Viirsaar  
-EE987700771001379001
+# What I follow
+
+## News
+
+* [Vox](https://www.youtube.com/channel/UCLXo7UDZvByw2ixzpQCufnA)
+* [AJ+](https://www.youtube.com/channel/UCV3Nm3T-XAgVhKH9jT0ViRg)
+* [VICE](https://www.youtube.com/channel/UCn8zNIfYAQNdrFRrr8oibKw)
+* [HackerNews](https://news.ycombinator.com/)
+* [Reddit](https://www.reddit.com/)
+
+## Science and learning
+
+* [Veritasium](https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA)
+* [Motherboard](https://www.youtube.com/channel/UCB6PV0cvJpzlcXRG7nz6PpQ)
+* [MinuteEarth](https://www.youtube.com/channel/UCeiYXex_fwgYDonaTcSIk6w)
+* [vpro backlight](https://www.youtube.com/channel/UCqJ6GC0klkbFuQa-0ZePqkQ)
+* [LHV Investeerimise Foorum](https://fp.lhv.ee/?locale=et)
+* [RocketJump Film School](https://www.youtube.com/channel/UC3KpzBeoM8lDvn85m4szzfA)
+* [Kurzgesagt – In a Nutshell](https://www.youtube.com/channel/UCsXVk37bltHxD1rDPwtNM8Q)
+* [The School of Life](https://www.youtube.com/channel/UC7IcJI8PUf5Z3zKxnZvTBog)
+
+## Blogs
+
+* [Coding Horror](http://blog.codinghorror.com/)
+* [Medium](https://medium.com/)
+
+## Entertainment
+
+* [Adam Ruins Everything](https://en.wikipedia.org/wiki/Adam_Ruins_Everything)
+* [BlackMirror](https://www.youtube.com/watch?v=jDiYGjp5iFg) (season 3)
+
+# Career
+
+## Overview
+
+When 3D animation didn't satisfy my entrepeneurial fascination, I started to learn programming online. My third project got funded, but ended up flunking anyway. Since then I've worked at large companies and small startups, anything that provides a proper challenge. I love going on out my comfort zone and learning about various aspects of any project - not just software.
+
+## Technologies
+
+**Most commonly used**
+- Node.js, Meteor.js, React.js
+- Linux, Bash, Nginx
+- MongoDB, SQL
+
+**Have used, but a lot less**
+- PHP, Python, Java
+- Docker
+
+## Jobs and projects
+
+### Cyber security content developer
+
+[Rangeforce](https://rangeforce.com/)
+
+*2016 - current*
+
+This job is truly my university for cyber security. We train people's defending skills through providing actual servers and simulated network traffic. My role is to develop the content, which means studying vulnerabilities and automating attacks against them. We are a small team creating massive change - this is something unique in the world.
+
+### University tutor
+
+[IT College](http://www.itcollege.ee/en/)
+
+*2014 - current*
+
+Education is probably one of the most important things in society. Software development is also at the top. I'm grateful for the opportunity to combine the two and benefit people. I also learn about teaching and people through experimenting and constantly thriving to get better results.
+
+### Software developer
+
+LHV Bank
+
+*2016 (2 months)*
+
+Working at a bank had been a dream of mine for a long time. The software must be incredibly tight. It was a great experience with a very well thought out work environment and awesome team. I suggest to my friends to go work there, but unfortunately my need for action was not met and I ended up returning to the startup world.
+
+### CTO
+
+[Toitla](http://toitla.com/)
+
+*2014 - 2016*
+
+The Uber for cooking. We organized homecooks and provided a catering service to events. The food was superb and our special way of presentation always took the crowds attention.
+
+It's the most successful startup I've founded so far. We had proper revenue and a pretty solid software to support the process. After almost two years it was just my time to move on.
+
+### Software developer
+
+[Guaana](https://www.guaana.com/)
+
+*2015 (2 months)*
+
+My first experience of a fully functioning startup team. Learned a lot and would have not left, if Toitla didn't suddenly need my full focus.
+
+### Full-stack developer
+
+AS Draka Keila Cables
+
+*2015-2016*
+
+* Map out existing procedures
+* Develop webapplication to automate process
+* Deploy and maintain application server on private network
+
+### Backend Developer
+
+HITSA
+
+*2013 - 2014*
+
+* [Moodle](https://moodle.hitsa.ee/)is a nation wide open-source e-learning environment with 40'000 users
+	* Fixed bugs and UI layout
+	* Improved core and plugin elements
+	* Was granted manager rank by fierce community
+* [ÕIS](https://itcollege.ois.ee/) is Estonians largest Study Information System
+	* Fixed bugs and improved user experience
+	* Maintained performance for 10'000 active users
+	* Improved business logic
+	* Communicated with clients straight on
+
+### Founder
+
+Storytree
+
+*2012*
+
+* Childrens storybook iOS/Android app with crazy features like...
+* people could add their own books to the store
+* features include audio reading text highlighting and playing with dolls
+* First large project with an investor and a pretty cool prototype.
+
+### 3D Animator
+
+Produktsioonigrupp
+
+*2011 - 2012*
+
+* Produced memorable experiences for museum [**Lennusadam**](https://vimeo.com/48703751) and expo center [**Teletorn**](https://vimeo.com/48732518).
+
+### Visual Effects
+
+Puppetfilms
+
+*2010 - 2011*
+
+* Editing and special effects for well known Estonian directors
+* 3D elements mimicing puppets to make the impossible happen
+
+### Call Center Agent
+
+Estonian Information Center
+
+*2009*
+
+My first real job. Wasn't as bad as I would have expected, gained valuable experience.
+
+* Conducting survey customer satisfaction survey
+* Conducting interviews for lottery campaign
+* Data entry
+
+## Education
+
+### University of Bradford
+
+**BSc 3D Animation and Special Effects**
+
+*2007-2010*
+
+* Finished top 3 of the class
+* Produced [two awesome animations](https://vimeo.com/search?q=krister+viirsaar)
+
+### VHK
+
+12 years of school. I was a bright student with below average greades. I learnt to love learning years after graduation and the passion only keeps growing. Now one of my goals is help kids not to lose theirs.
+
+# Contact
+
+- +372 563 55555
+- krister.viirsaar@gmail.com
+- Tallinn, Estonia
+- IBAN EE987700771001379001
