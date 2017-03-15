@@ -8,13 +8,13 @@
 
 - Software engineer
 - University tutor
-- Micropeneur
+- Micropeneur (0/10 successful projects)
 
 ## Current
 
 - Building a simulator for cyber security training at [Rangeforce](https://rangeforce.com/).
 - Teaching programmers at [IT College](http://www.itcollege.ee/en/).
-- Developing the most simple website publishing platform at [Markdownsites](http://www.markdownsites.com/).
+- Thinking about the next microstartup. [last one failed](http://code.krister.ee/mybest-project-so-far-shutting-it-down/)
 
 ## Online profiles
 
