@@ -1,0 +1,39 @@
+/* General */
+.toc {
+	position: fixed;
+	width: 20%;
+	left: 0;
+	top: 0;
+	overflow: auto;
+	height: 100%;
+	font-size: 1.2em;
+}
+
+.toc a {
+	text-decoration: none;
+	color: rgba(0,0,0,0.5);
+}
+
+.toc a:hover {
+	color: rgba(0, 0, 0, 0.9);
+}
+
+.toc li {
+	list-style: none;
+	padding-top: 5px;
+}
+
+/* Collapsing */
+
+.toc > ul ul {
+	display: none;
+}
+
+.toc ul.active {
+	display: block;
+}
+
+.toc a.active {
+	font-weight: bold;
+	color: black;
+}

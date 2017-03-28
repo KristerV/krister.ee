@@ -1,0 +1,69 @@
+body {
+    margin-left: calc(20%);
+    max-width: 800px;
+    width: 70%;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 19px;
+    padding-bottom: 300px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+    margin-top: 0px;
+}
+
+li > p {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+img {
+    max-width: 100%;
+}
+
+ul {
+    padding-left: 1em;
+}
+
+img[src$=".svg"] {
+    min-width: 150px;
+}
+
+.ribbon {
+    position: fixed;
+    right: -5px; top: -5px;
+    z-index: 1;
+    overflow: hidden;
+    width: 150px; height: 150px;
+    text-align: right;
+}
+.ribbon span {
+    font-weight: bold;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 40px;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    width: 200px;
+    display: block;
+    background: #79A70A;
+    background: linear-gradient(#05EFF7 0%, #087F8F 100%);
+    box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+    position: absolute;
+    top: 40px; right: -42px;
+}
+.ribbon a {
+    color: white;
+    text-decoration: none;
+}
+
+a, a:active, a:hover, a:visited {
+    text-decoration: none;
+    color: #08c;
+}
