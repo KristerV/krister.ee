@@ -8,7 +8,7 @@
 
 - Software Engineer. [Here's my cv.](/cv)
 - Entrapeneur with 0/10 success. *Email me your idea and I'll tell you why it sucks (save you some time)*.
-- Mentor for students of [my programming course](/progeja).
+- Mentor for students of [my programming course](/progejaks).
 - Startup advisor. [Check my 101 list.](/startupschool)
 
 ## Current
