@@ -2,7 +2,7 @@
 @[toc]( )
 :::
 
-![profile image](http://krister.ee/face.png)
+![profile image](http://krister.ee/index/face.png)
 
 # Krister Viirsaar
 

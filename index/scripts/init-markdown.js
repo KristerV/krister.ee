@@ -31,4 +31,4 @@ function insertMarkdownToDocument(content) {
 }
 
 // Get markdown file
-$.get('content.md').done(insertMarkdownToDocument);
+$.get('index/content.md').done(insertMarkdownToDocument);

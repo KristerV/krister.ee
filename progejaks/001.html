@@ -1,0 +1,46 @@
+<head>
+	<title>Progejaks 0.01</title>
+	<style>
+		body {
+			font-family: Arial;
+		}
+		.half-screen {
+			width: 50%;
+			position: relative;
+			float: left;
+			height: 100%;
+		}
+		#kast {
+			width: 100px;
+			height: 100px;
+			background-color: black;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+		}
+	</style>
+	<script type="text/javascript" src="library/jquery.3.1.1.min.js"></script>
+</head>
+<body>
+	<div class="half-screen">
+		<h2>Tsau!</h2>
+		<p>Näe, kast. Kas teadsid, et iga veebileht, mida oma arvutis näed, on sinu arvutisse alla laetud? See tähendab, et me saame seda lehte muuta.</p>
+		<h2>Ülesanded</h2>
+		<ol>
+			<li>Leia oma browseris üles <a href="">'console'</a>, ehk konsool.</li>
+			<li>Muuda kasti värvi kirjutades konsooli <code>$('#kast').css('background-color', 'red')</code>. Pane tähele, et iga tähemärk oleks täpne ja siis vajuta enterit.</li>
+			<li>Muuda selle kasti asukohta kasutades <code>$('#kast').css('left', '20px')</code>. See määrab kui mitu pikslit asub kast vasakust servast. Proofi ka väärtust 'right' muuta.</li>
+			<li>Muuda kasti suurust kasutades väärtust 'width' ja 'height'. Samamoodi nagu eelmises ülesandes.</li>
+		</ol>
+		<h2>KKK</h2>
+		<p><b>Kas see ongi häkkimine?</b> Ei. Praegu ei näe sinu muudatusi keegi peale sinu. Päris häkkimiseni on veel palju aega, enne pead algtõed selgeks saama.</p>
+		<p><b>Misasi on CSS?</b> Kui konsooli kirjutad JavaScripti, siis see on programmeerimiseks. CSS on lehe kaunistamiseks, ehk kõik mis puudutab kujundamist on selle keelega tehtav. JavaScript ja CSS toetuvad omakorda HTMLi peale, mis on lehe struktuur, ehk kast ise (ilma positsiooni ja suuruseta, lihtsalt konteiner).</p>
+		<p><b>Misasi on konsool?</b> Sisuliselt sinu ligipääs browseri ajule. Konsooli sisestad käske kasutades JavaScript keelt ja sisuluselt saad teda kamandada tegema ükskõik mida üks broswer suudab teha.</p>
+		<p><b>Miks nii palju keeli?</b> HTML, CSS ja JS on vajalikud, et üks ilus ja mugav veebileht valmis teha. Need on veebi programmeerimise jaoks hädavajalikud ja neid põhimõtteid kasutatakse ka ükskõik kus mujal programmeerimises.</p>
+		<p><b>Mis siin üldse toimub?</b> Mulle vahel meeldib väikeseid eksperimente koostada. Siin on kõige lihtsam viis kuidas ma suudan programmeerimist sulle tutvustada. Kirjuta mulle krister.viirsaar@gmail.com.</p>
+		<h4>Kui tead kedagi, kes sinu arust oleks ammu võinud progemist õppida, saada talle see leht.</h4>
+	</div>
+	<div class="half-screen">
+		<div id="kast"></div>
+	</div>
+</body>
