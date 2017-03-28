@@ -7,13 +7,12 @@
 # Krister Viirsaar
 
 - Software engineer
-- University tutor
-- Micropeneur (0/10 successful projects)
+- Entrapeneur with 0/10 success	*(email me your idea and I'll tell you why it sucks)*
+- Mentor for students of [my programming course]
 
 ## Current
 
 - Building a simulator for cyber security training at [Rangeforce](https://rangeforce.com/).
-- Teaching programmers at [IT College](http://www.itcollege.ee/en/).
 - Thinking about the next microstartup. [last one failed](http://code.krister.ee/mybest-project-so-far-shutting-it-down/)
 
 ## Online profiles
@@ -115,7 +114,7 @@ This job is truly my university for cyber security. We train people's defending 
 
 [IT College](http://www.itcollege.ee/en/)
 
-*2014 - current*
+*2014 - 2017*
 
 Education is probably one of the most important things in society. Software development is also at the top. I'm grateful for the opportunity to combine the two and benefit people. I also learn about teaching and people through experimenting and constantly thriving to get better results.
 
