@@ -6,16 +6,15 @@
 
 # Krister Viirsaar
 
-- Software engineer
-- Entrapeneur with 0/10 success	*(email me your idea and I'll tell you why it sucks)*
-- Mentor for students of [my programming course](/progeja)
-
-[my cv](/cv)
+- Software Engineer. [Here's my cv.](/cv)
+- Entrapeneur with 0/10 success. *Email me your idea and I'll tell you why it sucks (save you some time)*.
+- Mentor for students of [my programming course](/progeja).
+- Startup advisor. [Check my 101 list.](/startupschool)
 
 ## Current
 
 - Building a simulator for cyber security training at [Rangeforce](https://rangeforce.com/).
-- Thinking about the next microstartup. [last one failed](http://code.krister.ee/mybest-project-so-far-shutting-it-down/)
+- Experimenting with ever smaller projects. [Here's the last one that failed](http://code.krister.ee/mybest-project-so-far-shutting-it-down/).
 
 ## Online profiles
 

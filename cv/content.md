@@ -2,8 +2,6 @@
 @[toc]( )
 :::
 
-![profile image](http://krister.ee/index/face.png)
-
 # Krister Viirsaar
 
 ## Overview
