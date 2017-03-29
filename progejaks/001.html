@@ -6,10 +6,13 @@
 			font-family: Arial;
 		}
 		.half-screen {
-			width: 50%;
+			max-width: 800px;
+			width: 100%;
 			position: relative;
-			float: left;
-			height: 100%;
+			height: 50%;
+			margin: 0 auto;
+			display: block;
+			min-height: 300px;
 		}
 		#kast {
 			width: 100px;
@@ -18,11 +21,19 @@
 			position: absolute;
 			left: 50%;
 			top: 50%;
+			vertical-align: middle;
+		}
+		#kast p {
+			color: white;
+			text-align: center;
 		}
 	</style>
 	<script type="text/javascript" src="/lib/jquery.js"></script>
 </head>
 <body>
+	<div class="half-screen">
+		<div id="kast"><p>kast</p></div>
+	</div>
 	<div class="half-screen">
 		<h2>Tsau!</h2>
 		<p>Näe, kast. Kas teadsid, et iga veebileht, mida oma arvutis näed, on sinu arvutisse alla laetud? See tähendab, et me saame seda lehte muuta.</p>
@@ -41,8 +52,5 @@
 		<p><b>Mis siin üldse toimub?</b> Mulle vahel meeldib väikeseid eksperimente koostada. Siin on kõige lihtsam viis kuidas ma suudan programmeerimist sulle tutvustada. Kirjuta mulle krister.viirsaar@gmail.com.</p>
 		<h4>Kui tead kedagi, kes sinu arust oleks ammu võinud progemist õppida, saada talle see leht.</h4>
 		<p><a href="/progejaks">&lt; tagasi</a></p>
-	</div>
-	<div class="half-screen">
-		<div id="kast"></div>
 	</div>
 </body>
