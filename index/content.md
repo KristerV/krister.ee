@@ -59,8 +59,9 @@
 * [Vox](https://www.youtube.com/channel/UCLXo7UDZvByw2ixzpQCufnA)
 * [AJ+](https://www.youtube.com/channel/UCV3Nm3T-XAgVhKH9jT0ViRg)
 * [VICE](https://www.youtube.com/channel/UCn8zNIfYAQNdrFRrr8oibKw)
+* [Fusion](https://www.youtube.com/user/thisisfusion/videos)
 * [YCombinator news (HackerNews)](https://news.ycombinator.com/)
-* [Reddit](https://www.reddit.com/r/worldnews/)
+* [Reddit World News](https://www.reddit.com/r/worldnews/)
 * [CryptoCurrencies](https://coinmarketcap.com/)
 * [The Hackernews](http://thehackernews.com/)
 
@@ -74,6 +75,7 @@
 * [RocketJump Film School](https://www.youtube.com/channel/UC3KpzBeoM8lDvn85m4szzfA)
 * [Kurzgesagt – In a Nutshell](https://www.youtube.com/channel/UCsXVk37bltHxD1rDPwtNM8Q)
 * [The School of Life](https://www.youtube.com/channel/UC7IcJI8PUf5Z3zKxnZvTBog)
+* [Nerdwriter1](https://www.youtube.com/user/Nerdwriter1/videos)
 
 ## Blogs
 
@@ -84,6 +86,8 @@
 
 * [Adam Ruins Everything](https://en.wikipedia.org/wiki/Adam_Ruins_Everything)
 * [BlackMirror](https://www.youtube.com/watch?v=jDiYGjp5iFg) (season 3)
+* [Casey Neistat](https://www.youtube.com/user/caseyneistat/videos)
+* I play Rainbow Six Siege so I watch tips videos on youtube.
 
 # Contact
 
