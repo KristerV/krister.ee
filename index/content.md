@@ -7,7 +7,7 @@
 # Krister Viirsaar
 
 - Software Engineer. [Here's my cv.](/cv)
-- Entrapeneur with 0/10 success. *Email me your idea and I'll tell you why it sucks (save you some time)*. Also check [my 101 list.](/startupschool.html)
+- Entrapeneur with 0/10 success. Check [my 101 list.](/startupschool.html)
 - Programming mentor (contact me)
 
 ## Current
