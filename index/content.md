@@ -59,8 +59,10 @@
 * [Vox](https://www.youtube.com/channel/UCLXo7UDZvByw2ixzpQCufnA)
 * [AJ+](https://www.youtube.com/channel/UCV3Nm3T-XAgVhKH9jT0ViRg)
 * [VICE](https://www.youtube.com/channel/UCn8zNIfYAQNdrFRrr8oibKw)
-* [HackerNews](https://news.ycombinator.com/)
-* [Reddit](https://www.reddit.com/)
+* [YCombinator news (HackerNews)](https://news.ycombinator.com/)
+* [Reddit](https://www.reddit.com/r/worldnews/)
+* [CryptoCurrencies](https://coinmarketcap.com/)
+* [The Hackernews](http://thehackernews.com/)
 
 ## Science and learning
 
