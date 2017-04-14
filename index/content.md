@@ -1,7 +1,3 @@
-::: toc
-@[toc]( )
-:::
-
 ![profile image](http://krister.ee/index/face.png)
 
 # Krister Viirsaar
@@ -23,16 +19,6 @@
 - [StackOverflow](http://stackoverflow.com/users/1905229/krivar?tab=profile)
 - [Youtube](https://www.youtube.com/user/krivar/videos)
 
-## My Top 5 Strengths
-
-*Backed up by [StrengthsFinder 2.0](http://strengths.gallup.com/110440/About-StrengthsFinder-20.aspx)*
-
-1. Learner: Great desire to understand and improve things with powerful focus. Will move on after subject is clear.
-1. Individualization: I'm intruiged by what makes each person special.
-1. Activator: Idea to action can be extremely quick. I'm also impatient when things don't happen.
-1. Self-Assurance: I feel confident in managing my own life and work methods. Corporate rules make me less productive.
-1. Command: Indecisiveness is the devil. I take control and lead as the situation requires it.
-
 ## Favorite Books
 
 * Predictably Irrational by Dan Ariely
@@ -41,7 +27,8 @@
 * Alan Watts - Out of your mind [audio lecture]
 * Gandhi [1982 Movie]
 * The 4 Hour Workweek by Tim Ferriss
-* Genghis Khan and the Making of the Modern World [Book]
+* Genghis Khan and the Making of the Modern World
+* Nonviolent Communication: A Language of Life by Marshall B. Rosenberg
 
 ## I predict...
 
@@ -80,7 +67,7 @@
 ## Blogs
 
 * [Coding Horror](http://blog.codinghorror.com/)
-* [Medium](https://medium.com/)
+* [Stuff on Medium](https://medium.com/)
 
 ## Entertainment
 
