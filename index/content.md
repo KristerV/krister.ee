@@ -32,6 +32,7 @@
 
 ## I predict...
 
+* [All your banks will be available in one app](https://ripple.com/insights/european-commission-proposal-open-banking-by-2016/)
 * [Cars will be electric, autonomous and on-demand](https://www.tesla.com/blog/master-plan-part-deux)
 * [Long distance travel will be cheap, fast and clean](https://en.wikipedia.org/wiki/Hyperloop)
 * [You will rent instead of buy and earth will be better off](https://www.youtube.com/watch?v=oOO-pYUl9-w)
