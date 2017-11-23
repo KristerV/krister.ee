@@ -21,23 +21,25 @@ When 3D animation didn't satisfy my entrepeneurial fascination, I started to lea
 ## Technologies
 
 **Most commonly used**
-- Node.js, Meteor.js, React.js
+- Node.js, React.js
 - Linux, Bash, Nginx
 - MongoDB, SQL
-
-**Have used, but a lot less**
-- PHP, Python, Java
 - Docker
+- PHP, Python, Java
 
 # Career
 
 ## Work
 
+### Cryptocurrency Developer
+
+2017 - current
+
 ### Cyber security content developer
 
 [Rangeforce](https://rangeforce.com/)
 
-*2016 - current*
+*2016 - 2017*
 
 This job is truly my university for cyber security. We train people's defending skills through providing actual servers and simulated network traffic. My role is to develop the content, which means studying vulnerabilities and automating attacks against them. We are a small team creating massive change - this is something unique in the world.
 
