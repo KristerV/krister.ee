@@ -1,0 +1,55 @@
+==================================================================
+https://keybase.io/kristerv
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://krister.ee
+  * I am kristerv (https://keybase.io/kristerv) on keybase.
+  * I have a public key ASC8yZfPEz4hbu9oakOp3H2nhkGs-GMfpZ4kDanGVStm9wo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120bcc997cf133e216eef686a43a9dc7da78641acf8631fa59e240da9c6552b66f70a",
+      "host": "keybase.io",
+      "kid": "0120bcc997cf133e216eef686a43a9dc7da78641acf8631fa59e240da9c6552b66f70a",
+      "uid": "f9c9348d868605ba31987e3ff758c819",
+      "username": "kristerv"
+    },
+    "merkle_root": {
+      "ctime": 1513849880,
+      "hash": "c92d5d84cf3d62b6b33a8d208fbe42c620138c008ae2c4db98218d13175fbd533394661083cd25b4f627964e3aa48a0e03df129215d6905384e53b1abaddcadb",
+      "hash_meta": "23ae4861e501cc2ec8530051cf53144ee7dbd266bb328fcdb9b0ca45bc642658",
+      "seqno": 1844747
+    },
+    "service": {
+      "hostname": "krister.ee",
+      "protocol": "http:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "1.0.37"
+  },
+  "ctime": 1513849916,
+  "expire_in": 504576000,
+  "prev": "6a01564d9e4b73e98d54d685eb6b227b4040efa660afa284085f62380d0ce373",
+  "seqno": 5,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgvMmXzxM+IW7vaGpDqdx9p4ZBrPhjH6WeJA2pxlUrZvcKp3BheWxvYWTFA0F7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwYmNjOTk3Y2YxMzNlMjE2ZWVmNjg2YTQzYTlkYzdkYTc4NjQxYWNmODYzMWZhNTllMjQwZGE5YzY1NTJiNjZmNzBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwYmNjOTk3Y2YxMzNlMjE2ZWVmNjg2YTQzYTlkYzdkYTc4NjQxYWNmODYzMWZhNTllMjQwZGE5YzY1NTJiNjZmNzBhIiwidWlkIjoiZjljOTM0OGQ4Njg2MDViYTMxOTg3ZTNmZjc1OGM4MTkiLCJ1c2VybmFtZSI6ImtyaXN0ZXJ2In0sIm1lcmtsZV9yb290Ijp7ImN0aW1lIjoxNTEzODQ5ODgwLCJoYXNoIjoiYzkyZDVkODRjZjNkNjJiNmIzM2E4ZDIwOGZiZTQyYzYyMDEzOGMwMDhhZTJjNGRiOTgyMThkMTMxNzVmYmQ1MzMzOTQ2NjEwODNjZDI1YjRmNjI3OTY0ZTNhYTQ4YTBlMDNkZjEyOTIxNWQ2OTA1Mzg0ZTUzYjFhYmFkZGNhZGIiLCJoYXNoX21ldGEiOiIyM2FlNDg2MWU1MDFjYzJlYzg1MzAwNTFjZjUzMTQ0ZWU3ZGJkMjY2YmIzMjhmY2RiOWIwY2E0NWJjNjQyNjU4Iiwic2Vxbm8iOjE4NDQ3NDd9LCJzZXJ2aWNlIjp7Imhvc3RuYW1lIjoia3Jpc3Rlci5lZSIsInByb3RvY29sIjoiaHR0cDoifSwidHlwZSI6IndlYl9zZXJ2aWNlX2JpbmRpbmciLCJ2ZXJzaW9uIjoxfSwiY2xpZW50Ijp7Im5hbWUiOiJrZXliYXNlLmlvIGdvIGNsaWVudCIsInZlcnNpb24iOiIxLjAuMzcifSwiY3RpbWUiOjE1MTM4NDk5MTYsImV4cGlyZV9pbiI6NTA0NTc2MDAwLCJwcmV2IjoiNmEwMTU2NGQ5ZTRiNzNlOThkNTRkNjg1ZWI2YjIyN2I0MDQwZWZhNjYwYWZhMjg0MDg1ZjYyMzgwZDBjZTM3MyIsInNlcW5vIjo1LCJ0YWciOiJzaWduYXR1cmUifaNzaWfEQM11h0UKZRydMxx7DsfsdZ9ugFB6/6sGEKq0YCy37ALJQbpX8lgpW8ZXz6a5uWyX/A4VcSZAxFa9YrxeRCjM8Q+oc2lnX3R5cGUgpGhhc2iCpHR5cGUIpXZhbHVlxCA9EuXUvcVTnHwoHkVy3/UF/mZeUM9dW7UwDV6GV07WLaN0YWfNAgKndmVyc2lvbgE=
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/kristerv
+
+==================================================================
