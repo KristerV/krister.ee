@@ -31,7 +31,13 @@ When 3D animation didn't satisfy my entrepeneurial fascination, I started to lea
 
 ## Work
 
-### Cryptocurrency Developer
+### Koodikool (CodeSchool)
+
+2017 - current
+
+This is an experiment oriented NGO initiative that aims to teach programming in innovative ways. Read more at https://koodikool.ee.
+
+### Cryptocurrency webapplications DevOps
 
 2017 - current
 
