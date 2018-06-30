@@ -4,6 +4,8 @@
 
 # Krister Viirsaar
 
+I'm a software developer who's constantly thinking how to improve our society.
+
 ## Overview
 
 When 3D animation didn't satisfy my entrepeneurial fascination, I started to learn programming online. My third project got funded, but ended up flunking anyway. Since then I've worked at large companies and small startups, anything that provides a proper challenge. I love going on out my comfort zone and learning about various aspects of any project - not just software.
