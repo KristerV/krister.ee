@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Krister</title>
+
+    <script src="lib/analytics.js"></script>
+    <link rel="stylesheet" href="styles/default.css">
+</head>
+
+<body>
+    <!-- <div class="title-avatar-container"><img src="http://krister.ee/index/face.png" class="title-avatar"></div> -->
+    <div id="markdown-content" style="display:none">
+        # Hey there Dash team!
+
+        I'm applying to your team because I need more of a challenge than some of the other teams I'm dealing with (Crown, Helium) have to offer for my skillset. While I have thought about submitting a proposal to the Dash ecosystem I just don't seem to have a vision of my own yet.
+
+        Why Dash? It's the only project with clear goals that I agree with and a proper team working on getting there. 
+
+        ## Experience
+
+        - 6 years a full-stack developer
+        - 6 years of working with or starting Startups (also in CTO role)
+        - 6 years of both PostgreSQL and MongoDB with a bit of Redis.
+        - 6 years of using git and hosting repositories (including hosting custom bare bones server for student exams)
+        - 5 years of Bash (using Arch Linux)
+        - 4 years of JavaScript backend (2y with Meteor.js and 2y with Node.js)
+        - 4 years of DevOps (most of my servers are self-hosted)
+        - 3 years of teaching programming to beginners
+        - 3 years of React.js
+        - 2 years of using Docker for production deployments
+        - Years of UX designing as most projects lack these skills (thus adding to the programmer workload)
+        - 1 year of webdevelopment for cryptocurrencies.
+            - [Dashcentral for Helium](https://github.com/KristerV/heliumpay-budgetweb-deploy)
+            - [Proof of Existence platform for Crown](https://timestamp.busyman.cz/)
+            - As a personal side project I'm building a git comparison tool to see who forked from who. Seen too many Dash clones claiming to be original.
+
+        ## Qualifications
+
+        The Experience section will answer most of the qualifications, but I'd like to point out a few things I don't have:
+
+        - Testing and CI systems experience. While I did write some tests for Dash just to figure out how it works [and not embarrass myself a second time](https://www.dash.org/forum/threads/pre-proposal-add-automated-tests-to-dashs-code-closed.21652/#post-155640) I don't have real world experience with TDD or similar.
+        - Experience in p2p tech
+        - I've got a BSc, but in computer animation (first contact with programming, but not thorough)
+
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/7.0.1/markdown-it.min.js"></script>
+    <script type="text/javascript">
+        var div = document.querySelector('#markdown-content');
+        var md = window.markdownit({
+            breaks: true,
+            linkify: true,
+        });
+        var html = md.render(div.textContent);
+        div.innerHTML = html;
+        div.style.display = "block";
+    </script>
+</body>
