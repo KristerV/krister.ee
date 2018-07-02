@@ -10,6 +10,7 @@
 
 #tocMenu {
   position: fixed;
+  max-width: 17rem;
 }
 
 @media (max-width: 50rem), (orientation: portrait) {
