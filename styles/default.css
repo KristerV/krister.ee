@@ -5,11 +5,10 @@
 .rendered-content {
   max-width: 50rem;
   display: inline-block;
-  margin-left: 15rem;
+  margin-left: 17rem;
 }
 
 #tocMenu {
-  width: 15rem;
   position: fixed;
 }
 

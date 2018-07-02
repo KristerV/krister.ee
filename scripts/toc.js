@@ -1,4 +1,4 @@
-// Generate menu
+// Generate menu in HTML
 const allHeadings = document.querySelectorAll('h1, h2, h3')
 const menuDiv = document.querySelector('#tocMenu')
 let lastHeadingNo = 0
@@ -20,11 +20,19 @@ allHeadings.forEach(h => {
 })
 menuDiv.innerHTML = menuHTML
 
-// Update menu on scroll
+// Use an array to cache heading locations
 let headingsTop = []
-allHeadings.forEach(h => headingsTop.push(h.offsetTop))
+setTimeout(updateHeadingOffsets, 1)        // Headings move right after first render
+window.onresize = updateHeadingOffsets     // Headings move when resizing
+updateHeadingOffsets()                     // We need the values in next section
+function updateHeadingOffsets() {
+    headingsTop = []
+    allHeadings.forEach(h => headingsTop.push(h.offsetTop))
+}
+
+// Update on scroll
 window.onscroll = function() {
-    const scrollPosition = (document.documentElement.scrollTop || document.body.scrollTop)
+    const scrollPosition = (document.documentElement.scrollTop || document.body.scrollTop) + 60
     const activeElements = document.querySelectorAll('#tocMenu .active')
     activeElements.forEach(item => item.classList.remove('active'))
 
@@ -34,7 +42,8 @@ window.onscroll = function() {
         }
     }
 }
-// Scroll on click
+
+// Scroll on click on a menu item
 const menuElements = document.querySelectorAll('#tocMenu li')
 const headings = document.querySelectorAll(`.rendered-content h1, .rendered-content h2, .rendered-content h3`)
 menuElements.forEach((h, elIndex) => {
