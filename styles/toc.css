@@ -1,0 +1,14 @@
+
+#tocMenu * {
+    font-size: 1rem;
+    color: #777;
+}
+
+#tocMenu h1 {margin: 0.5rem 0rem;}
+#tocMenu h2 {margin: 0.5rem 1rem;}
+#tocMenu h3 {margin: 0.5rem 2rem;}
+
+#tocMenu .active {
+    color: #333;
+    font-weight: bold;
+}

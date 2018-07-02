@@ -5,8 +5,10 @@
 
     <script src="lib/analytics.js"></script>
     <link rel="stylesheet" href="styles/default.css">
+    <link rel="stylesheet" href="styles/toc.css">
 </head>
 <body>
+    <div id="tocMenu"></div>
     <noscript id="markdown-content">
 
 # Krister Viirsaar
@@ -113,7 +115,7 @@ Invite me to speak at your school, meetup or company: freespeech@krister.ee
     - List everything that needs to be done
     - Prioritize and list top 3 for today.
 
-</noscript>
+    </noscript>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/7.0.1/markdown-it.min.js"></script>
     <script type="text/javascript">
         var mdContent = document.querySelector('#markdown-content')
@@ -123,7 +125,9 @@ Invite me to speak at your school, meetup or company: freespeech@krister.ee
         });
         var html = md.render(mdContent.textContent)
         var div = document.createElement('div')
+        div.classList.add('rendered-content')
         div.innerHTML = html
         document.body.appendChild(div)
     </script>
+    <script src="scripts/toc.js"></script>
 </body>
