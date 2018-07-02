@@ -38,8 +38,17 @@ window.onscroll = function() {
 
     for (var i = 0; i < headingsTop.length; i++) {
         if (scrollPosition > headingsTop[i] && (!headingsTop[i+1] || scrollPosition < headingsTop[i+1])) {
-            document.querySelectorAll(`#tocMenu li`)[i].classList.add('active')
+            const listItem = document.querySelectorAll(`#tocMenu li`)[i]
+            listItem.classList.add('active')
+            activateParent(listItem)
         }
+    }
+}
+function activateParent(child) {
+    const parent = child.parentElement
+    if (parent) {
+        parent.classList.add('active')
+        activateParent(parent)
     }
 }
 
