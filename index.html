@@ -8,7 +8,7 @@
 </head>
 <body>
     <!-- <div class="title-avatar-container"><img src="http://krister.ee/index/face.png" class="title-avatar"></div> -->
-    <div id="markdown-content" style="display:none">
+    <noscript id="markdown-content">
 
 # Krister Viirsaar
 
@@ -114,16 +114,17 @@ Invite me to speak at your school, meetup or company: freespeech@krister.ee
     - List everything that needs to be done
     - Prioritize and list top 3 for today.
 
-</div>
+</noscript>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/7.0.1/markdown-it.min.js"></script>
     <script type="text/javascript">
-        var div = document.querySelector('#markdown-content');
+        var mdContent = document.querySelector('#markdown-content')
         var md = window.markdownit({
             breaks: true,
             linkify: true,
         });
-        var html = md.render(div.textContent);
-        div.innerHTML = html;
-        div.style.display = "block";
+        var html = md.render(mdContent.textContent)
+        var div = document.createElement('div')
+        div.innerHTML = html
+        document.body.appendChild(div)
     </script>
 </body>
