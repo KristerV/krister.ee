@@ -1,3 +1,66 @@
+@import url(http://fonts.googleapis.com/css?family=Merriweather:400italic,400);
+
+html {font-size: 1.125em;}
+
+body {
+  background-color: white;
+  font-family: 'Merriweather', serif;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #444;
+  max-width: 50rem;
+  margin: 4rem auto;
+}
+
+p {
+  margin-bottom: 1.3em;
+}
+
+h1, h2, h3, h4 {
+  margin: 1.414em 0 0.5em;
+  font-weight: inherit;
+  line-height: 1.2;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 3.157em;
+}
+
+h2 {font-size: 2.369em;}
+
+h3 {font-size: 1.777em;}
+
+h4 {font-size: 1.333em;}
+
+small, .font_small {font-size: 0.75em;}
+
+a,
+a:visited {
+  color: #3498db;
+}
+
+a:hover,
+a:focus,
+a:active {
+  color: #2980b9;
+}
+
+pre,
+code {
+  font-family: Menlo, Monaco, "Courier New", monospace;
+}
+
+@media (max-width: 40rem) {
+  html {
+    font-size: 12px;
+  }
+  body {
+    max-width: none;
+    margin: 2rem;
+  }
+}
+
 @media print {
   *,
   *:before,
@@ -58,83 +121,6 @@
   }
 }
 
-html {
-  font-size: 12px;
-}
-
-@media screen and (min-width: 32rem) and (max-width: 48rem) {
-  html {
-    font-size: 15px;
-  }
-}
-
-@media screen and (min-width: 48rem) {
-  html {
-    font-size: 16px;
-  }
-}
-
-body {
-  line-height: 1.85rem;
-}
-
-p,
-.splendor-p {
-  font-size: 1rem;
-  margin-bottom: 1.3rem;
-}
-
-h1,
-.splendor-h1,
-h2,
-.splendor-h2,
-h3,
-.splendor-h3,
-h4,
-.splendor-h4 {
-  margin: 1.414rem 0 .5rem;
-  font-weight: inherit;
-  line-height: 1.42;
-}
-
-h1,
-.splendor-h1 {
-  margin-top: 0;
-  font-size: 3.998rem;
-}
-
-h2,
-.splendor-h2 {
-  font-size: 2.827rem;
-}
-
-h3,
-.splendor-h3 {
-  font-size: 1.999rem;
-}
-
-h4,
-.splendor-h4 {
-  font-size: 1.414rem;
-}
-
-h5,
-.splendor-h5 {
-  font-size: 1.121rem;
-}
-
-h6,
-.splendor-h6 {
-  font-size: .88rem;
-}
-
-small,
-.splendor-small {
-  font-size: .707em;
-}
-
-/* https://github.com/mrmrs/fluidity */
-
 img,
 canvas,
 iframe,
@@ -145,91 +131,9 @@ textarea {
   max-width: 100%;
 }
 
-@import url(http://fonts.googleapis.com/css?family=Merriweather:300italic,300);
-
-html {
-  font-size: 15px;
-  max-width: 100%;
-}
-
-body {
-  color: #444;
-  font-family: 'Merriweather', Georgia, serif;
-  margin: 0;
-  max-width: 100%;
-}
-
-/* === A bit of a gross hack so we can have bleeding divs/blockquotes. */
-
-p,
-*:not(div):not(img):not(body):not(html):not(li):not(blockquote):not(p) {
-  margin: 1rem auto 1rem;
-  max-width: 60rem;
-  padding: .25rem;
-}
-
-div {
-  width: 100%;
-}
-
-div img {
-  text-align: center;
-}
-
 blockquote p {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   font-style: italic;
-  margin: 1rem auto 1rem;
-  max-width: 48rem;
-}
-
-li {
-  margin-left: 2rem;
-}
-
-/* Counteract the specificity of the gross *:not() chain. */
-
-h1 {
-  padding: 4rem 0 1rem 0 !important;
-}
-
-/*  === End gross hack */
-
-p {
-  color: #555;
-  height: auto;
-  line-height: 1.45;
-}
-
-pre,
-code {
-  font-family: Menlo, Monaco, "Courier New", monospace;
-}
-
-pre {
-  background-color: #fafafa;
-  font-size: .8rem;
-  overflow-x: scroll;
-  padding: 1.125em;
-}
-
-a,
-a:visited {
-  color: #3498db;
-}
-
-a:hover,
-a:focus,
-a:active {
-  color: #2980b9;
-}
-
-.title-avatar {
-  width: 250px;
-  height: 250px;
-  margin: 2rem 0 0 0;
-}
-
-.title-avatar-container {
-  text-align: center;
+  margin: 1em auto 1em;
+  color: #666;
 }
