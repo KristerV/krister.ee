@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <base target="_blank">
+    <title>Krister</title>
+
+    <link rel="stylesheet" href="styles/default.css">
+    <link rel="stylesheet" href="styles/toc.css">
+</head>
+
+<body>
+    <div id="tocMenu"></div>
+    <noscript id="markdown-content">
+
+![säde logo](img/sade.jpg)
+
+ENGLISH BELOW
+
+Vot selline asi. Säde! Hõljub ja hõõgub. Ja sädemeid on palju. Esimene neist kujutab endast juturingi. Teised veel otsustavad, mis vormi nad võtavad. Ja sina oled kutsutud maailma kõige esimesele Säde üritusele!
+
+Säde ürituste seeria esimene osa saab tõepoolest olema Juturing. See ei ole lihtsalt lobisemine. See on konkreetne meetod. Kus üks ringis olija räägib korraga ja teised kuulavad sügavuti ära ka pikad mõttepausid. Kui sa veel ei ole seda kogenud, siis see on koht, kus kuuled inimeste lugusid. Mis elu nad päriselt elavad. See on koht, kus saad jagada enda lugu, turvaliselt ilma kohuta. Me tuleme kokku selleks, et koos üksteist kogeda.
+
+Sissepääs 5€. Väljapääs tasuta!
+
+11. oktoobril kell 19. Tatari 44/2, Tallinn.
+
+Kui tundsid lugedes kasvõi väikest impulssi tulla, siis paku võimalust ka sõbrale ja edasta talle see kiri.
+
+Võta kaasa (tervislikku) näksimist jagamiseks ja parem on kaasa võtta mugav ase põrandal istumiseks, see kestab mitmeid tunde. Parkimine on kesklinna tsoon, ehk seitsmest tasuta.
+
+Näeme :)
+
+sade@krister.ee
+56355555
+
+---
+
+"Säde" stands for spark. As in a glowing and floating spark that will soon disappear. This specific Säde will be a talking circle, but there are many more sparks to come. They haven't decided which shape to take just yet. And you're invited to this very first ever Säde event!
+
+A talking circle is not just a circle with talking. It's a specific method of communication. A very efficient one that specializes in sharing our true feelings (or at least truer). It's a place to listen to what's really going on in peoples lives without interrupting even the longer pauses of thought. It's a safe place to speak about things ordinary life doesn't have room for. We gather, we learn, we express.
+
+Entrace 5€. Exit is free!
+
+11th of october at 19:00. Tatari 44/2, Tallinn.
+
+If you felt even a small impulss to come, then share the opportunity by sending this letter to a friend.
+
+Bring (healthy) snacks to share and a comfy nest to sit on the floor with. It does take many hours to really get into. Parking is city-center zone (free from 19).
+
+See you then :)
+
+sade@krister.ee
+56355555
+    </noscript>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/7.0.1/markdown-it.min.js"></script>
+    <script type="text/javascript">
+        var mdContent = document.querySelector('#markdown-content')
+        var md = window.markdownit({
+            breaks: true,
+            linkify: true,
+        });
+        var html = md.render(mdContent.textContent)
+        var div = document.createElement('div')
+        div.classList.add('rendered-content')
+        div.innerHTML = html
+        document.body.appendChild(div)
+    </script>
+    <script src="scripts/toc.js"></script>
+</body>
