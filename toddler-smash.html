@@ -29,12 +29,13 @@
             var spans = document.getElementById('name').getElementsByTagName('span');
             var key = event.key.toUpperCase();
             for (var i = 0; i < spans.length; i++) {
-                if (spans[i].textContent === key) {
+                if (spans[i].textContent === key && !spans[i].classList.contains('found')) {
                     spans[i].style.opacity = '100%';
                     spans[i].style.color = gen_rand_color();
                     void spans[i].offsetWidth;
                     spans[i].offsetHeight;
                     spans[i].classList.add('blast')
+                    spans[i].classList.add('found')
                     setTimeout(function () {
                         spans[i].classList.remove('blast')
                     }, 1000);
