@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="grid grid-rows-2 grid-flow-col gap-4 place-content-center">
+            <img src="img/2024-08-23_14-51-53.png" class="w-[6rem] self-end max-h-[10rem]" />
+            <input class="bg-[#ebfaa7] border-4 border-black rounded-full w-[6rem] h-[6rem] text-[3rem] text-center outline-none" placeholder="3." data-answer="K" maxlength="1"/>
+            <img src="img/2024-08-23_14-52-01.png" class="w-[6rem] self-end max-h-[10rem]" />
+            <input class="bg-[#ebfaa7] border-4 border-black rounded-full w-[6rem] h-[6rem] text-[3rem] text-center outline-none" placeholder="2." data-answer="O" maxlength="1"/>
+            <img src="img/2024-08-23_14-52-15.png" class="w-[6rem] self-end max-h-[10rem]" />
+            <input class="bg-[#ebfaa7] border-4 border-black rounded-full w-[6rem] h-[6rem] text-[3rem] text-center outline-none" placeholder="2." data-answer="D" maxlength="1"/>
+            <img src="img/2024-08-23_14-52-22.png" class="w-[6rem] self-end max-h-[10rem]" />
+            <input class="bg-[#ebfaa7] border-4 border-black rounded-full w-[6rem] h-[6rem] text-[3rem] text-center outline-none" placeholder="4." data-answer="U" maxlength="1"/>
+            <img src="img/2024-08-23_14-52-29.png" class="w-[6rem] self-end max-h-[10rem]" />
+            <input class="bg-[#ebfaa7] border-4 border-black rounded-full w-[6rem] h-[6rem] text-[3rem] text-center outline-none" placeholder="3." data-answer="L" maxlength="1"/>
+            <img src="img/2024-08-23_14-52-56.png" class="w-[6rem] self-end max-h-[10rem]" />
+            <input class="bg-[#ebfaa7] border-4 border-black rounded-full w-[6rem] h-[6rem] text-[3rem] text-center outline-none" placeholder="2." data-answer="O" maxlength="1"/>
+            <img src="img/2024-08-23_14-53-02.png" class="w-[6rem] self-end max-h-[10rem]" />
+            <input class="bg-[#ebfaa7] border-4 border-black rounded-full w-[6rem] h-[6rem] text-[3rem] text-center outline-none" placeholder="2." data-answer="O" maxlength="1"/>
+            <img src="img/2024-08-23_14-53-07.png" class="w-[6rem] self-end max-h-[10rem]" />
+            <input class="bg-[#ebfaa7] border-4 border-black rounded-full w-[6rem] h-[6rem] text-[3rem] text-center outline-none" placeholder="4." data-answer="M" maxlength="1"/>
+            <img src="img/2024-08-23_14-53-16.png" class="w-[6rem] self-end max-h-[10rem]" />
+            <input class="bg-[#ebfaa7] border-4 border-black rounded-full w-[6rem] h-[6rem] text-[3rem] text-center outline-none" placeholder="2." data-answer="A" maxlength="1"/>
+            <img src="img/2024-08-23_14-53-26.png" class="w-[6rem] self-end max-h-[10rem]" />
+            <input class="bg-[#ebfaa7] border-4 border-black rounded-full w-[6rem] h-[6rem] text-[3rem] text-center outline-none" placeholder="3." data-answer="D" maxlength="1"/>
+            <div>
+        </div>
+        <script>
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', validateInput);
+        });
+        function validateInput(event) {
+            event.target.value = event.target.value.toUpperCase().replace(/[^A-Z]/g, '')
+            correct = event.target.dataset.answer
+
+            event.target.classList.remove("border-green-500")
+            event.target.classList.remove("border-red-500")
+
+            if (event.target.value == correct) {
+              event.target.classList.add("border-green-500")
+            } else if (event.target.value) {
+              event.target.classList.add("border-red-500")
+            }
+        }
+        </script>
+    </body>
+</html>
