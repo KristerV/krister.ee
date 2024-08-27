@@ -9,8 +9,14 @@
     h1 {
         color: red;
     }
+
+    h3:active {
+        color: yellow;
+    }
 </style>
 
 <script>
-    document.querySelector('h2').style.color = 'green'
+    document.querySelector('button').onclick = function () {
+        document.querySelector('h2').style.color = 'green'
+    }
 </script>
