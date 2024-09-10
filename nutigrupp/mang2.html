@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ristsõna mäng</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+        body {
+            font-family: "Indie Flower", cursive;
+            font-weight: 800;
+            font-style: normal;
+        }
+        input {
+            width: 6rem;
+            height: 6rem;
+            font-size: 3rem;
+            text-align: center;
+            background-color: #DEEFF5;
+            outline: none;
+            box-shadow: 0 0 3px 3px #000000;
+        }
+    </style>
+</head>
+<body>
+<p class="text-[2.2rem] max-w-[50rem] text-center m-auto my-[6rem]">
+    Lahenda ristsõna ja saad teada, kes on Jussikese lemmikjalgpallur.
+</p>
+<div class="grid gap-1 grid-flow-row grid-cols-[repeat(13,6rem)] place-content-center">
+    <div class="grid grid-cols-subgrid col-span-4">
+        <img src="img/V2rav.png" class="self-end w-[6rem] h-[6rem] col-start-4" />
+    </div>
+    <div class="grid grid-cols-subgrid col-span-9">
+        <input data-answer="V" data-rows="1" data-correct="false"/>
+        <input data-answer="Ä" data-rows="1" data-correct="false"/>
+        <input class="bg-[#ebfaa7]" data-answer="R"  data-final-answer="true" data-rows="1" data-correct="false"/>
+        <input data-answer="A" data-rows="1" data-correct="false"/>
+        <input data-answer="V" data-rows="1" data-correct="false"/>
+    </div>
+    <div class="grid grid-cols-subgrid col-span-5">
+        <img src="img/Pall.png" class="self-end w-[6rem] h-[6rem] col-start-5"/>
+    </div>
+    <div class="grid grid-cols-subgrid col-span-8">
+        <input data-answer="P" data-rows="2" data-correct="false"/>
+        <input class="bg-[#ebfaa7]" data-answer="A" data-final-answer="true" data-rows="2" data-correct="false"/>
+        <input data-answer="L" data-rows="2" data-correct="false"/>
+        <input data-answer="L" data-rows="2" data-correct="false"/>
+    </div>
+    <div class="grid grid-cols-subgrid col-span-3">
+        <img src="img/Pudel.png" class="self-end w-[6rem] h-[6rem] col-start-3"/>
+    </div>
+    <input data-answer="J" data-rows="3" data-correct="false"/>
+    <input data-answer="O" data-rows="3" data-correct="false"/>
+    <input data-answer="O" data-rows="3" data-correct="false"/>
+    <input class="bg-[#ebfaa7]" data-answer="G" data-final-answer="true" data-rows="3" data-correct="false"/>
+    <input data-answer="I" data-rows="3" data-correct="false"/>
+    <input data-answer="P" data-rows="3" data-correct="false"/>
+    <input data-answer="U" data-rows="3" data-correct="false"/>
+    <input data-answer="D" data-rows="3" data-correct="false"/>
+    <input data-answer="E" data-rows="3" data-correct="false"/>
+    <input data-answer="L" data-rows="3" data-correct="false"/>
+    <div class="grid grid-cols-subgrid col-span-3">
+        <img src="img/Koonus.png" class="self-end w-[6rem] h-[6rem] col-start-3"/>
+    </div>
+    <div class="grid grid-cols-subgrid col-span-9">
+        <input data-answer="K" data-rows="4" data-correct="false"/>
+        <input data-answer="O" data-rows="4" data-correct="false"/>
+        <input data-answer="O" data-rows="4" data-correct="false"/>
+        <input class="bg-[#ebfaa7]" data-answer="N" data-final-answer="true" data-rows="4" data-correct="false"/>
+        <input data-answer="U" data-rows="4" data-correct="false"/>
+        <input data-answer="S" data-rows="4" data-correct="false"/>
+    </div>
+    <div class="grid grid-cols-subgrid col-span-2">
+        <img src="img/Toss.png" class="self-end w-[6rem] h-[6rem] col-start-2"/>
+    </div>
+    <div class="grid grid-cols-subgrid col-span-10">
+        <input data-answer="P" data-rows="5" data-correct="false"/>
+        <input data-answer="U" data-rows="5" data-correct="false"/>
+        <input data-answer="T" data-rows="5" data-correct="false"/>
+        <input data-answer="S" data-rows="5" data-correct="false"/>
+        <input class="bg-[#ebfaa7]" data-answer="A" data-final-answer="true" data-rows="5" data-correct="false"/>
+    </div>
+    <div class="grid p-6 grid-cols-subgrid col-span-3">
+        <img src="img/Sokk.png" class="self-end w-[6rem] h-[6rem] col-start-3"/>
+    </div>
+    <div class="grid grid-cols-subgrid col-span-9">
+        <input data-answer="K" data-rows="6" data-correct="false"/>
+        <input data-answer="E" data-rows="6" data-correct="false"/>
+        <input data-answer="D" data-rows="6" data-correct="false"/>
+        <input class="bg-[#ebfaa7]" data-answer="R" data-final-answer="true" data-rows="6" data-correct="false"/>
+        <input data-answer="A" data-rows="6" data-correct="false"/>
+    </div>
+    <div class="grid grid-cols-subgrid col-span-2">
+        <img src="img/Torbik.png" class="self-end w-[6rem] h-[6rem] col-start-2"/>
+    </div>
+    <div class="grid grid-cols-subgrid col-span-11">
+        <input data-answer="K" data-rows="7" data-correct="false"/>
+        <input data-answer="K" data-rows="7" data-correct="false"/>
+        <input data-answer="K" data-rows="7" data-correct="false"/>
+        <input data-answer="K" data-rows="7" data-correct="false"/>
+        <input class="bg-[#ebfaa7]" data-answer="K" data-final-answer="true" data-rows="7" data-correct="false"/>
+    </div>
+    <img src="img/Nurgalipp.png" class="self-end w-[6rem] h-[6rem]"/>
+    <div class="grid grid-cols-subgrid col-span-12">
+        <input data-answer="N" data-rows="8" data-correct="false"/>
+        <input data-answer="U" data-rows="8" data-correct="false"/>
+        <input data-answer="R" data-rows="8" data-correct="false"/>
+        <input data-answer="G" data-rows="8" data-correct="false"/>
+        <input data-answer="A" data-rows="8" data-correct="false"/>
+        <input class="bg-[#ebfaa7]" data-answer="L" data-final-answer="true" data-rows="8" data-correct="false"/>
+        <input data-answer="I" data-rows="8" data-correct="false"/>
+        <input data-answer="P" data-rows="8" data-correct="false"/>
+        <input data-answer="P" data-rows="8" data-correct="false"/>
+    </div>
+    <div class="grid grid-cols-subgrid col-span-5">
+        <img src="img/Kaitsmed.png" class="self-end w-[6rem] h-[6rem] col-start-5"/>
+    </div>
+    <div class="grid grid-cols-subgrid col-span-8">
+        <input data-answer="K" data-rows="9" data-correct="false"/>
+        <input class="bg-[#ebfaa7]" data-answer="A" data-final-answer="true" data-rows="9" data-correct="false"/>
+        <input data-answer="I" data-rows="9" data-correct="false"/>
+        <input data-answer="T" data-rows="9" data-correct="false"/>
+        <input data-answer="S" data-rows="9" data-correct="false"/>
+        <input data-answer="M" data-rows="9" data-correct="false"/>
+        <input data-answer="E" data-rows="9" data-correct="false"/>
+        <input data-answer="D" data-rows="9" data-correct="false"/>
+    </div>
+    <div class="grid grid-cols-subgrid col-span-6">
+        <img src="img/Vile.png" class="self-end w-[6rem] h-[6rem] col-start-6"/>
+    </div>
+    <div class="grid grid-cols-subgrid col-span-7">
+        <input class="bg-[#ebfaa7]" data-answer="V" data-final-answer="true" data-rows="10" data-correct="false"/>
+        <input data-answer="I" data-rows="10" data-correct="false"/>
+        <input data-answer="L" data-rows="10" data-correct="false"/>
+        <input data-answer="E" data-rows="10" data-correct="false"/>
+    </div>
+    <div class="grid grid-cols-subgrid col-span-2">
+        <img src="img/Plats.png" class="self-end w-[6rem] h-[6rem] col-start-2"/>
+    </div>
+    <div class="grid grid-cols-subgrid col-span-11">
+        <input data-answer="V" data-rows="11" data-correct="false"/>
+        <input data-answer="Ä" data-rows="11" data-correct="false"/>
+        <input data-answer="L" data-rows="11" data-correct="false"/>
+        <input data-answer="J" data-rows="11" data-correct="false"/>
+        <input class="bg-[#ebfaa7]" data-answer="A" data-final-answer="true" data-rows="11" data-correct="false"/>
+        <input data-answer="K" data-rows="11" data-correct="false"/>
+    </div>
+    <img src="img/Pael.png" class="self-end w-[6rem] h-[6rem]"/>
+    <div class="grid grid-cols-subgrid col-span-12">
+        <input data-answer="K" data-rows="12" data-correct="false"/>
+        <input data-answer="A" data-rows="12" data-correct="false"/>
+        <input data-answer="P" data-rows="12" data-correct="false"/>
+        <input data-answer="T" data-rows="12" data-correct="false"/>
+        <input data-answer="E" data-rows="12" data-correct="false"/>
+        <input class="bg-[#ebfaa7]" data-answer="N" data-final-answer="true" data-rows="12" data-correct="false"/>
+        <input data-answer="I" data-rows="12" data-correct="false"/>
+        <input data-answer="P" data-rows="12" data-correct="false"/>
+        <input data-answer="A" data-rows="12" data-correct="false"/>
+        <input data-answer="E" data-rows="12" data-correct="false"/>
+        <input data-answer="L" data-rows="12" data-correct="false"/>
+    </div>
+</div>
+<p class="p-6">
+</p>
+<div class="text-center hidden" id="winning-container">
+    <h1 class="text-3xl">Tegid ära!</h1>
+    <button
+            class="border border-gray-400 rounded m-4 p-4 bg-gray-200"
+            id="retry"
+    >
+        Alusta uuesti
+    </button>
+</div>
+<script>
+    document.querySelectorAll("input").forEach((input) => {
+        input.addEventListener("input", validateInput);
+        input.addEventListener("input", validateWord);
+        input.addEventListener("input", validateFinalAnswer);
+    });
+
+    function validateInput(event) {
+        event.target.value = event.target.value.slice(-1).toUpperCase();
+        is_correct = event.target.value == event.target.dataset.answer;
+        if (is_correct) {
+            event.target.setAttribute("data-correct", "true");
+        } else if (event.target.value) {
+            event.target.setAttribute("data-correct", "false");
+        }
+
+        const inputs = Array.from(
+            document.querySelectorAll("input"),
+        );
+        const currentIndex = inputs.indexOf(event.target);
+        if (currentIndex < inputs.length - 1) {
+            inputs[currentIndex + 1].focus();
+        }
+    }
+
+    function validateWord() {
+        const inputs = Array.from(
+            document.querySelectorAll('[data-rows]'));
+
+        for (let i = 0; i <= 12; i++) {
+            var correctLetters = 0;
+            const word = inputs.filter((letter) => {
+                return letter.getAttribute('data-rows') == i;
+            });
+            word.forEach(
+                (element) => {
+                    if (element.getAttribute("data-correct") === "true") {
+                        correctLetters++;
+                    }
+                }
+            );
+            if (correctLetters === word.length) {
+                highlightWord(word);
+            }
+        }
+    }
+
+    function highlightWord(word) {
+        word.forEach(
+            (element) => {
+                element.classList.add("border-green-500");
+            }
+        )
+    }
+
+    function validateFinalAnswer() {
+        const inputs = Array.from(
+            document.querySelectorAll('[data-final-answer]'));
+
+        const correctLetters = inputs.filter((element) => {
+            return element.getAttribute("data-correct") == "true";
+        });
+
+        if (correctLetters.length === inputs.length) {
+            finishGame(correctLetters);
+        }
+    }
+
+    function finishGame(answer) {
+        answer.forEach(
+            (element) => {
+                if (!element.classList.contains("border-green-500")) {
+                    element.classList.add("border-green-500");
+                }
+                element.classList.remove("bg-[#ebfaa7]");
+                element.classList.add("bg-[#22c55e]");
+            }
+        );
+
+        document
+            .getElementById("winning-container")
+            .classList.remove("hidden");
+    }
+
+    document
+        .getElementById("retry")
+        .addEventListener("click", function () {
+            location.reload(true);
+        });
+</script>
+</body>
+</html>
