@@ -10,7 +10,7 @@
         body {
             font-family: "Nunito", sans-serif;
             font-optical-sizing: auto;
-            font-weight: 300;
+            font-weight: 500;
             font-style: normal;
             font-size: 3.5rem;
         }
@@ -27,7 +27,7 @@
 </head>
 <body>
 <p class="text-[2.2rem] max-w-[50rem] text-center m-auto my-[6rem]">
-    Ristsõna
+    Lahenda ristsõna ja saad teada, milline nähtus on sügisele iseloomulik.
 </p>
 <div class="grid gap-1 grid-flow-row grid-cols-[repeat(10,6rem)] place-content-center">
     <div class="grid grid-cols-subgrid col-span-4">
@@ -122,6 +122,7 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
 <script>
+    let gameFinished = false;
     document.querySelectorAll("input").forEach((input) => {
         input.addEventListener("input", validateInput);
         input.addEventListener("input", validateFinalAnswer);
@@ -168,12 +169,13 @@
             return element.getAttribute("data-correct") == "true";
         });
 
-        if (correctLetters.length === inputs.length) {
+        if (correctLetters.length === inputs.length && gameFinished === false) {
             finishGame(correctLetters);
         }
     }
 
     function finishGame(answer) {
+        gameFinished = true;
         answer.forEach(
             (element) => {
                 element.classList.remove("bg-[#ebfaa7]");
