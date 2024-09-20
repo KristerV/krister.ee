@@ -2,13 +2,14 @@
     "toolkit": "https://codepen.io/kristerv/pen/abgeeVO?editors=1012",
     "chat-app": {
         "server": "https://kool.krister.ee/chat/TA24B",
-        "v0.1": "https://codepen.io/kristerv/pen/abgeeOe?editors=0010"
+        "v0.1": "https://codepen.io/kristerv/pen/abgeeOe",
+        "v0.2": "https://codepen.io/kristerv/pen/QWXeeyr"
     },
     "tasks": [
         "[x] Design UI",
-        "[ ] Fetch messages from server",
-        "[ ] Extract ONE message from data",
-        "[ ] Write ONE message to page",
-        "[ ] Make sure message is designed"
+        "[x] Fetch messages from server",
+        "[x] Extract ONE message from data",
+        "[x] Write ONE message to page",
+        "[x] Make sure message is designed"
     ]
 }
