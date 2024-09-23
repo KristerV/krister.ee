@@ -182,19 +182,25 @@
                 }
             );
             if (correctLetters === word.length) {
-                highlightWord(word,"bg-[#b7edca]");
+                highlightWord(word,"bg-[#b7edca]", "bg-[#22c55e]");
             } else if (filledOut === word.length) {
-                highlightWord(word, "bg-[#eb4646]");
+                highlightWord(word, "bg-[#f26b6b]", "bg-[#c20e0e]");
             }
         }
     }
 
-    function highlightWord(word, color) {
+    function highlightWord(word, baseColor, finalAnswerColor) {
         word.forEach(
             (element) => {
-                element.classList.remove("bg-[#b7edca]");
-                element.classList.remove("bg-[#eb4646]");
-                element.classList.add(color);
+                if (element.getAttribute("data-final-answer")) {
+                    element.classList.remove("bg-[#22c55e]");
+                    element.classList.remove("bg-[#c20e0e]");
+                    element.classList.add(finalAnswerColor);
+                } else {
+                    element.classList.remove("bg-[#b7edca]");
+                    element.classList.remove("bg-[#f26b6b]");
+                    element.classList.add(baseColor);
+                }
             }
         )
     }
@@ -208,19 +214,8 @@
         });
 
         if (correctLetters.length === inputs.length && gameFinished === false) {
-            const finalAnswer = Array.from(
-                document.querySelectorAll('[data-final-answer]'));
-            highlightFinalAnswer(finalAnswer)
             finishGame();
         }
-    }
-
-    function highlightFinalAnswer(answer) {
-        answer.forEach(
-            (element) => {
-                element.classList.add("bg-[#22c55e]");
-            }
-        );
     }
 
     function finishGame() {
