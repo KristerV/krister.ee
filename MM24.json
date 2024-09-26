@@ -1,8 +1,20 @@
 {
     "toolbox": "https://codepen.io/kristerv/pen/WNqVExK?editors=0012",
         "chat-app": {
-            "v0.1": "https://codepen.io/kristerv/pen/rNEXzLE",
-            "v0.2": "https://codepen.io/kristerv/pen/JjQgyJX"
-        }
+            "code": {
+                "v0.1": "https://codepen.io/kristerv/pen/rNEXzLE",
+                "v0.2": "https://codepen.io/kristerv/pen/JjQgyJX"
+            },
+            "tasks": [
+                "[x] Design UI",
+                "[x] Fetch messages",
+                "[x] Display first message in UI",
+                "[ ] Display all messages in UI",
+                "[ ] Send message to server",
+                "    [ ] When user writes a message and presses enter, log that message to console.",
+                "    [ ] Format the mesage into an object: {name: 'Krister', message: 'Tere'}",
+                "    [ ] Use fetch (method: POST) to send message to server"
+            ]
+    }
 }
 
