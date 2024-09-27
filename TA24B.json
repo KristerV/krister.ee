@@ -10,6 +10,16 @@
         "[x] Fetch messages from server",
         "[x] Extract ONE message from data",
         "[x] Write ONE message to page",
-        "[x] Make sure message is designed"
+        "[x] Make sure message is designed",
+        "[ ] Write ALL messages to page",
+        "[ ] Fetch messages every 3 seconds",
+        "[ ] Scroll to bottom on new messages",
+        "    --- send message to server ---",
+        "[ ] Print out every keyboard press on <input>",
+        "[ ] Print out <input> value ONLY after pressong Enter",
+        "[ ] Construct message in format {message: 'what the user typed'}",
+        "[ ] Send message to server with fetch method POST",
+        "[ ] Add name to the sent message (get name with prompt)",
+        "[ ] Empty the <input> after send"
     ]
 }
