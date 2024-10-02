@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahamäng</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+        body {
+            font-family: "Nunito", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+            font-size: 2.1rem;
+        }
+        .box {
+            width: 10rem;
+            height: 8rem;
+            line-height: 4rem;
+            border: 3px solid #333;
+            border-radius: 1.8rem;
+            text-align: center;
+        }
+        .drop-box {
+            border: 3px solid #c49e46;
+            background-color: #fffdf3;
+        }
+        .hidden-box {
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<p class="text-[2.2rem] max-w-[50rem] text-center m-auto my-[6rem]">
+    Aita Jussikesel leida iga kauba ostmiseks täpne raha. Lohista õige summa asja juurde.
+</p>
+<div class="grid gap-3 grid-flow-row grid-cols-[repeat(6,10rem)] place-content-center">
+
+    <img src="img/rahamang/pall.png" class="product w-[10rem] h-[8rem]" id="38-img" data-pair="38"/>
+    <img src="img/rahamang/ping-pong.png" class="product w-[10rem] h-[8rem]" id="25-img" data-pair="25"/>
+    <img src="img/rahamang/hyppenoor.png" class="product w-[10rem] h-[8rem]" id="10-img" data-pair="10"/>
+    <img src="img/rahamang/jalan6u.png" class="product w-[10rem] h-[8rem]" id="65-img" data-pair="65"/>
+    <img src="img/rahamang/prillid.png" class="product w-[10rem] h-[8rem]" id="24-img" data-pair="24"/>
+    <img src="img/rahamang/vile.png" class="product w-[10rem] h-[8rem]" id="14-img" data-pair="14"/>
+    <div class="box drop-box" id="38-dropbox" data-pair="38" data-box-connected="false"></div>
+    <div class="box drop-box" id="25-dropbox" data-pair="25" data-box-connected="false"></div>
+    <div class="box drop-box" id="10-dropbox" data-pair="10" data-box-connected="false"></div>
+    <div class="box drop-box" id="65-dropbox" data-pair="65" data-box-connected="false"></div>
+    <div class="box drop-box" id="24-dropbox" data-pair="24" data-box-connected="false"></div>
+    <div class="box drop-box" id="14-dropbox" data-pair="14" data-box-connected="false"></div>
+
+    <div class="grid grid-cols-subgrid col-span-6">
+        <div class="box hidden-box h-[3rem]" id="empty-row-for-space"></div>
+    </div>
+</div>
+<div class="grid gap-8 grid-flow-row grid-cols-[repeat(6,10rem)] place-content-center">
+    <div>
+        <div class="hidden box hidden-box" id="0-24" data-pair="24"></div>
+        <img src="img/rahamang/24.png" class="drag-box w-[10rem] h-[8rem]" id="24" data-pair="24" draggable="true"/>
+    </div>
+    <div>
+        <div class="hidden box hidden-box" id="0-25" data-pair="25"></div>
+        <img src="img/rahamang/25.png" class="drag-box w-[10rem] h-[8rem]" id="25" data-pair="25" draggable="true"/>
+    </div>
+    <div>
+        <div class="hidden box hidden-box" id="0-14" data-pair="14"></div>
+        <img src="img/rahamang/14.png" class="drag-box w-[10rem] h-[8rem]" id="14" data-pair="14" draggable="true"/>
+    </div>
+    <div>
+        <div class="hidden box hidden-box" id="0-10" data-pair="10"></div>
+        <img src="img/rahamang/10.png" class="drag-box w-[10rem] h-[8rem]" id="10" data-pair="10" draggable="true"/>
+    </div>
+    <div>
+        <div class="hidden box hidden-box" id="0-65" data-pair="65"></div>
+        <img src="img/rahamang/65.png" class="drag-box w-[10rem] h-[8rem]" id="65" data-pair="65" draggable="true"/>
+    </div>
+    <div>
+        <div class="hidden box hidden-box" id="0-38" data-pair="38"></div>
+        <img src="img/rahamang/38.png" class="drag-box w-[10rem] h-[8rem]" id="38" data-pair="38" draggable="true"/>
+    </div>
+
+</div>
+<p class="p-6"></p>
+<div class="text-center hidden" id="winning-container">
+    <h1 class="text-3xl">Tegid ära!</h1>
+    <button
+            class="border border-gray-400 rounded m-4 p-4 bg-gray-200 text-2xl"
+            id="retry"
+    >
+        Alusta uuesti
+    </button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+<script>
+    let gameFinished = false;
+    let matchedPairCounter = 0;
+    const pairsToMatch = 6;
+
+    document.querySelectorAll(".drag-box").forEach((dragBox) => {
+        dragBox.addEventListener('dragstart', handleDragStart);
+        dragBox.addEventListener('dragend', handleDragEnd);
+        dragBox.addEventListener('mouseover', handleHover);
+        dragBox.addEventListener('mouseleave', handleMouseLeave)
+    });
+    document.querySelectorAll(".drop-box").forEach((dropBox) => {
+        dropBox.addEventListener('dragover', handleDragOver);
+        dropBox.addEventListener('drop', handleDrop);
+    });
+
+    function handleDragStart(event) {
+        event.dataTransfer.clearData();
+        event.dataTransfer.setData('text/plain', event.target.id);
+        document.body.style.cursor = 'grab';
+    }
+
+    function handleDragEnd() {
+        document.body.style.cursor = 'default';
+    }
+
+    function handleHover() {
+        document.body.style.cursor = 'pointer';
+    }
+
+    function handleMouseLeave() {
+        document.body.style.cursor = 'default';
+    }
+
+    function handleDragOver(event) {
+        event.preventDefault();
+        document.body.style.cursor = 'grab';
+    }
+
+    function handleDrop(event) {
+        event.preventDefault();
+
+        const draggedElementId = event.dataTransfer.getData('text/plain');
+        const draggedElement = document.getElementById(draggedElementId);
+
+        const currentPairNumber = event.target.getAttribute('data-pair');
+        if (draggedElement.getAttribute('data-pair') !== currentPairNumber) {
+            event.cancel();
+        }
+
+        event.target.appendChild(draggedElement);
+        exposeSpaceHolderBox(currentPairNumber);
+        restyleDropBox(event.target);
+        event.target.setAttribute("data-box-connected", "true");
+        matchedPairCounter++;
+
+        if (matchedPairCounter === pairsToMatch && !gameFinished) {
+            finishGame();
+        }
+    }
+
+    function exposeSpaceHolderBox(pairNumber) {
+        const hiddenBoxes = document.querySelectorAll('.hidden-box');
+        hiddenBoxes.forEach((box) => {
+            if (box.getAttribute('data-pair') === pairNumber) {
+                box.classList.remove("hidden");
+            }
+        });
+    }
+
+    function restyleDropBox(box) {
+        box.style.backgroundColor = '#ddfdd2';
+        box.style.borderColor = '#36801e';
+    }
+
+    function finishGame() {
+        gameFinished = true;
+        hideHiddenBoxes();
+        interval = setInterval(() => {
+            confetti({
+                angle: randomInRange(55, 125),
+                spread: randomInRange(50, 70),
+                particleCount: randomInRange(50, 100),
+                origin: { y: 0.6 },
+            });
+        }, 300);
+
+        setTimeout(() => {
+            clearInterval(interval);
+        }, 2000);
+
+        document
+            .getElementById("winning-container")
+            .classList.remove("hidden");
+    }
+
+    function hideHiddenBoxes() {
+        document.querySelectorAll('.hidden-box').forEach((box) => {
+            box.classList.add("hidden");
+        })
+    }
+
+    function randomInRange(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    document
+        .getElementById("retry")
+        .addEventListener("click", function () {
+            location.reload(true);
+        });
+</script>
+</body>
+</html>
