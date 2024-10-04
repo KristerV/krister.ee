@@ -3,7 +3,7 @@
     "chat-app": {
         "server": "https://kool.krister.ee/chat/TA24B",
         "v0.1": "https://codepen.io/kristerv/pen/abgeeOe",
-        "v0.2": "https://codepen.io/kristerv/pen/QWXeeyr"
+        "v0.3": "https://codepen.io/kristerv/pen/QWXeeyr"
     },
     "tasks": [
         "[x] Design UI",
@@ -11,15 +11,15 @@
         "[x] Extract ONE message from data",
         "[x] Write ONE message to page",
         "[x] Make sure message is designed",
-        "[ ] Write ALL messages to page",
-        "[ ] Fetch messages every 3 seconds",
-        "[ ] Scroll to bottom on new messages",
+        "[x] Write ALL messages to page",
+        "[x] Fetch messages every 3 seconds",
+        "[x] Scroll to bottom on new messages",
         "    --- send message to server ---",
-        "[ ] Print out every keyboard press on <input>",
-        "[ ] Print out <input> value ONLY after pressong Enter",
-        "[ ] Construct message in format {message: 'what the user typed'}",
-        "[ ] Send message to server with fetch method POST",
-        "[ ] Add name to the sent message (get name with prompt)",
-        "[ ] Empty the <input> after send"
+        "[x] Print out every keyboard press on <input>",
+        "[x] Print out <input> value ONLY after pressong Enter",
+        "[x] Construct message in format {message: 'what the user typed'}",
+        "[x] Send message to server with fetch method POST",
+        "[x] Add name to the sent message (get name with prompt)",
+        "[x] Empty the <input> after send"
     ]
 }
