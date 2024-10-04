@@ -4,20 +4,21 @@
         "code": {
             "server": "https://kool.krister.ee/chat/TA24A",
             "v0.1": "https://codepen.io/kristerv/pen/bGPXJGY",
-            "v0.2": "https://codepen.io/kristerv/pen/bGPXJWM"
+            "v0.2": "https://codepen.io/kristerv/pen/bGPXJWM",
+            "v0.3": "https://codepen.io/kristerv/pen/dyxoWZX"
         },
         "tasks": [
             "[x] Design UI",
             "[x] Fetch messages from server",
             "[x] Display single message",
-            "[ ] Display all messages",
-            "[ ] Fetch messages every 3 seconds automatically",
+            "[x] Display all messages",
+            "[x] Fetch messages every 3 seconds automatically",
             "    --- send message to server ---",
-            "[ ] Print out every keyboard press on <input>",
-            "[ ] Print out <input> value ONLY after pressong Enter",
-            "[ ] Construct message in format {message: 'what the user typed'}",
-            "[ ] Send message to server with fetch method POST",
-            "[ ] Add name to the sent message (get name with prompt)"
+            "[x] Print out every keyboard press on <input>",
+            "[x] Print out <input> value ONLY after pressong Enter",
+            "[x] Construct message in format {message: 'what the user typed'}",
+            "[x] Send message to server with fetch method POST",
+            "[x] Add name to the sent message (get name with prompt)"
         ]
     
     }
