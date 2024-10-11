@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Basics - Detailed Guide</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav {
+            width: 250px;
+            background-color: #f4f4f4;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            overflow-y: auto;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+        main {
+            margin-left: 270px;
+            padding: 20px;
+            max-width: 800px;
+        }
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .feedback {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .keyword {
+            color: #0000FF;
+            font-weight: bold;
+        }
+        .symbol {
+            color: #FF0000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<bod>
+    <nav>
+        <h2>Contents</h2>
+        <ul>
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#html">HTML</a></li>
+            <li><a href="#css">CSS</a></li>
+            <li><a href="#javascript">JavaScript</a></li>
+            <li><a href="#variables">Variables</a></li>
+            <li><a href="#functions">Functions</a></li>
+            <li><a href="#complex-data">Accessing Complex Data Structures</a></li>
+            <li><a href="#dom">DOM Manipulation</a></li>
+            <li><a href="#for-of-loop">For...of Loop</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#fetch">Fetch API</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="intro" class="section">
+            <h1>Web Development Basics - Detailed Guide</h1>
+            <p>This comprehensive guide will introduce you to the fundamentals of web development, including HTML, CSS, and JavaScript. We'll explain each concept in detail, breaking down every keyword and symbol.</p>
+        </section>
+
+        <section id="html" class="section">
+            <h2>HTML (HyperText Markup Language)</h2>
+            <p>HTML is the backbone of web content. It uses tags to structure and organize content on web pages.</p>
+            <pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+            <p>Let's break this down:</p>
+            <ul>
+                <li><span class="symbol">&lt;</span> and <span class="symbol">&gt;</span>: These are angle brackets that enclose HTML tags.</li>
+                <li><span class="keyword">link</span>: This is an HTML tag used to define a link between a document and an external resource.</li>
+                <li><span class="keyword">rel</span>: This attribute specifies the relationship between the current document and the linked document. Here, it's set to "stylesheet".</li>
+                <li><span class="keyword">href</span>: This attribute specifies the location of the linked document. In this case, it's pointing to a file named "style.css".</li>
+            </ul>
+            <p>This line tells the browser to load and apply the styles defined in the "style.css" file to our HTML document.</p>
+            <pre><code class="language-html">
+            <!-- Example 1: Linking a stylesheet -->
+            &lt;link rel="stylesheet" href="style.css"&gt;
+
+            <!-- Example 2: Basic HTML structure -->
+            &lt;!DOCTYPE html&gt;
+            &lt;html lang="en"&gt;
+            &lt;head&gt;
+                &lt;meta charset="UTF-8"&gt;
+                &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+                &lt;title&gt;My Web Page&lt;/title&gt;
+                &lt;h1&gt;Welcome to My Web Page&lt;/h1&gt;
+                &lt;p&gt;This is a paragraph of text.&lt;/p&gt;
+            &lt;/body&gt;
+            &lt;/html&gt;
+
+            <!-- Example 3: Creating a list -->
+            &lt;ul&gt;
+                &lt;li&gt;First item&lt;/li&gt;
+                &lt;li&gt;Second item&lt;/li&gt;
+                &lt;li&gt;Third item&lt;/li&gt;
+            &lt;/ul&gt;
+
+            <!-- Example 4: Adding an image -->
+            &lt;img src="image.jpg" alt="Description of the image"&gt;
+
+            <!-- Example 5: Creating a link -->
+            &lt;a href="https://www.example.com"&gt;Visit Example.com&lt;/a&gt;
+            </code></pre>
+
+            <p>These examples demonstrate various HTML elements and their usage. HTML provides the structure for web content, allowing you to create headings, paragraphs, lists, add images, and create links to other web pages.</p>
+
+        </section>
+
+        <section id="css" class="section">
+            <h2>CSS (Cascading Style Sheets)</h2>
+            <p>CSS is used to control the visual presentation of HTML elements. It consists of selectors and declaration blocks.</p>
+            <pre><code>
+body {
+  margin: 0;
+}
+            </code></pre>
+            <p>Let's analyze this CSS rule:</p>
+            <ul>
+                <li><span class="keyword">body</span>: This is a selector that targets the &lt;body&gt; element of the HTML document.</li>
+                <li><span class="symbol">{</span> and <span class="symbol">}</span>: These curly braces enclose the declaration block.</li>
+                <li><span class="keyword">margin</span>: This is a CSS property that controls the outer spacing of an element.</li>
+                <li><span class="symbol">:</span> The colon separates the property from its value.</li>
+                <li><span class="symbol">0</span>: This is the value assigned to the margin property, setting it to zero.</li>
+                <li><span class="symbol">;</span> The semicolon marks the end of a CSS declaration.</li>
+            </ul>
+            <p>This CSS rule removes any default margin from the body element, making the content flush with the edges of the browser window.</p>
+
+                        <pre><code>
+            /* Example 1: Basic styling */
+            body {
+              font-family: Arial, sans-serif;
+              background-color: #f0f0f0;
+              color: #333;
+            }
+
+            /* Example 2: Class selector */
+            .button {
+              background-color: #4CAF50;
+              color: white;
+              padding: 10px 20px;
+              border: none;
+              cursor: pointer;
+            }
+
+            /* Example 3: ID selector */
+            #header {
+              background-color: #333;
+              color: white;
+              padding: 20px;
+            }
+
+            /* Example 4: Pseudo-class */
+            a:hover {
+              color: red;
+              text-decoration: underline;
+            }
+
+            /* Example 5: Media query for responsive design */
+            @media screen and (max-width: 600px) {
+              body {
+                font-size: 14px;
+              }
+            }
+            </code></pre>
+
+            <p>These examples demonstrate various CSS techniques:</p>
+            <ul>
+                <li>Basic element styling (Example 1)</li>
+                <li>Using class selectors for reusable styles (Example 2)</li>
+                <li>Applying styles to specific elements with ID selectors (Example 3)</li>
+                <li>Creating interactive effects with pseudo-classes (Example 4)</li>
+                <li>Implementing responsive design with media queries (Example 5)</li>
+            </ul>
+            <p>CSS allows you to control the layout, colors, fonts, and overall appearance of your web pages, making them visually appealing and responsive to different screen sizes.</p>
+
+        </section>
+
+        <section id="javascript" class="section">
+            <h2>JavaScript</h2>
+            <p>JavaScript is a programming language that adds interactivity and dynamic behavior to web pages. It can manipulate HTML and CSS, handle events, and communicate with servers.</p>
+            <pre><code>// Example 1: Declaring variables
+const url = "https://kool.krister.ee/chat/MM24";
+let count = 0;
+
+// Example 2: Simple function
+function greet(name) {
+  console.log(`Hello, ${name}!`);
+}
+
+// Example 3: Working with arrays
+const fruits = ['apple', 'banana', 'orange'];
+console.log(fruits[0]); // Output: apple
+
+// Example 4: Basic if statement
+let age = 18;
+if (age >= 18) {
+  console.log("You are an adult");
+} else {
+  console.log("You are a minor");
+}
+
+// Example 5: Simple loop
+for (let i = 0; i < 5; i++) {
+  console.log(i);
+}</code></pre>
+            <p>Let's break down the first example:</p>
+            <ul>
+                <li><span class="keyword">const</span>: This keyword declares a constant variable. Once assigned, its value cannot be changed.</li>
+                <li><span class="keyword">url</span>: This is the name of the variable we're declaring.</li>
+                <li><span class="symbol">=</span>: The equals sign is the assignment operator. It assigns the value on the right to the variable on the left.</li>
+                <li><span class="symbol">"https://kool.krister.ee/chat/MM24"</span>: This is a string literal (text data) enclosed in quotation marks. It represents a URL.</li>
+                <li><span class="symbol">;</span> The semicolon marks the end of a JavaScript statement.</li>
+            </ul>
+            <p>These examples demonstrate basic JavaScript concepts such as variable declaration, function definition, working with arrays, conditional statements, and loops. Each example is simple and easy to understand, providing a good starting point for beginners.</p>
+        </section>
+
+                        <pre><code>
+            // Example 1: Variables and data types
+            let name = "John";
+            const age = 30;
+            var isStudent = true;
+
+            // Example 2: Arrays and objects
+            let fruits = ["apple", "banana", "orange"];
+            const person = {
+              name: "Alice",
+              age: 25,
+              isStudent: false
+            };
+
+            // Example 3: Functions
+            function greet(name) {
+              return `Hello, ${name}!`;
+            }
+            console.log(greet("Bob")); // Output: Hello, Bob!
+
+            // Example 4: Arrow functions and array methods
+            const numbers = [1, 2, 3, 4, 5];
+            const doubledNumbers = numbers.map(num => num * 2);
+            console.log(doubledNumbers); // Output: [2, 4, 6, 8, 10]
+
+            // Example 5: Conditional statements and loops
+            for (let i = 0; i < 5; i++) {
+              if (i % 2 === 0) {
+                console.log(`${i} is even`);
+              } else {
+                console.log(`${i} is odd`);
+              }
+            }
+            </code></pre>
+
+            <p>These examples demonstrate various JavaScript concepts:</p>
+            <ul>
+                <li>Variables and data types (Example 1)</li>
+                <li>Working with arrays and objects (Example 2)</li>
+                <li></li>Defining and calling functions (Example 3)</li>
+                <li>Using arrow functions and array methods (Example 4)</li>
+                <li>Implementing control flow with loops and conditionals (Example 5)</li>
+            </ul>
+            <p>JavaScript allows you to add interactivity to your web pages, manipulate data, and create dynamic content. These examples showcase some of the fundamental concepts and syntax of the language.</p>
+
+        </section>
+
+        <section id="variables" class="section">
+            <h2>Variables</h2>
+            <p>Variables in JavaScript are containers for storing data values. They are declared using keywords like 'const', 'let', or 'var'.</p>
+            <pre><code>const username = prompt("your name");</code></pre>
+            <p>Let's analyze this line:</p>
+            <ul>
+                <li><span class="keyword">const</span>: Declares a constant variable.</li>
+                <li><span class="keyword">username</span>: The name of the variable.</li>
+                <li><span class="symbol">=</span>: Assignment operator.</li>
+                <li><span class="keyword">prompt</span>: A built-in JavaScript function that displays a dialog box with a message and an input field.</li>
+                <li><span class="symbol">(</span> and <span class="symbol">)</span>: Parentheses used to enclose function arguments.</li>
+                <li><span class="symbol">"your name"</span>: A string literal passed as an argument to the prompt function.</li>
+            </ul>
+            <p>This line prompts the user to enter their name and stores the result in the 'username' variable. To access this data later, you would simply use the variable name: <code>console.log(username);</code></p>
+
+                        <pre><code>
+            // Example 1: Using const for unchangeable values
+            const PI = 3.14159;
+            const DAYS_IN_WEEK = 7;
+
+            // Example 2: Using let for values that can change
+            let score = 0;
+            score += 10;
+
+            // Example 3: Using var (older way, function-scoped)
+            var oldWay = "I'm using var";
+
+            // Example 4: Different variable scopes
+            if (true) {
+              let blockScoped = "I'm only available in this block";
+              var functionScoped = "I'm available throughout the function";
+            }
+            // console.log(blockScoped); // This would cause an error
+            console.log(functionScoped); // This works
+
+            // Example 5: Object and array variables
+            const user = { name: "Alice", age: 30 };
+            const colors = ["red", "green", "blue"];
+
+            // Example 6: Template literals
+            const name = "Bob";
+            const greeting = `Hello, ${name}!`;
+
+            // Example 7: Destructuring assignment
+            const { name: userName, age } = user;
+            const [firstColor, secondColor] = colors;
+            </code></pre>
+
+            <p>These examples demonstrate various ways to use variables in JavaScript:</p>
+            <ul>
+                <li>Using <code>const</code> for values that won't change (Examples 1 and 5)</li>
+                <li>Using <code>let</code> for values that can be reassigned (Example 2)</li>
+                <li>The older <code>var</code> keyword and its function scope (Examples 3 and 4)</li>
+                <li>Block scope vs function scope (Example 4)</li>
+                <li>Object and array variables (Example 5)</li>
+                <li>Template literals for string interpolation (Example 6)</li>
+                <li>Destructuring assignment for objects and arrays (Example 7)</li>
+            </ul>
+            <p>These examples showcase the flexibility and power of variables in JavaScript, allowing you to store and manipulate data in various ways.</p>
+
+        </section>
+
+        <section id="functions" class="section">
+            <h2>Functions</h2>
+            <p>Functions are reusable blocks of code that perform specific tasks. In modern JavaScript, async functions are particularly useful for handling asynchronous operations.</p>
+            <pre><code>
+async function fetchMessages() {
+  try {
+    const response = await fetch('https://api.example.com/messages');
+    const messages = await response.json();
+    return messages;
+  } catch (error) {
+    console.error('Error fetching messages:', error);
+  }
+}
+            </code></pre>
+            <p>Let's break down this async function:</p>
+            <ul>
+                <li><span class="keyword">async</span>: This keyword defines an asynchronous function, which allows the use of 'await' inside the function.</li>
+                <li><span class="keyword">function</span>: This keyword is used to declare a function.</li>
+                <li><span class="keyword">fetchMessages</span>: This is the name of the function.</li>
+                <li><span class="keyword">try</span> and <span class="keyword">catch</span>: These keywords are used for error handling in asynchronous operations.</li>
+                <li><span class="keyword">await</span>: This keyword is used to wait for a Promise to resolve before continuing execution.</li>
+                <li><span class="keyword">fetch</span>: A function that returns a Promise, used to make network requests.</li>
+                <li><span class="keyword">response.json()</span>: A method that returns a Promise which resolves with the result of parsing the response body text as JSON.</li>
+            </ul>
+            <p>This declares an asynchronous function named 'fetchMessages' that retrieves messages from an API. The function can be called and used with await in another async function like this:</p>
+            <pre><code>
+async function displayMessages() {
+  const messages = await fetchMessages();
+  console.log(messages);
+}
+            </code></pre>
+            <p>Using async/await makes asynchronous code easier to write and understand, as it allows you to write asynchronous code that looks and behaves more like synchronous code.</p>
+        </section>
+
+                        <pre><code>
+            // Example 1: Basic function declaration
+            function greet(name) {
+              return `Hello, ${name}!`;
+            }
+
+            // Example 2: Function expression
+            const multiply = function(a, b) {
+              return a * b;
+            };
+
+            // Example 3: Arrow function
+            const square = (x) => x * x;
+
+            // Example 4: Function with default parameters
+            function greetWithDefault(name = "Guest") {
+              console.log(`Welcome, ${name}!`);
+            }
+
+            // Example 5: Rest parameters
+            function sum(...numbers) {
+              return numbers.reduce((total, num) => total + num, 0);
+            }
+
+            // Example 6: Callback function
+            function fetchData(callback) {
+              setTimeout(() => {
+                callback("Data fetched successfully");
+              }, 2000);
+            }
+
+            // Example 7: Async function (as in the original example)
+            async function fetchMessages() {
+              const response = await fetch("https://api.example.com/messages");
+              const messages = await response.json();
+              return messages;
+            }
+
+            // Usage examples
+            console.log(greet("Alice")); // Output: Hello, Alice!
+            console.log(multiply(4, 5)); // Output: 20
+            console.log(square(3)); // Output: 9
+            greetWithDefault(); // Output: Welcome, Guest!
+            greetWithDefault("Bob"); // Output: Welcome, Bob!
+            console.log(sum(1, 2, 3, 4, 5)); // Output: 15
+            fetchData((result) => console.log(result)); // Output after 2 seconds: Data fetched successfully
+            fetchMessages().then((messages) => console.log(messages));
+            </code></pre>
+
+            <p>These examples demonstrate various ways to define and use functions in JavaScript:</p>
+            <ul>
+                <li>Basic function declaration (Example 1)</li>
+                <li>Function expression (Example 2)</li>
+                <li>Arrow function for concise syntax (Example 3)</li>
+                <li>Functions with default parameters (Example 4)</li>
+                <li>Rest parameters for variable number of arguments (Example 5)</li>
+                <li>Callback functions for asynchronous operations (Example 6)</li>
+                <li>Async functions for working with Promises (Example 7)</li>
+            </ul>
+            <p>Functions are a fundamental building block in JavaScript, allowing you to create reusable pieces of code, handle asynchronous operations, and organize your code into manageable chunks.</p>
+
+        </section>
+
+        <section id="complex-data" class="section">
+            <h2>Accessing Complex Data Structures</h2>
+            <p>In JavaScript, you often work with complex data structures like nested objects and arrays. Understanding how to access and manipulate data within these structures is crucial. Let's break down the syntax for various access methods:</p>
+            <pre><code>
+// Complex data structure example
+const chatData = {
+  users: [
+    { id: 1, name: "Alice", messages: ["Hello!", "How are you?"] },
+    { id: 2, name: "Bob", messages: ["Hi there!", "I'm good, thanks!"] }
+  ],
+  chatRoom: "General"
+};
+
+// Accessing data: Syntax breakdown
+
+// 1. Dot notation:
+//    object.property
+console.log(chatData.chatRoom); // Output: "General"
+
+// 2. Square bracket notation:
+//    object["property"]
+console.log(chatData["chatRoom"]); // Output: "General"
+
+// 3. Accessing array elements:
+//    array[index]
+console.log(chatData.users[0]); // Output: { id: 1, name: "Alice", messages: ["Hello!", "How are you?"] }
+
+// 4. Combining dot notation and array access:
+//    object.array[index].property
+console.log(chatData.users[0].name); // Output: "Alice"
+
+// 5. Nested array access:
+//    object.array[index1].array[index2]
+console.log(chatData.users[1].messages[0]); // Output: "Hi there!"
+
+// 6. Using variables for dynamic access:
+const userIndex = 0;
+const messageIndex = 1;
+console.log(chatData.users[userIndex].messages[messageIndex]); // Output: "How are you?"
+
+// 7. Optional chaining (for potentially undefined properties):
+//    object?.property?.nestedProperty
+console.log(chatData?.admin?.name); // Output: undefined (doesn't throw an error)
+
+// 8. Destructuring for cleaner access:
+const { users, chatRoom } = chatData;
+console.log(chatRoom); // Output: "General"
+console.log(users[0].name); // Output: "Alice"
+            </code></pre>
+            <p>These examples demonstrate various ways to access data in complex structures:</p>
+            <ul>
+                <li><span class="symbol">.</span> (dot notation): Used to access object properties directly.</li>
+                <li><span class="symbol">[]</span> (square brackets): Used for array access or dynamic property names.</li>
+                <li><span class="symbol">?.</span> (optional chaining): Safely accesses nested properties that might be undefined.</li>
+                <li><span class="symbol">{}</span> (curly braces in destructuring): Extracts properties from objects into separate variables.</li>
+            </ul>
+            <p>Understanding these techniques allows you to efficiently work with complex data structures in your JavaScript applications.</p>
+        </section>
+            <p>Let's break down these examples:</p>
+            <ul>
+                <li><span class="keyword">chatData</span>: This is our complex data structure, an object containing an array of user objects and a chatRoom property.</li>
+                <li><span class="keyword">chatData.chatRoom</span>: Accesses the chatRoom property directly.</li>
+                <li><span class="keyword">chatData.users[0].name</span>: Accesses the name of the first user in the users array.</li>
+                <li><span class="keyword">chatData.users[1].messages[0]</span>: Accesses the first message of the second user.</li>
+                <li><span class="keyword">userIndex</span> and <span class="keyword">messageIndex</span>: Variables can be used to dynamically access array elements.</li>
+                <li><span class="keyword">{ users, chatRoom }</span>: This is object destructuring, which extracts properties from the chatData object into separate variables.</li>
+            </ul>
+            <p>Understanding these techniques allows you to efficiently work with complex data structures in your JavaScript applications.</p>
+
+            <h2>DOM Manipulation</h2>
+            <p>The Document Object Model (DOM) represents the structure of an HTML document. JavaScript can manipulate the DOM to change the content, structure, and style of a web page.</p>
+            <pre><code>const element = document.querySelector(".messages");</code></pre>
+            <p>Let's analyze this DOM manipulation:</p>
+            <ul>
+                <li><span class="keyword">const</span>: Declares a constant variable.</li>
+                <li><span class="keyword">element</span>: The name of the variable.</li>
+                <li><span class="keyword">document</span>: Represents the entire HTML document.</li>
+                <li><span class="keyword">querySelector</span>: A method that returns the first element that matches a specified CSS selector.</li>
+                <li><span class="symbol">("</span> and <span class="symbol">")</span>: Parentheses enclosing the argument for querySelector.</li>
+                <li><span class="symbol">.</span> before "messages": In CSS, a dot represents a class selector.</li>
+                <li><span class="keyword">messages</span>: The name of the class we're selecting.</li>
+            </ul>
+            <p>This line selects the first element with the class "messages" and assigns it to the variable 'element'. We can then manipulate this element, for example: <code>element.innerHTML = "New content";</code></p>
+
+                        <pre><code>
+            // Example 1: Selecting elements
+            const messageElement = document.querySelector(".messages");
+            const allParagraphs = document.querySelectorAll("p");
+            const buttonById = document.getElementById("submitButton");
+            const elementsByClass = document.getElementsByClassName("item");
+
+            // Example 2: Modifying content
+            messageElement.textContent = "New message content";
+            messageElement.innerHTML = "<strong>Bold new content</strong>";
+
+            // Example 3: Changing styles
+            messageElement.style.color = "blue";
+            messageElement.style.fontSize = "18px";
+
+            // Example 4: Adding and removing classes
+            messageElement.classList.add("highlight");
+            messageElement.classList.remove("old-class");
+            messageElement.classList.toggle("visible");
+
+            // Example 5: Creating and appending elements
+            const newParagraph = document.createElement("p");
+            newParagraph.textContent = "This is a new paragraph.";
+            messageElement.appendChild(newParagraph);
+
+            // Example 6: Removing elements
+            const oldElement = document.querySelector(".old-message");
+            if (oldElement) {
+              oldElement.remove();
+            }
+
+            // Example 7: Attribute manipulation
+            const link = document.querySelector("a");
+            link.setAttribute("href", "https://example.com");
+            console.log(link.getAttribute("href"));
+            </code></pre>
+
+            <p>These examples demonstrate various DOM manipulation techniques:</p>
+            <ul></ul>
+                <li>Selecting elements using different methods (Example 1)</li>
+                <li>Modifying element content (Example 2)</li>
+                <li>Changing element styles (Example 3)</li>
+                <li>Adding, removing, and toggling classes (Example 4)</li>
+                <li>Creating and appending new elements (Example 5)</li>
+                <li>Removing elements from the DOM (Example 6)</li>
+                <li>Manipulating element attributes (Example 7)</li>
+            </ul>
+            <p>DOM manipulation allows you to dynamically change the content, structure, and style of your web page using JavaScript. These examples showcase some of the most common operations you can perform on DOM elements.</p>
+
+        </section>
+
+        <section id="events" class="section">
+
+                        <h2>For...of Loop</h2>
+            <p>The for...of loop is a simple and efficient way to iterate over iterable objects in JavaScript, such as arrays, strings, and other collection-like data structures.</p>
+            <pre><code>
+// Example data
+const data = [
+  { name: "Alice", message: "Hello everyone!" },
+  { name: "Bob", message: "Hi Alice!" },
+  { name: "Charlie", message: "Hey there!" }
+];
+
+// Using for...of loop to iterate over the data
+for (const item of data) {
+  console.log(`${item.name}: ${item.message}`);
+}
+
+// Let's break it down:
+// 1. `for (const item of data)` - This line starts the loop
+//    - `const item` declares a new constant for each iteration
+//    - `of data` specifies that we're looping over the `data` array
+// 2. The code inside the curly braces {} runs for each item in the array
+// 3. `item` represents the current element in each iteration
+// 4. We can access properties of `item` using dot notation: `item.name`, `item.message`
+
+// In our chat app, we use this to display messages:
+const element = document.querySelector(".messages");
+for (const item of data) {
+  element.innerHTML += `<p>${item.name}: ${item.message}</p>`;
+}
+            </code></pre>
+            <p>This example demonstrates how to use the for...of loop to iterate over an array of objects. It's particularly useful when you need to perform an operation on each item in a collection, such as displaying messages in a chat application.</p>
+            <p>The for...of loop is more concise and easier to read than traditional for loops, especially when working with arrays or other iterable objects. It automatically handles the details of accessing each element, allowing you to focus on what you want to do with each item.</p>
+
+            <h2>Events</h2>
+            <p>Events are actions or occurrences that happen in the system you are programming, which the system tells you about so you can respond to them.</p>
+            <pre><code>element.addEventListener("keydown", function (event) { ... });</code></pre>
+            <p>Let's break down this event listener:</p>
+            <ul>
+                <li><span class="keyword">element</span>: The DOM element we're attaching the event listener to.</li>
+                <li><span class="keyword">addEventListener</span>: A method that attaches an event handler to an element.</li>
+                <li><span class="symbol">(</span> and <span class="symbol">)</span>: Parentheses enclosing the method's arguments.</li>
+                <li><span class="symbol">"keydown"</span>: A string specifying the type of event to listen for.</li>
+                <li><span class="keyword">function</span>: Keyword used to define a function.</li>
+                <li><span class="symbol">(event)</span>: Parameter of the function, representing the event object.</li>
+                <li><span class="symbol">{</span> and <span class="symbol">}</span>: Curly braces enclosing the function body.</li>
+            </ul>
+            <p>This code adds an event listener to the 'element'. It will run the provided function whenever a key is pressed down while the element is focused. The function receives an 'event' object with details about the keypress.</p>
+
+                        <pre><code>
+            // Example 1: Click event
+            const button = document.querySelector("#myButton");
+            button.addEventListener("click", function(event) {
+              console.log("Button clicked!", event);
+            });
+
+            // Example 2: Keydown event (as in the original example)
+            const inputElement = document.querySelector("input");
+            inputElement.addEventListener("keydown", function(event) {
+              console.log(`Key pressed: ${event.key}`);
+              if (event.key === "Enter") {
+                console.log("Enter key was pressed");
+              }
+            });
+
+            // Example 3: Form submission
+            const form = document.querySelector("#myForm");
+            form.addEventListener("submit", function(event) {
+              event.preventDefault(); // Prevent the form from submitting normally
+              console.log("Form submitted!");
+            });
+
+            // Example 4: Mouse events
+            const box = document.querySelector("#myBox");
+            box.addEventListener("mouseover", function() {
+              console.log("Mouse over the box");
+            });
+            box.addEventListener("mouseout", function() {
+              console.log("Mouse left the box");
+            });
+
+            // Example 5: Window load event
+            window.addEventListener("load", function() {
+              console.log("Page fully loaded");
+            });
+
+            // Example 6: Using arrow functions and event delegation
+            document.body.addEventListener("click", (event) => {
+              if (event.target.matches(".delete-button")) {
+                console.log("Delete button clicked");
+              }
+            });
+            </code></pre>
+
+            <p>These examples demonstrate various event handling techniques:</p>
+            <ul>
+                <li>Handling click events on buttons (Example 1)</li>
+                <li>Responding to keyboard input (Example 2)</li>
+                <li>Managing form submissions (Example 3)</li>
+                <li>Handling mouse events (Example 4)</li>
+                <li>Detecting when the page has fully loaded (Example 5)</li>
+                <li>Using event delegation for dynamically added elements (Example 6)</li>
+            </ul>
+            <p>Event handling allows you to create interactive web applications by responding to user actions and system events. These examples showcase some of the most common types of events and how to handle them using JavaScript.</p>
+
+        </section>
+
+        <section id="fetch" class="section">
+            <h2>Fetch API with Async/Await</h2>
+            <p>The Fetch API, combined with async/await syntax, provides a clean and intuitive way to make asynchronous network requests in JavaScript.</p>
+            <pre><code>
+async function fetchData(url) {
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+            </code></pre>
+            <p>Let's break down this async function using the Fetch API:</p>
+            <ul>
+                <li><span class="keyword">async function</span>: Declares an asynchronous function, allowing the use of await inside it.</li>
+                <li><span class="keyword">try</span> and <span class="keyword">catch</span>: Handles potential errors in the asynchronous operation.</li>
+                <li><span class="keyword">const response = await fetch(url)</span>: Waits for the fetch operation to complete and stores the response.</li>
+                <li><span class="keyword">const data = await response.json()</span>: Waits for the response to be parsed as JSON.</li>
+                <li><span class="keyword">return data</span>: Returns the parsed data from the function.</li>
+            </ul>
+            <p>To use this function, you would call it like this:</p>
+            <pre><code>
+fetchData('https://api.example.com/data')
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
+            </code></pre>
+            <p>Or, within another async function, you can use await directly:</p>
+            <pre><code>
+async function displayData() {
+  const data = await fetchData('https://api.example.com/data');
+  console.log(data);
+}
+            </code></pre>
+            <p>This approach using async/await makes asynchronous code easier to write and understand, as it allows you to structure asynchronous code in a way that looks and behaves more like synchronous code.</p>
+        </section>
+
+                        <pre><code>
+            // Example 1: Basic GET request
+            fetch('https://api.example.com/data')
+              .then(response => response.json())
+              .then(data => console.log(data))
+              .catch(error => console.error('Error:', error));
+
+            // Example 2: POST request
+            const postData = { name: 'John', age: 30 };
+            fetch('https://api.example.com/users', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(postData),
+            })
+              .then(response => response.json())
+              .then(data => console.log(data))
+              .catch(error => console.error('Error:', error));
+
+            // Example 3: Using async/await
+            async function fetchData(url) {
+              try {
+                const response = await fetch(url);
+                const data = await response.json();
+                console.log(data);
+              } catch (error) {
+                console.error('Error:', error);
+              }
+            }
+
+            // Example 4: Handling different response types
+            fetch('https://api.example.com/image')
+              .then(response => response.blob())
+              .then(blob => {
+                const objectURL = URL.createObjectURL(blob);
+                const image = document.createElement('img');
+                image.src = objectURL;
+                document.body.appendChild(image);
+              });
+
+            // Example 5: Aborting a fetch request
+            const controller = new AbortController();
+            const signal = controller.signal;
+
+            fetch('https://api.example.com/longprocess', { signal })
+              .then(response => response.json())
+              .then(data => console.log(data))
+              .catch(error => {
+                if (error.name === 'AbortError') {
+                  console.log('Fetch aborted');
+                } else {
+                  console.error('Error:', error);
+                }
+              });
+
+            // Abort the fetch after 5 seconds
+            setTimeout(() => controller.abort(), 5000);
+            </code></pre>
+
+            <p></p>These examples demonstrate various ways to use the Fetch API:</p>
+            <ul>
+                <li>Basic GET request (Example 1)</li>
+                <li>POST request with JSON data (Example 2)</li>
+                <li>Using async/await for cleaner asynchronous code (Example 3)</li>
+                <li>Handling different response types, like images (Example 4)</li>
+                <li>Aborting a fetch request (Example 5)</li>
+            </ul>
+            <p>The Fetch API provides a powerful and flexible way to make network requests in JavaScript. These examples show how to perform common tasks like sending data, handling different response types, and managing long-running requests.</p>
+
+        </section>
+
+        <section id="quiz" class="section">
+            <h2>Quiz</h2>
+            <div class="question">
+                <p>1. What does the 'const' keyword do in JavaScript?</p>
+                <input type="radio" name="q1" value="a"> Declares a variable that can be changed later<br>
+                <input type="radio" name="q1" value="b"> Declares a constant variable that cannot be reassigned<br>
+                <input type="radio" name="q1" value="c"> Declares a function<br>
+                <button onclick="checkAnswer('q1', 'b')">Submit</button>
+                <div id="q1-feedback" class="feedback"></div>
+            </div>
+            <div class="question">
+                <p>2. What does the 'addEventListener' method do?</p>
+                <input type="radio" name="q2" value="a"> Removes an event handler from an element<br>
+                <input type="radio" name="q2" value="b"> Triggers an event<br>
+                <input type="radio" name="q2" value="c"> Attaches an event handler to an element<br>
+                <button onclick="checkAnswer('q2', 'c')">Submit</button>
+                <div id="q2-feedback" class="feedback"></div>
+            </div>
+            <div class="question">
+                <p>3. What does the 'async' keyword do when used with a function?</p>
+                <input type="radio" name="q3" value="a"> Makes the function run faster<br>
+                <input type="radio" name="q3" value="b"> Allows the use of 'await' inside the function<br>
+                <input type="radio" name="q3" value="c"> Automatically calls the function<br>
+                <button onclick="checkAnswer('q3', 'b')">Submit</button>
+                <div id="q3-feedback" class="feedback"></div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        function checkAnswer(question, correct) {
+            const selected = document.querySelector(`input[name="${question}"]:checked`);
+            const feedback = document.getElementById(`${question}-feedback`);
+
+            if (selected) {
+                if (selected.value === correct) {
+                    feedback.textContent = "Correct! Well done!";
+                    feedback.style.backgroundColor = "#e6ffe6";
+                } else {
+                    feedback.textContent = "Incorrect. Please try again!";
+                    feedback.style.backgroundColor = "#ffe6e6";
+                }
+                feedback.style.display = "block";
+            } else {
+                alert("Please select an answer before submitting.");
+            }
+        }
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                Prism.highlightElement(block);
+            });
+            Prism.highlightAll()
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    </body>
+</html>
