@@ -262,7 +262,6 @@
                 document.getElementById("feedback").innerHTML = "";
             }
 
-            // Check answer
             function checkAnswer() {
                 const input = document.getElementById("answer-input");
                 const answer = input.value.trim().toLowerCase();
@@ -272,7 +271,19 @@
                     ].answer.toLowerCase();
 
                 const feedback = document.getElementById("feedback");
-                if (answer === correctAnswer) {
+
+                // Check if answer is at least 3 characters long
+                if (answer.length < 3) {
+                    feedback.innerHTML =
+                        '<div class="feedback incorrect">Answer must be at least 3 characters long!</div>';
+                    return;
+                }
+
+                // Check if answer is contained within correct answer or vice versa
+                if (
+                    correctAnswer.includes(answer) ||
+                    answer.includes(correctAnswer)
+                ) {
                     currentGame.score++;
                     feedback.innerHTML =
                         '<div class="feedback correct">Correct!</div>';
@@ -296,31 +307,47 @@
                     `https://kool.krister.ee/chat/r6callouts-score-${currentGame.gameKey}`,
                     {
                         method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
                         body: JSON.stringify({
-                            playerName,
+                            playerName: playerName || "Anonymous",
                             score: currentGame.score,
                         }),
                     },
                 );
+
+                // Update scoreboard immediately after submitting
+                await updateScoreboard();
             }
 
             // Update scoreboard
             async function updateScoreboard() {
                 if (!currentGame.gameKey) return;
 
-                const response = await fetch(
-                    `https://kool.krister.ee/chat/r6callouts-score-${currentGame.gameKey}`,
-                );
-                const scores = await response.json();
+                try {
+                    const response = await fetch(
+                        `https://kool.krister.ee/chat/r6callouts-score-${currentGame.gameKey}`,
+                    );
+                    const scores = await response.json();
 
-                const scoresList = document.getElementById("scores");
-                scoresList.innerHTML = scores
-                    .sort((a, b) => b.score - a.score)
-                    .map(
-                        (score) =>
-                            `<li>${score.playerName}: ${score.score}/10</li>`,
-                    )
-                    .join("");
+                    const scoresList = document.getElementById("scores");
+                    scoresList.innerHTML = scores
+                        .filter(
+                            (score) =>
+                                score &&
+                                score.playerName &&
+                                score.score !== undefined,
+                        ) // Filter out invalid entries
+                        .sort((a, b) => b.score - a.score)
+                        .map(
+                            (score) =>
+                                `<li>${score.playerName || "Anonymous"}: ${score.score}/10</li>`,
+                        )
+                        .join("");
+                } catch (error) {
+                    console.error("Error updating scoreboard:", error);
+                }
             }
 
             // Event listeners
