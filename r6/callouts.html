@@ -1,0 +1,355 @@
+<!doctype html>
+<html>
+    <head>
+        <title>R6 Callouts Quiz</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+                background: #1a1a1a;
+                color: #fff;
+            }
+
+            #setup-view,
+            #game-view,
+            #score-view {
+                text-align: center;
+            }
+
+            #game-view,
+            #score-view {
+                display: none;
+            }
+
+            .container {
+                display: flex;
+                gap: 20px;
+            }
+
+            .game-area {
+                flex: 2;
+                background: #2a2a2a;
+                padding: 20px;
+                border-radius: 8px;
+            }
+
+            .scoreboard {
+                flex: 1;
+                background: #2a2a2a;
+                padding: 20px;
+                border-radius: 8px;
+            }
+
+            select,
+            input,
+            button {
+                padding: 10px;
+                margin: 5px;
+                border-radius: 4px;
+                border: none;
+            }
+
+            button {
+                background: #4caf50;
+                color: white;
+                cursor: pointer;
+            }
+
+            button:hover {
+                background: #45a049;
+            }
+
+            img {
+                max-width: 100%;
+                max-height: 400px;
+                margin: 20px 0;
+            }
+
+            #answer-input {
+                width: 80%;
+                padding: 10px;
+                margin: 10px 0;
+            }
+
+            .scoreboard-list {
+                list-style: none;
+                padding: 0;
+            }
+
+            .scoreboard-list li {
+                padding: 8px;
+                margin: 4px 0;
+                background: #333;
+                border-radius: 4px;
+            }
+
+            .feedback {
+                margin: 10px 0;
+                padding: 10px;
+                border-radius: 4px;
+            }
+
+            .correct {
+                background: #4caf50;
+            }
+
+            .incorrect {
+                background: #f44336;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="game-area">
+                <div id="setup-view">
+                    <h1>R6 Callouts Quiz</h1>
+                    <select id="map-select">
+                        <option value="">Select a map...</option>
+                    </select>
+                    <input
+                        type="text"
+                        id="player-name"
+                        placeholder="Enter your name"
+                    />
+                    <button id="reset-btn">Reset Game</button>
+                    <button id="start-btn">Start Game</button>
+                </div>
+
+                <div id="game-view">
+                    <h2>Question <span id="question-number">1</span>/10</h2>
+                    <div id="question-image"></div>
+                    <input
+                        type="text"
+                        id="answer-input"
+                        placeholder="Enter callout name"
+                    />
+                    <button id="submit-answer">Submit</button>
+                    <div id="feedback"></div>
+                </div>
+
+                <div id="score-view">
+                    <h2>Game Complete!</h2>
+                    <div id="final-score"></div>
+                    <button id="play-again">Play Again</button>
+                </div>
+            </div>
+
+            <div class="scoreboard">
+                <h2>Scoreboard</h2>
+                <ul class="scoreboard-list" id="scores"></ul>
+            </div>
+        </div>
+
+        <script>
+            // Game state
+            let callouts = null;
+            let currentGame = {
+                gameKey: null,
+                map: null,
+                questions: [],
+                currentQuestionIndex: 0,
+                score: 0,
+            };
+            let playerName = "";
+
+            // Fetch callouts data
+            async function fetchCallouts() {
+                const response = await fetch(
+                    "https://krister.ee/r6/callouts.json",
+                );
+                callouts = await response.json();
+                populateMapSelect();
+            }
+
+            // Populate map dropdown
+            function populateMapSelect() {
+                const select = document.getElementById("map-select");
+                Object.keys(callouts).forEach((map) => {
+                    const option = document.createElement("option");
+                    option.value = map;
+                    option.textContent =
+                        map.charAt(0).toUpperCase() + map.slice(1);
+                    select.appendChild(option);
+                });
+            }
+
+            // Reset game (create new game)
+            async function resetGame() {
+                const map = document.getElementById("map-select").value;
+                if (!map) return alert("Please select a map");
+
+                const gameKey = Date.now().toString();
+                const mapCallouts = callouts[map];
+                const entries = Object.entries(mapCallouts);
+                const questions = [];
+
+                // Select 10 random questions
+                for (let i = 0; i < 10; i++) {
+                    const randomIndex = Math.floor(
+                        Math.random() * entries.length,
+                    );
+                    const [answer, imageUrl] = entries.splice(
+                        randomIndex,
+                        1,
+                    )[0];
+                    questions.push({ answer, imageUrl });
+                }
+
+                // Save game state
+                await fetch("https://kool.krister.ee/chat/r6callouts-game", {
+                    method: "POST",
+                    body: JSON.stringify({ gameKey, map, questions }),
+                });
+
+                startGame(gameKey, map, questions);
+            }
+
+            // Start game (join existing game)
+            async function startGame(
+                gameKey = null,
+                map = null,
+                questions = null,
+            ) {
+                playerName = document.getElementById("player-name").value;
+                if (!playerName) return alert("Please enter your name");
+
+                if (!gameKey) {
+                    // Fetch current game
+                    const response = await fetch(
+                        "https://kool.krister.ee/chat/r6callouts-game",
+                    );
+                    const games = await response.json();
+                    const currentGameData = games[games.length - 1];
+                    if (!currentGameData)
+                        return alert(
+                            "No active game. Please reset the game first.",
+                        );
+
+                    gameKey = currentGameData.gameKey;
+                    map = currentGameData.map;
+                    questions = currentGameData.questions;
+                }
+
+                currentGame = {
+                    gameKey,
+                    map,
+                    questions,
+                    currentQuestionIndex: 0,
+                    score: 0,
+                };
+
+                showQuestion();
+                document.getElementById("setup-view").style.display = "none";
+                document.getElementById("game-view").style.display = "block";
+            }
+
+            // Show current question
+            function showQuestion() {
+                if (currentGame.currentQuestionIndex >= 10) {
+                    endGame();
+                    return;
+                }
+
+                const question =
+                    currentGame.questions[currentGame.currentQuestionIndex];
+                document.getElementById("question-number").textContent =
+                    currentGame.currentQuestionIndex + 1;
+                document.getElementById("question-image").innerHTML =
+                    `<img src="${question.imageUrl}" alt="Callout location">`;
+                document.getElementById("answer-input").value = "";
+                document.getElementById("feedback").innerHTML = "";
+            }
+
+            // Check answer
+            function checkAnswer() {
+                const input = document.getElementById("answer-input");
+                const answer = input.value.trim().toLowerCase();
+                const correctAnswer =
+                    currentGame.questions[
+                        currentGame.currentQuestionIndex
+                    ].answer.toLowerCase();
+
+                const feedback = document.getElementById("feedback");
+                if (answer === correctAnswer) {
+                    currentGame.score++;
+                    feedback.innerHTML =
+                        '<div class="feedback correct">Correct!</div>';
+                } else {
+                    feedback.innerHTML = `<div class="feedback incorrect">Incorrect! The correct answer was: ${correctAnswer}</div>`;
+                }
+
+                currentGame.currentQuestionIndex++;
+                setTimeout(showQuestion, 2000);
+            }
+
+            // End game
+            async function endGame() {
+                document.getElementById("game-view").style.display = "none";
+                document.getElementById("score-view").style.display = "block";
+                document.getElementById("final-score").textContent =
+                    `${playerName}, your score: ${currentGame.score}/10`;
+
+                // Submit score
+                await fetch(
+                    `https://kool.krister.ee/chat/r6callouts-score-${currentGame.gameKey}`,
+                    {
+                        method: "POST",
+                        body: JSON.stringify({
+                            playerName,
+                            score: currentGame.score,
+                        }),
+                    },
+                );
+            }
+
+            // Update scoreboard
+            async function updateScoreboard() {
+                if (!currentGame.gameKey) return;
+
+                const response = await fetch(
+                    `https://kool.krister.ee/chat/r6callouts-score-${currentGame.gameKey}`,
+                );
+                const scores = await response.json();
+
+                const scoresList = document.getElementById("scores");
+                scoresList.innerHTML = scores
+                    .sort((a, b) => b.score - a.score)
+                    .map(
+                        (score) =>
+                            `<li>${score.playerName}: ${score.score}/10</li>`,
+                    )
+                    .join("");
+            }
+
+            // Event listeners
+            document
+                .getElementById("reset-btn")
+                .addEventListener("click", resetGame);
+            document
+                .getElementById("start-btn")
+                .addEventListener("click", () => startGame());
+            document
+                .getElementById("submit-answer")
+                .addEventListener("click", checkAnswer);
+            document
+                .getElementById("play-again")
+                .addEventListener("click", () => {
+                    document.getElementById("score-view").style.display =
+                        "none";
+                    document.getElementById("setup-view").style.display =
+                        "block";
+                });
+            document
+                .getElementById("answer-input")
+                .addEventListener("keypress", (e) => {
+                    if (e.key === "Enter") checkAnswer();
+                });
+
+            // Initialize
+            fetchCallouts();
+            setInterval(updateScoreboard, 3000);
+        </script>
+    </body>
+</html>
