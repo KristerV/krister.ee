@@ -262,13 +262,31 @@
                     questions.push({ answer, imageUrl });
                 }
 
-                // Save game state
-                await fetch("https://kool.krister.ee/chat/r6callouts-game", {
-                    method: "POST",
-                    body: JSON.stringify({ gameKey, map, questions }),
-                });
+                const gameData = {
+                    gameKey,
+                    map,
+                    questions,
+                    active: true,
+                    timestamp: Date.now(),
+                };
 
-                startGame(gameKey, map, questions);
+                // Save game state
+                try {
+                    await fetch(
+                        "https://kool.krister.ee/chat/r6callouts-game",
+                        {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(gameData),
+                        },
+                    );
+                    startGame(gameKey, map, questions);
+                } catch (error) {
+                    console.error("Error creating game:", error);
+                    alert("Error creating game. Please try again.");
+                }
             }
 
             // Start game (join existing game)
@@ -288,19 +306,22 @@
                         );
                         const games = await response.json();
 
-                        // Make sure we have games and get the latest one
-                        if (!games || games.length === 0) {
+                        if (!Array.isArray(games) || games.length === 0) {
                             alert(
-                                "No active game. Please reset the game first.",
+                                "No active game found. Please wait for an admin to create a new game.",
                             );
                             return;
                         }
 
-                        const currentGameData = games[games.length - 1];
+                        // Get the most recent active game
+                        const currentGameData = games
+                            .sort((a, b) => b.timestamp - a.timestamp)
+                            .find((game) => game.active);
 
-                        // Verify the game data is valid
-                        if (!currentGameData || !currentGameData.questions) {
-                            alert("Invalid game data. Please reset the game.");
+                        if (!currentGameData) {
+                            alert(
+                                "No active game found. Please wait for an admin to create a new game.",
+                            );
                             return;
                         }
 
@@ -309,9 +330,15 @@
                         questions = currentGameData.questions;
                     }
 
-                    // Verify we have all required data
-                    if (!gameKey || !map || !questions) {
-                        alert("Missing game data. Please reset the game.");
+                    // Double check we have the required data
+                    if (
+                        !questions ||
+                        !Array.isArray(questions) ||
+                        questions.length !== 10
+                    ) {
+                        alert(
+                            "Invalid game data. Please wait for an admin to create a new game.",
+                        );
                         return;
                     }
 
@@ -329,8 +356,8 @@
                     document.getElementById("game-view").style.display =
                         "block";
                 } catch (error) {
-                    console.error("Error starting game:", error);
-                    alert("Error starting game. Please try again.");
+                    console.error("Error joining game:", error);
+                    alert("Error joining game. Please try again.");
                 }
             }
 
