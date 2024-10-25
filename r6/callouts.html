@@ -98,6 +98,56 @@
             .incorrect {
                 background: #f44336;
             }
+            .menu-container {
+                display: flex;
+                gap: 40px;
+                justify-content: center;
+                margin-top: 30px;
+            }
+
+            .menu-section {
+                background: #333;
+                padding: 20px;
+                border-radius: 8px;
+                min-width: 300px;
+            }
+
+            .menu-section h2 {
+                color: #4caf50;
+                margin-top: 0;
+            }
+
+            .menu-section p {
+                color: #ccc;
+                margin-bottom: 20px;
+            }
+
+            .admin-section {
+                border: 1px solid #4caf50;
+            }
+
+            .player-section {
+                border: 1px solid #2196f3;
+            }
+
+            .admin-section button {
+                background: #4caf50;
+            }
+
+            .player-section button {
+                background: #2196f3;
+            }
+
+            .player-section button:hover {
+                background: #1976d2;
+            }
+
+            #map-select,
+            #player-name {
+                width: 100%;
+                margin-bottom: 10px;
+                box-sizing: border-box;
+            }
         </style>
     </head>
     <body>
@@ -105,16 +155,31 @@
             <div class="game-area">
                 <div id="setup-view">
                     <h1>R6 Callouts Quiz</h1>
-                    <select id="map-select">
-                        <option value="">Select a map...</option>
-                    </select>
-                    <input
-                        type="text"
-                        id="player-name"
-                        placeholder="Enter your name"
-                    />
-                    <button id="reset-btn">Reset Game</button>
-                    <button id="start-btn">Start Game</button>
+
+                    <div class="menu-container">
+                        <div class="menu-section admin-section">
+                            <h2>Admin Controls</h2>
+                            <p>Create a new game session:</p>
+                            <select id="map-select">
+                                <option value="">Select a map...</option>
+                            </select>
+                            <button id="reset-btn">Create New Game</button>
+                        </div>
+
+                        <div class="menu-section player-section">
+                            <h2>Join Game</h2>
+                            <p>
+                                Enter your name to join the current game
+                                session:
+                            </p>
+                            <input
+                                type="text"
+                                id="player-name"
+                                placeholder="Enter your name"
+                            />
+                            <button id="start-btn">Join Game</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div id="game-view">
@@ -215,34 +280,58 @@
                 playerName = document.getElementById("player-name").value;
                 if (!playerName) return alert("Please enter your name");
 
-                if (!gameKey) {
-                    // Fetch current game
-                    const response = await fetch(
-                        "https://kool.krister.ee/chat/r6callouts-game",
-                    );
-                    const games = await response.json();
-                    const currentGameData = games[games.length - 1];
-                    if (!currentGameData)
-                        return alert(
-                            "No active game. Please reset the game first.",
+                try {
+                    if (!gameKey) {
+                        // Fetch current game
+                        const response = await fetch(
+                            "https://kool.krister.ee/chat/r6callouts-game",
                         );
+                        const games = await response.json();
 
-                    gameKey = currentGameData.gameKey;
-                    map = currentGameData.map;
-                    questions = currentGameData.questions;
+                        // Make sure we have games and get the latest one
+                        if (!games || games.length === 0) {
+                            alert(
+                                "No active game. Please reset the game first.",
+                            );
+                            return;
+                        }
+
+                        const currentGameData = games[games.length - 1];
+
+                        // Verify the game data is valid
+                        if (!currentGameData || !currentGameData.questions) {
+                            alert("Invalid game data. Please reset the game.");
+                            return;
+                        }
+
+                        gameKey = currentGameData.gameKey;
+                        map = currentGameData.map;
+                        questions = currentGameData.questions;
+                    }
+
+                    // Verify we have all required data
+                    if (!gameKey || !map || !questions) {
+                        alert("Missing game data. Please reset the game.");
+                        return;
+                    }
+
+                    currentGame = {
+                        gameKey,
+                        map,
+                        questions,
+                        currentQuestionIndex: 0,
+                        score: 0,
+                    };
+
+                    showQuestion();
+                    document.getElementById("setup-view").style.display =
+                        "none";
+                    document.getElementById("game-view").style.display =
+                        "block";
+                } catch (error) {
+                    console.error("Error starting game:", error);
+                    alert("Error starting game. Please try again.");
                 }
-
-                currentGame = {
-                    gameKey,
-                    map,
-                    questions,
-                    currentQuestionIndex: 0,
-                    score: 0,
-                };
-
-                showQuestion();
-                document.getElementById("setup-view").style.display = "none";
-                document.getElementById("game-view").style.display = "block";
             }
 
             // Show current question
