@@ -89,15 +89,16 @@
             color: rgba(255, 255, 255, 1);
             font-size: 5rem;
             display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 90vw;
+            gap: 4px;
         }
 
         #name span {
             padding-right: 4px;
             opacity: 0.2;
             display: block;
-        }
-        #name span:not(:last-child) {
-            margin-right: 4px;
         }
 
         #name span:empty::before {
