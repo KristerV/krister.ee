@@ -1,0 +1,304 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Piano Note Detector</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background-color: #f0f0f0;
+            }
+            #controls {
+                margin: 20px;
+            }
+            #note-display {
+                font-size: 48px;
+                margin: 20px;
+                padding: 20px;
+                background-color: white;
+                border-radius: 10px;
+                min-width: 200px;
+                text-align: center;
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+                background-color: #4caf50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+            }
+            button:hover {
+                background-color: #45a049;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="controls">
+            <button id="startButton">Start Recording</button>
+            <button id="stopButton" disabled>Stop Recording</button>
+        </div>
+        <div id="note-display">Note will appear here</div>
+        <canvas
+            id="pitchChart"
+            width="800"
+            height="200"
+            style="background: white; margin: 20px; border-radius: 10px"
+        ></canvas>
+
+        <script>
+            const noteStrings = [
+                "C",
+                "C#",
+                "D",
+                "D#",
+                "E",
+                "F",
+                "F#",
+                "G",
+                "G#",
+                "A",
+                "A#",
+                "B",
+            ];
+            let audioContext;
+            let analyser;
+            let mediaStreamSource;
+            let isRecording = false;
+            let pitchHistory = [];
+            const MAX_HISTORY = 200; // Number of samples to show
+            const CHART_MIN_FREQ = 0;
+            const CHART_MAX_FREQ = 1000;
+
+            function drawPitchHistory() {
+                const canvas = document.getElementById("pitchChart");
+                const ctx = canvas.getContext("2d");
+                const width = canvas.width;
+                const height = canvas.height;
+
+                // Clear canvas
+                ctx.clearRect(0, 0, width, height);
+
+                // Draw grid lines
+                ctx.strokeStyle = "#eee";
+                ctx.lineWidth = 1;
+                for (let i = 0; i < 10; i++) {
+                    const y = height - height * (i / 10);
+                    ctx.beginPath();
+                    ctx.moveTo(0, y);
+                    ctx.lineTo(width, y);
+                    ctx.stroke();
+
+                    // Label frequencies
+                    ctx.fillStyle = "#666";
+                    ctx.fillText(
+                        Math.round(CHART_MAX_FREQ * (i / 10)) + "Hz",
+                        5,
+                        y - 5,
+                    );
+                }
+
+                // Draw pitch history
+                ctx.strokeStyle = "#4caf50";
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                pitchHistory.forEach((pitch, index) => {
+                    const x = (width * index) / MAX_HISTORY;
+                    const y =
+                        pitch === -1
+                            ? height
+                            : height - height * (pitch / CHART_MAX_FREQ);
+                    if (index === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                });
+                ctx.stroke();
+            }
+
+            function noteFromPitch(frequency) {
+                const noteNum = 12 * (Math.log(frequency / 440) / Math.log(2));
+                return Math.round(noteNum) + 69;
+            }
+
+            function getOctave(midiNumber) {
+                return Math.floor(midiNumber / 12) - 1;
+            }
+
+            function getNoteWithOctave(midiNumber) {
+                const noteIndex = (midiNumber + 12) % 12;
+                const octave = getOctave(midiNumber);
+                return noteStrings[noteIndex] + octave;
+            }
+
+            function autoCorrelate(buf, sampleRate) {
+                const SIZE = buf.length;
+                let sumOfSquares = 0;
+                let maxCorrelation = 0;
+                let bestPeriod = 0;
+
+                // Find the signal strength (RMS)
+                for (let i = 0; i < SIZE; i++) {
+                    sumOfSquares += buf[i] * buf[i];
+                }
+                const rootMeanSquare = Math.sqrt(sumOfSquares / SIZE);
+
+                // Return -1 if the signal is too weak
+                if (rootMeanSquare < 0.01) {
+                    return -1;
+                }
+
+                // Starting from a reasonable minimum frequency (e.g., 40Hz)
+                const minPeriod = Math.floor(sampleRate / 1000); // ~1kHz
+                const maxPeriod = Math.floor(sampleRate / 40); // ~40Hz
+
+                // For each possible period
+                for (let period = minPeriod; period < maxPeriod; period++) {
+                    let correlation = 0;
+
+                    // Compare each sample with the sample 'period' samples ahead
+                    for (let i = 0; i < SIZE - period; i++) {
+                        correlation += buf[i] * buf[i + period];
+                    }
+
+                    // Normalize the correlation
+                    correlation = correlation / (SIZE - period);
+
+                    // Keep track of the best correlation and corresponding period
+                    if (correlation > maxCorrelation) {
+                        maxCorrelation = correlation;
+                        bestPeriod = period;
+                    }
+                }
+
+                // If the correlation is high enough, calculate frequency
+                if (maxCorrelation > 0.01) {
+                    return sampleRate / bestPeriod;
+                }
+
+                return -1;
+            }
+
+            // Smoothing variables
+            let lastValidFrequency = -1;
+            let noSignalCount = 0;
+            const MAX_NO_SIGNAL_COUNT = 5; // How many -1's to ignore before showing "No pitch"
+            const FREQ_JUMP_THRESHOLD = 50; // Hz - max allowed jump between consecutive frequencies
+
+            function smoothFrequency(frequency) {
+                if (frequency === -1) {
+                    noSignalCount++;
+                    if (
+                        noSignalCount < MAX_NO_SIGNAL_COUNT &&
+                        lastValidFrequency !== -1
+                    ) {
+                        return lastValidFrequency;
+                    }
+                    return -1;
+                }
+
+                // Check if the new frequency is a reasonable change from the last valid one
+                if (lastValidFrequency !== -1) {
+                    const freqDiff = Math.abs(frequency - lastValidFrequency);
+                    if (freqDiff > FREQ_JUMP_THRESHOLD) {
+                        noSignalCount++;
+                        if (noSignalCount < MAX_NO_SIGNAL_COUNT) {
+                            return lastValidFrequency;
+                        }
+                    }
+                }
+
+                noSignalCount = 0;
+                lastValidFrequency = frequency;
+                return frequency;
+            }
+            function updatePitch() {
+                const bufferLength = analyser.frequencyBinCount;
+                const buffer = new Float32Array(bufferLength);
+                analyser.getFloatTimeDomainData(buffer);
+
+                const rawFrequency = autoCorrelate(
+                    buffer,
+                    audioContext.sampleRate,
+                );
+                const frequency = smoothFrequency(rawFrequency);
+
+                // Update history
+                pitchHistory.push(frequency);
+                if (pitchHistory.length > MAX_HISTORY) {
+                    pitchHistory.shift();
+                }
+                drawPitchHistory();
+
+                console.log("Raw:", rawFrequency, "Smoothed:", frequency);
+
+                if (frequency === -1) {
+                    document.getElementById("note-display").textContent =
+                        "No pitch detected";
+                } else {
+                    const midiNumber = noteFromPitch(frequency);
+                    const noteWithOctave = getNoteWithOctave(midiNumber);
+                    document.getElementById("note-display").textContent =
+                        noteWithOctave;
+                }
+
+                if (isRecording) {
+                    requestAnimationFrame(updatePitch);
+                }
+            }
+
+            document
+                .getElementById("startButton")
+                .addEventListener("click", async () => {
+                    try {
+                        audioContext = new (window.AudioContext ||
+                            window.webkitAudioContext)();
+                        const stream =
+                            await navigator.mediaDevices.getUserMedia({
+                                audio: true,
+                            });
+
+                        analyser = audioContext.createAnalyser();
+                        analyser.fftSize = 2048;
+
+                        mediaStreamSource =
+                            audioContext.createMediaStreamSource(stream);
+                        mediaStreamSource.connect(analyser);
+
+                        isRecording = true;
+                        document.getElementById("startButton").disabled = true;
+                        document.getElementById("stopButton").disabled = false;
+
+                        updatePitch();
+                    } catch (error) {
+                        console.error("Error accessing microphone:", error);
+                        alert(
+                            "Error accessing microphone. Please ensure you have a microphone connected and have granted permission to use it.",
+                        );
+                    }
+                });
+
+            document
+                .getElementById("stopButton")
+                .addEventListener("click", () => {
+                    isRecording = false;
+                    if (mediaStreamSource) {
+                        mediaStreamSource.disconnect();
+                    }
+                    if (audioContext) {
+                        audioContext.close();
+                    }
+                    document.getElementById("startButton").disabled = false;
+                    document.getElementById("stopButton").disabled = true;
+                    pitchHistory = [];
+                    drawPitchHistory();
+                    document.getElementById("note-display").textContent =
+                        "Note will appear here";
+                });
+        </script>
+    </body>
+</html>
