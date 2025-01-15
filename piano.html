@@ -69,6 +69,13 @@
             let mediaStreamSource;
             let isRecording = false;
             let pitchHistory = [];
+            // Constants for frequency filtering
+            const MIN_FREQUENCY = 27.5; // A0 on piano
+            const MAX_FREQUENCY = 4186.0; // C8 on piano
+            const FREQ_STABILITY_THRESHOLD = 0.05; // 5% variation allowed
+            let lastStableFrequency = null;
+            let stableFrequencyCount = 0;
+            const STABLE_FREQUENCY_REQUIRED = 3; // Number of consecutive stable readings required
             const MAX_HISTORY = 200; // Number of samples to show
             const CHART_MIN_FREQ = 0;
             const CHART_MAX_FREQ = 1000;
@@ -121,8 +128,12 @@
             }
 
             function noteFromPitch(frequency) {
-                const noteNum = 12 * (Math.log(frequency / 440) / Math.log(2));
-                return Math.round(noteNum) + 69;
+                // A4 is 440Hz, and each octave doubles the frequency
+                // So we can use log base 2 of (f/440) to find how many octaves away we are from A4
+                // Multiply by 12 to get number of semitones
+                const semitones = 12 * Math.log2(frequency / 440);
+                // A4 is MIDI note 69, so add that offset
+                return Math.round(semitones + 69);
             }
 
             function getOctave(midiNumber) {
@@ -135,54 +146,6 @@
                 return noteStrings[noteIndex] + octave;
             }
 
-            function autoCorrelate(buf, sampleRate) {
-                const SIZE = buf.length;
-                let sumOfSquares = 0;
-                let maxCorrelation = 0;
-                let bestPeriod = 0;
-
-                // Find the signal strength (RMS)
-                for (let i = 0; i < SIZE; i++) {
-                    sumOfSquares += buf[i] * buf[i];
-                }
-                const rootMeanSquare = Math.sqrt(sumOfSquares / SIZE);
-
-                // Return -1 if the signal is too weak
-                if (rootMeanSquare < 0.01) {
-                    return -1;
-                }
-
-                // Starting from a reasonable minimum frequency (e.g., 40Hz)
-                const minPeriod = Math.floor(sampleRate / 1000); // ~1kHz
-                const maxPeriod = Math.floor(sampleRate / 40); // ~40Hz
-
-                // For each possible period
-                for (let period = minPeriod; period < maxPeriod; period++) {
-                    let correlation = 0;
-
-                    // Compare each sample with the sample 'period' samples ahead
-                    for (let i = 0; i < SIZE - period; i++) {
-                        correlation += buf[i] * buf[i + period];
-                    }
-
-                    // Normalize the correlation
-                    correlation = correlation / (SIZE - period);
-
-                    // Keep track of the best correlation and corresponding period
-                    if (correlation > maxCorrelation) {
-                        maxCorrelation = correlation;
-                        bestPeriod = period;
-                    }
-                }
-
-                // If the correlation is high enough, calculate frequency
-                if (maxCorrelation > 0.01) {
-                    return sampleRate / bestPeriod;
-                }
-
-                return -1;
-            }
-
             // Smoothing variables
             let lastValidFrequency = -1;
             let noSignalCount = 0;
@@ -190,34 +153,117 @@
             const FREQ_JUMP_THRESHOLD = 50; // Hz - max allowed jump between consecutive frequencies
 
             function smoothFrequency(frequency) {
-                if (frequency === -1) {
-                    noSignalCount++;
-                    if (
-                        noSignalCount < MAX_NO_SIGNAL_COUNT &&
-                        lastValidFrequency !== -1
-                    ) {
-                        return lastValidFrequency;
-                    }
+                if (
+                    frequency === -1 ||
+                    frequency < MIN_FREQUENCY ||
+                    frequency > MAX_FREQUENCY
+                ) {
+                    lastStableFrequency = null;
+                    stableFrequencyCount = 0;
                     return -1;
                 }
 
-                // Check if the new frequency is a reasonable change from the last valid one
-                if (lastValidFrequency !== -1) {
-                    const freqDiff = Math.abs(frequency - lastValidFrequency);
-                    if (freqDiff > FREQ_JUMP_THRESHOLD) {
-                        noSignalCount++;
-                        if (noSignalCount < MAX_NO_SIGNAL_COUNT) {
-                            return lastValidFrequency;
-                        }
+                // Check if this frequency is close to the last stable one
+                if (lastStableFrequency !== null) {
+                    const ratio = frequency / lastStableFrequency;
+                    if (Math.abs(1 - ratio) < FREQ_STABILITY_THRESHOLD) {
+                        stableFrequencyCount++;
+                        // Use weighted average to smooth the frequency
+                        frequency = lastStableFrequency * 0.8 + frequency * 0.2;
+                    } else {
+                        stableFrequencyCount = 0;
                     }
                 }
 
-                noSignalCount = 0;
-                lastValidFrequency = frequency;
-                return frequency;
+                lastStableFrequency = frequency;
+
+                // Only return frequency if we have enough stable readings
+                return stableFrequencyCount >= STABLE_FREQUENCY_REQUIRED
+                    ? frequency
+                    : -1;
             }
+            function autoCorrelate(buffer, sampleRate) {
+                // ACF implementation with normalization and center clipping
+                const SIZE = buffer.length;
+                let rms = 0;
+
+                // Calculate RMS to determine signal strength
+                for (let i = 0; i < SIZE; i++) {
+                    const val = buffer[i];
+                    rms += val * val;
+                }
+                rms = Math.sqrt(rms / SIZE);
+
+                // Return -1 if signal is too weak
+                if (rms < 0.01) return -1;
+
+                // Center clipping to reduce noise
+                const CLIP_LEVEL = 0.1;
+                for (let i = 0; i < SIZE; i++) {
+                    if (Math.abs(buffer[i]) < CLIP_LEVEL) {
+                        buffer[i] = 0;
+                    }
+                }
+
+                let bestOffset = -1;
+                let bestCorrelation = 0;
+                let foundGoodCorrelation = false;
+
+                // Start from a reasonable offset to avoid super high frequencies
+                const MIN_SAMPLES = Math.floor(sampleRate / 2000); // ~2000Hz max
+                const MAX_SAMPLES = Math.floor(sampleRate / 50); // ~50Hz min
+
+                for (let offset = MIN_SAMPLES; offset < MAX_SAMPLES; offset++) {
+                    let correlation = 0;
+                    let normalizer = 0;
+
+                    for (let i = 0; i < SIZE - offset; i++) {
+                        correlation += buffer[i] * buffer[i + offset];
+                        normalizer +=
+                            buffer[i] * buffer[i] +
+                            buffer[i + offset] * buffer[i + offset];
+                    }
+
+                    // Normalize
+                    if (normalizer > 0) {
+                        correlation = (2 * correlation) / normalizer;
+                    }
+
+                    if (correlation > bestCorrelation) {
+                        bestCorrelation = correlation;
+                        bestOffset = offset;
+                    }
+
+                    if (correlation > 0.9) {
+                        foundGoodCorrelation = true;
+                        if (correlation > bestCorrelation) {
+                            bestCorrelation = correlation;
+                            bestOffset = offset;
+                        }
+                    } else if (foundGoodCorrelation) {
+                        break;
+                    }
+                }
+
+                if (bestCorrelation > 0.01) {
+                    // Parabolic interpolation for better accuracy
+                    let shift = 0;
+                    if (bestOffset > 0 && bestOffset < SIZE - 1) {
+                        const leftVal = buffer[bestOffset - 1];
+                        const centerVal = buffer[bestOffset];
+                        const rightVal = buffer[bestOffset + 1];
+                        const delta = rightVal - leftVal;
+                        if (delta !== 0) {
+                            shift = (centerVal - leftVal) / delta;
+                        }
+                    }
+                    return sampleRate / (bestOffset + shift);
+                }
+                return -1;
+            }
+
             function updatePitch() {
-                const bufferLength = analyser.frequencyBinCount;
+                const bufferLength = analyser.fftSize;
                 const buffer = new Float32Array(bufferLength);
                 analyser.getFloatTimeDomainData(buffer);
 
@@ -264,6 +310,9 @@
 
                         analyser = audioContext.createAnalyser();
                         analyser.fftSize = 2048;
+                        analyser.minDecibels = -90;
+                        analyser.maxDecibels = -10;
+                        analyser.smoothingTimeConstant = 0.85;
 
                         mediaStreamSource =
                             audioContext.createMediaStreamSource(stream);
