@@ -1,0 +1,403 @@
+<!doctype html>
+<html>
+<head>
+    <title>Click n Pop</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div id="score">Score: 0</div>
+    <div id="game-area"></div>
+
+    <script>
+        // Game state
+        let score = 0;
+        let circleCount = 0;
+        let maxCircles = 10;
+        let gameActive = true;
+        
+        // Mouse trail
+        const mouseTrail = [];
+        const maxTrailLength = 10;
+
+        // Get game elements
+        const scoreElement = document.getElementById('score');
+        const gameArea = document.getElementById('game-area');
+
+        // Generate a beautiful gradient for the circle
+        function generateCircleGradient() {
+            // Choose a base hue for the gradient
+            const baseHue = Math.floor(Math.random() * 360);
+            
+            // Create a gradient by shifting the hue slightly
+            const hue1 = baseHue;
+            const hue2 = (baseHue + 30) % 360; // Complementary color (30° shift)
+            
+            // Bright, saturated gradient with some transparency for depth
+            return `radial-gradient(circle, 
+                      hsla(${hue1}, 100%, 80%, 0.9) 0%, 
+                      hsla(${hue2}, 100%, 60%, 0.8) 80%,
+                      hsla(${hue2}, 100%, 50%, 0.7) 100%)`;
+        }
+
+        // Calculate circle size based on score (deterministic)
+        function getCircleSize() {
+            // Start with very large circles (half screen) and reduce size as score increases
+            // Minimum size is 15px
+            const startSize = Math.min(window.innerWidth, window.innerHeight) / 2;
+            return Math.max(startSize - Math.floor(score / 2) * 10, 15);
+        }
+
+        // Calculate circle speed based on score (deterministic)
+        function getCircleSpeed() {
+            // Start with no movement (0px/s) and slowly increase
+            // Movement starts at score 15
+            return score < 15 ? 0 : Math.min((score - 15) * 0.2, 5);
+        }
+
+        // Create a new circle
+        function createCircle() {
+            if (!gameActive) return;
+            
+            // Create circle element
+            const circle = document.createElement('div');
+            circle.className = 'circle';
+            
+            // Set size based on current score (deterministic difficulty)
+            const size = getCircleSize();
+            circle.style.width = `${size}px`;
+            circle.style.height = `${size}px`;
+            
+            // Random position within game area
+            const maxX = window.innerWidth - size;
+            const maxY = window.innerHeight - size - 50; // Account for score display
+            const posX = Math.floor(Math.random() * maxX);
+            const posY = Math.floor(Math.random() * maxY) + 50; // Below score display
+            
+            circle.style.left = `${posX}px`;
+            circle.style.top = `${posY}px`;
+            
+            // Beautiful gradient background
+            circle.style.background = generateCircleGradient();
+            // Add a subtle shine/glow effect
+            circle.style.boxShadow = "inset 0 0 20px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.3)";
+            
+            // Add to game area
+            gameArea.appendChild(circle);
+            
+            // Movement logic
+            const speed = getCircleSpeed();
+            if (speed > 0) {
+                // Random direction
+                const angle = Math.random() * Math.PI * 2;
+                const dx = Math.cos(angle) * speed;
+                const dy = Math.sin(angle) * speed;
+                
+                // Move circle
+                let x = posX;
+                let y = posY;
+                
+                const moveInterval = setInterval(() => {
+                    if (!circle.isConnected) {
+                        clearInterval(moveInterval);
+                        return;
+                    }
+                    
+                    x += dx;
+                    y += dy;
+                    
+                    // Bounce off walls with improved physics
+                    if (x <= 0 || x >= maxX) {
+                        // Position correction to prevent sticking to walls
+                        x = Math.max(0, Math.min(x, maxX));
+                        // Reverse horizontal direction and add some randomness to bounce
+                        dx *= -1.05;
+                        // Add a small vertical component to make bounces more interesting
+                        dy += (Math.random() * 0.4 - 0.2);
+                        
+                        // Add visual squish effect
+                        circle.classList.add('bounce-horizontal');
+                        setTimeout(() => {
+                            circle.classList.remove('bounce-horizontal');
+                        }, 400);
+                    }
+                    if (y <= 50 || y >= maxY + 50) {
+                        // Position correction to prevent sticking to walls
+                        y = Math.max(50, Math.min(y, maxY + 50));
+                        // Reverse vertical direction and add some randomness
+                        dy *= -1.05;
+                        // Add a small horizontal component to make bounces more interesting
+                        dx += (Math.random() * 0.4 - 0.2);
+                        
+                        // Add visual squish effect
+                        circle.classList.add('bounce-vertical');
+                        setTimeout(() => {
+                            circle.classList.remove('bounce-vertical');
+                        }, 400);
+                    }
+                    
+                    circle.style.left = `${x}px`;
+                    circle.style.top = `${y}px`;
+                }, 30);
+            }
+            
+            // Handle click
+            circle.addEventListener('click', () => {
+                // Remove circle
+                gameArea.removeChild(circle);
+                
+                // Update score
+                score++;
+                scoreElement.textContent = `Score: ${score}`;
+                
+                // Visual pop effect with matching gradient
+                const popEffect = document.createElement('div');
+                popEffect.className = 'pop';
+                popEffect.style.left = circle.style.left;
+                popEffect.style.top = circle.style.top;
+                popEffect.style.width = circle.style.width;
+                popEffect.style.height = circle.style.height;
+                // Use the same gradient for the pop effect but with different opacity
+                popEffect.style.background = circle.style.background;
+                gameArea.appendChild(popEffect);
+                
+                setTimeout(() => {
+                    gameArea.removeChild(popEffect);
+                }, 300);
+                
+                // Handle circle count
+                circleCount++;
+                if (circleCount < maxCircles) {
+                    createCircle();
+                } else {
+                    // Start a new round
+                    circleCount = 0;
+                    createCircle();
+                }
+            });
+        }
+
+        // Start the game
+        function startGame() {
+            gameActive = true;
+            score = 0;
+            circleCount = 0;
+            scoreElement.textContent = `Score: ${score}`;
+            gameArea.innerHTML = '';
+            createCircle();
+        }
+
+        // Initialize game
+        window.addEventListener('load', startGame);
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #282a36;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            cursor: none;
+        }
+        
+        /* Custom cursor with trail */
+        .cursor-dot {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            will-change: transform;
+        }
+        
+        .cursor {
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+        
+        .cursor-trail {
+            width: 20px; /* Match cursor width */
+            height: 20px; /* Match cursor height */
+            animation: trail 0.8s linear forwards;
+            /* No background color here - will be set in JS with rainbow colors */
+        }
+
+        #score {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-size: 24px;
+            z-index: 100;
+        }
+
+        #game-area {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.05s;
+        }
+
+        .circle:hover {
+            transform: scale(1.05);
+        }
+        
+        .bounce-horizontal {
+            animation: bounceX 0.4s ease-out;
+        }
+        
+        .bounce-vertical {
+            animation: bounceY 0.4s ease-out;
+        }
+        
+        @keyframes bounceX {
+            0% { transform: scaleX(0.7) scaleY(1.1); }
+            50% { transform: scaleX(1.1) scaleY(0.9); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes bounceY {
+            0% { transform: scaleY(0.7) scaleX(1.1); }
+            50% { transform: scaleY(1.1) scaleX(0.9); }
+            100% { transform: scale(1); }
+        }
+
+        .pop {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid white;
+            animation: pop 0.4s ease-out forwards;
+            pointer-events: none;
+            opacity: 0.7;
+            /* The background will be set in JS to match the circle's gradient */
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes trail {
+            0% {
+                opacity: 0.7;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+        }
+    </style>
+    
+    <script>
+        // Add custom cursor with trail
+        document.addEventListener('DOMContentLoaded', () => {
+            // Create cursor dot
+            const cursor = document.createElement('div');
+            cursor.classList.add('cursor-dot', 'cursor');
+            document.body.appendChild(cursor);
+            
+            // For rainbow colors
+            let hue = 0;
+            // Track mouse position history for even denser trail
+            const mouseHistory = [];
+            
+            // Much denser trail (create more dots)
+            let lastTrailTime = 0;
+            
+            // Update cursor position
+            document.addEventListener('mousemove', (e) => {
+                // Main cursor position
+                const x = e.clientX;
+                const y = e.clientY;
+                
+                // Update cursor position
+                cursor.style.left = x + 'px';
+                cursor.style.top = y + 'px';
+                
+                // Store current position in history with timestamp
+                mouseHistory.push({
+                    x: x,
+                    y: y,
+                    time: Date.now()
+                });
+                
+                // Keep only last 50ms of positions
+                const cutoffTime = Date.now() - 50;
+                while (mouseHistory.length > 0 && mouseHistory[0].time < cutoffTime) {
+                    mouseHistory.shift();
+                }
+                
+                // Create trail dots extremely frequently (every 2ms)
+                const now = Date.now();
+                if (now - lastTrailTime > 2) { // Create trail every 2ms for super dense trail
+                    lastTrailTime = now;
+                    
+                    // Create multiple trail dots for a super dense trail
+                    // First create one at current position
+                    createTrailDot(x, y);
+                    
+                    // Then create additional dots along the path between current and previous positions
+                    // This fills in the gaps when moving the mouse quickly
+                    if (mouseHistory.length >= 2) {
+                        // Create dots along motion path for ultra-dense trail
+                        const dotsToFill = Math.min(5, mouseHistory.length - 1); // Up to 5 intermediate dots
+                        
+                        for (let i = 1; i <= dotsToFill; i++) {
+                            const historyIndex = mouseHistory.length - 1 - i;
+                            if (historyIndex >= 0) {
+                                const pos = mouseHistory[historyIndex];
+                                createTrailDot(pos.x, pos.y);
+                            }
+                        }
+                    }
+                }
+                
+                function createTrailDot(dotX, dotY) {
+                    // Cycle through rainbow colors
+                    hue = (hue + 5) % 360;
+                    
+                    // Create trail dot
+                    const trail = document.createElement('div');
+                    trail.classList.add('cursor-dot', 'cursor-trail');
+                    
+                    // Apply rainbow color
+                    trail.style.backgroundColor = `hsla(${hue}, 100%, 70%, 0.7)`;
+                    
+                    // Position precisely
+                    trail.style.left = dotX + 'px';
+                    trail.style.top = dotY + 'px';
+                    
+                    document.body.appendChild(trail);
+                    
+                    // Remove trail dot after animation completes
+                    setTimeout(() => {
+                        if (trail && trail.parentNode) {
+                            trail.remove();
+                        }
+                    }, 800); // Extended lifetime to match animation duration
+                }
+            });
+        });
+    </script>
+</body>
+</html>

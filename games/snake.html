@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Toddler Snake Game</title>
+        <style>
+            canvas {
+                border: 10px solid #4caf50;
+                background: #e8f5e9;
+            }
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                background: #f0f0f0;
+                font-family: Arial, sans-serif;
+            }
+            .score {
+                font-size: 24px;
+                margin: 10px;
+                color: #2e7d32;
+            }
+            <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+        </style>
+        </style>
+    </head>
+    <body>
+        <h1>Snake Game for Kids!</h1>
+        <div class="score">Apples: <span id="score">0</span></div>
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <p>Press SPACE to start a new game!</p>
+
+        <script>
+            const canvas = document.getElementById("gameCanvas");
+            const ctx = canvas.getContext("2d");
+            const gridSize = 40; // Bigger squares for easier viewing
+            const tileCount = 10; // 10x10 grid
+
+            let snake = [
+                { x: 4, y: 4 }, // Head
+                { x: 3, y: 4 }, // Body
+                { x: 2, y: 4 }, // Body
+                { x: 1, y: 4 }, // Tail
+            ];
+            let apple = { x: 7, y: 7 };
+            let score = 0;
+
+            // Draw everything
+            function draw() {
+                // Clear canvas
+                ctx.fillStyle = "#e8f5e9";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Draw grid lines
+                ctx.strokeStyle = "#a5d6a7";
+                for (let i = 0; i <= canvas.width; i += gridSize) {
+                    ctx.beginPath();
+                    ctx.moveTo(i, 0);
+                    ctx.lineTo(i, canvas.height);
+                    ctx.stroke();
+                    ctx.beginPath();
+                    ctx.moveTo(0, i);
+                    ctx.lineTo(canvas.width, i);
+                    ctx.stroke();
+                }
+
+                // Draw snake
+                snake.forEach((part, index) => {
+                    // Different color for head
+                    ctx.fillStyle = index === 0 ? "#2E7D32" : "#4CAF50";
+                    ctx.fillRect(
+                        part.x * gridSize + 2,
+                        part.y * gridSize + 2,
+                        gridSize - 4,
+                        gridSize - 4,
+                    );
+                });
+
+                // Draw apple
+                ctx.fillStyle = "#ff0000";
+                ctx.beginPath();
+                ctx.arc(
+                    apple.x * gridSize + gridSize / 2,
+                    apple.y * gridSize + gridSize / 2,
+                    gridSize / 3,
+                    0,
+                    Math.PI * 2,
+                );
+                ctx.fill();
+            }
+
+            // Handle keyboard input
+            document.addEventListener("keydown", moveSnake);
+
+            function moveSnake(e) {
+                const head = { x: snake[0].x, y: snake[0].y };
+
+                switch (e.key) {
+                    case "ArrowUp":
+                        head.y--;
+                        break;
+                    case "ArrowDown":
+                        head.y++;
+                        break;
+                    case "ArrowLeft":
+                        head.x--;
+                        break;
+                    case "ArrowRight":
+                        head.x++;
+                        break;
+                    default:
+                        return; // Exit if not arrow key
+                }
+
+                // Check wall collision
+                if (
+                    head.x < 0 ||
+                    head.x >= tileCount ||
+                    head.y < 0 ||
+                    head.y >= tileCount
+                ) {
+                    return; // Don't move if hitting wall
+                }
+
+                // Check self collision
+                if (
+                    snake.some((part) => part.x === head.x && part.y === head.y)
+                ) {
+                    return; // Don't move if hitting self
+                }
+
+                // Check if apple is eaten
+                if (head.x === apple.x && head.y === apple.y) {
+                    score++;
+                    document.getElementById("score").textContent = score;
+                    if (score === maxScore) {
+                        celebrate();
+                        return; // Game is complete
+                    }
+                    // Place new apple
+                    do {
+                        apple.x = Math.floor(Math.random() * tileCount);
+                        apple.y = Math.floor(Math.random() * tileCount);
+                    } while (
+                        snake.some(
+                            (part) => part.x === apple.x && part.y === apple.y,
+                        )
+                    );
+                } else {
+                    snake.pop(); // Remove tail if no apple eaten
+                }
+
+
+
+                snake.unshift(head); // Add new head
+                draw();
+            }
+
+            const maxScore = (tileCount * tileCount) - 1; // Maximum possible score (grid size minus initial snake)
+
+            function celebrate() {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+
+            function resetGame() {
+                snake = [
+                    { x: 4, y: 4 }, // Head
+                    { x: 3, y: 4 }, // Body
+                    { x: 2, y: 4 }, // Body
+                    { x: 1, y: 4 }, // Tail
+                ];
+                apple = { x: 7, y: 7 };
+                score = 0;
+                document.getElementById("score").textContent = score;
+                draw();
+            }
+
+            // Handle space bar for reset
+            document.addEventListener("keydown", (e) => {
+                if (e.code === "Space") {
+                    resetGame();
+                }
+            });
+            // Initial draw
+            draw();
+        </script>
+    </body>
+</html>

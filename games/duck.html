@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Duck Game</title>
+        <style>
+            body {
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-color: #87ceeb;
+            }
+            canvas {
+                border: 2px solid #000;
+                background-color: #4caf50;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+        <script>
+            const canvas = document.getElementById("gameCanvas");
+            const ctx = canvas.getContext("2d");
+
+            const duck = {
+                x: 400,
+                y: 300,
+                size: 40,
+                color: "yellow",
+            };
+
+            const foodItems = Array.from({ length: 10 }, () => ({
+                x: Math.random() * (canvas.width - 20) + 10,
+                y: Math.random() * (canvas.height - 20) + 10,
+                size: 15,
+                color: "red",
+            }));
+
+            let score = 0;
+            const confetti = [];
+            let gameComplete = false;
+            let level = 1;
+
+            function createConfetti() {
+                for (let i = 0; i < 100; i++) {
+                    confetti.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        size: Math.random() * 5 + 5,
+                        color: `hsl(${Math.random() * 360}, 100%, 50%)`,
+                        speedX: Math.random() * 6 - 3,
+                        speedY: Math.random() * 6 - 3,
+                    });
+                }
+            }
+
+            function drawConfetti() {
+                confetti.forEach((particle, index) => {
+                    ctx.beginPath();
+                    ctx.arc(
+                        particle.x,
+                        particle.y,
+                        particle.size / 2,
+                        0,
+                        Math.PI * 2,
+                    );
+                    ctx.fillStyle = particle.color;
+                    ctx.fill();
+                    ctx.closePath();
+
+                    particle.x += particle.speedX;
+                    particle.y += particle.speedY;
+
+                    if (
+                        particle.y > canvas.height ||
+                        particle.x < 0 ||
+                        particle.x > canvas.width
+                    ) {
+                        confetti.splice(index, 1);
+                    }
+                });
+            }
+
+            function nextLevel() {
+                level++;
+                score = 0;
+                gameComplete = false;
+                confetti.length = 0;
+                duck.x = 400;
+                duck.y = 300;
+
+                // Add more food items for each level
+                const foodCount = 10 + (level - 1) * 5;
+                foodItems.length = 0;
+                for (let i = 0; i < foodCount; i++) {
+                    foodItems.push({
+                        x: Math.random() * (canvas.width - 20) + 10,
+                        y: Math.random() * (canvas.height - 20) + 10,
+                        size: 15,
+                        color: "red",
+                    });
+                }
+            }
+
+            function drawDuck() {
+                ctx.beginPath();
+                ctx.arc(duck.x, duck.y, duck.size / 2, 0, Math.PI * 2);
+                ctx.fillStyle = duck.color;
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            function drawFood() {
+                for (const food of foodItems) {
+                    ctx.beginPath();
+                    ctx.arc(food.x, food.y, food.size / 2, 0, Math.PI * 2);
+                    ctx.fillStyle = food.color;
+                    ctx.fill();
+                    ctx.closePath();
+                }
+            }
+
+            function drawScore() {
+                ctx.font = "20px Arial";
+                ctx.fillStyle = "#000";
+                ctx.fillText(`Level: ${level} Score: ${score}`, 10, 25);
+
+                if (gameComplete) {
+                    ctx.font = "40px Arial";
+                    ctx.fillStyle = "#000";
+                    ctx.textAlign = "center";
+                    ctx.fillText(
+                        "Level Complete! Press SPACE for next level",
+                        canvas.width / 2,
+                        canvas.height / 2,
+                    );
+                    ctx.textAlign = "left";
+                }
+            }
+
+            function update() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                drawDuck();
+                drawFood();
+                drawScore();
+
+                if (!gameComplete) {
+                    foodItems.forEach((food, index) => {
+                        const dx = duck.x - food.x;
+                        const dy = duck.y - food.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < duck.size / 2 + food.size / 2) {
+                            foodItems.splice(index, 1);
+                            score++;
+                        }
+                    });
+
+                    // Check if level is complete
+                    if (foodItems.length === 0) {
+                        gameComplete = true;
+                        createConfetti();
+                    }
+                }
+
+                if (gameComplete) {
+                    drawConfetti();
+                }
+            }
+
+            function moveDuck(event) {
+                if (gameComplete && event.code === "Space") {
+                    nextLevel();
+                    return;
+                }
+
+                if (!gameComplete) {
+                    const speed = 30;
+                    if (event.key === "ArrowUp" && duck.y > duck.size / 2) {
+                        duck.y -= speed;
+                    }
+                    if (
+                        event.key === "ArrowDown" &&
+                        duck.y < canvas.height - duck.size / 2
+                    ) {
+                        duck.y += speed;
+                    }
+                    if (event.key === "ArrowLeft" && duck.x > duck.size / 2) {
+                        duck.x -= speed;
+                    }
+                    if (
+                        event.key === "ArrowRight" &&
+                        duck.x < canvas.width - duck.size / 2
+                    ) {
+                        duck.x += speed;
+                    }
+                }
+            }
+
+            document.addEventListener("keydown", moveDuck);
+
+            function gameLoop() {
+                update();
+                requestAnimationFrame(gameLoop);
+            }
+
+            gameLoop();
+        </script>
+    </body>
+</html>

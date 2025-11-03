@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+    <script defer src="https://a.krister.ee/script.js" data-website-id="29f07a9d-d54a-4a9c-9a85-8c3e8cef8fcd"></script>
+    <body>
+        <div id="name"></div>
+        <script>
+            var name = prompt("What is your name?");
+            var nameDiv = document.getElementById("name");
+
+            // Create a span for each letter in the name
+            for (var i = 0; i < name.length; i++) {
+                var span = document.createElement("span");
+                span.textContent =
+                    name[i] === " " ? "\u00A0" : name[i].toUpperCase();
+                nameDiv.appendChild(span);
+            }
+
+            function gen_rand_color() {
+                var a = 128;
+                var b = 255 - a;
+                return (
+                    "#" +
+                    (Math.floor(Math.random() * a) + b).toString(16) +
+                    (Math.floor(Math.random() * a) + b).toString(16) +
+                    (Math.floor(Math.random() * a) + b).toString(16)
+                );
+            }
+
+            // const name = prompt("What is your name?")
+            document.addEventListener("keydown", function (event) {
+                var spans = document
+                    .getElementById("name")
+                    .getElementsByTagName("span");
+                var key = event.key.toUpperCase();
+                for (var i = 0; i < spans.length; i++) {
+                    if (
+                        spans[i].textContent === key &&
+                        !spans[i].classList.contains("found")
+                    ) {
+                        spans[i].style.opacity = "100%";
+                        spans[i].style.color = gen_rand_color();
+                        void spans[i].offsetWidth;
+                        spans[i].offsetHeight;
+                        spans[i].classList.add("blast");
+                        spans[i].classList.add("found");
+                        setTimeout(function () {
+                            spans[i].classList.remove("blast");
+                        }, 1000);
+                        break;
+                    }
+                }
+
+                if (
+                    (event.keyCode >= 65 && event.keyCode <= 90) ||
+                    (event.keyCode >= 48 && event.keyCode <= 57)
+                ) {
+                    var newElement = document.createElement("div");
+                    newElement.textContent = key;
+                    newElement.className = "key";
+                    newElement.style.left =
+                        Math.random() * window.innerWidth + "px";
+                    newElement.style.top =
+                        Math.random() * window.innerHeight + "px";
+                    newElement.style.color = gen_rand_color();
+                    document.body.appendChild(newElement);
+                    setTimeout(function () {
+                        document.body.removeChild(newElement);
+                    }, 2000);
+                }
+            });
+        </script>
+    </body>
+    <style>
+        body {
+            margin: 0;
+            background-color: #282a36;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .key {
+            position: absolute;
+            font-size: 50px;
+            animation: float 2s ease-in-out infinite;
+        }
+
+        #name {
+            color: rgba(255, 255, 255, 1);
+            font-size: 5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 90vw;
+            gap: 4px;
+        }
+
+        #name span {
+            padding-right: 4px;
+            opacity: 0.2;
+            display: block;
+        }
+
+        #name span:empty::before {
+            content: "\u00A0";
+            visibility: hidden;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translatey(0px);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            50% {
+                transform: translatey(-20px);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translatey(0px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes blast {
+            0% {
+                transform: scale(1);
+                opacity: 0;
+            }
+
+            25% {
+                transform: scale(1.4) rotate(3deg) translate(0, 0);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.2) rotate(-3deg) translate(0, 0);
+            }
+
+            75% {
+                transform: scale(1.4) rotate(3deg) translate(0, 0);
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg) translate(0, 0);
+            }
+        }
+
+        .blast {
+            animation: blast 1s ease-in-out;
+        }
+    </style>
+</html>

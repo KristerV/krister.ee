@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Games for Kids!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Comic Neue', cursive, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: bounce 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-10px); }
+        }
+
+        .subtitle {
+            color: #fff;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .games-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .game-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            display: block;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-card.baby {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+
+        .game-card.pop {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .game-card.duck {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%);
+        }
+
+        .game-card.snake {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+        }
+
+        .game-icon {
+            font-size: 5rem;
+            margin-bottom: 15px;
+            display: block;
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        .game-card:hover .game-icon {
+            animation: spin 0.5s ease-in-out;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .game-title {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .game-description {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .games-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Let's Play Games!</h1>
+    <p class="subtitle">Choose your favorite game below</p>
+
+    <div class="games-container">
+        <a href="baby-smash-docs.html" class="game-card baby">
+            <span class="game-icon">👶</span>
+            <div class="game-title">Baby Smash</div>
+            <p class="game-description">Learn letters by typing - babies smash, toddlers practice!</p>
+        </a>
+
+        <a href="click_n_pop.html" class="game-card pop">
+            <span class="game-icon">🎈</span>
+            <div class="game-title">Click & Pop</div>
+            <p class="game-description">Pop colorful bubbles by clicking them!</p>
+        </a>
+
+        <a href="duck.html" class="game-card duck">
+            <span class="game-icon">🦆</span>
+            <div class="game-title">Duck Game</div>
+            <p class="game-description">Play with the cute duck!</p>
+        </a>
+
+        <a href="snake.html" class="game-card snake">
+            <span class="game-icon">🐍</span>
+            <div class="game-title">Snake</div>
+            <p class="game-description">Guide the snake and eat the food!</p>
+        </a>
+    </div>
+</body>
+</html>
