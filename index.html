@@ -8,6 +8,9 @@
   <meta property="og:title" content="Krister Viirsaar — tehniline partner vaibikooderitele" />
   <meta property="og:description" content="Sina teed äriloogika, mina haldan tehnilist poolt. Vaibi edasi, vaibi enesekindlalt." />
   <meta property="og:locale" content="et_EE" />
+  <link rel="alternate" hreflang="et" href="https://krister.ee/" />
+  <link rel="alternate" hreflang="en" href="https://krister.ee/en/" />
+  <link rel="alternate" hreflang="x-default" href="https://krister.ee/" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f6f0e6'/%3E%3Crect x='8' y='8' width='16' height='16' rx='3' fill='%23c4502a' transform='rotate(45 16 16)'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,6 +28,7 @@
         <a href="#hinnad" class="hide-sm">Hinnad</a>
         <a href="about.html">Minust</a>
         <a href="#kontakt" class="btn rust">Broneeri kõne</a>
+        <a href="en/index.html" class="lang" hreflang="en">EN</a>
       </nav>
     </div>
   </header>
@@ -76,8 +80,50 @@
         <p>Jah, ma olen ka ise progeja. Aga lisaks olen ettevõtja ja mõistan neid muresid. Olen liiga palju näinud, kuidas üks nupp maksab 500&nbsp;€ ja veebileht tuhandeid. Mul on hea meel, kui inimesed saavad lihtsad asjad ise tehtud.</p>
         <p>Ühest küljest võttis AI minult töö ära — varem keskendusingi prototüüpide nullist sajani viimisele. Teisest küljest on töö nüüd palju efektiivsem: kui sul on ärist arusaam, paned <strong>sina</strong> protsessid paika. Ja minul on tehniline arusaam — teen <strong>mina</strong> kindlaks, et see kõik ka päriselt vastu peab.</p>
         <p>Ja kui sa oled oma asja juba valmis vaibkoodinud, aga vajad kindla murega abi — hüppan hea meelega korraks sisse ja vaatan üle. Luban, et mu esimene reaktsioon ei ole „pead nullist uuesti kirjutama“. Aga kui see juhtub olema mu teine reaktsioon, siis luba sina, et vähemalt võtad mu hinnangut kuulda. :)</p>
-        <p class="signoff">Vaibi edasi, vaibi enesekindlalt.</p>
+        <p class="signoff">Vaibi julgelt — mina hoian püsti.</p>
         <p style="margin-top:20px;"><a href="about.html">Vaata, mida ma ehitanud ja teinud olen →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEHNILINE VÕLG -->
+  <section id="volg">
+    <div class="wrap">
+      <p class="section-label reveal">Aus hoiatus</p>
+      <h2 class="section-title reveal">Mesinädalad on ehtsad. Nii on ka arve.</h2>
+      <div class="prose reveal" style="margin-top: 24px;">
+        <p>Populaarne stardipakk — Vercel + Supabase ja sõbrad — on alustamiseks tõesti hea. Ideest töötava rakenduseni ühe nädalavahetusega. Prototüübi või enda jaoks tehtud tööriista puhul ideaalne.</p>
+        <p>Aga keegi ei räägi konksust: <strong>sama kiirus, mis paneb esimese kuu maagiana tunduma, paneb neljanda kuu telliskiviseinana tunduma.</strong></p>
+      </div>
+
+      <div class="lane reveal" style="margin-top: 40px; max-width: 62ch;">
+        <h2>Muster, mida ma aina näen</h2>
+        <ul class="itemlist">
+          <li><strong>Kogu loogika ühes failis.</strong> <span class="what">Kiire kirjutada, võimatu kasvatada.</span></li>
+          <li><strong>Loogika korraga kolmes kohas.</strong> <span class="what">Frontend, andmebaas, edge-funktsioonid — proovi leida, kus miski päriselt juhtub.</span></li>
+          <li><strong>Brauser veab andmemuudatusi.</strong> <span class="what">Kirjutab esimese poole ära, kasutaja sulgeb vahelehe, teine pool jääb tegemata — ja su andmed on poolikus seisus, tagasiteed pole. Päris backend teeb kõik-või-mitte-midagi.</span></li>
+          <li><strong>Turvaaugud tarnitakse funktsioonidena.</strong> <span class="what">XSS, lekkinud võtmed, puuduvad kontrollid — AI kirjutab need silmagi pilgutamata sisse.</span></li>
+          <li><strong>Kõvad laed kõige halvemal hetkel.</strong> <span class="what">Pikalt kestvaid töid pole: pole päris AI-agente ega suuri üleslaadimisi. Avastad selle päeval, mil klient just seda vajab.</span></li>
+          <li><strong>Spagetid, mis kuhjuvad.</strong> <span class="what">Iga otsetee teeb järgmise raskemaks vältida.</span></li>
+        </ul>
+      </div>
+
+      <div class="split reveal" style="margin-top: 44px;">
+        <div class="you">
+          <span class="tag">Kiire alustada</span>
+          <h3>…laguneb hiljem</h3>
+          <p>Ideaalne idee katsetamiseks või millegi endale ehitamiseks.</p>
+        </div>
+        <div class="me">
+          <span class="tag">Tehtud kestma</span>
+          <h3>…teenib sind aastaid</h3>
+          <p>Igav, läbiproovitud seadistus, mida programmeerijad on kasutanud aastakümneid — rakendustele, mis peavad kuude kaupa kasvama.</p>
+        </div>
+      </div>
+
+      <div class="prose reveal" style="margin-top: 40px;">
+        <p><strong>See ongi kogu point: vaibkoodimine kuhjab tehnilist võlga kiiresti ja lõpuks maksab selle parandamine rohkem kui ehitamine.</strong> Kumbki pakk pole vale — viga on kasutada kiiret seal, kus oleks vaja kestvat. Kui su rakendus hakkab edasi kasvama, paneme vundamendi paika praegu, kuni see on odav.</p>
+        <p style="margin-top:20px;"><a href="#kontakt">Broneeri kõne ja vaatame su oma üle →</a></p>
       </div>
     </div>
   </section>
@@ -87,7 +133,7 @@
     <div class="wrap">
       <div class="pricing-head">
         <p class="section-label reveal" style="text-align:center;">Teenused &amp; hinnad</p>
-        <h2 class="reveal">Selged hinnad. Ei mingeid peidetud arveid.</h2>
+        <h2 class="reveal">Vali oma lähenemine.</h2>
         <p class="reveal">Mahukam projekt maksab loomulikult rohkem — aga skoop ja hind lepitakse kokku ette. Sa tead alati, mille eest maksad.</p>
       </div>
 

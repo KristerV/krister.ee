@@ -50,6 +50,8 @@ header {
 .nav-links { display: flex; gap: 28px; align-items: center; font-size: .95rem; font-weight: 500; }
 .nav-links a { text-decoration: none; opacity: .8; transition: opacity .2s; }
 .nav-links a:hover { opacity: 1; }
+.nav-links a.lang { opacity: .6; font-weight: 600; letter-spacing: .03em; font-size: .85rem; border: 1.5px solid var(--ink); border-radius: 999px; padding: 5px 11px; }
+.nav-links a.lang:hover { opacity: 1; background: var(--ink); color: var(--paper); }
 .btn {
   display: inline-block; background: var(--ink); color: var(--paper);
   padding: 11px 22px; border-radius: 999px; text-decoration: none;
