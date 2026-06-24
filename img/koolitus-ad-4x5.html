@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8" />
+<title>Vaibkoodija ellujäämiskursus — 4:5</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800&family=Inter:wght@500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{ --paper:#f6f0e6; --rust:#c4502a; --moss:#4a5a3c; --gold:#d9a441; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1080px;height:1350px;overflow:hidden;}
+  .banner{width:1080px;height:1350px;position:relative;overflow:hidden;background:var(--rust);color:var(--paper);}
+  .bg{position:absolute;inset:0;z-index:1;}
+  .bg svg{position:absolute;inset:0;width:100%;height:100%;}
+  .dt{position:absolute;border-radius:50%;}
+  .pad{position:absolute;left:96px;right:96px;top:360px;z-index:5;}
+  h1{font-family:'Archivo',sans-serif;font-weight:800;font-size:104px;line-height:.94;letter-spacing:-.03em;}
+  .sub{margin-top:40px;font-size:46px;font-weight:500;color:#fbe6d8;font-family:'Inter',sans-serif;}
+  .tag{margin-top:54px;display:inline-block;font-family:'Inter',sans-serif;font-weight:600;font-size:38px;
+    background:rgba(246,240,230,.14);padding:20px 34px;border-radius:16px;}
+  .foot{position:absolute;left:96px;right:96px;bottom:110px;display:flex;justify-content:flex-end;
+    align-items:center;font-size:38px;font-weight:600;font-family:'Inter',sans-serif;z-index:5;}
+  .site{display:flex;align-items:center;gap:20px;}
+  .dot{width:30px;height:30px;border-radius:7px;background:var(--paper);transform:rotate(45deg);
+    box-shadow:0 0 0 11px rgba(246,240,230,.18);}
+</style>
+</head>
+<body>
+  <div class="banner">
+    <div class="bg">
+      <svg viewBox="0 0 1080 1350" preserveAspectRatio="none">
+        <path d="M80 1105 C 320 975, 300 1205, 545 1085 S 880 1145, 1010 1005"
+          fill="none" stroke="#d9a441" stroke-width="22" stroke-linecap="round"/>
+        <path d="M80 1235 C 360 1157, 650 1265, 1010 1170"
+          fill="none" stroke="rgba(246,240,230,.5)" stroke-width="13" stroke-linecap="round" stroke-dasharray="5 32"/>
+      </svg>
+      <div class="dt" style="width:66px;height:66px;right:175px;top:200px;background:var(--gold)"></div>
+      <div class="dt" style="width:38px;height:38px;left:120px;top:235px;background:rgba(246,240,230,.85)"></div>
+      <div class="dt" style="width:32px;height:32px;right:360px;top:300px;background:rgba(246,240,230,.5)"></div>
+      <div class="dt" style="width:74px;height:74px;right:160px;top:975px;background:var(--moss)"></div>
+    </div>
+    <div class="pad">
+      <h1>Vaibkoodija<br>ellujäämiskursus</h1>
+      <p class="sub">Väldi vigu, mis su äpi tapavad.</p>
+      <span class="tag">8. juuli · online · 99 €</span>
+    </div>
+    <div class="foot"><span class="site"><span class="dot"></span>krister.ee</span></div>
+  </div>
+</body>
+</html>
