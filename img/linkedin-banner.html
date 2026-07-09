@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#1c1714; --paper:#f6f0e6; --paper-2:#efe6d6;
+    --rust:#c4502a; --rust-deep:#9c3b1c; --moss:#4a5a3c; --gold:#d9a441;
+    --line:#d8cbb4; --muted:#b6a892;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:1584px;height:396px;overflow:hidden;}
+  .banner{
+    position:relative;width:1584px;height:396px;background:var(--ink);
+    font-family:'Inter',sans-serif;color:var(--paper);
+    background-image:
+      repeating-linear-gradient(45deg, rgba(196,80,42,.06) 0 7px, transparent 7px 14px),
+      repeating-linear-gradient(-45deg, rgba(217,164,65,.05) 0 7px, transparent 7px 14px);
+  }
+  /* big faint diamond motif on the right */
+  .ghost-diamond{
+    position:absolute;right:-60px;top:50%;transform:translateY(-50%) rotate(45deg);
+    width:360px;height:360px;border-radius:36px;
+    background:radial-gradient(circle at 30% 30%, rgba(196,80,42,.22), rgba(196,80,42,.04) 70%);
+    border:2px solid rgba(196,80,42,.18);
+  }
+  .content{position:absolute;left:430px;top:78px;right:120px;}
+  .eyebrow{
+    display:inline-block;font-size:15px;font-weight:600;letter-spacing:.16em;
+    text-transform:uppercase;color:#e08a5f;
+    border:1.5px solid rgba(196,80,42,.6);border-radius:999px;padding:7px 16px;margin-bottom:22px;
+  }
+  h1{font-family:'Fraunces',serif;font-weight:600;font-size:58px;line-height:1.04;letter-spacing:-.01em;}
+  h1 .alt{color:var(--rust);font-style:italic;}
+  .sub{margin-top:18px;font-size:19px;color:var(--muted);max-width:60ch;line-height:1.5;font-weight:400;}
+  .site{position:absolute;right:120px;bottom:54px;display:flex;align-items:center;gap:11px;font-size:19px;font-weight:600;letter-spacing:.02em;color:var(--paper);}
+  .site .dot{width:14px;height:14px;border-radius:3px;background:var(--rust);transform:rotate(45deg);box-shadow:0 0 0 5px rgba(196,80,42,.16);}
+  /* woven signature strip along the bottom */
+  .strip{
+    position:absolute;left:0;bottom:0;width:100%;height:10px;
+    background:repeating-linear-gradient(90deg, var(--rust) 0 18px, var(--moss) 18px 36px, var(--gold) 36px 54px, var(--ink) 54px 72px);
+  }
+</style>
+</head>
+<body>
+  <div class="banner">
+    <div class="ghost-diamond"></div>
+    <div class="content">
+      <span class="eyebrow">Help for vibe coders</span>
+      <h1>Keep vibing,<br><span class="alt">vibe with confidence.</span></h1>
+      <p class="sub">Technical partner — you build the business logic, I make sure it's still standing two months later. Secure, stable, data intact.</p>
+    </div>
+    <div class="site"><span class="dot"></span>krister.ee</div>
+    <div class="strip"></div>
+  </div>
+</body>
+</html>

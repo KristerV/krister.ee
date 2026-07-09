@@ -1,0 +1,8 @@
+# Playwright MCP browser-testing cache (console logs, snapshots, screenshots)
+.playwright-mcp/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*~
+*.swp

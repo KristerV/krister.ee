@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8" />
+<title>Vaibkoodija ellujäämiskursus — kaanepilt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800&family=Inter:wght@500&display=swap" rel="stylesheet" />
+<style>
+  :root{ --paper:#f6f0e6; --rust:#c4502a; --moss:#4a5a3c; --gold:#d9a441; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{width:2400px;height:1350px;overflow:hidden;}
+  .banner{width:2400px;height:1350px;position:relative;overflow:hidden;background:var(--rust);color:var(--paper);}
+  .bg{position:absolute;inset:0;z-index:1;}
+  .bg svg{position:absolute;inset:0;width:100%;height:100%;}
+  .dt{position:absolute;border-radius:50%;}
+  .pad{position:absolute;left:160px;top:330px;right:160px;z-index:5;}
+  h1{font-family:'Archivo',sans-serif;font-weight:800;font-size:176px;line-height:.94;letter-spacing:-.03em;}
+  .sub{margin-top:54px;font-size:70px;font-weight:500;color:#fbe6d8;font-family:'Inter',sans-serif;}
+  .foot{position:absolute;left:160px;right:160px;bottom:120px;display:flex;justify-content:flex-end;
+    align-items:center;font-size:42px;font-weight:600;font-family:'Inter',sans-serif;z-index:5;}
+  .site{display:flex;align-items:center;gap:22px;}
+  .dot{width:30px;height:30px;border-radius:7px;background:var(--paper);transform:rotate(45deg);
+    box-shadow:0 0 0 11px rgba(246,240,230,.18);}
+</style>
+</head>
+<body>
+  <div class="banner">
+    <div class="bg">
+      <svg viewBox="0 0 2400 1350" preserveAspectRatio="none">
+        <path d="M1480 980 C 1700 760, 1560 600, 1820 640 S 2100 900, 2280 720"
+          fill="none" stroke="#d9a441" stroke-width="14" stroke-linecap="round"/>
+        <path d="M1520 1120 C 1760 1020, 1980 1180, 2240 1060"
+          fill="none" stroke="rgba(246,240,230,.35)" stroke-width="10" stroke-linecap="round" stroke-dasharray="4 34"/>
+      </svg>
+      <div class="dt" style="width:46px;height:46px;right:360px;top:240px;background:var(--gold)"></div>
+      <div class="dt" style="width:30px;height:30px;right:720px;top:420px;background:var(--paper);opacity:.7"></div>
+      <div class="dt" style="width:54px;height:54px;right:220px;bottom:300px;background:var(--moss)"></div>
+      <div class="dt" style="width:26px;height:26px;left:180px;top:230px;background:rgba(246,240,230,.6)"></div>
+    </div>
+    <div class="pad"><h1>Vaibkoodija<br>ellujäämiskursus</h1><p class="sub">Väldi vigu, mis su äpi tapavad.</p></div>
+    <div class="foot"><span class="site"><span class="dot"></span>krister.ee</span></div>
+  </div>
+</body>
+</html>

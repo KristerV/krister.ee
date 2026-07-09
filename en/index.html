@@ -14,7 +14,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f6f0e6'/%3E%3Crect x='8' y='8' width='16' height='16' rx='3' fill='%23c4502a' transform='rotate(45 16 16)'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../styles/site.css" />
   <script defer src="https://a.krister.ee/script.js" data-website-id="29f07a9d-d54a-4a9c-9a85-8c3e8cef8fcd"></script>
 </head>
@@ -51,7 +51,7 @@
   <section id="how">
     <div class="wrap">
       <p class="section-label reveal">How it works</p>
-      <h2 class="section-title reveal">You handle the business. I handle the tech.</h2>
+      <h2 class="section-title reveal" style="max-width:none;">You handle the business.<br>I handle the tech.</h2>
       <div class="split reveal" style="margin-top: 34px;">
         <div class="you">
           <span class="tag">You</span>
@@ -96,7 +96,7 @@
         <p>But nobody mentions the catch: <strong>the same speed that makes month one feel like magic makes month four feel like a brick wall.</strong></p>
       </div>
 
-      <div class="lane reveal" style="margin-top: 40px; max-width: 62ch;">
+      <div class="lane warn reveal" style="margin-top: 40px; max-width: 62ch;">
         <h2>The pattern I keep seeing</h2>
         <ul class="itemlist">
           <li><strong>All the logic in one file.</strong> <span class="what">Fast to write, impossible to grow.</span></li>
@@ -171,7 +171,7 @@
         <!-- Vibe partner (feature) -->
         <div class="card feature reveal">
           <span class="card-name">Vibe partner</span>
-          <div class="price">from €900<span class="unit">/mo</span></div>
+          <div class="price">from €2600<span class="unit">/mo</span></div>
           <p class="price-note">6-month contract. You get my architecture foundation to build on.</p>
           <p class="desc">You vibe-code the business logic, I take care of the rest. Servers, security, backups, and a good night's sleep — all covered. It doesn't last forever: once the architecture is in place, you become independent.</p>
           <ul>
@@ -230,10 +230,10 @@
     Cal.config.forwardQueryParams = true;
     Cal.ns["1h"]("inline", {
       elementOrSelector: "#cal-inline",
-      config: { layout: "month_view", useSlotsViewOnSmallScreen: "true", theme: "dark" },
+      config: { layout: "month_view", useSlotsViewOnSmallScreen: "true", theme: "light" },
       calLink: "krister-viirsaar-zho32l/1h",
     });
-    Cal.ns["1h"]("ui", { theme: "dark", hideEventTypeDetails: false, layout: "month_view" });
+    Cal.ns["1h"]("ui", { theme: "light", hideEventTypeDetails: false, layout: "month_view" });
   </script>
 </body>
 </html>

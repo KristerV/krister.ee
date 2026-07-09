@@ -1,0 +1,22 @@
+𝗧𝗲𝗰𝗵𝗻𝗶𝗰𝗮𝗹 𝗽𝗮𝗿𝘁𝗻𝗲𝗿 𝗳𝗼𝗿 𝘃𝗶𝗯𝗲 𝗰𝗼𝗱𝗲𝗿𝘀
+
+You vibe-code the business logic. I make sure your app is still standing two months from now — stable, secure, and with your data intact from day one.
+
+A lot of developers are nervous right now — AI is taking over parts of their work. Honestly? I love it. It means good ideas don't die behind a crazy invoice anymore.
+
+Yes, I'm a developer too. But I also run businesses, so I get it. I've watched a single button cost €500 and a website cost thousands. It genuinely makes me happy when people can build the simple stuff themselves.
+
+Here's the catch nobody mentions about the popular starter stack (Vercel + Supabase and friends): the same speed that makes month one feel like magic makes month four feel like a brick wall. Logic scattered across three places, the browser driving your data updates, security holes shipped as features, hard limits at the worst moment. Vibe-coding piles up technical debt fast — and fixing it eventually costs more than building it did.
+
+That's where I come in. You understand the business, so you build it. I understand the tech, so I make sure it actually holds up — architecture, servers, security, backups, data integrity.
+
+𝗪𝗵𝗮𝘁 𝗜 𝗱𝗼:
+• Consultation — one call, a straight read on where your real risks are
+• Security & code review — line-by-line code, server and database setup, data integrity, backups (pentest via my partner)
+• Vibe partner — ongoing technical partnership: my architecture foundation, server management, security, and a direct line when something happens
+
+Building businesses and software since 2014, now with AI. Also leading data teams and teaching the next wave of developers and vibe coders.
+
+Vibe freely — I'll keep it standing.
+
+→ krister.ee

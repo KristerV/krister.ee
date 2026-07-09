@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+<meta charset="UTF-8" />
+<title>Vaibkoodija ellujäämiskursus — dashboard läks valesti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@800&family=Inter:wght@500&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f6f0e6; --rust:#c4502a; --rust-deep:#9c3b1c;
+    --moss:#4a5a3c; --gold:#d9a441; --ink:#1c1714;
+    --s:.5; /* preview scale; set to 1 for final render */
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#2a2521;color:var(--paper);font-family:'Inter',sans-serif;padding:48px;}
+  h2.page{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:28px;margin-bottom:6px;}
+  p.page{color:#b6a892;margin-bottom:40px;font-size:15px;}
+  .grid{display:flex;flex-direction:column;gap:40px;}
+  .cap{display:flex;align-items:baseline;gap:12px;margin-bottom:12px;}
+  .cap .n{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:20px;color:var(--gold);}
+  .cap .t{font-weight:600;font-size:16px;}
+  .cap .d{color:#b6a892;font-size:13px;}
+  .stage{width:calc(2400px * var(--s));height:calc(1350px * var(--s));overflow:hidden;
+    border-radius:12px;box-shadow:0 18px 50px rgba(0,0,0,.45);}
+  .banner{width:2400px;height:1350px;position:relative;overflow:hidden;background:var(--rust);color:var(--paper);
+    transform:scale(var(--s));transform-origin:top left;}
+
+  /* text (shared, always on top) */
+  .pad{position:absolute;left:160px;top:330px;right:160px;z-index:5;}
+  h1{font-family:'Archivo',sans-serif;font-weight:800;font-size:176px;line-height:.94;letter-spacing:-.03em;}
+  .sub{margin-top:54px;font-size:70px;font-weight:500;color:#fbe6d8;font-family:'Inter',sans-serif;}
+  .foot{position:absolute;left:160px;right:160px;bottom:120px;display:flex;justify-content:flex-end;
+    align-items:center;font-size:42px;font-weight:600;font-family:'Inter',sans-serif;z-index:5;}
+  .site{display:flex;align-items:center;gap:22px;}
+  .dot{width:30px;height:30px;border-radius:7px;background:var(--paper);transform:rotate(45deg);
+    box-shadow:0 0 0 11px rgba(246,240,230,.18);}
+  .bg{position:absolute;inset:0;z-index:1;}
+  .bg svg{position:absolute;inset:0;width:100%;height:100%;}
+  .dt{position:absolute;border-radius:50%;}
+</style>
+</head>
+<body>
+  <h2 class="page">Vaibkoodija ellujäämiskursus — "dashboard läks valesti" (2400×1350, Archivo)</h2>
+  <p class="page">Mänguline, aga selge sõnum: kui sa selle untsu keerad, kukub su äri. Esimene = originaal P4. Vali üks.</p>
+
+  <div class="grid">
+
+    <!-- V1 — original P4 (keep) -->
+    <div>
+      <div class="cap"><span class="n">1</span><span class="t">Säts + täpid (originaal)</span><span class="d">lahe, lõtv, tahvli-energia</span></div>
+      <div class="stage"><div class="banner">
+        <div class="bg">
+          <svg viewBox="0 0 2400 1350" preserveAspectRatio="none">
+            <path d="M1480 980 C 1700 760, 1560 600, 1820 640 S 2100 900, 2280 720"
+              fill="none" stroke="#d9a441" stroke-width="14" stroke-linecap="round"/>
+            <path d="M1520 1120 C 1760 1020, 1980 1180, 2240 1060"
+              fill="none" stroke="rgba(246,240,230,.35)" stroke-width="10" stroke-linecap="round" stroke-dasharray="4 34"/>
+          </svg>
+          <div class="dt" style="width:46px;height:46px;right:360px;top:240px;background:var(--gold)"></div>
+          <div class="dt" style="width:30px;height:30px;right:720px;top:420px;background:var(--paper);opacity:.7"></div>
+          <div class="dt" style="width:54px;height:54px;right:220px;bottom:300px;background:var(--moss)"></div>
+          <div class="dt" style="width:26px;height:26px;left:180px;top:230px;background:rgba(246,240,230,.6)"></div>
+        </div>
+        <div class="pad"><h1>Vaibkoodija<br>ellujäämiskursus</h1><p class="sub">Väldi vigu, mis su äpi tapavad.</p></div>
+        <div class="foot"><span class="site"><span class="dot"></span>krister.ee</span></div>
+      </div></div>
+    </div>
+
+    <!-- V2 — crash line -->
+    <div>
+      <div class="cap"><span class="n">2</span><span class="t">Allakäik</span><span class="d">graafik tõuseb, siis kukub kaljult alla — "äri vajub"</span></div>
+      <div class="stage"><div class="banner">
+        <div class="bg">
+          <svg viewBox="0 0 2400 1350" preserveAspectRatio="none">
+            <!-- what you hoped for -->
+            <path d="M1740 440 C 1920 360, 2100 300, 2300 220" fill="none"
+              stroke="rgba(246,240,230,.32)" stroke-width="10" stroke-linecap="round" stroke-dasharray="2 40"/>
+            <!-- what happened -->
+            <path d="M1340 620 C 1460 480, 1600 430, 1740 440 C 1880 450, 1960 660, 2060 880 C 2150 1060, 2230 1130, 2295 1188"
+              fill="none" stroke="#d9a441" stroke-width="17" stroke-linecap="round"/>
+            <path d="M2238 1150 L2300 1196 L2306 1120" fill="none" stroke="#d9a441"
+              stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="1740" cy="438" r="26" fill="var(--paper)"/>
+            <circle cx="2060" cy="880" r="20" fill="var(--moss)"/>
+            <circle cx="1340" cy="620" r="16" fill="rgba(246,240,230,.7)"/>
+          </svg>
+          <div class="dt" style="width:30px;height:30px;left:200px;top:230px;background:rgba(246,240,230,.55)"></div>
+        </div>
+        <div class="pad"><h1>Vaibkoodija<br>ellujäämiskursus</h1><p class="sub">Väldi vigu, mis su äpi tapavad.</p></div>
+        <div class="foot"><span class="site"><span class="dot"></span>krister.ee</span></div>
+      </div></div>
+    </div>
+
+    <!-- V3 — collapsing bars -->
+    <div>
+      <div class="cap"><span class="n">3</span><span class="t">Kukkuvad tulbad</span><span class="d">tulbad madalduvad, viimane kukub ümber</span></div>
+      <div class="stage"><div class="banner">
+        <div class="bg">
+          <svg viewBox="0 0 2400 1350" preserveAspectRatio="none">
+            <rect x="1470" y="700" width="130" height="480" rx="22" fill="#d9a441"/>
+            <rect x="1670" y="850" width="130" height="330" rx="22" fill="rgba(246,240,230,.85)"/>
+            <rect x="1870" y="1000" width="130" height="180" rx="22" fill="#4a5a3c"/>
+            <g transform="rotate(28 2150 1180)"><rect x="2090" y="980" width="130" height="200" rx="22" fill="rgba(246,240,230,.5)"/></g>
+            <!-- downward trend over bars -->
+            <path d="M1520 740 C 1720 880, 1930 1010, 2130 1080" fill="none"
+              stroke="rgba(246,240,230,.9)" stroke-width="12" stroke-linecap="round" stroke-dasharray="2 30"/>
+            <path d="M2088 1052 L2138 1094 L2156 1034" fill="none"
+              stroke="rgba(246,240,230,.9)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="dt" style="width:40px;height:40px;right:360px;top:250px;background:var(--gold)"></div>
+          <div class="dt" style="width:26px;height:26px;left:200px;top:230px;background:rgba(246,240,230,.55)"></div>
+        </div>
+        <div class="pad"><h1>Vaibkoodija<br>ellujäämiskursus</h1><p class="sub">Väldi vigu, mis su äpi tapavad.</p></div>
+        <div class="foot"><span class="site"><span class="dot"></span>krister.ee</span></div>
+      </div></div>
+    </div>
+
+    <!-- V4 — anomaly spike -->
+    <div>
+      <div class="cap"><span class="n">4</span><span class="t">Anomaalia</span><span class="d">kõik oli rahulik, siis järsk piik ja kokkukukkumine</span></div>
+      <div class="stage"><div class="banner">
+        <div class="bg">
+          <svg viewBox="0 0 2400 1350" preserveAspectRatio="none">
+            <path d="M1320 720 H1660 L1740 360 L1808 980 L1872 470 L1940 720 H2120 C2230 720, 2250 1040, 2298 1186"
+              fill="none" stroke="#d9a441" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2242 1150 L2302 1196 L2308 1122" fill="none" stroke="#d9a441"
+              stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="1740" cy="360" r="34" fill="none" stroke="var(--paper)" stroke-width="10"/>
+            <circle cx="1740" cy="360" r="13" fill="var(--paper)"/>
+          </svg>
+          <div class="dt" style="width:54px;height:54px;right:230px;bottom:300px;background:var(--moss)"></div>
+          <div class="dt" style="width:30px;height:30px;right:720px;top:300px;background:var(--paper);opacity:.7"></div>
+          <div class="dt" style="width:26px;height:26px;left:200px;top:230px;background:rgba(246,240,230,.55)"></div>
+        </div>
+        <div class="pad"><h1>Vaibkoodija<br>ellujäämiskursus</h1><p class="sub">Väldi vigu, mis su äpi tapavad.</p></div>
+        <div class="foot"><span class="site"><span class="dot"></span>krister.ee</span></div>
+      </div></div>
+    </div>
+
+  </div>
+</body>
+</html>

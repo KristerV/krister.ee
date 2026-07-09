@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>krister.ee — design options</title>
+<style>
+  :root{
+    --bg:#1b1d22; --bar:#23262d; --edge:#33373f; --ink:#e7e5df; --dim:#9a9fa8; --hot:#d98a4e;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
+
+  .topbar{background:var(--bar);border-bottom:1px solid var(--edge);flex:0 0 auto}
+  .row1{display:flex;align-items:center;gap:.8rem;padding:.55rem .9rem .1rem}
+  .row1 .logo{font-size:.82rem;font-weight:600;letter-spacing:.02em}
+  .row1 .logo span{color:var(--dim);font-weight:400}
+  .row1 .hint{margin-left:auto;font-size:.72rem;color:var(--dim)}
+  .row1 kbd{font-family:ui-monospace,monospace;background:var(--edge);border-radius:4px;padding:.05em .4em;font-size:.9em}
+  .row1 .open{color:var(--hot);text-decoration:none;font-size:.74rem;font-weight:600}
+  .row1 .open:hover{text-decoration:underline}
+
+  .tabs{display:flex;gap:.2rem;padding:.4rem .6rem .5rem;overflow-x:auto;scrollbar-width:thin}
+  .tab{flex:0 0 auto;display:flex;flex-direction:column;gap:.05rem;
+    background:transparent;border:1px solid transparent;border-radius:8px;
+    padding:.45rem .8rem;cursor:pointer;color:var(--dim);text-align:left;font:inherit;line-height:1.2;transition:.15s}
+  .tab:hover{background:#2b2f37;color:var(--ink)}
+  .tab .n{font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+  .tab .l{font-size:.86rem;font-weight:600}
+  .tab[aria-selected="true"]{background:#2f333c;border-color:var(--hot);color:var(--ink)}
+  .tab[aria-selected="true"] .n{color:var(--hot);opacity:1}
+  .tab:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
+
+  .stage{flex:1 1 auto;position:relative;background:#0e0f12}
+  iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff}
+  .loader{position:absolute;inset:0;display:grid;place-items:center;color:var(--dim);font-size:.8rem;pointer-events:none;opacity:0;transition:opacity .2s}
+  .loading .loader{opacity:1}
+
+  @media (max-width:640px){ .row1 .hint{display:none} .tab .n{display:none} }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="row1">
+      <span class="logo">krister.ee <span>· homepage redesign — 6 directions</span></span>
+      <a class="open" id="openRaw" href="1-clean.html" target="_blank" rel="noopener">Open full page ↗</a>
+      <span class="hint">Switch: <kbd>←</kbd> <kbd>→</kbd> or <kbd>1</kbd>–<kbd>5</kbd></span>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Design options"></div>
+  </div>
+  <div class="stage" id="stage">
+    <div class="loader">loading…</div>
+    <iframe id="frame" title="Design preview" src="1-clean.html"></iframe>
+  </div>
+
+<script>
+  const DESIGNS=[
+    {n:"01",l:"Clean",f:"1-clean.html",d:"baseline, no boxes"},
+    {n:"02",l:"Outlined",f:"2-outline.html",d:"hairline blocks"},
+    {n:"03",l:"Filled",f:"3-filled.html",d:"soft grey panels"},
+    {n:"04",l:"Cards",f:"4-cards.html",d:"pricing grid"},
+    {n:"05",l:"Playful",f:"5-playful.html",d:"tilted stickers"},
+  ];
+  const tabsEl=document.querySelector('.tabs');
+  const frame=document.getElementById('frame');
+  const stage=document.getElementById('stage');
+  const openRaw=document.getElementById('openRaw');
+  let cur=0;
+
+  DESIGNS.forEach((d,i)=>{
+    const b=document.createElement('button');
+    b.className='tab';b.role='tab';b.setAttribute('aria-selected',i===0);
+    b.innerHTML=`<span class="n">${d.n} · ${d.d}</span><span class="l">${d.l}</span>`;
+    b.addEventListener('click',()=>select(i));
+    tabsEl.appendChild(b);
+  });
+  const tabEls=[...tabsEl.children];
+
+  function select(i){
+    if(i<0||i>=DESIGNS.length)return;
+    cur=i;
+    tabEls.forEach((t,j)=>t.setAttribute('aria-selected',j===i));
+    stage.classList.add('loading');
+    frame.src=DESIGNS[i].f;
+    openRaw.href=DESIGNS[i].f;
+    tabEls[i].scrollIntoView({inline:'center',block:'nearest'});
+    history.replaceState(null,'','#'+(i+1));
+  }
+  frame.addEventListener('load',()=>stage.classList.remove('loading'));
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight')select((cur+1)%DESIGNS.length);
+    else if(e.key==='ArrowLeft')select((cur-1+DESIGNS.length)%DESIGNS.length);
+    else if(e.key>='1'&&e.key<=String(DESIGNS.length))select(+e.key-1);
+  });
+
+  const start=parseInt(location.hash.replace('#',''))-1;
+  if(start>=0&&start<DESIGNS.length)select(start);
+</script>
+</body>
+</html>
