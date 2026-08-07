@@ -258,9 +258,8 @@
             var wordEl = document.getElementById("word");
             var nextEl = document.getElementById("next");
 
-            var order = [];
-            var orderPos = 0;
             var current = null; // { e, w }
+            var lastKey = null; // väldi sama sõna kohe uuesti
             var typed = 0; // kui palju tähti õigesti kirjutatud
             var locked = false; // sõna valmis, ootab järgmist
             var lower = false; // suur- või väiketähed
@@ -302,9 +301,25 @@
                 return arr;
             }
 
-            function buildOrder() {
-                order = shuffle(WORDS.slice());
-                orderPos = 0;
+            // Sõnad lühemast pikemani. Segame enne sortimist, nii et võrdse
+            // pikkusega sõnad on igal külastusel juhuslikus järjekorras.
+            var SORTED = shuffle(WORDS.slice()).sort(function (a, b) {
+                return a.w.length - b.w.length;
+            });
+            var WINDOW_BASE = 6; // mitu lühimat sõna on algusest peale valikus
+
+            // Vali juhuslik sõna "lühemast valikust". Valik kasvab edu käigus:
+            // alguses ainult lühikesed sõnad, iga õnnestunud sõnaga lisandub
+            // pikemaid. Uuesti mängides algab jälle lühikestest.
+            function pickWord() {
+                var k = Math.min(SORTED.length, WINDOW_BASE + getCompleted());
+                var pool = SORTED.slice(0, k);
+                var pick;
+                do {
+                    pick = pool[Math.floor(Math.random() * pool.length)];
+                } while (pool.length > 1 && pick.w === lastKey);
+                lastKey = pick.w;
+                return pick;
             }
 
             function gen_rand_color() {
@@ -319,8 +334,7 @@
             }
 
             function loadNext() {
-                if (orderPos >= order.length) buildOrder();
-                current = order[orderPos++];
+                current = pickWord();
                 typed = 0;
                 locked = false;
                 lower = getCompleted() >= 3; // 4. sõnast alates väiketähed
@@ -419,7 +433,6 @@
                 if (!locked) loadNext();
             });
 
-            buildOrder();
             loadNext();
         </script>
     </body>
