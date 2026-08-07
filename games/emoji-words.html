@@ -263,6 +263,34 @@
             var current = null; // { e, w }
             var typed = 0; // kui palju tähti õigesti kirjutatud
             var locked = false; // sõna valmis, ootab järgmist
+            var lower = false; // suur- või väiketähed
+
+            // Mitu sõna on juba edukalt kirjutatud (püsib sessiooni jooksul).
+            // Pärast 3 sõna lülitume väiketähtedele, et laps õpiks ka neid.
+            var STORE = "sonamang.completed";
+            function getCompleted() {
+                try {
+                    return parseInt(sessionStorage.getItem(STORE), 10) || 0;
+                } catch (err) {
+                    return 0;
+                }
+            }
+            function setCompleted(n) {
+                try {
+                    sessionStorage.setItem(STORE, String(n));
+                } catch (err) {}
+            }
+
+            // Täpitähtede lihtsustus: kehv klaviatuur → o käib ö/õ, a käib ä jne.
+            var BASE = { Ä: "A", Ö: "O", Õ: "O", Ü: "U", Š: "S", Ž: "Z" };
+            function baseUpper(ch) {
+                var u = ch.toUpperCase();
+                return BASE[u] || u;
+            }
+            // Kuidas tähte ekraanil näidata (õige täpitäht, õiges suuruses).
+            function show(ch) {
+                return lower ? ch.toLowerCase() : ch.toUpperCase();
+            }
 
             function shuffle(arr) {
                 for (var i = arr.length - 1; i > 0; i--) {
@@ -295,6 +323,7 @@
                 current = order[orderPos++];
                 typed = 0;
                 locked = false;
+                lower = getCompleted() >= 3; // 4. sõnast alates väiketähed
 
                 emojiEl.textContent = current.e;
 
@@ -316,10 +345,12 @@
                 if (typed < boxes.length) boxes[typed].classList.add("active");
             }
 
-            function fillBox(letter) {
+            function fillBox() {
                 var boxes = wordEl.getElementsByClassName("box");
                 var box = boxes[typed];
-                box.textContent = letter;
+                // Näita alati õiget tähte (õige täpitäht), sõltumata sellest
+                // mida vajutati — nii õpib laps õige kirjapildi.
+                box.textContent = show(current.w[typed]);
                 box.style.color = gen_rand_color();
                 box.classList.add("filled");
                 box.classList.remove("active");
@@ -337,6 +368,7 @@
 
             function celebrate() {
                 locked = true;
+                setCompleted(getCompleted() + 1);
                 emojiEl.classList.remove("pop");
                 void emojiEl.offsetWidth;
                 emojiEl.classList.add("pop");
@@ -366,17 +398,16 @@
                 var ch = event.key;
                 if (ch.length !== 1 || !isLetter(ch)) return;
 
-                var key = ch.toUpperCase();
-
                 if (locked) {
-                    floatAway(key);
+                    floatAway(show(ch));
                     return;
                 }
 
-                if (key === current.w[typed]) {
-                    fillBox(key);
+                // täpitähed lihtsustatud: võrdle põhitähti (o == ö == õ)
+                if (baseUpper(ch) === baseUpper(current.w[typed])) {
+                    fillBox();
                 } else {
-                    floatAway(key);
+                    floatAway(show(ch));
                 }
             });
 
