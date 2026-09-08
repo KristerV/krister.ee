@@ -88,13 +88,7 @@ header {
   border: 0; padding: 0; margin-bottom: 18px;
 }
 .hero h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); font-weight: 400; max-width: none; }
-.hero h1 .alt {
-  font-style: normal; color: var(--ink);
-  background: var(--hl); background-repeat: no-repeat;
-  background-position: 0 82%; background-size: 100% 40%;
-  padding: 0 .08em; border-radius: 2px;
-  -webkit-box-decoration-break: clone; box-decoration-break: clone;
-}
+.hero h1 .alt { font-style: normal; color: var(--ink); }
 .hero p.lead { font-size: clamp(1.12rem, 2.2vw, 1.32rem); line-height: 1.5; max-width: 42ch; margin: 22px 0 30px; color: var(--soft); }
 .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
 
