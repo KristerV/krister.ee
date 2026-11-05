@@ -46,23 +46,10 @@ strong { font-weight: 700; color: var(--ink); }
 
 .wrap { max-width: 780px; margin: 0 auto; padding: 0 22px; }
 
-/* ---- Top bar ---- */
-header {
-  position: sticky; top: 0; z-index: 50;
-  background: rgba(255,255,255,.88);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--line);
-}
-.nav { display: flex; align-items: center; justify-content: space-between; height: 62px; }
 .brand { font-family: 'Merriweather', serif; font-weight: 700; font-size: 1.2rem; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; text-decoration: none; white-space: nowrap; color: var(--ink); }
 .brand:hover { text-decoration: none; color: var(--ink); }
 .brand .dot { width: 11px; height: 11px; border-radius: 3px; background: var(--ink); transform: rotate(45deg); flex: none; }
 @media (max-width: 480px){ .brand { font-size: 1.02rem; } }
-.nav-links { display: flex; gap: 24px; align-items: center; font-size: .95rem; }
-.nav-links a { text-decoration: none; color: var(--soft); transition: color .2s; }
-.nav-links a:hover { color: var(--link); text-decoration: none; }
-.nav-links a.lang { color: var(--dim); font-size: .82rem; letter-spacing: .04em; border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; }
-.nav-links a.lang:hover { color: var(--ink); border-color: var(--ink); }
 .btn {
   display: inline-block; background: var(--ink); color: #fff;
   padding: 10px 20px; border-radius: 999px; text-decoration: none;
@@ -74,12 +61,6 @@ header {
 .btn.rust:hover { background: #000; }
 .btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
 .btn.ghost:hover { background: var(--ink); color: #fff; }
-/* nav <a> color must not win over .btn text color */
-.nav-links a.btn { color: #fff; }
-.nav-links a.btn:hover { color: #fff; }
-.nav-links a.btn.ghost { color: var(--ink); }
-@media (max-width: 720px){ .nav-links .hide-sm { display: none; } }
-
 /* ---- Hero ---- */
 .hero { padding: clamp(56px, 9vw, 92px) 0 clamp(40px, 6vw, 60px); }
 .hero .eyebrow {
@@ -97,7 +78,7 @@ header {
 
 /* ---- Sections ---- */
 section { padding: clamp(40px, 7vw, 60px) 0; border-top: 1px solid var(--line); }
-.hero, .about-hero { border-top: 0; }
+.hero { border-top: 0; }
 .section-label { display: none; }   /* the repeated eyebrow titles the client disliked */
 h2.section-title { font-size: clamp(1.6rem, 4vw, 2.1rem); font-weight: 400; max-width: 24ch; margin-bottom: 16px; text-wrap: balance; }
 h2 { font-weight: 400; }
@@ -135,53 +116,11 @@ h3 { font-weight: 700; font-size: 1.1rem; }
 .band .prose a { color: var(--link); }
 .signoff { font-family: 'Merriweather', serif; font-style: italic; font-size: 1.15rem; color: var(--soft); margin-top: 10px; }
 
-/* ---- Pricing ---- */
-.pricing-head { text-align: left; margin-bottom: 1.6rem; }
-.pricing-head h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); font-weight: 400; margin: 0 0 12px; max-width: 20ch; }
-.pricing-head p { color: var(--soft); max-width: 52ch; margin: 0; font-size: 1.05rem; }
-.cards { display: grid; grid-template-columns: 1fr; gap: 1.1rem; align-items: stretch; }
-.card {
-  background: #fff; border: 1px solid var(--edge); border-radius: 16px;
-  padding: 1.5rem 1.6rem; display: flex; flex-direction: column;
-  box-shadow: var(--shadow); transition: box-shadow .2s;
-}
-.card:hover { box-shadow: 0 8px 26px rgba(0,0,0,.09); }
-.card.feature { background: #fff; color: inherit; border-color: var(--ink); }
-.card.feature .card-name, .card.feature h3 { color: var(--ink); }
-.card .badge { display: inline-block; background: var(--hl); color: var(--ink); font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; margin-bottom: 8px; }
-.card-name { display: block; font-family: 'Merriweather', serif; font-size: 1.12rem; font-weight: 700; text-transform: none; letter-spacing: 0; color: var(--ink); margin-bottom: 10px; }
-.card .price {
-  display: inline-flex; align-self: flex-start; align-items: center; gap: .45rem;
-  font-family: 'Merriweather', serif; font-weight: 400; font-size: 1.02rem; line-height: 1.3;
-  background: #fffaf0; border: 1px solid #e6d3a0; border-radius: 999px;
-  padding: .28rem .9rem; color: var(--ink); transform: rotate(-1.5deg);
-  box-shadow: 0 2px 0 #efe1bd;
-}
-.card .price::before { content: ""; width: 7px; height: 7px; border-radius: 50%; border: 1px solid #d9be7f; background: #fff; flex: none; }
-.card .price .unit { font-size: .85em; color: var(--muted); }
-.card.feature .price .unit { color: var(--muted); }
-.card .price-note { font-size: .85rem; color: var(--dim); margin-top: 10px; min-height: 2.2em; }
-.card.feature .price-note { color: var(--dim); }
-.card .desc { margin: 14px 0; font-size: 1rem; color: var(--text); }
-.card.feature .desc { color: var(--text); }
-.card ul { list-style: none; margin: 0 0 18px; display: flex; flex-direction: column; gap: 8px; }
-.card li { font-size: .96rem; padding-left: 1.6rem; position: relative; color: var(--text); }
-.card.feature li { color: var(--text); }
-.card li::before { content: "→"; position: absolute; left: 0; top: 0; color: var(--link); background: none; width: auto; height: auto; transform: none; }
-.card.feature li::before { color: var(--link); background: none; }
-.card .btn { margin-top: auto; align-self: flex-start; }
-.card.feature .btn { background: var(--ink); color: #fff; }
-.card.feature .btn:hover { background: #000; }
-
-/* live proof chip under partner card */
-.proof-now { max-width: 60ch; margin: 1.4rem 0 0; font-size: .97rem; color: var(--soft); background: #fbfaf7; border-radius: 12px; padding: 1rem 1.2rem; }
-.proof-now strong { color: var(--ink); }
-.proof-now .pill { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--soft); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; margin-right: 8px; vertical-align: middle; }
-
 /* ---- Contact ---- */
-.contact { text-align: center; }
-.contact h2 { font-size: clamp(1.8rem, 4.5vw, 2.6rem); font-weight: 400; max-width: 18ch; margin: 0 auto 18px; }
-.contact .prose { margin: 0 auto 28px; text-align: center; }
+.contact-list { list-style: none; display: flex; flex-direction: column; gap: 8px; max-width: 42rem; }
+.contact-list li { display: grid; grid-template-columns: 6rem 1fr; gap: 12px; }
+.contact-list li > span:first-child { color: var(--muted); }
+@media (max-width: 520px){ .contact-list li { grid-template-columns: 1fr; gap: 0; } }
 
 /* ---- Footer ---- */
 footer { border-top: 1px solid var(--line); padding: 30px 0; font-size: .88rem; color: var(--muted); }
@@ -189,12 +128,6 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; font-size: .88rem; 
 .foot .brand { font-weight: 700; }
 .foot a { text-decoration: none; color: var(--muted); }
 .foot a:hover { color: var(--ink); }
-
-/* ---- About page ---- */
-.about-hero { padding: clamp(48px, 8vw, 80px) 0 24px; }
-.about-hero .lead { font-size: clamp(1.12rem, 2.4vw, 1.4rem); line-height: 1.5; max-width: 52ch; color: var(--soft); margin-top: 18px; }
-.about-hero h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); font-weight: 400; max-width: 16ch; }
-.about-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: start; }
 
 .lane { margin-bottom: 44px; }
 .lane:last-child { margin-bottom: 0; }
@@ -206,20 +139,24 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; font-size: .88rem; 
 .itemlist a { color: var(--link); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 .itemlist .what { color: var(--muted); }
 
-/* the "pattern I keep seeing" list → dashed warning box with ✕ markers */
-.lane.warn { border: 1.5px dashed #e2b6a9; border-radius: 16px; padding: 1.3rem 1.6rem; background: #fff; }
-.lane.warn h2 { font-size: 1.1rem; }
-.lane.warn .itemlist li::before { content: "✕"; color: var(--bad); font-size: .9rem; top: .05em; }
 
-/* side card (contact / profile) */
-.sidecard { background: #fff; border: 1px solid var(--edge); border-radius: 16px; padding: 1.5rem 1.6rem; box-shadow: var(--shadow); }
-.sidecard img { width: 76px; height: 76px; border-radius: 14px; object-fit: cover; border: 1px solid var(--line); margin-bottom: 14px; }
-.sidecard h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; }
-.sidecard .role { color: var(--muted); font-size: .92rem; margin-bottom: 18px; }
-.sidecard .links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-.sidecard .links a { text-decoration: none; color: var(--text); display: flex; align-items: center; gap: 9px; }
-.sidecard .links a:hover { color: var(--link); }
-.sidecard .iban { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); font-size: .8rem; color: var(--muted); word-break: break-all; }
+/* ---- One-page extras ---- */
+a.lang { color: var(--dim); font-size: .82rem; letter-spacing: .04em; border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; text-decoration: none; }
+a.lang:hover { color: var(--ink); border-color: var(--ink); text-decoration: none; }
+.hero-top { display: flex; align-items: center; gap: 22px; margin-bottom: 8px; }
+.hero-top img { width: 92px; height: 92px; border-radius: 18px; object-fit: cover; border: 1px solid var(--line); flex: none; }
+.hero-top .eyebrow { margin: 0 0 6px; }
+
+.events { list-style: none; display: flex; flex-direction: column; gap: 10px; margin: 18px 0 8px; max-width: 42rem; }
+.events li { display: grid; grid-template-columns: 7.5rem 1fr; gap: 14px; padding: 14px 16px; border: 1px solid var(--edge); border-radius: 14px; background: #fff; box-shadow: var(--shadow); }
+.events .when { font-weight: 700; color: var(--ink); font-size: .95rem; line-height: 1.4; }
+.events .when small { display: block; font-weight: 400; color: var(--muted); font-size: .82rem; }
+.events .what a { font-weight: 700; }
+.events .where { display: block; color: var(--muted); font-size: .9rem; }
+.events li.past { opacity: .6; box-shadow: none; }
+@media (max-width: 520px){ .events li { grid-template-columns: 1fr; gap: 4px; } }
+.muted { color: var(--muted); }
+h3.sub { font-size: 1.05rem; margin: 30px 0 4px; }
 
 /* reveal-on-scroll (kept, subtle) */
 .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
@@ -228,6 +165,6 @@ footer { border-top: 1px solid var(--line); padding: 30px 0; font-size: .88rem; 
 @media (prefers-reduced-motion: reduce){
   .reveal { opacity: 1; transform: none; }
   .split > div, .split > div:first-child, .split > div:last-child { transform: none; transition: none; }
-  .card .price { transform: none; }
   html { scroll-behavior: auto; }
 }
+.lang-corner { position: absolute; top: 18px; right: 22px; z-index: 10; }
