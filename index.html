@@ -2,11 +2,11 @@
 <html lang="et">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Krister Viirsaar — arendaja, koolitaja, vaibkoodijate sõber</title>
-  <meta name="description" content="Tarkvaraarendaja alates 2014. Koolitan tehisaru turvalist kasutamist (Eesti.ai, Veebikool), aitan vaibkoodijaid ja ehitan oma asju." />
-  <meta property="og:title" content="Krister Viirsaar — arendaja, koolitaja, vaibkoodijate sõber" />
-  <meta property="og:description" content="Koolitan tehisaru turvalist kasutamist, aitan vaibkoodijaid ja ehitan oma asju." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Krister Viirsaar</title>
+  <meta name="description" content="Tarkvaraarendaja alates 2014. Koolitan tehisaru turvalist kasutamist, õpetan programmeerimist ja ehitan oma asju." />
+  <meta property="og:title" content="Krister Viirsaar" />
+  <meta property="og:description" content="Koolitan tehisaru turvalist kasutamist, õpetan programmeerimist ja ehitan oma asju." />
   <meta property="og:locale" content="et_EE" />
   <link rel="alternate" hreflang="et" href="https://krister.ee/" />
   <link rel="alternate" hreflang="en" href="https://krister.ee/en/" />
@@ -15,170 +15,472 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles/site.css" />
   <script defer src="https://a.krister.ee/script.js" data-website-id="29f07a9d-d54a-4a9c-9a85-8c3e8cef8fcd"></script>
+  <style>
+    /* One fixed stage: statement on the left, pixel-portrait on the right; only the text changes between slides. */
+    :root {
+      --paper: #ffffff;
+      --ink: #333;
+      --text: #444;
+      --soft: #666;
+      --dim: #999;
+      --line: #e6e6e6;
+      --link: #3498db;
+      --linkh: #2980b9;
+      --serif: 'Merriweather', Georgia, 'Times New Roman', serif;
+      --ease: cubic-bezier(.65, 0, .35, 1);
+      color-scheme: light;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: var(--serif); font-size: 17px; color: var(--text); background: var(--paper);
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+      overflow: hidden; overscroll-behavior: none; touch-action: none;
+    }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { color: var(--linkh); text-decoration: underline; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; border-radius: 2px; }
+    strong { font-weight: 700; color: var(--ink); }
+
+    #pixels { position: fixed; inset: 0; width: 100%; height: 100%; display: block; z-index: 0; }
+
+    .chrome {
+      position: fixed; left: 0; right: 0; z-index: 3; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px));
+    }
+    .top { top: 0; padding-top: calc(20px + env(safe-area-inset-top, 0px)); }
+    .bottom { bottom: 0; padding-bottom: calc(22px + env(safe-area-inset-bottom, 0px)); }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--ink); font-size: 1rem; white-space: nowrap; }
+    .brand:hover { color: var(--ink); text-decoration: none; }
+    .brand .dot { width: 10px; height: 10px; border-radius: 2px; background: var(--ink); transform: rotate(45deg); flex: none; }
+    .lang { color: var(--dim); font-size: .78rem; letter-spacing: .04em; border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; }
+    .lang:hover { color: var(--ink); border-color: var(--ink); text-decoration: none; }
+
+    /* slide nav: one small square per slide, like the portrait's pixels */
+    .nav { display: flex; align-items: center; gap: 14px; min-width: 0; }
+    .dots { display: flex; gap: 7px; list-style: none; flex-wrap: wrap; }
+    .dots button {
+      width: 11px; height: 11px; border: 1.5px solid #c9c9c9; background: transparent; border-radius: 2px; cursor: pointer;
+      transition: background .3s, border-color .3s, transform .3s;
+    }
+    .dots button:hover { border-color: var(--ink); transform: scale(1.15); }
+    .dots button[aria-current="true"] { background: var(--ink); border-color: var(--ink); }
+    .where { font-size: .8rem; color: var(--dim); white-space: nowrap; font-variant-numeric: tabular-nums; }
+    .where b { color: var(--ink); font-weight: 400; }
+    .arrows { display: flex; gap: 6px; }
+    .arrows button {
+      width: 38px; height: 38px; border-radius: 999px; border: 1px solid var(--line); background: var(--paper);
+      color: var(--soft); font: inherit; font-size: 1rem; cursor: pointer; transition: border-color .2s, color .2s, opacity .3s;
+    }
+    .arrows button:hover { border-color: var(--ink); color: var(--ink); }
+    .arrows button:disabled { opacity: .3; cursor: default; border-color: var(--line); color: var(--soft); }
+
+    /* slides: all stacked in one grid cell; only the active one is visible */
+    .stage {
+      position: fixed; inset: 0; z-index: 2; pointer-events: none; display: flex; align-items: center;
+      padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px));
+    }
+    .slides { display: grid; width: min(34rem, 46vw); margin-left: max(0px, calc((100vw - 1180px) / 2)); }
+    .slide {
+      grid-area: 1 / 1; align-self: center; pointer-events: auto;
+      opacity: 0; visibility: hidden; transform: translateY(var(--from, 18px));
+      transition: opacity .45s ease, transform .6s var(--ease), visibility 0s linear .6s;
+    }
+    .slide.is-active { opacity: 1; visibility: visible; transform: none; transition: opacity .55s ease .38s, transform .75s var(--ease) .3s, visibility 0s; }
+    .slide.is-leaving { opacity: 0; visibility: visible; transform: translateY(var(--to, -14px)); transition: opacity .32s ease, transform .5s var(--ease), visibility 0s linear .5s; }
+
+    .eyebrow { display: block; font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); margin-bottom: 18px; }
+    .statement { font-size: clamp(1.75rem, 3.6vw, 2.9rem); font-weight: 400; line-height: 1.18; letter-spacing: -0.012em; color: var(--ink); text-wrap: balance; }
+    .sub { margin-top: 20px; font-size: clamp(1rem, 1.35vw, 1.1rem); color: var(--soft); max-width: 30rem; text-wrap: pretty; }
+    .go { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: .98rem; }
+    .go a { font-weight: 700; }
+    .go a::after { content: " →"; font-weight: 400; }
+    .copy { font-family: var(--serif); color: var(--ink); user-select: all; }
+    .hint { margin-top: 34px; font-size: .8rem; color: var(--dim); letter-spacing: .02em; }
+    .hint kbd { font-family: inherit; border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; }
+
+    @media (max-width: 760px) {
+      body { font-size: 16px; }
+      .stage { align-items: flex-end; padding-bottom: calc(92px + env(safe-area-inset-bottom, 0px)); }
+      .slides { width: 100%; margin-left: 0; }
+      .statement { font-size: clamp(1.5rem, 6.6vw, 2rem); }
+      .eyebrow { margin-bottom: 12px; }
+      .sub { margin-top: 14px; font-size: .95rem; }
+      .go { margin-top: 18px; }
+      .hint { display: none; }
+      .arrows { display: none; }
+      .where { display: none; }
+      .chrome.bottom { justify-content: center; }
+    }
+    @media (max-height: 520px) and (min-width: 761px) {
+      .statement { font-size: 1.6rem; }
+      .hint { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .slide, .slide.is-active, .slide.is-leaving { transform: none; transition-duration: .2s; transition-delay: 0s; }
+    }
+  </style>
 </head>
 <body>
+  <canvas id="pixels" aria-hidden="true"></canvas>
 
-  <a href="en/" class="lang lang-corner" hreflang="en">EN</a>
+  <header class="chrome top">
+    <a class="brand" href="#tere"><span class="dot"></span>Krister Viirsaar</a>
+    <a href="en/" class="lang" hreflang="en">EN</a>
+  </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-top">
-        <img src="img/profile1.jpg" alt="Krister Viirsaar" />
-        <div>
-          <span class="eyebrow">Arendaja · koolitaja · ettevõtja</span>
-          <h1>Krister Viirsaar</h1>
-        </div>
-      </div>
-      <p class="lead">Ehitan tarkvara ja äri alates 2014. aastast. Praegu koolitan palju, peamiselt sellest, kuidas tehisaru <strong>turvaliselt</strong> kasutada. Ja aitan vaibkoodijaid, et nende äpid ka päriselt püsti püsiks.</p>
+  <main class="stage">
+    <div class="slides" id="slides">
+
+      <section class="slide" data-key="tere" data-look="portrait" aria-label="Tere">
+        <span class="eyebrow">Arendaja · koolitaja · ettevõtja</span>
+        <h1 class="statement">Ehitan tarkvara ja äri alates 2014. aastast.</h1>
+        <p class="sub">Iga järgmine slaid on üks asi, millega praegu tegelen.</p>
+        <p class="hint">Keri, pühi või vajuta <kbd>→</kbd></p>
+      </section>
+
+      <section class="slide" data-key="eesti-ai" data-look="glitch" aria-label="Eesti.ai">
+        <span class="eyebrow">Eesti.ai</span>
+        <h2 class="statement">Õpetan inimestele, kuidas tehisaru turvaliselt kasutada.</h2>
+        <p class="sub">Tasuta koolitused algatuses „Kõige AI-targem rahvas“. Näitan saalis päris mudelite päris vastuseid, mitte slaide sellest, mis võiks juhtuda.</p>
+        <p class="go"><a href="https://fienta.com/et/o/eestiai">Koolitused Fientas</a></p>
+      </section>
+
+      <section class="slide" data-key="veebikool" data-look="spread" aria-label="Veebikool">
+        <span class="eyebrow">Veebikool</span>
+        <h2 class="statement">Õpetan programmeerimist ja vaibkoodimist.</h2>
+        <p class="sub">12-nädalane programmeerimise õpiprogramm algab 12. jaanuaril 2027, veebis ja otse teisipäeviti.</p>
+        <p class="go"><a href="https://veebikool.ee/opiprogramm-programmeerimine/">Õpiprogramm</a><a href="https://veebikool.ee/koolituskalender/">Koolituskalender</a></p>
+      </section>
+
+      <section class="slide" data-key="technotln" data-look="flip" aria-label="TechnoTLN">
+        <span class="eyebrow">TechnoTLN</span>
+        <h2 class="statement">Olen programmeerimise õpetaja.</h2>
+        <p class="sub">TechnoTLN on endine Tallinna Polütehnikum.</p>
+        <p class="go"><a href="https://technotln.ee">technotln.ee</a></p>
+      </section>
+
+      <section class="slide" data-key="gold-adam" data-look="stack" aria-label="Gold Adam">
+        <span class="eyebrow">Gold Adam</span>
+        <h2 class="statement">Hoian vaibkooditud äpi püsti.</h2>
+        <p class="sub">Nende meeskond vaibkoodib siseäppi. Mina hoian korras turvalisuse, serverid, varunduse ja andmed.</p>
+        <p class="go"><a href="https://goldadam.ee">goldadam.ee</a></p>
+      </section>
+
+      <section class="slide" data-key="viru-keskus" data-look="bars" aria-label="Viru Keskus">
+        <span class="eyebrow">Viru Keskus</span>
+        <h2 class="statement">Juhin andmelao ja BI-platvormi meeskonda.</h2>
+        <p class="sub">Ka mina olen siin praegu lihtsalt üks tulpdiagramm.</p>
+      </section>
+
+      <section class="slide" data-key="tinkr" data-look="spread-wide" aria-label="Tinkr.tech">
+        <span class="eyebrow">Tinkr.tech</span>
+        <h2 class="statement">Õpi programmeerima projekte ehitades.</h2>
+        <p class="go"><a href="https://tinkr.tech">tinkr.tech</a></p>
+      </section>
+
+      <section class="slide" data-key="kirbs" data-look="flip-small" aria-label="Kirbs.ee">
+        <span class="eyebrow">Kirbs.ee</span>
+        <h2 class="statement">Müü oma laste riided vaevata.</h2>
+        <p class="go"><a href="https://kirbs.ee">kirbs.ee</a></p>
+      </section>
+
+      <section class="slide" data-key="liid" data-look="rows" aria-label="Liid.ee">
+        <span class="eyebrow">Liid.ee</span>
+        <h2 class="statement">Tehisaru leiab sulle müügivihjed.</h2>
+        <p class="sub">Baltikumi ja Põhjamaade ettevõtetele.</p>
+        <p class="go"><a href="https://liid.ee">liid.ee</a></p>
+      </section>
+
+      <section class="slide" data-key="3d" data-look="voxel" aria-label="3D-printimine">
+        <span class="eyebrow">3D-printimine</span>
+        <h2 class="statement">Disainin ja prindin 3D-s.</h2>
+        <p class="go"><a href="https://www.thingiverse.com/kristerv/designs">Minu disainid Thingiverse'is</a></p>
+      </section>
+
+      <section class="slide" data-key="kontakt" data-look="portrait" aria-label="Kontakt">
+        <span class="eyebrow">Kontakt</span>
+        <h2 class="statement">Räägime.</h2>
+        <p class="sub">Broneeri tasuta videokõne või kirjuta <span class="copy">krister.viirsaar@gmail.com</span></p>
+        <p class="go"><a href="https://cal.com/krister-viirsaar-zho32l/1h">Broneeri kõne</a><a href="https://www.linkedin.com/in/kristerv/">LinkedIn</a><a href="https://discord.com/users/kristerv">Discord</a></p>
+      </section>
+
     </div>
-  </section>
+  </main>
 
-  <!-- KONTAKT -->
-  <section id="kontakt">
-    <div class="wrap">
-      <h2 class="section-title">Kontakt</h2>
-      <ul class="contact-list">
-        <li><span>Kõne</span><a href="https://cal.com/krister-viirsaar-zho32l/1h">Broneeri tasuta videokõne</a></li>
-        <li><span>E-post</span><a href="mailto:krister.viirsaar@gmail.com">krister.viirsaar@gmail.com</a></li>
-        <li><span>Mujal</span><span><a href="https://www.linkedin.com/in/kristerv/">LinkedIn</a> · <a href="https://discord.com/users/kristerv">Discord</a> · <a href="https://www.youtube.com/watch?v=tjrc4RemiSE">Intervjuu</a></span></li>
-        <li><span>IBAN</span>EE987700771001379001</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- KOOLITUSED -->
-  <section id="koolitused">
-    <div class="wrap">
-      <h2 class="section-title reveal">Räägin tehisaru turvalisest kasutamisest.</h2>
-      <div class="prose reveal">
-        <p>Koolitan <a href="https://eesti.ai">Eesti.ai</a> algatuse „Kõige AI-targem rahvas“ ja <a href="https://veebikool.ee">Veebikooli</a> heaks. Kuulajad on tavalised inimesed, kes kasutavad tehisaru tööl, mitte progejad. Näitan saalis päris mudelite päris vastuseid, mitte slaide sellest, mis <em>võiks</em> juhtuda.</p>
-      </div>
-      <ul class="itemlist reveal" style="max-width:42rem; margin-top:8px;">
-        <li><strong>Mida tehisaruga jagada.</strong> <span class="what">Mis su arvutist tegelikult välja läheb ja kuhu see jõuab.</span></li>
-        <li><strong>Promptisüst.</strong> <span class="what">Kui AI võtab veebilehe, e-kirja või allalaaditud faili sisu käskluseks.</span></li>
-        <li><strong>AI-agendid ja õigused.</strong> <span class="what">Mida võib agent ise teha ja millal peab inimene enne kinnitama.</span></li>
-        <li><strong>Hallutsinatsioonid ja kontroll.</strong> <span class="what">Miks sama küsimus annab eri vastuse ja mida alati üle vaadata.</span></li>
-        <li><strong>Vaibkooditud äppide turvalisus.</strong> <span class="what">Lekkinud võtmed, puuduvad kontrollid ja andmed, mis lähevad katki.</span></li>
-      </ul>
-
-      <h3 class="sub reveal">Koolitused</h3>
-      <ul class="events reveal" id="events" data-past-label="toimunud">
-        <li data-date="2026-11-18">
-          <span class="when">18. nov<small>K 17:00–20:00</small></span>
-          <span class="what"><a href="https://fienta.com/et/viimsi-turvaline-tehisaru-kasutus-ja-riskide-maandamine">Turvaline tehisaru kasutus ja riskide maandamine</a><span class="where">Viimsi Raamatukogu, Haabneeme · tasuta · Eesti.ai</span></span>
-        </li>
-        <li data-date="2026-11-19">
-          <span class="when">19. nov<small>N 16:00–19:00</small></span>
-          <span class="what"><a href="https://fienta.com/et/tallinn-tehisaru-kontoritoos">Tehisaru kontoritöös</a><span class="where">Kadaka Konverentsikeskus, Tallinn · tasuta · Eesti.ai</span></span>
-        </li>
-        <li data-date="2026-11-20">
-          <span class="when">20. nov<small>R 16:00–19:00</small></span>
-          <span class="what"><a href="https://fienta.com/et/tallinn-tehisaru-ja-loovus-voimalused-riskid-ja-vastutus">Tehisaru ja loovus: võimalused, riskid ja vastutus</a><span class="where">Kadaka Konverentsikeskus, Tallinn · tasuta · Eesti.ai</span></span>
-        </li>
-        <li data-date="2027-01-12">
-          <span class="when">12. jaan 2027<small>12 nädalat</small></span>
-          <span class="what"><a href="https://veebikool.ee/opiprogramm-programmeerimine/">Programmeerimise õpiprogramm</a><span class="where">Veebikool · veebis, live teisipäeviti</span></span>
-        </li>
-        <li data-date="2026-10-13">
-          <span class="when">13. okt<small>T 19:00–22:00</small></span>
-          <span class="what"><a href="https://veebikool.ee/kasuta-ai-targalt/">Kasuta tehisaru targalt. Väldi ohukohti.</a><span class="where">Veebikool · veebiseminar · minu osa: mida AI-le mitte anda ja mida alati kontrollida</span></span>
-        </li>
-        <li>
-          <span class="when">Salvestus</span>
-          <span class="what"><a href="https://veebikool.ee/toode/programmeerimine-vaibkoodijatele-praktiline-tootuba/">Programmeerimine vaibkoodijatele</a><span class="where">Veebikool · järelvaadatav · 4-tunnine töötuba: loogika-, struktuuri- ja koodivead</span></span>
-        </li>
-        <li>
-          <span class="when">Salvestus</span>
-          <span class="what"><a href="https://veebikool.ee/vaibkoodimise-opiprogramm/">Vaibkoodimise meistriklass</a><span class="where">Veebikool · järelvaadatav · minu osa: algoritmiline mõtlemine</span></span>
-        </li>
-      </ul>
-      <p class="muted reveal" style="max-width:42rem; font-size:.95rem;">Kõik Eesti.ai tasuta koolitused on <a href="https://fienta.com/et/o/eestiai">Fientas</a>, Veebikooli omad <a href="https://veebikool.ee/koolituskalender/">koolituskalendris</a>.</p>
-
-    </div>
-  </section>
-
-  <!-- VAIBKOODIJAD -->
-  <section id="vaibkoodijad">
-    <div class="wrap">
-      <h2 class="section-title reveal">Vaibkoodijate sõber.</h2>
-      <div class="prose reveal">
-        <p>Mulle meeldib, et ideed ei jää enam metsikute arvete taha kinni. Olen liiga palju näinud, kuidas üks nupp maksab 500&nbsp;€. Kui inimesed saavad lihtsad asjad ise tehtud, on see hea.</p>
-      </div>
-      <div class="split reveal" style="margin-top: 26px;">
-        <div class="you">
-          <span class="tag">Sina</span>
-          <h3>Teed äriloogikat</h3>
-          <p>Sina tead, mida su äril vaja on, ja vaibkoodid just selle osa.</p>
-        </div>
-        <div class="me">
-          <span class="tag">Mina</span>
-          <h3>Hoian tehnilise poole korras</h3>
-          <p>Turvalisus, serverid, varundus ja andmed, mis ei lähe katki ka siis, kui kasutajaid tuleb juurde.</p>
-        </div>
-      </div>
-      <div class="prose reveal" style="margin-top: 32px;">
-        <p>Kui ehitad asja iseendale, pole sul ilmselt abi vaja. Aga kui vaibkoodid <strong>mitme inimese tööprotsesse</strong>, muutuvad turvalisus ja andmete terviklikkus järsku tähtsaks. Nii teen seda praegu <a href="https://goldadam.ee">Gold Adamiga</a>: nende meeskond vaibkoodib siseäppi, mina hoian selle töökindla.</p>
-        <p>Kui oled oma asja juba valmis teinud ja jäid millegagi hätta, broneeri kõne ja vaatame koos üle. Luban, et mu esimene reaktsioon ei ole „kirjuta nullist ümber“.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRAEGU -->
-  <section id="praegu">
-    <div class="wrap">
-      <h2 class="section-title reveal">Millega praegu tegelen</h2>
-      <ul class="itemlist reveal" style="max-width:42rem;">
-        <li><a href="https://goldadam.ee">Gold Adam</a> <span class="what">— siseäpi tehniline partner.</span></li>
-        <li><a href="https://eesti.ai">Eesti.ai</a> ja <a href="https://veebikool.ee">Veebikool</a> <span class="what">— koolitan tehisaru turvalist kasutamist, vaibkoodimist ja programmeerimist.</span></li>
-        <li><a href="https://technotln.ee">TechnoTLN</a> <span class="what">— õpetan programmeerimist (endine Polütehnikum).</span></li>
-        <li><strong>Viru Keskus</strong> <span class="what">— juhin andmelao ja BI-platvormi meeskonda.</span></li>
-        <li><a href="https://tinkr.tech">Tinkr.tech</a> <span class="what">— õpi programmeerima projekte ehitades.</span></li>
-        <li><a href="https://kirbs.ee">Kirbs.ee</a> <span class="what">— müü oma laste riided vaevata.</span></li>
-        <li><a href="https://liid.ee">Liid.ee</a> <span class="what">— AI-põhine müügivihjete generaator Baltikumi ja Põhjamaade jaoks.</span></li>
-        <li><a href="https://www.thingiverse.com/kristerv/designs">3D-printimine ja disain</a></li>
-      </ul>
-
-      <h3 class="sub reveal">Varem</h3>
-      <ul class="itemlist reveal" style="max-width:42rem; margin-top:12px;">
-        <li><a href="https://randomforest.ee/">random forest OÜ</a> <span class="what">— asutasin tarkvaraarenduse agentuuri.</span></li>
-        <li><strong>Toitla</strong> <span class="what">— „Uber toitlustusele“ aastast 2016. Kliente üle Tallinna, pankadest idufirmadeni.</span></li>
-        <li><strong>SavvyBooks</strong> <span class="what">— krüpto jälgimine ja USA maksud.</span></li>
-        <li><a href="https://code.krister.ee">code.krister.ee</a> <span class="what">— tehniline blogi.</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <footer>
-    <div class="wrap foot">
-      <span class="brand" style="font-size:1.1rem;"><span class="dot"></span>Krister Viirsaar</span>
-      <span>© 2026 Krister Viirsaar</span>
+  <footer class="chrome bottom">
+    <nav class="nav" aria-label="Slaidid">
+      <ol class="dots" id="dots"></ol>
+      <span class="where" id="where"></span>
+    </nav>
+    <div class="arrows">
+      <button type="button" id="prev" aria-label="Eelmine">↑</button>
+      <button type="button" id="next" aria-label="Järgmine">↓</button>
     </div>
   </footer>
 
   <script>
-    // Sort trainings: upcoming (soonest first), then past (latest first), then undated recordings; mark past ones
-    (function () {
-      const today = new Date().toISOString().slice(0, 10);
-      const list = document.getElementById('events');
-      const items = [...list.children];
-      const rank = li => { const d = li.dataset.date; return !d ? 2 : (li.dataset.end || d) < today ? 1 : 0; };
-      items.forEach(li => {
-        if (rank(li) === 1) {
-          li.classList.add('past');
-          li.querySelector('.when').insertAdjacentHTML('beforeend', '<small>' + list.dataset.pastLabel + '</small>');
+  (() => {
+    // ---------- pixel data: 40×40 grid from img/profile1.jpg, background removed ("------" = empty) ----------
+    const N = 40;
+    const RAW = "------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------8d877a847a6d8e84768072628476688e8374b0aba1------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------8a817782786e65584e5c4b3d5946394f3d30433328503d316049396e56467c695c7d695f------------------------------------------------------------------------------------------------------------------------------------------------------------------7f74685a4a4236282242322842302636272039271e48352a513a2c4f392c433026573f316045386b4f417661548b7d74a8a095------------------------------------------------------------------------------------------------------------------------------9b91856151483e2f292c211c34261f49362c4c372d4c382d432f243f2d214932263e2a1e33211732201627160f311f17412a204a352b56423975665c------------------------------------------------------------------------------------------------------------------9f988c6754494936303b2a23241916433129523f32523a2f5b4234543c304c372a543c2d5a3e2f53372955392b54382a3b281d1c0f0a21120d2f1e183b2a2564574e------------------------------------------------------------------------------------------------------a69d91725f546753484f3d34281d182a1d184a352b3e2a2136221a432d225a3f336144355d41305a3a2a5a3a2951342455372938241828160e20110b1609061f110f3829236e6760------------------------------------------------------------------------------------------------7f6c606451464a382f2c1e1a30221b3e2d2436241b301e173f2b214e352a5134285839295c3927512f1f5935234a2c1b42251844291d3a2417311c1227150e1b0c0930201b8b7e77------------------------------------------------------------------------------------------877a6d58433d3f2f2b33251f3928213d2c233a261d33211a3f2a1f583b2d50302055301f58311e4a2614603421673a26623a25522e1e5331245536284e32263c231835201932211a75645b------------------------------------------------------------------------------------------66534b463531402e294a352d49342b4d352c422c214e3528533424533220542b176e36206c341c54250f6e341d77391f6e381f572a16603828653c2d5e3b2d6243354e3226432921624b43------------------------------------------------------------------------------------94857c56453f3829263f2d2735241c3b271e462e22432c1f573929583624502b195d2c15884525965334733317803a1d8d49277d3a1c692f16622e176b341f653a297a503d7f523c916650846b5f------------------------------------------------------------------------------------8a7d784637342f211f36261f332019382319503427482c1c523321522e1c5027136f381ca6653fb46f4c9b4f2ea85c36ac6037974d28843c1e833c1e77351b824a2fa2674aba7d5bc79470c7b6a7------------------------------------------------------------------------------------------42353430242133221a3421183e281b402718482c1a5d3825522a165f3017844928bc7d57d0906bbf754ed28a5ed28454be6d3eaf5f33af5e33b56b46c38562dba380e8b18ce6b28ad9bfa7------------------------------------------------------------------------------------------4e444233272339271f3d281c42291b472a1853301c6034215f321a673217935531ce9169dfa27be3a179e5a072e89d6ce89967e39563e39b6be7a981f0bd9bf6c6a4f7c8a4f6c39cecc7a7------------------------------------------------------------------------------------------554b48382b283c29203925164127164f2d1a572f1a65351f6532196c3317ac6e48d99e74e6a981e6a67ce9a376eea675f3ae7bf7b784fac092fbc49cfbc9a3fccfa9fcd2aefacba6f6c59d------------------------------------------------------------------------------------------5f53503a2b243b271b3f27184a2c18512d185b30196b361d7a3d21985733c88759db9969e29f70e5a277eca87af4b284f9bd8efcc596fccc9efcd3aafddab3fcd4acfdd4aefcd8b4fcd0a7eddbcc------------------------------------------------------------------------------------524744392821452c1f4b2c1b58321f542d1969371f783f23a46039c98554d99764df9967e59e6feaa77cf7ba91fcd0adfbd1adfccea6fcca9ffcc396fbc397fcd2acfcd6b0fdddbefcdab8f5d9c3------------------------------------------------------------------------------------493c3b36251f513122552e1d5f3421683820713b21844a2abe7e4fd99562dc9865de9967e29b6cefac81ecad86d99873c17754b9714fba7451c57e56ca7e54e49e71f5ba8df8c39ff6c29af2c7a5------------------------------------------------------------------------------------6f615c573a308e583f8a4e32723e287a442a7a40258d522ec88757dd9b65de9966df9b69df9a6bd68d63b86a439947278131166b280f5b1f0961230b742e13954826cd8252d98f62b07252875e4f------------------------------------------------------------------------------------c4ad9ec67057d88463d48160b77452935434985a36a7663dd69462e29d69de9865d99461c47847a9582f8a381b792b1167210b4b1506410d035e1c0570280c893718c47544b46d48763e2fa77e6f------------------------------------------------------------------------------------cb9988c9775ecb7d5ac26d4ecc7e58b8734cbe7a52cd8758e7a56fe9a571e7a372d6915eb26535923f1f7f311780371b8b563353311e410c035618056a270fa74d27eda676b77f5c77574abeada6------------------------------------------------------------------------------------d0a08fd98c6ee49a78c57e5fbe6f49d8966cd89365e59e6beba671eca673eca878e7a06ed58955c77646bc683db95c34bb5d36ab583489361b853319934528c46d44fac3a1e5b18fc28e79------------------------------------------------------------------------------------------d7b7aae29277bd62447a2819d38a66e3a47adb9566de9460e0935fe29763e79e6ceea674f0a575ec9c6adf8a5ac76a3dbb5a30c2653ec16a45bd663ccd784de69770fabb9efbd2b4e0a88e------------------------------------------------------------------------------------------------e09278a7412fa3442ed98c66d69369ce865bca7e4dca7b48d38851e29963eba170f0a475f7a778f6a375f19c6def996bf19f73ed9a70e59066e89c77f3b192fbbda0fccbaff9c7ab------------------------------------------------------------------------------------------------d2a89cce7861d98769c16b52c78157c47d54be7348c17543c87b46d88d56e19762e89a6aeb996cf0986af7a277fbad83f9ab84f7a57dea9568e4916bf1a58afbbfa6fccab6fccfba------------------------------------------------------------------------------------------------------ca917fd99577ce7e5bb96e46c48056c77f53c9804fc97d48cb7f4ad48754db8c5ce69565f2a071f6a274f8a678f5a173e68d5dca6a3de18a69f1a081fcbca4fcbfaafcc6b2f1d1c4------------------------------------------------------------------------------------------------------d2a593cb7f62c77955c68158c98559d08857d08752cb814bc77a46ce804ed58352dc8756dc8050dc7d4ed37141b24d29a64327d17757e58f6dd87e5cd57b5de79174eab29f------------------------------------------------------------------------------------------------------------bfa394a96445c17d57c78458d18958d38a56ce844ec77b45c0703cb76435b4592eb15128af4b24a33f1ca84726af53339641288839207a301f813a2ba76957d6c1b7------------------------------------------------------------------------------------------------------------------b77758bc7954c17f54cb8356d28955cd804bc5763fb96833a35025a24a23a0431c973c1697421fa2522fa053328d432a73321d6f3624a16c53------------------------------------------------------------------------------------------------------------------------------bc7d5fbb7552ba794ec48052ca814ec97b45c2723db76430ad5828ad57289f441b80341265250c732d1483351e7c2f1c863926994b3bb68e80------------------------------------------------------------------------------------------------------------------------------bf8768bc7751b37348b9784bbe7744bc703cb46431ae5a2ba75327a85225963e15782a09813315913b229234259b372db0514cc96c69------------------------------------------------------------------------------------------------------------------------------------c38d6cc17d56b27044ad6d41af6c3cad6333a95b2da14e269d49219c491d9c4519a0481db25e2dbc6a38ba643fb4533cb75a48c67c6a------------------------------------------------------------------------------------------------------------------------------------c6916cc68359bc784cab693c9e5b309d582ca15628a25225a45224a35323ae5c28b3612cb86831be6c38b56336a8603c9d6345aa7c5e------------------------------------------------------------------------------------------------------------------------------------c9926bc78459c37c4cb36f3da26033914c248e47209e5224ab5c2ab5652ebd6d34c47439c2733cc1713dc06f3eb56b4199593abd9177------------------------------------------------------------------------------------------------------------------------------------ca9068c9865bc57e4db36e3ba86536a25f2f904b22873e1991481ea65b29bb6f36c57a3ecd7e47cc814ad58857cd8357ba7650d9a989------------------------------------------------------------------------------------------------------------------------------7d6156cc8d61c78457c27848b46b38ad6735a461309b58298f4c21813d196e34147d3f1ca25d2ebc703dc17745c37a4ec17d53b27651c19678------------------------------------------------------------------------------------------------------------------504e55504b4f926448ce8d5ec98653bc7240b46938b06734a86631a15f2c9451247235133412042e0f044c210c71381874391a7f442779462d6f4431a98f81------------------------------------------------------------------------------------------------------------60636b41404741373ab97b53ce8c5cc88550bc723fb46938b46b34b46e36b16e36a76630884d234d240e1906021002012c120a3b1d11331d1551423d8c7c77------------------------------------------------------------------------------------------------------------5c616b4a4b5536363c3732329e623ec88756c2804cb9733fb86e3bb46a36b96f39b57037ad6c37a4602f8b4b246b32126d3514a0633a5a3826191313454147------------------------------------------------------------------------------------------------------------525766484d5b3d3d492b2b31353033673b23b17043ba7846b87541b9713eb56a39b06634ac6632a4602e9754279047218c451e945428b071415d3923120b0a2925294b4952------------------------------------------------------------------------------";
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const P = [];
+    for (let i = 0; i < N * N; i++) {
+      const h = RAW.substr(i * 6, 6);
+      if (h === '------') continue;
+      const r = parseInt(h.slice(0, 2), 16), g = parseInt(h.slice(2, 4), 16), b = parseInt(h.slice(4, 6), 16);
+      P.push({
+        gx: i % N, gy: Math.floor(i / N), col: '#' + h, lum: 0.299 * r + 0.587 * g + 0.114 * b,
+        x: 0, y: 0, fx: 0, fy: 0, tx: 0, ty: 0, cx: 0, cy: 0, s: 0, fs: 0, ts: 0,
+        delay: 0, ox: 0, oy: 0, vx: 0, vy: 0, hop: 0
+      });
+    }
+    const byLum = [...P].sort((a, b) => a.lum - b.lum);
+
+    // ---------- canvas ----------
+    const cv = document.getElementById('pixels'), ctx = cv.getContext('2d');
+    let W = 0, H = 0, dpr = 1;
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = innerWidth; H = innerHeight;
+      cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    // Where the portrait lives: right half on desktop, top part on phones.
+    function box() {
+      if (W <= 760) {
+        const size = Math.min(W * 0.62, H * 0.36);
+        return { cx: W / 2, cy: Math.max(size / 2 + 70, H * 0.27), size };
+      }
+      const size = Math.min(W * 0.36, H * 0.62, 520);
+      return { cx: Math.min(W * 0.72, W / 2 + 570 - size / 2), cy: H * 0.5, size };
+    }
+
+    // ---------- looks: each slide arranges the same pixels differently ----------
+    // Each returns, per particle, a target centre (in grid cells, origin = grid centre) and a draw size (fraction of a cell).
+    const looks = {
+      portrait: p => ({ x: p.gx, y: p.gy, s: .92 }),
+      flip:     p => ({ x: N - 1 - p.gx, y: p.gy, s: .92 }),
+      'flip-small': p => ({ x: (N - 1 - p.gx) * .8 + 4, y: p.gy * .8 + 8, s: .74 }),
+      spread:   p => ({ x: (p.gx - 19.5) * 1.18 + 19.5, y: (p.gy - 19.5) * 1.18 + 19.5, s: .6 }),
+      'spread-wide': p => ({ x: (p.gx - 19.5) * 1.3 + 19.5, y: p.gy, s: .5 }),
+      glitch: p => {
+        const bands = [[9, 12, 3], [17, 18, -4], [24, 27, 2], [33, 34, -2]];
+        let dx = 0; for (const [a, b, d] of bands) if (p.gy >= a && p.gy <= b) dx = d;
+        return { x: p.gx + dx, y: p.gy, s: .92 };
+      },
+      rows: p => ({ x: p.gx + (p.gy % 2 ? .5 : -.5), y: p.gy, s: .92 }),
+      stack: p => {
+        // the portrait split into three blocks, stacked like a server rack
+        const part = p.gy < 14 ? 0 : p.gy < 27 ? 1 : 2;
+        return { x: p.gx + [-1.5, 1.5, -1][part], y: p.gy + [-1.2, 0, 1.2][part], s: .92 };
+      },
+      voxel: p => {
+        // isometric shear, like a print seen from the side
+        const x = p.gx, y = p.gy;
+        return { x: x * .86 + 3, y: y * .86 + x * .28 - 2, s: .78 };
+      },
+      bars: (p, i) => barsLayout[i]
+    };
+
+    // Bar chart: pixels sorted dark→light, poured into 8 columns, darkest at the bottom.
+    const barsLayout = new Array(P.length);
+    (function buildBars() {
+      const hts = [.38, .52, .46, .66, .58, .8, .72, 1], cols = 4, gap = 1;
+      const sum = hts.reduce((a, b) => a + b, 0);
+      let counts = hts.map(h => Math.round(P.length * h / sum));
+      counts[counts.length - 1] += P.length - counts.reduce((a, b) => a + b, 0);
+      let k = 0;
+      counts.forEach((n, c) => {
+        for (let j = 0; j < n; j++, k++) {
+          const p = byLum[k], idx = P.indexOf(p);
+          barsLayout[idx] = { x: c * (cols + gap) + (j % cols) + 0.5, y: 39 - Math.floor(j / cols), s: .86 };
         }
       });
-      items.sort((a, b) => rank(a) - rank(b) || (rank(a) === 0 ? -1 : 1) * ((b.dataset.date || '').localeCompare(a.dataset.date || '')))
-           .forEach(li => list.appendChild(li));
     })();
 
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    function targets(look) {
+      const b = box(), cs = b.size / N, f = looks[look] || looks.portrait;
+      return P.map((p, i) => {
+        const t = f(p, i);
+        return { x: b.cx + (t.x - 19.5) * cs, y: b.cy + (t.y - 19.5) * cs, s: t.s * cs };
+      });
+    }
+
+    // ---------- transitions ----------
+    const DUR = reduce ? 1 : 1150;
+    let t0 = 0, animating = false;
+    function morph(look, opts = {}) {
+      const T = targets(look), b = box();
+      const amp = opts.scatter ?? b.size * 0.35;
+      P.forEach((p, i) => {
+        p.fx = p.x; p.fy = p.y; p.fs = p.s;
+        p.tx = T[i].x; p.ty = T[i].y; p.ts = T[i].s;
+        // curved path through a random control point → pixels visibly rearrange
+        const a = Math.random() * Math.PI * 2, r = amp * (0.3 + Math.random() * 0.7);
+        p.cx = (p.fx + p.tx) / 2 + Math.cos(a) * r;
+        p.cy = (p.fy + p.ty) / 2 + Math.sin(a) * r;
+        p.delay = opts.order ? opts.order(p) : Math.random() * 0.38;
+      });
+      t0 = performance.now(); animating = true;
+    }
+    function snap(look) {
+      const T = targets(look);
+      P.forEach((p, i) => { p.x = p.tx = T[i].x; p.y = p.ty = T[i].y; p.s = p.ts = T[i].s; });
+      animating = false;
+    }
+    const ease = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    // ---------- pointer: pixels shy away from the cursor ----------
+    let mx = -1e4, my = -1e4;
+    addEventListener('pointermove', e => { if (e.pointerType === 'mouse') { mx = e.clientX; my = e.clientY; } }, { passive: true });
+    document.addEventListener('pointerleave', () => { mx = my = -1e4; });
+
+    // ---------- render loop ----------
+    let lastHop = 0;
+    function frame(now) {
+      ctx.clearRect(0, 0, W, H);
+      const b = box(), R = b.size * 0.13, R2 = R * R, push = b.size * 0.06;
+      let done = true;
+
+      // idle: every so often a pixel hops out of place and settles back
+      if (!reduce && !animating && now - lastHop > 140) {
+        lastHop = now;
+        const p = P[(Math.random() * P.length) | 0];
+        p.hop = 1;
+      }
+
+      for (const p of P) {
+        if (animating) {
+          let t = ((now - t0) / DUR - p.delay) / (1 - 0.38);
+          t = Math.max(0, Math.min(1, t));
+          if (t < 1) done = false;
+          const e = ease(t), u = 1 - e;
+          p.x = u * u * p.fx + 2 * u * e * p.cx + e * e * p.tx;
+          p.y = u * u * p.fy + 2 * u * e * p.cy + e * e * p.ty;
+          p.s = p.fs + (p.ts - p.fs) * e;
+        }
+        // spring offset (mouse + hops)
+        if (!reduce) {
+          const dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
+          if (d2 < R2) { const d = Math.sqrt(d2) || 1, f = (1 - d / R) * push; p.vx += dx / d * f * 0.12; p.vy += dy / d * f * 0.12; }
+          if (p.hop > 0) { p.vy -= p.s * 0.5; p.hop = 0; }
+          p.vx += -p.ox * 0.08; p.vy += -p.oy * 0.08;
+          p.vx *= 0.82; p.vy *= 0.82;
+          p.ox += p.vx; p.oy += p.vy;
+        }
+        ctx.fillStyle = p.col;
+        const s = p.s;
+        ctx.fillRect(p.x + p.ox - s / 2, p.y + p.oy - s / 2, s, s);
+      }
+      if (animating && done) animating = false;
+      requestAnimationFrame(frame);
+    }
+
+    // ---------- slides ----------
+    const slides = [...document.querySelectorAll('.slide')];
+    const keys = slides.map(s => s.dataset.key);
+    const dots = document.getElementById('dots'), where = document.getElementById('where');
+    const prevB = document.getElementById('prev'), nextB = document.getElementById('next');
+    slides.forEach((s, i) => {
+      const li = document.createElement('li'), b = document.createElement('button');
+      b.type = 'button'; b.title = s.getAttribute('aria-label'); b.setAttribute('aria-label', s.getAttribute('aria-label'));
+      b.addEventListener('click', () => go(i));
+      li.appendChild(b); dots.appendChild(li);
+    });
+    const dotBtns = [...dots.querySelectorAll('button')];
+
+    let cur = -1, lockUntil = 0;
+    const LOCK = reduce ? 300 : 950;
+
+    function show(i, animate) {
+      const dir = i > cur ? 1 : -1;
+      slides.forEach((s, j) => {
+        s.classList.remove('is-active', 'is-leaving');
+        s.style.setProperty('--from', (dir * 18) + 'px');
+        s.style.setProperty('--to', (-dir * 14) + 'px');
+        if (j === cur && animate) s.classList.add('is-leaving');
+        s.inert = j !== i;
+      });
+      slides[i].classList.add('is-active');
+      dotBtns.forEach((b, j) => b.setAttribute('aria-current', j === i ? 'true' : 'false'));
+      where.innerHTML = '<b>' + String(i + 1).padStart(2, '0') + '</b> / ' + String(slides.length).padStart(2, '0') + ' · ' + slides[i].getAttribute('aria-label');
+      prevB.disabled = i === 0; nextB.disabled = i === slides.length - 1;
+      const look = slides[i].dataset.look;
+      if (animate) morph(look); else snap(look);
+      cur = i;
+      const h = '#' + keys[i];
+      if (location.hash !== h) history.replaceState(null, '', i === 0 ? location.pathname + location.search : h);
+    }
+
+    function go(i) {
+      i = Math.max(0, Math.min(slides.length - 1, i));
+      if (i === cur) return;
+      const now = performance.now();
+      if (now < lockUntil) return;
+      lockUntil = now + LOCK;
+      show(i, true);
+    }
+
+    // wheel / trackpad: one gesture = one slide, momentum tails are ignored
+    let lastWheel = 0, lastMag = 0;
+    addEventListener('wheel', e => {
+      e.preventDefault();
+      const d = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      const mag = Math.abs(d), now = performance.now(), gap = now - lastWheel;
+      lastWheel = now;
+      const fresh = gap > 220 || mag > lastMag * 1.8 + 6;
+      lastMag = mag;
+      if (!fresh || mag < 3 || now < lockUntil) return;
+      go(cur + (d > 0 ? 1 : -1));
+    }, { passive: false });
+
+    addEventListener('keydown', e => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const k = e.key;
+      if (['ArrowDown', 'ArrowRight', 'PageDown'].includes(k) || (k === ' ' && !e.shiftKey)) { e.preventDefault(); go(cur + 1); }
+      else if (['ArrowUp', 'ArrowLeft', 'PageUp'].includes(k) || (k === ' ' && e.shiftKey)) { e.preventDefault(); go(cur - 1); }
+      else if (k === 'Home') { e.preventDefault(); go(0); }
+      else if (k === 'End') { e.preventDefault(); go(slides.length - 1); }
+    });
+
+    let tx0 = 0, ty0 = 0, tt0 = 0;
+    addEventListener('touchstart', e => { const t = e.touches[0]; tx0 = t.clientX; ty0 = t.clientY; tt0 = performance.now(); }, { passive: true });
+    addEventListener('touchend', e => {
+      const t = e.changedTouches[0], dx = t.clientX - tx0, dy = t.clientY - ty0;
+      if (performance.now() - tt0 > 900) return;
+      const d = Math.abs(dy) > Math.abs(dx) ? dy : dx;
+      if (Math.abs(d) > 40) go(cur + (d < 0 ? 1 : -1));
+    }, { passive: true });
+
+    prevB.addEventListener('click', () => go(cur - 1));
+    nextB.addEventListener('click', () => go(cur + 1));
+    document.querySelector('.brand').addEventListener('click', e => { e.preventDefault(); go(0); });
+    addEventListener('hashchange', () => { const i = keys.indexOf(location.hash.slice(1)); if (i >= 0 && i !== cur) go(i); });
+
+    // ---------- start: pixels fly in and assemble ----------
+    resize();
+    const start = Math.max(0, keys.indexOf(location.hash.slice(1)));
+    const b = box();
+    show(start, false);
+    if (!reduce) {
+      const T = targets(slides[start].dataset.look);
+      P.forEach((p, i) => {
+        const a = Math.random() * Math.PI * 2, r = b.size * (0.6 + Math.random() * 0.9);
+        p.fx = p.x = b.cx + Math.cos(a) * r; p.fy = p.y = b.cy + Math.sin(a) * r; p.fs = p.s = 0;
+        p.tx = T[i].x; p.ty = T[i].y; p.ts = T[i].s;
+        p.cx = (p.fx + p.tx) / 2; p.cy = (p.fy + p.ty) / 2;
+        p.delay = (p.gy / N) * 0.3 + Math.random() * 0.08;  // assemble top to bottom
+      });
+      t0 = performance.now() + 150; animating = true;
+    }
+    let rt; addEventListener('resize', () => { clearTimeout(rt); resize(); rt = setTimeout(() => snap(slides[cur].dataset.look), 0); });
+    requestAnimationFrame(frame);
+  })();
   </script>
 </body>
 </html>
