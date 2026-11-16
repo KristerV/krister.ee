@@ -324,6 +324,18 @@
       background: currentColor; -webkit-mask: var(--ext) no-repeat center / contain; mask: var(--ext) no-repeat center / contain;
     }
     a[target="_blank"] .go::after { opacity: .8; }
+    .ufo-toast {
+      position: fixed; z-index: 51; left: 50%; top: calc(18px + env(safe-area-inset-top, 0px)); transform: translate(-50%, -8px);
+      background: var(--hi); color: var(--hi-text); font-size: .85rem; padding: 8px 26px; white-space: nowrap; pointer-events: none;
+      clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%); opacity: 0; transition: opacity .25s, transform .25s;
+    }
+    .ufo-toast.on { opacity: 1; transform: translate(-50%, 0); }
+    .ufo-hud {
+      position: fixed; z-index: 51; left: max(22px, env(safe-area-inset-left, 0px)); bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+      background: var(--hi); color: var(--hi-text); font-size: .8rem; letter-spacing: .06em; padding: 6px 22px; font-variant-numeric: tabular-nums;
+      clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); display: none; pointer-events: none;
+    }
+    .ufo-hud.on { display: block; }
   </style>
 </head>
 <body class="at-menu">
@@ -347,7 +359,7 @@
     </ul>
   </nav>
 
-  <p class="hint"><kbd>↑</kbd><kbd>↓</kbd> select &nbsp;·&nbsp; <kbd>Enter</kbd> open &nbsp;·&nbsp; <kbd>Esc</kbd> back</p>
+  <p class="hint"><kbd>↑</kbd><kbd>↓</kbd> select &nbsp;·&nbsp; <kbd>Enter</kbd> open &nbsp;·&nbsp; <kbd>←</kbd> back &nbsp;·&nbsp; <kbd>Space</kbd> ?</p>
 
   <main class="pages" id="pages">
 
@@ -761,23 +773,237 @@
     // a direct link like /#kontakt makes the browser jump to that section; a screen always starts at the top
     addEventListener('load', () => { if (open) requestAnimationFrame(() => window.scrollTo(0, 0)); });
 
-    // ---- keyboard: like a game menu ----
+    // ---- UFO easter egg: space = jump + shoot, arrows / WASD steer. Aliens march overhead and drop bombs.
+    //      Land on top of things, don't fly into them; shots and bombs bite pieces out of the page. Esc ends it. ----
+    const ufo = (() => {
+      const M = {"start": "UFO! Space jumps and shoots, arrows/WASD steer. Esc ends.", "land": "Landed on: ", "crash": "Bang! You hit: ", "away": "The UFO flew away. Space brings a new one.", "wave": "Aliens!", "alien": "an alien", "bomb": "an alien bomb", "score": "Score"};
+      const PAPER = '#ffffff', INK = '#1d1d1f';
+      const cv = document.createElement('canvas'), cx = cv.getContext('2d');
+      Object.assign(cv.style, { position: 'fixed', inset: '0', width: '100%', height: '100%', zIndex: 50, pointerEvents: 'none' });
+      cv.setAttribute('aria-hidden', 'true');
+      const toastEl = document.createElement('div'); toastEl.className = 'ufo-toast'; toastEl.setAttribute('role', 'status');
+      const hud = document.createElement('div'); hud.className = 'ufo-hud';
+      document.body.append(cv, toastEl, hud);
+      const W = 54, H = 22, CELL = 8, PX = 3;
+      // aliens: an original little blob with two eyes and wiggling feet (two frames)
+      const ALIEN = [
+        ['...xxxxx...', '.xxxxxxxxx.', 'xx..xxx..xx', 'xxxxxxxxxxx', '.x.x.x.x.x.', 'x.x.x.x.x.x'],
+        ['...xxxxx...', '.xxxxxxxxx.', 'xx..xxx..xx', 'xxxxxxxxxxx', 'x.x.x.x.x.x', '.x.x.x.x.x.'],
+      ];
+      const AW = 11 * PX, AH = 6 * PX;
+      const DIR = { ArrowLeft: 'L', a: 'L', A: 'L', ArrowRight: 'R', d: 'R', D: 'R', ArrowUp: 'U', w: 'U', W: 'U', ArrowDown: 'D', s: 'D', S: 'D' };
+      let state = 'off', x = 0, y = 0, vx = 0, vy = 0, onEl = null, keys = {}, last = 0, t = 0, cool = 0;
+      let parts = [], shots = [], bombs = [], aliens = [], adir = 1, score = 0, waveDue = 0, toastT, respawnT;
+      const dmg = new Map();                                   // element -> set of destroyed CELLxCELL squares
+      const fit = () => { const d = Math.min(devicePixelRatio || 1, 2); cv.width = innerWidth * d; cv.height = innerHeight * d; cx.setTransform(d, 0, 0, d, 0, 0); };
+      addEventListener('resize', fit);
+      const toast = s => { toastEl.textContent = s; toastEl.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => toastEl.classList.remove('on'), 2200); };
+      const setScore = n => { score = n; hud.textContent = M.score + ' ' + score; };
+      const nameOf = el => ((el.querySelector('.t, .nm, b, .big, .title') || el).textContent || '').replace(/\s+/g, ' ').trim().slice(0, 40);
+      const SEL = '.menu .item, .who, .page.on .card, .page.on .xp, .page.on .head h2, .page.on .row-title, .back, .lang';
+      const blocks = () => [...document.querySelectorAll(SEL)].map(el => ({ el, r: el.getBoundingClientRect() }))
+        .filter(b => b.r.width > 0 && b.r.height > 0 && getComputedStyle(b.el).visibility !== 'hidden' && b.r.bottom > 0 && b.r.top < innerHeight);
+      const holes = el => { let s = dmg.get(el); if (!s) dmg.set(el, s = new Set()); return s; };
+      const solidAt = (el, r, px, py) => !holes(el).has(Math.floor((px - r.left) / CELL) + ',' + Math.floor((py - r.top) / CELL));
+      function solidOverlap(el, r, ax, ay, aw, ah) {          // is any intact cell of el inside this box?
+        const s = holes(el);
+        const c0 = Math.floor((Math.max(ax, r.left) - r.left) / CELL), c1 = Math.floor((Math.min(ax + aw, r.right) - .01 - r.left) / CELL);
+        const r0 = Math.floor((Math.max(ay, r.top) - r.top) / CELL), r1 = Math.floor((Math.min(ay + ah, r.bottom) - .01 - r.top) / CELL);
+        for (let i = c0; i <= c1; i++) for (let j = r0; j <= r1; j++) if (!s.has(i + ',' + j)) return true;
+        return false;
+      }
+      function blast(el, r, px, py, rad) {
+        const s = holes(el), c = Math.floor((px - r.left) / CELL), w = Math.floor((py - r.top) / CELL), n = Math.ceil(rad / CELL);
+        const dark = getComputedStyle(el).backgroundColor === 'rgb(17, 17, 17)';
+        for (let i = -n; i <= n; i++) for (let j = -n; j <= n; j++) {
+          if (i * i + j * j > n * n + .5) continue;
+          const key = (c + i) + ',' + (w + j);
+          if (s.has(key)) continue;
+          const lx = (c + i) * CELL, ly = (w + j) * CELL;
+          if (lx < 0 || ly < 0 || lx >= r.width || ly >= r.height) continue;
+          s.add(key);
+          if (Math.random() < .6) parts.push({ x: r.left + lx + 4, y: r.top + ly + 4, vx: (Math.random() - .5) * 260, vy: (Math.random() - .7) * 260, life: .8, sz: 3 + Math.random() * 3, c: dark ? '#111' : '#c9c9c6' });
+        }
+      }
+      function boom(px, py, n, c = INK) {
+        for (let i = 0; i < n; i++) { const a = Math.random() * Math.PI * 2, s = 60 + Math.random() * 300; parts.push({ x: px, y: py, vx: Math.cos(a) * s, vy: Math.sin(a) * s - 100, life: 1, sz: 3 + Math.random() * 4, c }); }
+      }
+      function wave() {
+        aliens = [];
+        const cols = Math.max(3, Math.min(8, Math.floor((innerWidth - 120) / 64))), left = (innerWidth - (cols - 1) * 64 - AW) / 2;
+        for (let r = 0; r < 2; r++) for (let c = 0; c < cols; c++) aliens.push({ x: left + c * 64, y: 70 + r * 46, alive: true });
+        adir = 1; waveDue = 0; toast(M.wave);
+      }
+      function spawn() {
+        fit(); clearTimeout(respawnT);
+        x = innerWidth / 2 - W / 2; y = innerHeight - H - 4; vx = 0; vy = 0; onEl = 'floor';
+        state = 'fly';
+      }
+      function crash(what) {
+        if (state !== 'fly') return;
+        state = 'dead'; boom(x + W / 2, y + H / 2, 28);
+        toast(M.crash + what);
+        respawnT = setTimeout(spawn, 1300);
+      }
+      function stop(msg) {
+        state = 'off'; clearTimeout(respawnT); parts = []; shots = []; bombs = []; aliens = []; dmg.clear(); keys = {};
+        cx.clearRect(0, 0, innerWidth, innerHeight); hud.classList.remove('on');
+        if (msg) toast(msg); else toastEl.classList.remove('on');
+      }
+      function step(dt) {
+        cool -= dt;
+        // --- the UFO ---
+        if (state === 'fly') {
+          if (keys.U) vy -= 1900 * dt;
+          if (keys.D) vy += 900 * dt;
+          vy = Math.min(vy + 1250 * dt, 760);
+          if (keys.L) vx -= 1500 * dt; else if (keys.R) vx += 1500 * dt; else vx *= Math.max(0, 1 - 7 * dt);
+          vx = Math.max(-320, Math.min(320, vx));
+          const py = y; x += vx * dt; y += vy * dt;
+          if (x < 0) { x = 0; vx = 0; } if (x + W > innerWidth) { x = innerWidth - W; vx = 0; }
+          if (y + H < -10) return stop(M.away);
+          let ground = null;
+          if (y + H >= innerHeight) { y = innerHeight - H; vy = 0; ground = 'floor'; }
+          for (const b of blocks()) {
+            const r = b.r;
+            if (x + W <= r.left + 2 || x >= r.right - 2 || y + H <= r.top || y >= r.bottom) continue;
+            if (!solidOverlap(b.el, r, x + 2, y, W - 4, H)) continue;          // flying through a hole
+            if (py + H <= r.top + 6 && vy >= 0) {
+              if (vy > 650) return crash(nameOf(b.el));
+              y = r.top - H; vy = 0; ground = b.el;
+            } else return crash(nameOf(b.el));
+          }
+          if (ground && ground !== 'floor' && ground !== onEl) { toast(M.land + nameOf(ground)); setScore(score + 5); }
+          onEl = ground;
+        }
+        // --- aliens march, step down at the edges, drop bombs ---
+        const alive = aliens.filter(a => a.alive);
+        if (alive.length) {
+          const speed = 40 + (aliens.length - alive.length) * 7, dx = adir * speed * dt;
+          if (alive.some(a => a.x + dx < 12 || a.x + AW + dx > innerWidth - 12)) { adir *= -1; alive.forEach(a => a.y += 16); }
+          else alive.forEach(a => a.x += dx);
+          if (alive.some(a => a.y > innerHeight * .72)) wave();
+          for (const a of alive) if (Math.random() < dt * .9 / alive.length) bombs.push({ x: a.x + AW / 2, y: a.y + AH });
+          if (state === 'fly') for (const a of alive) if (x < a.x + AW && x + W > a.x && y < a.y + AH && y + H > a.y) { a.alive = false; boom(a.x + AW / 2, a.y + AH / 2, 14); crash(M.alien); break; }
+        } else if (aliens.length && !waveDue) { setScore(score + 50); waveDue = t + 1.6; }
+        if (waveDue && t > waveDue) wave();
+        // --- shots go up: hit aliens, else bite the page ---
+        const bl = (shots.length || bombs.length) ? blocks() : [];
+        shots = shots.filter(s => {
+          s.y -= 760 * dt;
+          if (s.y < -20) return false;
+          for (const a of aliens) if (a.alive && s.x > a.x && s.x < a.x + AW && s.y > a.y && s.y < a.y + AH) { a.alive = false; boom(a.x + AW / 2, a.y + AH / 2, 16); setScore(score + 10); return false; }
+          for (const b of bl) if (s.x > b.r.left && s.x < b.r.right && s.y > b.r.top && s.y < b.r.bottom && solidAt(b.el, b.r, s.x, s.y)) { blast(b.el, b.r, s.x, s.y, 12); return false; }
+          return true;
+        });
+        // --- bombs fall: hit the UFO, else bite the page ---
+        bombs = bombs.filter(o => {
+          o.y += 250 * dt;
+          if (o.y > innerHeight + 10) return false;
+          if (state === 'fly' && o.x > x && o.x < x + W && o.y > y && o.y < y + H) { crash(M.bomb); return false; }
+          for (const b of bl) if (o.x > b.r.left && o.x < b.r.right && o.y > b.r.top && o.y < b.r.bottom && solidAt(b.el, b.r, o.x, o.y)) { blast(b.el, b.r, o.x, o.y, 9); return false; }
+          return true;
+        });
+      }
+      function draw() {
+        cx.clearRect(0, 0, innerWidth, innerHeight);
+        // holes punched into the page
+        cx.fillStyle = PAPER;
+        for (const [el, s] of dmg) {
+          if (!s.size || !el.isConnected) continue;
+          const r = el.getBoundingClientRect();
+          if (!r.width || getComputedStyle(el).visibility === 'hidden') continue;
+          for (const k of s) { const [i, j] = k.split(','); cx.fillRect(r.left + i * CELL, r.top + j * CELL, CELL, Math.min(CELL, r.height - j * CELL)); }
+        }
+        for (const p of parts) { cx.globalAlpha = Math.max(0, Math.min(1, p.life)); cx.fillStyle = p.c; cx.fillRect(p.x, p.y, p.sz, p.sz); }
+        cx.globalAlpha = 1;
+        // aliens
+        const f = ALIEN[Math.floor(t * 3) % 2];
+        cx.fillStyle = INK;
+        for (const a of aliens) if (a.alive) for (let j = 0; j < 6; j++) for (let i = 0; i < 11; i++) if (f[j][i] === 'x') cx.fillRect(a.x + i * PX, a.y + j * PX, PX, PX);
+        // shots and bombs
+        for (const s of shots) cx.fillRect(s.x - 1.5, s.y - 10, 3, 10);
+        for (const o of bombs) { cx.beginPath(); cx.moveTo(o.x, o.y - 5); cx.lineTo(o.x + 4, o.y); cx.lineTo(o.x, o.y + 5); cx.lineTo(o.x - 4, o.y); cx.fill(); }
+        if (state !== 'fly') return;
+        const mx = x + W / 2;
+        if (keys.U || vy < -250) {
+          cx.fillStyle = 'rgba(29,29,31,.25)';
+          cx.beginPath(); cx.moveTo(mx - 9, y + H - 2); cx.lineTo(mx + 9, y + H - 2); cx.lineTo(mx, y + H + 10 + Math.random() * 8); cx.fill();
+        }
+        cx.fillStyle = '#e4e4e1'; cx.strokeStyle = INK; cx.lineWidth = 1.5;
+        cx.beginPath(); cx.ellipse(mx, y + 9, 12, 10, 0, Math.PI, 0); cx.fill(); cx.stroke();
+        cx.fillStyle = INK;
+        cx.beginPath(); cx.ellipse(mx, y + 13, W / 2, 7, 0, 0, Math.PI * 2); cx.fill();
+        for (let i = -2; i <= 2; i++) { cx.fillStyle = (Math.floor(t * 6) + i) % 2 ? '#fff' : '#888'; cx.fillRect(mx + i * 9 - 1.5, y + 12, 3, 3); }
+      }
+      function loop(now) {
+        if (state === 'off') return;
+        const dt = Math.min(.033, (now - last) / 1000); last = now; t += dt;
+        step(dt);
+        if (state === 'off') return;
+        for (const p of parts) { p.vy += 900 * dt; p.x += p.vx * dt; p.y += p.vy * dt; p.life -= dt * .9; }
+        parts = parts.filter(p => p.life > 0);
+        draw(); requestAnimationFrame(loop);
+      }
+      return {
+        get on() { return state !== 'off'; },
+        start() {
+          const fresh = state === 'off';
+          spawn(); setScore(0); hud.classList.add('on'); toast(M.start);
+          if (fresh) { last = performance.now(); requestAnimationFrame(loop); }
+          waveDue = t + 2.2;
+        },
+        jump() {
+          if (state !== 'fly') return;
+          vy = Math.min(vy, 0) - 430;
+          if (cool <= 0) { shots.push({ x: x + W / 2, y: y - 2 }); cool = .16; }
+        },
+        key(k, down) { const d = DIR[k]; if (d) keys[d] = down; },
+        stop
+      };
+    })();
+
+    // ---- keyboard: like a game menu (arrows or WASD) ----
+    const KEY = { ArrowUp: 'up', w: 'up', W: 'up', ArrowDown: 'down', s: 'down', S: 'down', ArrowLeft: 'back', a: 'back', A: 'back', Backspace: 'back', Escape: 'back', ArrowRight: 'open', d: 'open', D: 'open', Enter: 'open' };
+    addEventListener('keyup', e => { if (ufo.on) ufo.key(e.key, false); });
     addEventListener('keydown', e => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
-      const ae = document.activeElement;
-      const inMenu = ae && ae.closest && ae.closest('#items');
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-        if (open && !inMenu) return;           // on a screen, arrows scroll as usual
+      const k = e.key;
+      // while the UFO is in play it owns the keyboard; Esc ends the game
+      if (ufo.on) {
         e.preventDefault();
-        const d = e.key === 'ArrowDown' ? 1 : -1;
-        const next = sel < 0 ? (d > 0 ? 0 : items.length - 1) : (sel + d + items.length) % items.length;
-        items[next].focus();
-      } else if (e.key === 'Enter' && !open && !inMenu && sel >= 0) {
-        location.hash = keyOf(items[sel]);
-      } else if (e.key === 'Escape' && open) {
-        const i = sel;
-        home.click();
-        if (i >= 0) items[i].focus({ preventScroll: true });
+        if (k === 'Escape') ufo.stop();
+        else if (k === ' ') { if (!e.repeat) ufo.jump(); }
+        else ufo.key(k, true);
+        return;
+      }
+      if (k === ' ' && !e.repeat) { e.preventDefault(); ufo.start(); return; }
+      const act = KEY[k];
+      if (!act) return;
+      if (!open) {
+        // main menu: up / down choose, open with → D Enter
+        if (act === 'up' || act === 'down') {
+          e.preventDefault();
+          const d = act === 'down' ? 1 : -1;
+          const next = sel < 0 ? (d > 0 ? 0 : items.length - 1) : (sel + d + items.length) % items.length;
+          items[next].focus();
+        } else if (act === 'open' && sel >= 0) {
+          e.preventDefault();
+          location.hash = keyOf(items[sel]);
+        }
+      } else {
+        // a screen is open: up / down jump to the previous / next screen; ← A Backspace Esc go back
+        if (act === 'up' || act === 'down') {
+          e.preventDefault();
+          const i = items.findIndex(a => keyOf(a) === open), d = act === 'down' ? 1 : -1;
+          if (document.activeElement && document.activeElement !== document.body) document.activeElement.blur();
+          location.hash = keyOf(items[(i + d + items.length) % items.length]);
+        } else if (act === 'back') {
+          e.preventDefault();
+          const i = sel;
+          home.click();
+          if (i >= 0) items[i].focus({ preventScroll: true });
+        }
       }
     });
 
