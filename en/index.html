@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Krister Viirsaar — developer, trainer, friend of vibe coders</title>
-  <meta name="description" content="Software developer since 2014. I train people to use AI safely (Eesti.ai, Veebikool), help vibe coders, and build my own things." />
-  <meta property="og:title" content="Krister Viirsaar — developer, trainer, friend of vibe coders" />
-  <meta property="og:description" content="I train people to use AI safely, help vibe coders, and build my own things." />
-  <meta property="og:locale" content="en_US" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Krister Viirsaar</title>
+  <meta name="description" content="Software developer since 2014. I train people to use AI safely, teach programming, help vibe coders and build my own things." />
+  <meta property="og:title" content="Krister Viirsaar" />
+  <meta property="og:description" content="I train people to use AI safely, teach programming, help vibe coders and build my own things." />
+  <meta property="og:locale" content="en_GB" />
   <link rel="alternate" hreflang="et" href="https://krister.ee/" />
   <link rel="alternate" hreflang="en" href="https://krister.ee/en/" />
   <link rel="alternate" hreflang="x-default" href="https://krister.ee/" />
@@ -15,170 +15,719 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&amp;display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../styles/site.css" />
   <script defer src="https://a.krister.ee/script.js" data-website-id="29f07a9d-d54a-4a9c-9a85-8c3e8cef8fcd"></script>
+  <style>
+    /* Game-style menu: centred on arrival, slides to the left column when a topic opens; each topic is one screen of cards. */
+    :root {
+      --paper: #ffffff;
+      --ink: #1d1d1f;
+      --text: #444;
+      --soft: #666;
+      --dim: #999;
+      --line: #e6e6e6;
+      --edge: #e4e4e4;
+      --chip: #f1f1f0;
+      --link: #3498db;
+      --linkh: #2980b9;
+      --hi: #111;          /* the black rhombus */
+      --hi-text: #fff;
+      --hi-dim: #a9a9a9;
+      --ghost: #8a8a8a;
+      --serif: 'Merriweather', Georgia, 'Times New Roman', serif;
+      --move: cubic-bezier(.77, 0, .18, 1);
+      --slant: 14px;
+      --rh: polygon(var(--slant) 0, 100% 0, calc(100% - var(--slant)) 100%, 0 100%);
+      --nav-left: max(48px, env(safe-area-inset-left, 0px));
+      --nav-w: 340px;
+      color-scheme: light;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--serif); font-size: 17px; line-height: 1.55; color: var(--text); background: var(--paper);
+      -webkit-font-smoothing: antialiased; min-height: 100vh; overflow-x: hidden;
+    }
+    body.at-menu { overflow: hidden; }
+    a { color: var(--link); text-decoration: none; }
+    strong, b { font-weight: 700; color: var(--ink); }
+    ul { list-style: none; }
+
+    /* ---------- the menu ---------- */
+    .menu {
+      position: fixed; z-index: 5; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: max-content; min-width: 260px;
+    }
+    .menu li, .who { will-change: transform; }
+    body.in-page .menu { left: var(--nav-left); transform: translate(0, -50%); }
+
+    .who { display: block; color: var(--ink); margin: 0 0 30px 24px; }
+    .who b { display: block; font-size: 1.5rem; font-weight: 400; letter-spacing: -.01em; line-height: 1.2; }
+    .who small { display: block; margin-top: 6px; font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
+
+    .items { display: flex; flex-direction: column; gap: 4px; }
+    .item {
+      display: flex; align-items: baseline; white-space: nowrap; padding: 9px 30px 9px 24px; color: var(--ink);
+      font-size: 1.22rem; line-height: 1.3; letter-spacing: -.005em; outline: none;
+    }
+    .item .n { flex: none; width: 2.1em; font-size: .62em; letter-spacing: .08em; color: var(--dim); font-variant-numeric: tabular-nums; }
+
+    /* ---------- the glitch: shared by menu items and cards ---------- */
+    .gl { position: relative; isolation: isolate; }
+    .gl::before, .gl::after {
+      content: ""; position: absolute; inset: 0; z-index: -1; background: var(--hi);
+      clip-path: var(--rh); opacity: 0; pointer-events: none;
+    }
+    .gl::after { background: var(--ghost); z-index: -2; }
+    .gl .t { position: relative; display: inline-block; }
+    .gl.lit { color: var(--hi-text); }
+    .gl.lit::before { opacity: 1; }
+    .gl.lit .n, .gl.lit .meta, .gl.lit .lbl { color: var(--hi-dim); }
+    .gl.lit b, .gl.lit strong, .gl.lit .big { color: var(--hi-text); }
+    .gl.lit .chip { background: #333; color: #ddd; }
+    .gl.lit.glitch::before { animation: glitch-in .34s steps(1, end) both; }
+    .gl.lit.glitch::after { animation: ghost .34s steps(1, end) both; }
+    .gl.lit.glitch .t { animation: jitter .34s steps(1, end) both; }
+
+    @keyframes glitch-in {
+      0%   { clip-path: polygon(0 18%, 100% 18%, 100% 34%, 0 34%); transform: translateX(-10px); }
+      12%  { clip-path: polygon(0 62%, 70% 62%, 70% 88%, 0 88%); transform: translateX(8px); }
+      24%  { clip-path: polygon(20% 0, 100% 0, 100% 46%, 20% 46%); transform: translateX(-4px); }
+      36%  { clip-path: polygon(0 40%, 100% 40%, 100% 58%, 0 58%); transform: translateX(12px); }
+      48%  { clip-path: polygon(calc(var(--slant) * .7) 0, 100% 0, calc(100% - var(--slant) * 1.3) 100%, 0 100%); transform: translateX(-6px); }
+      60%  { clip-path: polygon(0 70%, 100% 70%, 100% 100%, 0 100%); transform: translateX(3px); }
+      72%  { clip-path: polygon(calc(var(--slant) * 1.3) 0, 100% 0, calc(100% - var(--slant) * .7) 100%, 0 100%); transform: translateX(4px); }
+      84%  { clip-path: var(--rh); transform: translateX(-2px); }
+      100% { clip-path: var(--rh); transform: none; }
+    }
+    @keyframes ghost {
+      0%   { opacity: .9; clip-path: polygon(0 50%, 100% 50%, 100% 72%, 0 72%); transform: translateX(14px); }
+      24%  { opacity: .9; clip-path: polygon(0 8%, 60% 8%, 60% 30%, 0 30%); transform: translateX(-12px); }
+      48%  { opacity: .7; clip-path: polygon(30% 76%, 100% 76%, 100% 96%, 30% 96%); transform: translateX(8px); }
+      72%  { opacity: .6; clip-path: var(--rh); transform: translateX(-5px); }
+      100% { opacity: 0; clip-path: var(--rh); transform: none; }
+    }
+    @keyframes jitter {
+      0% { transform: translateX(3px); } 24% { transform: translateX(-3px); } 48% { transform: translateX(2px); }
+      72% { transform: translateX(-1px); } 100% { transform: none; }
+    }
+
+    .hint {
+      position: fixed; z-index: 4; left: 50%; bottom: calc(26px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
+      font-size: .74rem; color: var(--dim); letter-spacing: .04em; white-space: nowrap; transition: opacity .4s;
+    }
+    .hint kbd { font-family: inherit; border: 1px solid var(--line); border-radius: 3px; padding: 0 5px; margin: 0 2px; color: var(--soft); }
+    body.in-page .hint { opacity: 0; pointer-events: none; }
+    .lang {
+      position: fixed; z-index: 6; top: calc(18px + env(safe-area-inset-top, 0px)); right: max(22px, env(safe-area-inset-right, 0px));
+      color: var(--dim); font-size: .78rem; letter-spacing: .04em; border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; background: var(--paper);
+    }
+    .lang:hover { color: var(--ink); border-color: var(--ink); }
+
+    /* ---------- screens ---------- */
+    .pages { position: relative; z-index: 1; margin-left: calc(var(--nav-left) + var(--nav-w) + 56px); padding-right: max(48px, env(safe-area-inset-right, 0px)); }
+    body.at-menu .pages { visibility: hidden; }
+    .page { scroll-margin-top: 100vh; display: none; min-height: 100vh; flex-direction: column; justify-content: center; gap: 30px; padding-block: 72px; max-width: 64rem; }
+    .page.on { display: flex; }
+
+    /* stagger: header first, then each card */
+    .page.on .in { animation: rise .55s var(--move) both; animation-delay: calc(var(--d, .8s) + var(--i, 0) * 50ms); }
+    .page.on.quick { --d: .04s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+    .head .lbl { display: block; font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-bottom: 10px; }
+    .head h1 { font-size: clamp(1.9rem, 3.2vw, 2.6rem); font-weight: 400; line-height: 1.12; letter-spacing: -.014em; color: var(--ink); text-wrap: balance; }
+
+    .row-title { font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-bottom: 12px; }
+
+    .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .grid.feat { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid.feat > :first-child { grid-column: span 2; }
+    .card .big { overflow-wrap: break-word; hyphens: auto; }
+
+    .card {
+      --slant: 10px;
+      display: flex; flex-direction: column; gap: 4px; min-width: 0;
+      padding: 18px 22px; border: 1px solid var(--edge); color: var(--ink); outline: none;
+      transition: border-color .2s, transform .2s;
+    }
+    :is(a, button).card:hover .go, :is(a, button).card:focus-visible .go { color: var(--ink); }
+
+    /* hover: four border lines spin in from further out and snap into a rhombus */
+    .snap-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+    .snap-lines line { stroke: var(--ink); stroke-width: 1.5; stroke-linecap: square; opacity: 0; transform-box: fill-box; transform-origin: center; transition: opacity .15s; }
+    :is(a, button).card.snap { border-color: transparent; }
+    :is(a, button).card.snap .snap-lines line { opacity: 1; animation: snap-in .9s cubic-bezier(.22, .61, .36, 1) both; animation-delay: calc(var(--k) * 70ms); }
+    @keyframes snap-in {
+      from { opacity: 0; transform: translate(var(--fx), var(--fy)) rotate(var(--fr)); }
+      40%  { opacity: 1; }
+      to   { opacity: 1; transform: none; }
+    }
+    a.card.dark:hover { transform: translateY(-2px); background: #000; }
+    a.card.dark:hover .go { color: var(--hi-text); }
+    a.card { cursor: pointer; }
+    button.card { font: inherit; text-align: left; background: var(--paper); cursor: pointer; width: 100%; }
+    /* copied: the card flashes black for a moment */
+    button.card { transition: border-color .2s, background .35s, color .35s; }
+    button.card.copied { background: var(--hi); border-color: var(--hi); color: var(--hi-text); clip-path: var(--rh); }
+    button.card.copied .snap-lines { display: none; }
+    button.card.copied .lbl, button.card.copied .go, button.card.copied .big { color: var(--hi-text); }
+    button.card.copied .go::after { content: " ✓"; }
+    button.card:not(.copied) .go::after { content: ""; }
+    .card .lbl { font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
+    .card .big { font-size: 1.25rem; line-height: 1.25; color: var(--ink); }
+    .card .meta { font-size: .86rem; color: var(--soft); line-height: 1.45; }
+    .card .go { margin-top: auto; padding-top: 10px; font-size: .8rem; color: var(--dim); }
+    .card.lit .go { color: var(--hi-dim); }
+    .card .go::after { content: " →"; }
+    .card.dark { background: var(--hi); color: var(--hi-text); border-color: var(--hi); clip-path: var(--rh); padding-inline: 30px; }
+    .card.dark .big, .card.dark b { color: var(--hi-text); }
+    .card.dark .meta, .card.dark .lbl, .card.dark .go { color: var(--hi-dim); }
+    .card.dark::before { background: #000; }
+
+    .chip { display: inline-block; align-self: flex-start; font-size: .68rem; letter-spacing: .06em; padding: 2px 10px; background: var(--chip); color: var(--soft); clip-path: polygon(5px 0, 100% 0, calc(100% - 5px) 100%, 0 100%); }
+
+
+    /* training cards */
+    .ev .date { display: flex; align-items: baseline; gap: 6px; }
+    .ev .date b { font-size: 2rem; font-weight: 400; line-height: 1; letter-spacing: -.02em; }
+    .ev .date span { font-size: .85rem; color: var(--soft); }
+    .gl.lit .date span { color: var(--hi-dim); }
+    .ev .big { font-size: 1rem; font-weight: 700; margin-top: 8px; }
+
+    /* player cards */
+    .player { padding: 24px 28px; gap: 14px; }
+    .player .big { font-size: 1.5rem; }
+    .stats { display: flex; flex-direction: column; gap: 8px; font-size: .95rem; }
+    .stats li { display: flex; align-items: center; gap: 12px; }
+    .stats li::before { content: ""; flex: none; width: 7px; height: 7px; background: currentColor; transform: rotate(45deg); }
+    .vs { display: grid; grid-template-columns: 1fr auto 1fr; gap: 16px; align-items: stretch; }
+    .vs .plus { align-self: center; font-size: 1.6rem; color: var(--dim); }
+
+    /* list rows (experience) */
+    /* experience: three columns, every entry the same rhombus; black = appears in more than one column */
+    /* one grid, fixed rows: an entry that sits in several columns shares a row with its copies */
+    .xp-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 22px; row-gap: 6px; }
+    .xp-cols > * { grid-column: var(--c); grid-row: var(--r); min-width: 0; }
+    .xp-cols .row-title { margin-bottom: 6px; }
+    .xp-cols .row-title span { letter-spacing: .06em; text-transform: none; }
+    .xp {
+      display: flex; flex-direction: column; gap: 1px; padding: 9px 22px; min-height: 3.6rem; justify-content: center;
+      background: var(--chip); color: var(--ink); clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+      transition: background .2s, transform .2s;
+    }
+    .xp b { font-size: .92rem; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .xp span { font-size: .76rem; line-height: 1.35; color: var(--soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    a.xp:hover { background: #e6e6e4; }
+    .xp.multi { background: var(--hi); }
+    .xp.multi b { color: var(--hi-text); }
+    .xp.multi span { color: var(--hi-dim); }
+    a.xp.multi:hover, .xp.multi.twin { background: #000; transform: translateX(4px); }
+    .small-links .key { display: inline-block; width: 18px; height: 10px; background: var(--hi); clip-path: polygon(3px 0, 100% 0, calc(100% - 3px) 100%, 0 100%); vertical-align: -1px; margin-right: 4px; }
+
+    /* list rows: one line per item */
+    .lines { display: flex; flex-direction: column; gap: 8px; max-width: 46rem; }
+    .card.line { flex-direction: row; align-items: baseline; gap: 18px; padding: 13px 24px; }
+    .line .when { flex: none; width: 5.6rem; font-size: .82rem; color: var(--soft); white-space: nowrap; }
+    .line .when b { font-size: 1.35rem; font-weight: 400; color: var(--ink); margin-right: 2px; }
+    .line .title { flex: 1; min-width: 0; font-weight: 700; color: var(--ink); }
+    .line .meta { flex: none; }
+    .line .chip { flex: none; align-self: center; }
+    .card.line.past .when, .card.line.past .when b, .card.line.past .title, .card.line.past .meta { color: var(--dim); }
+    .card.line.past .chip { opacity: .6; }
+    .line .chip { width: 6.2rem; text-align: center; }
+    .line.rec .when { font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+    .rows { display: flex; flex-direction: column; gap: 8px; }
+    .rows .card { flex-direction: row; align-items: baseline; gap: 14px; padding: 12px 20px; }
+    .rows .card .big { font-size: 1.02rem; font-weight: 700; flex: none; }
+    .rows .card .meta { min-width: 0; }
+
+    /* contact */
+    .small-links { font-size: .82rem; color: var(--dim); }
+    .small-links a { color: var(--soft); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+    .gl:focus-visible { outline: none; }
+
+    /* ---------- phones: centred list on arrival, then a scrolling strip on top ---------- */
+    @media (max-width: 820px) {
+      body.at-menu .item { font-size: min(1.22rem, 5vw); }
+      body.in-page .menu {
+        position: sticky; top: 0; left: 0; transform: none; width: 100%; transition: none;
+        background: var(--paper); border-bottom: 1px solid var(--line);
+        padding: calc(14px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px));
+      }
+      body.in-page .who { margin: 0 0 8px 0; }
+      body.in-page .who b { font-size: 1.05rem; }
+      body.in-page .who small { display: none; }
+      body.in-page .items { flex-direction: row; overflow-x: auto; gap: 2px; scrollbar-width: none; margin: 0 -6px; }
+      body.in-page .items::-webkit-scrollbar { display: none; }
+      body.in-page .item { font-size: .95rem; padding: 6px 18px; }
+      body.in-page .item .n { display: none; }
+      body.in-page .lang { display: none; }
+      .pages { margin-left: 0; padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px)); }
+      .page { min-height: 0; justify-content: flex-start; padding-block: 26px 70px; gap: 24px; }
+      .page.on { --d: .04s; }
+      .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+      .grid.two, .vs { grid-template-columns: 1fr; }
+      .grid.feat { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .xp-cols { grid-template-columns: 1fr; }
+      .xp-cols > * { grid-column: 1; grid-row: auto; order: calc(var(--c) * 100 + var(--r)); }
+      .xp-cols .row-title:not([style*="--c:1"]) { margin-top: 22px; }
+      .vs .plus { justify-self: center; }
+      .rows .card { flex-direction: column; gap: 2px; }
+      .card.line { flex-wrap: wrap; gap: 2px 12px; padding: 12px 18px; }
+      .line .title { flex-basis: 100%; order: 3; }
+      .line .when { width: auto; }
+      .hint { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gl.lit.glitch::before, .gl.lit.glitch::after, .gl.lit.glitch .t { animation: none; }
+      .page.on .in { animation: none; }
+      :is(a, button).card.snap .snap-lines line { animation: none; }
+    }
+  </style>
 </head>
-<body>
+<body class="at-menu">
 
-  <a href="../" class="lang lang-corner" hreflang="et">ET</a>
+  <a href="../" class="lang" hreflang="et">ET</a>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap">
-      <div class="hero-top">
-        <img src="../img/profile1.jpg" alt="Krister Viirsaar" />
-        <div>
-          <span class="eyebrow">Developer · trainer · entrepreneur</span>
-          <h1>Krister Viirsaar</h1>
+  <nav class="menu" id="menu" aria-label="Topics">
+    <a class="who" href="#" id="home">
+      <b>Krister Viirsaar</b>
+      <small>Developer · trainer · entrepreneur</small>
+    </a>
+    <ul class="items" id="items">
+      <li><a class="item gl" href="#trainings"><span class="n">01</span><span class="t">AI trainings</span></a></li>
+      <li><a class="item gl" href="#vibe-coders"><span class="n">02</span><span class="t">Vibe coders’ friend</span></a></li>
+      <li><a class="item gl" href="#teaching"><span class="n">03</span><span class="t">Programming teacher</span></a></li>
+      <li><a class="item gl" href="#projects"><span class="n">04</span><span class="t">My projects</span></a></li>
+      <li><a class="item gl" href="#experience"><span class="n">05</span><span class="t">Experience</span></a></li>
+      <li><a class="item gl" href="#contact"><span class="n">06</span><span class="t">Contact</span></a></li>
+    </ul>
+  </nav>
+
+  <p class="hint"><kbd>↑</kbd><kbd>↓</kbd> select &nbsp;·&nbsp; <kbd>Enter</kbd> open &nbsp;·&nbsp; <kbd>Esc</kbd> back</p>
+
+  <main class="pages" id="pages">
+
+    <!-- 01 -->
+    <section class="page" id="trainings" aria-labelledby="h-trainings">
+      <header class="head in">
+        <span class="lbl">Eesti.ai · Veebikool</span>
+        <h1 id="h-trainings">AI, safely.</h1>
+      </header>
+
+      <div class="lines" id="events" data-past-label="done">
+          <a class="card line in" data-date="2026-11-18" href="https://fienta.com/et/viimsi-turvaline-tehisaru-kasutus-ja-riskide-maandamine">
+            <span class="when"><b>18</b> Nov</span>
+            <span class="title">Safe AI use and risk mitigation</span>
+            <span class="meta">Viimsi</span>
+            <span class="chip">Eesti.ai</span>
+          </a>
+          <a class="card line in" data-date="2026-11-19" href="https://fienta.com/et/tallinn-tehisaru-kontoritoos">
+            <span class="when"><b>19</b> Nov</span>
+            <span class="title">AI in office work</span>
+            <span class="meta">Tallinn</span>
+            <span class="chip">Eesti.ai</span>
+          </a>
+          <a class="card line in" data-date="2026-11-20" href="https://fienta.com/et/tallinn-tehisaru-ja-loovus-voimalused-riskid-ja-vastutus">
+            <span class="when"><b>20</b> Nov</span>
+            <span class="title">AI and creativity: possibilities, risks and responsibility</span>
+            <span class="meta">Tallinn</span>
+            <span class="chip">Eesti.ai</span>
+          </a>
+          <a class="card line in" data-date="2027-01-12" href="https://veebikool.ee/opiprogramm-programmeerimine/">
+            <span class="when"><b>12</b> Jan</span>
+            <span class="title">Programming course</span>
+            <span class="meta">Online, 12 weeks</span>
+            <span class="chip">Veebikool</span>
+          </a>
+          <a class="card line in" data-date="2026-10-13" href="https://veebikool.ee/kasuta-ai-targalt/">
+            <span class="when"><b>13</b> Oct</span>
+            <span class="title">Use AI wisely. Avoid the pitfalls.</span>
+            <span class="meta">Webinar</span>
+            <span class="chip">Veebikool</span>
+          </a>
+          <a class="card line in" href="https://veebikool.ee/toode/programmeerimine-vaibkoodijatele-praktiline-tootuba/">
+            <span class="when">Recording</span>
+            <span class="title">Programming for vibe coders</span>
+            <span class="meta">4-hour workshop</span>
+            <span class="chip">Veebikool</span>
+          </a>
+          <a class="card line in" href="https://veebikool.ee/vaibkoodimise-opiprogramm/">
+            <span class="when">Recording</span>
+            <span class="title">Vibe coding masterclass</span>
+            <span class="meta">Algorithmic thinking</span>
+            <span class="chip">Veebikool</span>
+          </a>
+      </div>
+
+      <p class="small-links in">All trainings: <a href="https://fienta.com/et/o/eestiai">Eesti.ai on Fienta</a> · <a href="https://veebikool.ee/koolituskalender/">Veebikool calendar</a> (in Estonian)</p>
+    </section>
+
+    <!-- 02 -->
+    <section class="page" id="vibe-coders" aria-labelledby="h-vaib">
+      <header class="head in">
+        <span class="lbl">Co-op</span>
+        <h1 id="h-vaib">You build it. I keep it standing.</h1>
+      </header>
+
+      <div class="vs">
+        <div class="card player in">
+          <span class="lbl">Player 1 · you</span>
+          <span class="big">Vibe coder</span>
+          <ul class="stats">
+            <li>Knows the business</li>
+            <li>Builds it yourself, fast</li>
+            <li>Doesn’t pay €500 for one button</li>
+          </ul>
+        </div>
+        <span class="plus in" aria-hidden="true">+</span>
+        <div class="card player dark in">
+          <span class="lbl">Player 2 · me</span>
+          <span class="big">Developer</span>
+          <ul class="stats">
+            <li>Security</li>
+            <li>Servers and backups</li>
+            <li>Data that doesn’t break</li>
+            <li>Grows with your users</li>
+          </ul>
         </div>
       </div>
-      <p class="lead">I've been building software and businesses since 2014. These days I do a lot of training, mostly on how to use AI <strong>safely</strong>. I also help vibe coders keep their apps standing.</p>
-    </div>
-  </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="wrap">
-      <h2 class="section-title">Contact</h2>
-      <ul class="contact-list">
-        <li><span>Call</span><a href="https://cal.com/krister-viirsaar-zho32l/1h">Book a free video call</a></li>
-        <li><span>Email</span><a href="mailto:krister.viirsaar@gmail.com">krister.viirsaar@gmail.com</a></li>
-        <li><span>Elsewhere</span><span><a href="https://www.linkedin.com/in/kristerv/">LinkedIn</a> · <a href="https://discord.com/users/kristerv">Discord</a> · <a href="https://www.youtube.com/watch?v=tjrc4RemiSE">Interview</a></span></li>
-        <li><span>IBAN</span>EE987700771001379001</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- TRAININGS -->
-  <section id="trainings">
-    <div class="wrap">
-      <h2 class="section-title reveal">I talk about using AI safely.</h2>
-      <div class="prose reveal">
-        <p>I train for the <a href="https://eesti.ai">Eesti.ai</a> initiative “The most AI-savvy nation” and for <a href="https://veebikool.ee">Veebikool</a>. The audience is ordinary people who use AI at work, not developers. In the room I show real answers from real models, not slides about what <em>might</em> happen.</p>
+      <div class="grid two">
+        <a class="card in" href="https://goldadam.ee">
+          <span class="lbl">Working with now</span>
+          <span class="big t">Gold Adam</span>
+          <span class="meta">Their team vibe-codes an internal app, I keep it reliable.</span>
+          <span class="go">goldadam.ee</span>
+        </a>
+        <a class="card in" href="https://cal.com/krister-viirsaar-zho32l/1h">
+          <span class="lbl">Stuck?</span>
+          <span class="big t">Let’s look at it together</span>
+          <span class="meta">My first reaction won’t be “rewrite it from scratch”.</span>
+          <span class="go">Book a free call</span>
+        </a>
       </div>
-      <ul class="itemlist reveal" style="max-width:42rem; margin-top:8px;">
-        <li><strong>What to share with AI.</strong> <span class="what">What actually leaves your computer and where it ends up.</span></li>
-        <li><strong>Prompt injection.</strong> <span class="what">When AI treats a web page, an email or a downloaded file as instructions.</span></li>
-        <li><strong>AI agents and permissions.</strong> <span class="what">What an agent may do on its own and when a human has to approve first.</span></li>
-        <li><strong>Hallucinations and checking.</strong> <span class="what">Why the same question gets different answers, and what to always double-check.</span></li>
-        <li><strong>Security of vibe-coded apps.</strong> <span class="what">Leaked keys, missing checks, and data that breaks.</span></li>
-      </ul>
+    </section>
 
-      <h3 class="sub reveal">Trainings <span class="muted" style="font-weight:400;">(in Estonian)</span></h3>
-      <ul class="events reveal" id="events" data-past-label="past">
-        <li data-date="2026-11-18">
-          <span class="when">18 Nov<small>Wed 17:00–20:00</small></span>
-          <span class="what"><a href="https://fienta.com/et/viimsi-turvaline-tehisaru-kasutus-ja-riskide-maandamine">Safe AI use and risk mitigation</a><span class="where">Viimsi Library, Haabneeme · free · Eesti.ai</span></span>
-        </li>
-        <li data-date="2026-11-19">
-          <span class="when">19 Nov<small>Thu 16:00–19:00</small></span>
-          <span class="what"><a href="https://fienta.com/et/tallinn-tehisaru-kontoritoos">AI in office work</a><span class="where">Kadaka Conference Centre, Tallinn · free · Eesti.ai</span></span>
-        </li>
-        <li data-date="2026-11-20">
-          <span class="when">20 Nov<small>Fri 16:00–19:00</small></span>
-          <span class="what"><a href="https://fienta.com/et/tallinn-tehisaru-ja-loovus-voimalused-riskid-ja-vastutus">AI and creativity: possibilities, risks and responsibility</a><span class="where">Kadaka Conference Centre, Tallinn · free · Eesti.ai</span></span>
-        </li>
-        <li data-date="2027-01-12">
-          <span class="when">12 Jan 2027<small>12 weeks</small></span>
-          <span class="what"><a href="https://veebikool.ee/opiprogramm-programmeerimine/">Programming course</a><span class="where">Veebikool · online, live on Tuesdays · English group in the works</span></span>
-        </li>
-        <li data-date="2026-10-13">
-          <span class="when">13 Oct<small>Tue 19:00–22:00</small></span>
-          <span class="what"><a href="https://veebikool.ee/kasuta-ai-targalt/">Use AI wisely. Avoid the pitfalls.</a><span class="where">Veebikool · webinar · my part: what not to give AI and what to always check</span></span>
-        </li>
-        <li>
+    <!-- 03 -->
+    <section class="page" id="teaching" aria-labelledby="h-teaching">
+      <header class="head in">
+        <span class="lbl">In class and online</span>
+        <h1 id="h-teaching">I teach programming.</h1>
+      </header>
+      <div class="lines">
+        <a class="card line in" href="https://technotln.ee">
+          <span class="when">School</span>
+          <span class="title">TechnoTLN</span>
+          <span class="meta">formerly Polütehnikum</span>
+        </a>
+        <a class="card line in" href="https://veebikool.ee/opiprogramm-programmeerimine/">
+          <span class="when">12 weeks</span>
+          <span class="title">Programming course</span>
+          <span class="meta">Veebikool</span>
+        </a>
+        <a class="card line in" href="https://veebikool.ee/toode/programmeerimine-vaibkoodijatele-praktiline-tootuba/">
+          <span class="when">4 hours</span>
+          <span class="title">Programming for vibe coders</span>
+          <span class="meta">Veebikool</span>
+        </a>
+        <a class="card line in" href="https://veebikool.ee/vaibkoodimise-opiprogramm/">
           <span class="when">Recording</span>
-          <span class="what"><a href="https://veebikool.ee/toode/programmeerimine-vaibkoodijatele-praktiline-tootuba/">Programming for vibe coders</a><span class="where">Veebikool · watch any time · 4-hour workshop: logic, structure and code bugs</span></span>
-        </li>
-        <li>
-          <span class="when">Recording</span>
-          <span class="what"><a href="https://veebikool.ee/vaibkoodimise-opiprogramm/">Vibe coding masterclass</a><span class="where">Veebikool · watch any time · my part: algorithmic thinking</span></span>
-        </li>
-      </ul>
-      <p class="muted reveal" style="max-width:42rem; font-size:.95rem;">All free Eesti.ai trainings are on <a href="https://fienta.com/et/o/eestiai">Fienta</a>, and Veebikool's are in their <a href="https://veebikool.ee/koolituskalender/">training calendar</a>.</p>
-
-    </div>
-  </section>
-
-  <!-- VIBE CODERS -->
-  <section id="vibecoders">
-    <div class="wrap">
-      <h2 class="section-title reveal">A friend of vibe coders.</h2>
-      <div class="prose reveal">
-        <p>I love that good ideas no longer die behind a crazy invoice. I've seen a single button cost €500 too many times. When people can build the simple stuff themselves, that's a good thing.</p>
+          <span class="title">Vibe coding masterclass</span>
+          <span class="meta">Veebikool</span>
+        </a>
+        <a class="card line in" href="https://tinkr.tech">
+          <span class="when">Platform</span>
+          <span class="title">Tinkr.tech</span>
+          <span class="meta">learn by building projects</span>
+        </a>
       </div>
-      <div class="split reveal" style="margin-top: 26px;">
-        <div class="you">
-          <span class="tag">You</span>
-          <h3>Build the business logic</h3>
-          <p>You know what your business needs, and you vibe-code exactly that part.</p>
-        </div>
-        <div class="me">
-          <span class="tag">Me</span>
-          <h3>Keep the technical side solid</h3>
-          <p>Security, servers, backups, and data that doesn't break when more users show up.</p>
-        </div>
+    </section>
+
+    <!-- 04 -->
+    <section class="page" id="projects" aria-labelledby="h-projects">
+      <header class="head in">
+        <span class="lbl">Built by me</span>
+        <h1 id="h-projects">My projects.</h1>
+      </header>
+      <div class="grid two">
+        <a class="card in" href="https://tinkr.tech">
+          <span class="chip">Education</span>
+          <span class="big t">Tinkr.tech</span>
+          <span class="meta">Learn programming by building projects.</span>
+          <span class="go">tinkr.tech</span>
+        </a>
+        <a class="card in" href="https://kirbs.ee">
+          <span class="chip">For parents</span>
+          <span class="big t">Kirbs.ee</span>
+          <span class="meta">Sell your kids’ clothes without the hassle.</span>
+          <span class="go">kirbs.ee</span>
+        </a>
+        <a class="card in" href="https://liid.ee">
+          <span class="chip">Sales · AI</span>
+          <span class="big t">Liid.ee</span>
+          <span class="meta">Sales leads for Baltic and Nordic companies.</span>
+          <span class="go">liid.ee</span>
+        </a>
+        <a class="card in" href="https://www.thingiverse.com/kristerv/designs">
+          <span class="chip">Hobby</span>
+          <span class="big t">3D printing</span>
+          <span class="meta">My designs on Thingiverse.</span>
+          <span class="go">thingiverse.com</span>
+        </a>
       </div>
-      <div class="prose reveal" style="margin-top: 32px;">
-        <p>If you're building something for yourself, you probably don't need help. But once you're vibe-coding <strong>other people's workflows</strong>, security and data integrity suddenly matter. That's how I work with <a href="https://goldadam.ee">Gold Adam</a> right now: their team vibe-codes an internal app and I keep it reliable.</p>
-        <p>If you've already built your thing and got stuck, book a call and we'll look at it together. I promise my first reaction won't be “rewrite it from scratch”.</p>
+    </section>
+
+    <!-- 05 -->
+    <section class="page" id="experience" aria-labelledby="h-experience">
+      <header class="head in">
+        <span class="lbl">Software, teaching and business</span>
+        <h1 id="h-experience">Since 2014.</h1>
+      </header>
+      <div class="xp-cols">
+        <p class="row-title in" style="--c:1;--r:1">Teaching <span>· since 2016</span></p>
+        <p class="row-title in" style="--c:2;--r:1">Software <span>· since 2014</span></p>
+        <p class="row-title in" style="--c:3;--r:1">Business</p>
+        <a class="xp in multi" style="--c:1;--r:2" href="https://tinkr.tech" data-twin="tinkr"><b>Tinkr.tech</b><span>learn programming by building projects</span></a>
+        <a class="xp in multi" style="--c:2;--r:2" href="https://tinkr.tech" data-twin="tinkr"><b>Tinkr.tech</b><span>Elixir, LiveView, PostgreSQL</span></a>
+        <a class="xp in multi" style="--c:3;--r:2" href="https://tinkr.tech" data-twin="tinkr"><b>Tinkr.tech</b><span>programming learning platform</span></a>
+        <a class="xp in" style="--c:1;--r:3" href="https://technotln.ee"><b>TechnoTLN</b><span>programming teacher</span></a>
+        <div class="xp in" style="--c:2;--r:3"><b>Viru Keskus</b><span>leading the data warehouse and BI team</span></div>
+        <a class="xp in" style="--c:3;--r:3" href="https://kirbs.ee"><b>Kirbs.ee</b><span>sell your kids’ clothes easily</span></a>
+        <a class="xp in" style="--c:1;--r:4" href="https://eesti.ai"><b>Eesti.ai</b><span>safe AI use trainings</span></a>
+        <a class="xp in" style="--c:2;--r:4" href="https://goldadam.ee"><b>Gold Adam</b><span>technical partner for an internal app</span></a>
+        <a class="xp in" style="--c:3;--r:4" href="https://liid.ee"><b>Liid.ee</b><span>AI-powered sales leads</span></a>
+        <a class="xp in" style="--c:1;--r:5" href="https://veebikool.ee"><b>Veebikool</b><span>programming and vibe coding</span></a>
+        <a class="xp in" style="--c:2;--r:5" href="https://code.krister.ee"><b>code.krister.ee</b><span>tech blog</span></a>
+        <a class="xp in" style="--c:3;--r:5" href="https://kogupere.ee"><b>Kogupere.ee</b><span>family events in one place</span></a>
+        <div class="xp in" style="--c:1;--r:6"><b>IT College</b><span>Java course</span></div>
+        <a class="xp in multi" style="--c:2;--r:6" href="https://randomforest.ee/" data-twin="rf"><b>random forest OÜ</b><span>software development agency</span></a>
+        <a class="xp in multi" style="--c:3;--r:6" href="https://randomforest.ee/" data-twin="rf"><b>random forest OÜ</b><span>founder</span></a>
+        <div class="xp in" style="--c:1;--r:7"><b>Vali-IT</b><span>teaching programming</span></div>
+        <div class="xp in multi" style="--c:2;--r:7" data-twin="toitla"><b>Toitla</b><span>“Uber for catering”</span></div>
+        <div class="xp in multi" style="--c:3;--r:7" data-twin="toitla"><b>Toitla</b><span>startup, 2016</span></div>
+        <div class="xp in multi" style="--c:2;--r:8" data-twin="savvy"><b>SavvyBooks</b><span>crypto tracking for US taxes</span></div>
+        <div class="xp in multi" style="--c:3;--r:8" data-twin="savvy"><b>SavvyBooks</b><span>crypto and US taxes</span></div>
+        <a class="xp in" style="--c:2;--r:9" href="https://github.com/KristerV/HNSince/"><b>HNSince.com</b><span>Elixir, Phoenix</span></a>
       </div>
-    </div>
-  </section>
+      <p class="small-links in"><span class="key"></span> black = in more than one column</p>
+    </section>
 
-  <!-- NOW -->
-  <section id="now">
-    <div class="wrap">
-      <h2 class="section-title reveal">What I'm up to now</h2>
-      <ul class="itemlist reveal" style="max-width:42rem;">
-        <li><a href="https://goldadam.ee">Gold Adam</a> <span class="what">— technical partner for their internal app.</span></li>
-        <li><a href="https://eesti.ai">Eesti.ai</a> and <a href="https://veebikool.ee">Veebikool</a> <span class="what">— training on safe AI use, vibe coding and programming.</span></li>
-        <li><a href="https://technotln.ee">TechnoTLN</a> <span class="what">— teaching programming (formerly Polütehnikum).</span></li>
-        <li><strong>Viru Keskus</strong> <span class="what">— leading the data warehouse and BI platform team.</span></li>
-        <li><a href="https://tinkr.tech">Tinkr.tech</a> <span class="what">— learn programming by building projects.</span></li>
-        <li><a href="https://kirbs.ee">Kirbs.ee</a> <span class="what">— sell your kids' clothes, hands-free.</span></li>
-        <li><a href="https://liid.ee">Liid.ee</a> <span class="what">— AI lead generator for the Baltics and Nordics.</span></li>
-        <li><a href="https://www.thingiverse.com/kristerv/designs">3D printing and design</a></li>
-      </ul>
+    <!-- 06 -->
+    <section class="page" id="contact" aria-labelledby="h-contact">
+      <header class="head in">
+        <span class="lbl">Contact</span>
+        <h1 id="h-contact">Let’s talk.</h1>
+      </header>
+      <a class="card dark in" href="https://cal.com/krister-viirsaar-zho32l/1h" style="max-width: 32rem;">
+        <span class="lbl">1 hour · video call · free</span>
+        <span class="big t">Book a call</span>
+        <span class="go">cal.com</span>
+      </a>
+      <div class="grid feat">
+        <button class="card in" type="button" data-copy="krister.viirsaar@gmail.com">
+          <span class="lbl">Email</span>
+          <span class="big t" style="font-size:1rem; overflow-wrap:anywhere;">krister.viirsaar@gmail.com</span>
+          <span class="go" data-label="Copy">Copy</span>
+        </button>
+        <a class="card in" href="https://www.linkedin.com/in/kristerv/">
+          <span class="lbl">Network</span>
+          <span class="big t">LinkedIn</span>
+          <span class="go">kristerv</span>
+        </a>
+        <a class="card in" href="https://discord.com/users/kristerv">
+          <span class="lbl">Chat</span>
+          <span class="big t">Discord</span>
+          <span class="go">kristerv</span>
+        </a>
+        <a class="card in" href="https://www.youtube.com/watch?v=tjrc4RemiSE">
+          <span class="lbl">Video</span>
+          <span class="big t">Interview</span>
+          <span class="go">YouTube</span>
+        </a>
+        <button class="card in" type="button" data-copy="EE987700771001379001">
+          <span class="lbl">IBAN</span>
+          <span class="big t" style="font-size:1rem; font-variant-numeric: tabular-nums;">EE987700771001379001</span>
+          <span class="go" data-label="Copy">Copy</span>
+        </button>
+      </div>
+    </section>
 
-      <h3 class="sub reveal">Before</h3>
-      <ul class="itemlist reveal" style="max-width:42rem; margin-top:12px;">
-        <li><a href="https://randomforest.ee/">random forest OÜ</a> <span class="what">— founded a software development agency.</span></li>
-        <li><strong>Toitla</strong> <span class="what">— “Uber for catering” from 2016. Clients all over Tallinn, from banks to startups.</span></li>
-        <li><strong>SavvyBooks</strong> <span class="what">— crypto tracking for US taxes.</span></li>
-        <li><a href="https://code.krister.ee">code.krister.ee</a> <span class="what">— tech blog.</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <footer>
-    <div class="wrap foot">
-      <span class="brand" style="font-size:1.1rem;"><span class="dot"></span>Krister Viirsaar</span>
-      <span>© 2026 Krister Viirsaar</span>
-    </div>
-  </footer>
+  </main>
 
   <script>
-    // Sort trainings: upcoming (soonest first), then past (latest first), then undated recordings; mark past ones
+  (() => {
+    const body = document.body;
+    const items = [...document.querySelectorAll('.item')];
+    const pages = [...document.querySelectorAll('.page')];
+    const home = document.getElementById('home');
+    const keyOf = a => a.getAttribute('href').slice(1);
+    let sel = -1;        // highlighted menu item (hover / arrows)
+    let open = null;     // open screen
+
+    const glitch = el => { el.classList.remove('lit', 'glitch'); void el.offsetWidth; el.classList.add('lit', 'glitch'); };
+
+    // ---- menu: the black rhombus glitches in ----
+    function light(i, withGlitch = true) {
+      if (i === sel) return;
+      items.forEach(a => a.classList.remove('lit', 'glitch'));
+      sel = i;
+      if (i < 0) return;
+      if (withGlitch) glitch(items[i]); else items[i].classList.add('lit');
+    }
+    items.forEach((a, i) => {
+      a.addEventListener('mouseenter', () => light(i));
+      a.addEventListener('focus', () => light(i));
+    });
+    // on a screen, leaving the menu hands the rhombus back to the open topic;
+    // on the main menu the last one stays lit, like a game cursor
+    document.getElementById('items').addEventListener('mouseleave', () => {
+      if (open) light(items.findIndex(a => keyOf(a) === open));
+    });
+
+    // ---- the menu moves row by row: the chosen one first, then its neighbours outward, the name last ----
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const narrow = matchMedia('(max-width: 820px)');
+    function moveMenu(change, lead) {
+      const els = [home, ...items.map(a => a.parentElement)];
+      if (reduce || narrow.matches) { els.forEach(e => e.getAnimations().forEach(a => a.cancel())); change(); return; }
+      const first = els.map(e => e.getBoundingClientRect());
+      els.forEach(e => e.getAnimations().forEach(a => a.cancel()));
+      change();
+      if (lead < 0) lead = 0;
+      els.forEach((e, k) => {
+        const r = e.getBoundingClientRect();
+        const dx = first[k].left - r.left, dy = first[k].top - r.top;
+        if (!dx && !dy) return;
+        const rank = k === 0 ? lead + 1 : Math.abs(k - 1 - lead);
+        e.animate([{ transform: `translate(${dx}px, ${dy}px)` }, { transform: 'none' }],
+                  { duration: 660, delay: rank * 55, easing: 'cubic-bezier(.77, 0, .18, 1)', fill: 'backwards' });
+      });
+    }
+    const setMode = inPage => { body.classList.toggle('in-page', inPage); body.classList.toggle('at-menu', !inPage); };
+
+    // ---- cards: rhombus outline snaps in on hover ----
+    const SVG = 'http://www.w3.org/2000/svg';
+    const rnd = (a, b) => a + Math.random() * (b - a);
+    const NORMALS = [[0, -1], [1, 0], [0, 1], [-1, 0]];   // top, right, bottom, left: the way each side flies in from
+    document.querySelectorAll('.pages :is(a, button).card:not(.dark)').forEach(card => {
+      const svg = document.createElementNS(SVG, 'svg');
+      svg.setAttribute('class', 'snap-lines'); svg.setAttribute('aria-hidden', 'true');
+      const lines = NORMALS.map(() => { const l = document.createElementNS(SVG, 'line'); svg.appendChild(l); return l; });
+      card.appendChild(svg);
+      const on = () => {
+        const w = card.offsetWidth, h = card.offsetHeight, s = 10;
+        svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+        const pts = [[s, 0, w, 0], [w, 0, w - s, h], [w - s, h, 0, h], [0, h, s, 0]];
+        // every hover rolls new dice (kept small): tilt, distance, sideways drift, arrival order
+        const order = [0, 1, 2, 3].sort(() => Math.random() - .5);
+        lines.forEach((l, k) => {
+          const [x1, y1, x2, y2] = pts[k]; l.setAttribute('x1', x1); l.setAttribute('y1', y1); l.setAttribute('x2', x2); l.setAttribute('y2', y2);
+          const [nx, ny] = NORMALS[k], d = rnd(4, 9), drift = rnd(-4, 4);
+          l.style.setProperty('--fx', (nx * d + ny * drift).toFixed(1) + 'px');
+          l.style.setProperty('--fy', (ny * d + nx * drift).toFixed(1) + 'px');
+          const half = Math.hypot(x2 - x1, y2 - y1) / 2;             // tilt so the line's ends move only ~3–7px, whatever its length
+          l.style.setProperty('--fr', ((Math.random() < .5 ? -1 : 1) * Math.atan2(rnd(3, 7), half) * 180 / Math.PI).toFixed(2) + 'deg');
+          l.style.setProperty('--k', order[k]);
+        });
+        card.classList.remove('snap'); void card.offsetWidth; card.classList.add('snap');
+      };
+      const off = () => card.classList.remove('snap');
+      card.addEventListener('mouseenter', on); card.addEventListener('mouseleave', off);
+      card.addEventListener('focus', on); card.addEventListener('blur', off);
+    });
+
+    // ---- experience: hovering a black entry lights up its copies in the other columns ----
+    document.querySelectorAll('.xp[data-twin]').forEach(x => {
+      const twins = () => document.querySelectorAll(`.xp[data-twin="${x.dataset.twin}"]`);
+      x.addEventListener('mouseenter', () => twins().forEach(y => y.classList.add('twin')));
+      x.addEventListener('mouseleave', () => twins().forEach(y => y.classList.remove('twin')));
+    });
+
+    // ---- open / close ----
+    function render() {
+      const key = location.hash.slice(1);
+      const page = pages.find(p => p.id === key);
+      if (!page) {
+        const wasOpen = !!open;
+        open = null;
+        if (wasOpen || body.classList.contains('in-page')) moveMenu(() => setMode(false), sel); else setMode(false);
+        pages.forEach(p => p.classList.remove('on'));
+        window.scrollTo(0, 0);
+        return;
+      }
+      const wasMenu = !open;
+      open = key;
+      const lead = items.findIndex(a => keyOf(a) === key);
+      if (!body.classList.contains('in-page')) moveMenu(() => setMode(true), lead);
+      pages.forEach(p => p.classList.remove('on', 'quick'));
+      page.querySelectorAll('.in').forEach((el, n) => el.style.setProperty('--i', n));
+      void page.offsetWidth;
+      page.classList.add('on');
+      if (!wasMenu) page.classList.add('quick');
+      light(items.findIndex(a => keyOf(a) === key), false);
+      window.scrollTo(0, 0);
+    }
+    addEventListener('hashchange', render);
+    home.addEventListener('click', e => {
+      e.preventDefault();
+      if (location.hash) { history.pushState(null, '', location.pathname + location.search); render(); }
+    });
+    addEventListener('popstate', render);
+    // a direct link like /#kontakt makes the browser jump to that section; a screen always starts at the top
+    addEventListener('load', () => { if (open) requestAnimationFrame(() => window.scrollTo(0, 0)); });
+
+    // ---- keyboard: like a game menu ----
+    addEventListener('keydown', e => {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const ae = document.activeElement;
+      const inMenu = ae && ae.closest && ae.closest('#items');
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        if (open && !inMenu) return;           // on a screen, arrows scroll as usual
+        e.preventDefault();
+        const d = e.key === 'ArrowDown' ? 1 : -1;
+        const next = sel < 0 ? (d > 0 ? 0 : items.length - 1) : (sel + d + items.length) % items.length;
+        items[next].focus();
+      } else if (e.key === 'Enter' && !open && !inMenu && sel >= 0) {
+        location.hash = keyOf(items[sel]);
+      } else if (e.key === 'Escape' && open) {
+        const i = sel;
+        home.click();
+        if (i >= 0) items[i].focus({ preventScroll: true });
+      }
+    });
+
+    // ---- copy cards: the whole card copies, then says so ----
+    document.querySelectorAll('button.card[data-copy]').forEach(b => b.addEventListener('click', () => {
+      const go = b.querySelector('.go');
+      const done = () => {
+        b.classList.add('copied'); go.textContent = 'Copied';
+        clearTimeout(b._t); b._t = setTimeout(() => { b.classList.remove('copied'); go.textContent = go.dataset.label; }, 1600);
+      };
+      const pick = () => { const r = document.createRange(); r.selectNodeContents(b.querySelector('.big')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); go.textContent = 'Select and copy'; };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(b.dataset.copy).then(done, pick); else pick();
+    }));
+
+    // ---- trainings: upcoming (soonest first), then past (latest first, dimmed), then recordings ----
     (function () {
       const today = new Date().toISOString().slice(0, 10);
       const list = document.getElementById('events');
-      const items = [...list.children];
-      const rank = li => { const d = li.dataset.date; return !d ? 2 : (li.dataset.end || d) < today ? 1 : 0; };
-      items.forEach(li => {
-        if (rank(li) === 1) {
-          li.classList.add('past');
-          li.querySelector('.when').insertAdjacentHTML('beforeend', '<small>' + list.dataset.pastLabel + '</small>');
-        }
+      const els = [...list.children];
+      const rank = el => { const d = el.dataset.date; return !d ? 2 : d < today ? 1 : 0; };
+      els.forEach(el => {
+        if (rank(el) === 1) { el.classList.add('past'); el.querySelector('.meta').textContent += ' · ' + list.dataset.pastLabel; }
+        if (!el.dataset.date) el.classList.add('rec');
       });
-      items.sort((a, b) => rank(a) - rank(b) || (rank(a) === 0 ? -1 : 1) * ((b.dataset.date || '').localeCompare(a.dataset.date || '')))
-           .forEach(li => list.appendChild(li));
+      els.sort((a, b) => rank(a) - rank(b) || (rank(a) === 0 ? -1 : 1) * ((b.dataset.date || '').localeCompare(a.dataset.date || '')))
+         .forEach(el => list.appendChild(el));
     })();
 
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    render();
+  })();
   </script>
 </body>
 </html>
