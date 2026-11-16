@@ -211,22 +211,24 @@
     /* list rows (experience) */
     /* experience: three columns, every entry the same rhombus; black = appears in more than one column */
     /* one grid, fixed rows: an entry that sits in several columns shares a row with its copies */
-    .xp-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 22px; row-gap: 6px; }
+    .xp-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 22px; row-gap: 6px; perspective: 1100px; }
     .xp-cols > * { grid-column: var(--c); grid-row: var(--r); min-width: 0; }
     .xp-cols .row-title { margin-bottom: 6px; }
     .xp-cols .row-title span { letter-spacing: .06em; text-transform: none; }
     .xp {
       display: flex; flex-direction: column; gap: 1px; padding: 9px 22px; min-height: 3.6rem; justify-content: center;
       background: var(--chip); color: var(--ink); clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
-      transition: background .2s, transform .2s;
+      transition: background .25s, translate .35s cubic-bezier(.2, .8, .3, 1);
     }
+    /* hover: the entry (and its copies in other columns) rises toward the viewer */
+    .xp.lift { translate: 0 0 46px; z-index: 2; position: relative; }
+    .xp.lift:not(.multi) { background: #e4e4e1; }
     .xp b { font-size: .92rem; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .xp span { font-size: .76rem; line-height: 1.35; color: var(--soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    a.xp:hover { background: #e6e6e4; }
     .xp.multi { background: var(--hi); }
     .xp.multi b { color: var(--hi-text); }
     .xp.multi span { color: var(--hi-dim); }
-    a.xp.multi:hover, .xp.multi.twin { background: #000; transform: translateX(4px); }
+    .xp.multi.lift { background: #000; }
     .small-links .key { display: inline-block; width: 18px; height: 10px; background: var(--hi); clip-path: polygon(3px 0, 100% 0, calc(100% - 3px) 100%, 0 100%); vertical-align: -1px; margin-right: 4px; }
 
     /* list rows: one line per item */
@@ -686,11 +688,13 @@
       card.addEventListener('focus', on); card.addEventListener('blur', off);
     });
 
-    // ---- experience: hovering a black entry lights up its copies in the other columns ----
-    document.querySelectorAll('.xp[data-twin]').forEach(x => {
-      const twins = () => document.querySelectorAll(`.xp[data-twin="${x.dataset.twin}"]`);
-      x.addEventListener('mouseenter', () => twins().forEach(y => y.classList.add('twin')));
-      x.addEventListener('mouseleave', () => twins().forEach(y => y.classList.remove('twin')));
+    // ---- experience: hovering an entry lifts it, together with its copies in the other columns ----
+    document.querySelectorAll('.xp').forEach(x => {
+      const group = () => x.dataset.twin ? document.querySelectorAll(`.xp[data-twin="${x.dataset.twin}"]`) : [x];
+      const up = () => group().forEach(y => y.classList.add('lift'));
+      const down = () => group().forEach(y => y.classList.remove('lift'));
+      x.addEventListener('mouseenter', up); x.addEventListener('mouseleave', down);
+      x.addEventListener('focus', up); x.addEventListener('blur', down);
     });
 
     // ---- open / close ----
