@@ -122,6 +122,7 @@
       color: var(--dim); font-size: .78rem; letter-spacing: .04em; border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; background: var(--paper);
     }
     .lang:hover { color: var(--ink); border-color: var(--ink); }
+    .back { display: none; }
 
     /* ---------- screens ---------- */
     .pages { position: relative; z-index: 1; margin-left: calc(var(--nav-left) + var(--nav-w) + 56px); padding-right: max(48px, env(safe-area-inset-right, 0px)); }
@@ -143,6 +144,9 @@
     .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
     .grid.feat { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .grid.feat > :first-child { grid-column: span 2; }
+    .grid.contacts { grid-template-columns: 1.5fr 1fr 1fr 1.4fr; }
+    .card.video .big { display: flex; align-items: center; }
+    .play { flex: none; width: 0; height: 0; margin-right: 12px; border-left: 12px solid currentColor; border-top: 7px solid transparent; border-bottom: 7px solid transparent; }
     .card .big { overflow-wrap: break-word; hyphens: auto; }
 
     .card {
@@ -251,26 +255,27 @@
 
     /* ---------- phones: centred list on arrival, then a scrolling strip on top ---------- */
     @media (max-width: 820px) {
-      body.at-menu .item { font-size: min(1.22rem, 5vw); }
-      body.in-page .menu {
-        position: sticky; top: 0; left: 0; transform: none; width: 100%; transition: none;
-        background: var(--paper); border-bottom: 1px solid var(--line);
-        padding: calc(14px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px));
-      }
-      body.in-page .who { margin: 0 0 8px 0; }
-      body.in-page .who b { font-size: 1.05rem; }
-      body.in-page .who small { display: none; }
-      body.in-page .items { flex-direction: row; overflow-x: auto; gap: 2px; scrollbar-width: none; margin: 0 -6px; }
-      body.in-page .items::-webkit-scrollbar { display: none; }
-      body.in-page .item { font-size: .95rem; padding: 6px 18px; }
-      body.in-page .item .n { display: none; }
+      .menu { max-width: calc(100vw - 32px); }
+      body.at-menu .item { font-size: min(1.22rem, 4.8vw); white-space: normal; }
+      /* on a screen the menu has slid off to the left; it hides once the slide is over */
+      body.in-page .menu { visibility: hidden; pointer-events: none; transition: visibility 0s linear .9s; }
       body.in-page .lang { display: none; }
+      body.in-page .back {
+        display: inline-flex; align-items: center; gap: 8px; position: fixed; z-index: 7;
+        top: calc(14px + env(safe-area-inset-top, 0px)); left: max(16px, env(safe-area-inset-left, 0px));
+        font: inherit; font-size: .9rem; color: var(--ink); background: var(--chip); border: 0; padding: 7px 20px 7px 16px; cursor: pointer;
+        clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+        animation: rise .5s var(--move) .5s both;
+      }
+      body.in-page .back:active { background: var(--hi); color: var(--hi-text); }
       .pages { margin-left: 0; padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px)); }
-      .page { min-height: 0; justify-content: flex-start; padding-block: 26px 70px; gap: 24px; }
-      .page.on { --d: .04s; }
+      .page { min-height: 0; justify-content: flex-start; padding-block: calc(70px + env(safe-area-inset-top, 0px)) 70px; gap: 24px; }
+      .page.on { --d: .6s; }
       .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
       .grid.two, .vs { grid-template-columns: 1fr; }
       .grid.feat { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid.contacts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .grid.contacts > button { grid-column: span 2; }
       .xp-cols { grid-template-columns: 1fr; }
       .xp-cols > * { grid-column: 1; grid-row: auto; order: calc(var(--c) * 100 + var(--r)); }
       .xp-cols .row-title:not([style*="--c:1"]) { margin-top: 22px; }
@@ -287,11 +292,23 @@
       .page.on .in { animation: none; }
       :is(a, button).card.snap .snap-lines line { animation: none; }
     }
+    /* external links open in a new tab and say so with a small arrow-out-of-box icon */
+    :root { --ext: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 4h6v6'/%3E%3Cpath d='M20 4l-9 9'/%3E%3Cpath d='M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5'/%3E%3C/svg%3E"); }
+    a[target="_blank"] .go::after,
+    a[target="_blank"].line .title::after,
+    a.xp[target="_blank"] b::after,
+    .small-links a[target="_blank"]::after {
+      content: ""; display: inline-block; width: .72em; height: .72em; margin-left: .4em; vertical-align: -.02em;
+      background: currentColor; -webkit-mask: var(--ext) no-repeat center / contain; mask: var(--ext) no-repeat center / contain;
+    }
+    a[target="_blank"] .go::after { opacity: .8; }
   </style>
 </head>
 <body class="at-menu">
 
   <a href="../" class="lang" hreflang="et">ET</a>
+
+  <button class="back" id="back" type="button"><span aria-hidden="true">←</span> Menu</button>
 
   <nav class="menu" id="menu" aria-label="Topics">
     <a class="who" href="#" id="home">
@@ -320,43 +337,43 @@
       </header>
 
       <div class="lines" id="events" data-past-label="done">
-          <a class="card line in" data-date="2026-11-18" href="https://fienta.com/et/viimsi-turvaline-tehisaru-kasutus-ja-riskide-maandamine">
+          <a class="card line in" data-date="2026-11-18" href="https://fienta.com/et/viimsi-turvaline-tehisaru-kasutus-ja-riskide-maandamine" target="_blank" rel="noopener">
             <span class="when"><b>18</b> Nov</span>
             <span class="title">Safe AI use and risk mitigation</span>
             <span class="meta">Viimsi</span>
             <span class="chip">Eesti.ai</span>
           </a>
-          <a class="card line in" data-date="2026-11-19" href="https://fienta.com/et/tallinn-tehisaru-kontoritoos">
+          <a class="card line in" data-date="2026-11-19" href="https://fienta.com/et/tallinn-tehisaru-kontoritoos" target="_blank" rel="noopener">
             <span class="when"><b>19</b> Nov</span>
             <span class="title">AI in office work</span>
             <span class="meta">Tallinn</span>
             <span class="chip">Eesti.ai</span>
           </a>
-          <a class="card line in" data-date="2026-11-20" href="https://fienta.com/et/tallinn-tehisaru-ja-loovus-voimalused-riskid-ja-vastutus">
+          <a class="card line in" data-date="2026-11-20" href="https://fienta.com/et/tallinn-tehisaru-ja-loovus-voimalused-riskid-ja-vastutus" target="_blank" rel="noopener">
             <span class="when"><b>20</b> Nov</span>
             <span class="title">AI and creativity: possibilities, risks and responsibility</span>
             <span class="meta">Tallinn</span>
             <span class="chip">Eesti.ai</span>
           </a>
-          <a class="card line in" data-date="2027-01-12" href="https://veebikool.ee/opiprogramm-programmeerimine/">
+          <a class="card line in" data-date="2027-01-12" href="https://veebikool.ee/opiprogramm-programmeerimine/" target="_blank" rel="noopener">
             <span class="when"><b>12</b> Jan</span>
             <span class="title">Programming course</span>
             <span class="meta">Online, 12 weeks</span>
             <span class="chip">Veebikool</span>
           </a>
-          <a class="card line in" data-date="2026-10-13" href="https://veebikool.ee/kasuta-ai-targalt/">
+          <a class="card line in" data-date="2026-10-13" href="https://veebikool.ee/kasuta-ai-targalt/" target="_blank" rel="noopener">
             <span class="when"><b>13</b> Oct</span>
             <span class="title">Use AI wisely. Avoid the pitfalls.</span>
             <span class="meta">Webinar</span>
             <span class="chip">Veebikool</span>
           </a>
-          <a class="card line in" href="https://veebikool.ee/toode/programmeerimine-vaibkoodijatele-praktiline-tootuba/">
+          <a class="card line in" href="https://veebikool.ee/toode/programmeerimine-vaibkoodijatele-praktiline-tootuba/" target="_blank" rel="noopener">
             <span class="when">Recording</span>
             <span class="title">Programming for vibe coders</span>
             <span class="meta">4-hour workshop</span>
             <span class="chip">Veebikool</span>
           </a>
-          <a class="card line in" href="https://veebikool.ee/vaibkoodimise-opiprogramm/">
+          <a class="card line in" href="https://veebikool.ee/vaibkoodimise-opiprogramm/" target="_blank" rel="noopener">
             <span class="when">Recording</span>
             <span class="title">Vibe coding masterclass</span>
             <span class="meta">Algorithmic thinking</span>
@@ -364,7 +381,7 @@
           </a>
       </div>
 
-      <p class="small-links in">All trainings: <a href="https://fienta.com/et/o/eestiai">Eesti.ai on Fienta</a> · <a href="https://veebikool.ee/koolituskalender/">Veebikool calendar</a> (in Estonian)</p>
+      <p class="small-links in">All trainings: <a href="https://fienta.com/et/o/eestiai" target="_blank" rel="noopener">Eesti.ai on Fienta</a> · <a href="https://veebikool.ee/koolituskalender/" target="_blank" rel="noopener">Veebikool calendar</a> (in Estonian)</p>
     </section>
 
     <!-- 02 -->
@@ -398,13 +415,13 @@
       </div>
 
       <div class="grid two">
-        <a class="card in" href="https://goldadam.ee">
+        <a class="card in" href="https://goldadam.ee" target="_blank" rel="noopener">
           <span class="lbl">Working with now</span>
           <span class="big t">Gold Adam</span>
           <span class="meta">Their team vibe-codes an internal app, I keep it reliable.</span>
           <span class="go">goldadam.ee</span>
         </a>
-        <a class="card in" href="https://cal.com/krister-viirsaar-zho32l/1h">
+        <a class="card in" href="https://cal.com/krister-viirsaar-zho32l/1h" target="_blank" rel="noopener">
           <span class="lbl">Stuck?</span>
           <span class="big t">Let’s look at it together</span>
           <span class="meta">My first reaction won’t be “rewrite it from scratch”.</span>
@@ -420,27 +437,27 @@
         <h1 id="h-teaching">I teach programming.</h1>
       </header>
       <div class="lines">
-        <a class="card line in" href="https://technotln.ee">
+        <a class="card line in" href="https://technotln.ee" target="_blank" rel="noopener">
           <span class="when">School</span>
           <span class="title">TechnoTLN</span>
           <span class="meta">formerly Polütehnikum</span>
         </a>
-        <a class="card line in" href="https://veebikool.ee/opiprogramm-programmeerimine/">
+        <a class="card line in" href="https://veebikool.ee/opiprogramm-programmeerimine/" target="_blank" rel="noopener">
           <span class="when">12 weeks</span>
           <span class="title">Programming course</span>
           <span class="meta">Veebikool</span>
         </a>
-        <a class="card line in" href="https://veebikool.ee/toode/programmeerimine-vaibkoodijatele-praktiline-tootuba/">
+        <a class="card line in" href="https://veebikool.ee/toode/programmeerimine-vaibkoodijatele-praktiline-tootuba/" target="_blank" rel="noopener">
           <span class="when">4 hours</span>
           <span class="title">Programming for vibe coders</span>
           <span class="meta">Veebikool</span>
         </a>
-        <a class="card line in" href="https://veebikool.ee/vaibkoodimise-opiprogramm/">
+        <a class="card line in" href="https://veebikool.ee/vaibkoodimise-opiprogramm/" target="_blank" rel="noopener">
           <span class="when">Recording</span>
           <span class="title">Vibe coding masterclass</span>
           <span class="meta">Veebikool</span>
         </a>
-        <a class="card line in" href="https://tinkr.tech">
+        <a class="card line in" href="https://tinkr.tech" target="_blank" rel="noopener">
           <span class="when">Platform</span>
           <span class="title">Tinkr.tech</span>
           <span class="meta">learn by building projects</span>
@@ -455,25 +472,25 @@
         <h1 id="h-projects">My projects.</h1>
       </header>
       <div class="grid two">
-        <a class="card in" href="https://tinkr.tech">
+        <a class="card in" href="https://tinkr.tech" target="_blank" rel="noopener">
           <span class="chip">Education</span>
           <span class="big t">Tinkr.tech</span>
           <span class="meta">Learn programming by building projects.</span>
           <span class="go">tinkr.tech</span>
         </a>
-        <a class="card in" href="https://kirbs.ee">
+        <a class="card in" href="https://kirbs.ee" target="_blank" rel="noopener">
           <span class="chip">For parents</span>
           <span class="big t">Kirbs.ee</span>
           <span class="meta">Sell your kids’ clothes without the hassle.</span>
           <span class="go">kirbs.ee</span>
         </a>
-        <a class="card in" href="https://liid.ee">
+        <a class="card in" href="https://liid.ee" target="_blank" rel="noopener">
           <span class="chip">Sales · AI</span>
           <span class="big t">Liid.ee</span>
           <span class="meta">Sales leads for Baltic and Nordic companies.</span>
           <span class="go">liid.ee</span>
         </a>
-        <a class="card in" href="https://www.thingiverse.com/kristerv/designs">
+        <a class="card in" href="https://www.thingiverse.com/kristerv/designs" target="_blank" rel="noopener">
           <span class="chip">Hobby</span>
           <span class="big t">3D printing</span>
           <span class="meta">My designs on Thingiverse.</span>
@@ -492,27 +509,27 @@
         <p class="row-title in" style="--c:1;--r:1">Teaching <span>· since 2016</span></p>
         <p class="row-title in" style="--c:2;--r:1">Software <span>· since 2014</span></p>
         <p class="row-title in" style="--c:3;--r:1">Business</p>
-        <a class="xp in multi" style="--c:1;--r:2" href="https://tinkr.tech" data-twin="tinkr"><b>Tinkr.tech</b><span>learn programming by building projects</span></a>
-        <a class="xp in multi" style="--c:2;--r:2" href="https://tinkr.tech" data-twin="tinkr"><b>Tinkr.tech</b><span>Elixir, LiveView, PostgreSQL</span></a>
-        <a class="xp in multi" style="--c:3;--r:2" href="https://tinkr.tech" data-twin="tinkr"><b>Tinkr.tech</b><span>programming learning platform</span></a>
-        <a class="xp in" style="--c:1;--r:3" href="https://technotln.ee"><b>TechnoTLN</b><span>programming teacher</span></a>
+        <a class="xp in multi" style="--c:1;--r:2" href="https://tinkr.tech" data-twin="tinkr" target="_blank" rel="noopener"><b>Tinkr.tech</b><span>learn programming by building projects</span></a>
+        <a class="xp in multi" style="--c:2;--r:2" href="https://tinkr.tech" data-twin="tinkr" target="_blank" rel="noopener"><b>Tinkr.tech</b><span>Elixir, LiveView, PostgreSQL</span></a>
+        <a class="xp in multi" style="--c:3;--r:2" href="https://tinkr.tech" data-twin="tinkr" target="_blank" rel="noopener"><b>Tinkr.tech</b><span>programming learning platform</span></a>
+        <a class="xp in" style="--c:1;--r:3" href="https://technotln.ee" target="_blank" rel="noopener"><b>TechnoTLN</b><span>programming teacher</span></a>
         <div class="xp in" style="--c:2;--r:3"><b>Viru Keskus</b><span>leading the data warehouse and BI team</span></div>
-        <a class="xp in" style="--c:3;--r:3" href="https://kirbs.ee"><b>Kirbs.ee</b><span>sell your kids’ clothes easily</span></a>
-        <a class="xp in" style="--c:1;--r:4" href="https://eesti.ai"><b>Eesti.ai</b><span>safe AI use trainings</span></a>
-        <a class="xp in" style="--c:2;--r:4" href="https://goldadam.ee"><b>Gold Adam</b><span>technical partner for an internal app</span></a>
-        <a class="xp in" style="--c:3;--r:4" href="https://liid.ee"><b>Liid.ee</b><span>AI-powered sales leads</span></a>
-        <a class="xp in" style="--c:1;--r:5" href="https://veebikool.ee"><b>Veebikool</b><span>programming and vibe coding</span></a>
-        <a class="xp in" style="--c:2;--r:5" href="https://code.krister.ee"><b>code.krister.ee</b><span>tech blog</span></a>
-        <a class="xp in" style="--c:3;--r:5" href="https://kogupere.ee"><b>Kogupere.ee</b><span>family events in one place</span></a>
+        <a class="xp in" style="--c:3;--r:3" href="https://kirbs.ee" target="_blank" rel="noopener"><b>Kirbs.ee</b><span>sell your kids’ clothes easily</span></a>
+        <a class="xp in" style="--c:1;--r:4" href="https://eesti.ai" target="_blank" rel="noopener"><b>Eesti.ai</b><span>safe AI use trainings</span></a>
+        <a class="xp in" style="--c:2;--r:4" href="https://goldadam.ee" target="_blank" rel="noopener"><b>Gold Adam</b><span>technical partner for an internal app</span></a>
+        <a class="xp in" style="--c:3;--r:4" href="https://liid.ee" target="_blank" rel="noopener"><b>Liid.ee</b><span>AI-powered sales leads</span></a>
+        <a class="xp in" style="--c:1;--r:5" href="https://veebikool.ee" target="_blank" rel="noopener"><b>Veebikool</b><span>programming and vibe coding</span></a>
+        <a class="xp in" style="--c:2;--r:5" href="https://code.krister.ee" target="_blank" rel="noopener"><b>code.krister.ee</b><span>tech blog</span></a>
+        <a class="xp in" style="--c:3;--r:5" href="https://kogupere.ee" target="_blank" rel="noopener"><b>Kogupere.ee</b><span>family events in one place</span></a>
         <div class="xp in" style="--c:1;--r:6"><b>IT College</b><span>Java course</span></div>
-        <a class="xp in multi" style="--c:2;--r:6" href="https://randomforest.ee/" data-twin="rf"><b>random forest OÜ</b><span>software development agency</span></a>
-        <a class="xp in multi" style="--c:3;--r:6" href="https://randomforest.ee/" data-twin="rf"><b>random forest OÜ</b><span>founder</span></a>
+        <a class="xp in multi" style="--c:2;--r:6" href="https://randomforest.ee/" data-twin="rf" target="_blank" rel="noopener"><b>random forest OÜ</b><span>software development agency</span></a>
+        <a class="xp in multi" style="--c:3;--r:6" href="https://randomforest.ee/" data-twin="rf" target="_blank" rel="noopener"><b>random forest OÜ</b><span>founder</span></a>
         <div class="xp in" style="--c:1;--r:7"><b>Vali-IT</b><span>teaching programming</span></div>
         <div class="xp in multi" style="--c:2;--r:7" data-twin="toitla"><b>Toitla</b><span>“Uber for catering”</span></div>
         <div class="xp in multi" style="--c:3;--r:7" data-twin="toitla"><b>Toitla</b><span>startup, 2016</span></div>
         <div class="xp in multi" style="--c:2;--r:8" data-twin="savvy"><b>SavvyBooks</b><span>crypto tracking for US taxes</span></div>
         <div class="xp in multi" style="--c:3;--r:8" data-twin="savvy"><b>SavvyBooks</b><span>crypto and US taxes</span></div>
-        <a class="xp in" style="--c:2;--r:9" href="https://github.com/KristerV/HNSince/"><b>HNSince.com</b><span>Elixir, Phoenix</span></a>
+        <a class="xp in" style="--c:2;--r:9" href="https://github.com/KristerV/HNSince/" target="_blank" rel="noopener"><b>HNSince.com</b><span>Elixir, Phoenix</span></a>
       </div>
       <p class="small-links in"><span class="key"></span> black = in more than one column</p>
     </section>
@@ -523,31 +540,33 @@
         <span class="lbl">Contact</span>
         <h1 id="h-contact">Let’s talk.</h1>
       </header>
-      <a class="card dark in" href="https://cal.com/krister-viirsaar-zho32l/1h" style="max-width: 32rem;">
-        <span class="lbl">1 hour · video call · free</span>
-        <span class="big t">Book a call</span>
-        <span class="go">cal.com</span>
-      </a>
-      <div class="grid feat">
+      <div class="grid two meet">
+        <a class="card dark in" href="https://cal.com/krister-viirsaar-zho32l/1h" target="_blank" rel="noopener">
+          <span class="lbl">1 hour · video call · free</span>
+          <span class="big t">Book a call</span>
+          <span class="go">cal.com</span>
+        </a>
+        <a class="card in video" href="https://www.youtube.com/watch?v=tjrc4RemiSE" target="_blank" rel="noopener">
+          <span class="lbl">Before the call</span>
+          <span class="big t"><span class="play" aria-hidden="true"></span>See what I’m like</span>
+          <span class="go">Interview · YouTube</span>
+        </a>
+      </div>
+      <div class="grid contacts">
         <button class="card in" type="button" data-copy="krister.viirsaar@gmail.com">
           <span class="lbl">Email</span>
           <span class="big t" style="font-size:1rem; overflow-wrap:anywhere;">krister.viirsaar@gmail.com</span>
           <span class="go" data-label="Copy">Copy</span>
         </button>
-        <a class="card in" href="https://www.linkedin.com/in/kristerv/">
+        <a class="card in" href="https://www.linkedin.com/in/kristerv/" target="_blank" rel="noopener">
           <span class="lbl">Network</span>
           <span class="big t">LinkedIn</span>
           <span class="go">kristerv</span>
         </a>
-        <a class="card in" href="https://discord.com/users/kristerv">
+        <a class="card in" href="https://discord.com/users/kristerv" target="_blank" rel="noopener">
           <span class="lbl">Chat</span>
           <span class="big t">Discord</span>
           <span class="go">kristerv</span>
-        </a>
-        <a class="card in" href="https://www.youtube.com/watch?v=tjrc4RemiSE">
-          <span class="lbl">Video</span>
-          <span class="big t">Interview</span>
-          <span class="go">YouTube</span>
         </a>
         <button class="card in" type="button" data-copy="EE987700771001379001">
           <span class="lbl">IBAN</span>
@@ -592,9 +611,22 @@
     // ---- the menu moves row by row: the chosen one first, then its neighbours outward, the name last ----
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const narrow = matchMedia('(max-width: 820px)');
-    function moveMenu(change, lead) {
+    function moveMenu(change, lead, toPage) {
       const els = [home, ...items.map(a => a.parentElement)];
-      if (reduce || narrow.matches) { els.forEach(e => e.getAnimations().forEach(a => a.cancel())); change(); return; }
+      if (reduce) { els.forEach(e => e.getAnimations().forEach(a => a.cancel())); change(); return; }
+      if (narrow.matches) {
+        // phones: rows slide off the screen to the left (chosen one first), and slide back in on the way back
+        els.forEach(e => e.getAnimations().forEach(a => a.cancel()));
+        change();
+        if (lead < 0) lead = 0;
+        els.forEach((e, k) => {
+          const rank = k === 0 ? lead + 1 : Math.abs(k - 1 - lead);
+          const off = { transform: 'translateX(-110vw)', opacity: 0 }, on = { transform: 'none', opacity: 1 };
+          e.animate(toPage ? [on, off] : [off, on],
+                    { duration: toPage ? 380 : 480, delay: rank * 45 + (toPage ? 60 : 0), easing: toPage ? 'cubic-bezier(.6, 0, .9, .4)' : 'cubic-bezier(.1, .6, .3, 1)', fill: toPage ? 'forwards' : 'backwards' });
+        });
+        return;
+      }
       const first = els.map(e => e.getBoundingClientRect());
       els.forEach(e => e.getAnimations().forEach(a => a.cancel()));
       change();
@@ -652,10 +684,12 @@
     function render() {
       const key = location.hash.slice(1);
       const page = pages.find(p => p.id === key);
+      // a #link fires both hashchange and popstate: don't open the same screen twice
+      if (page ? key === open : (!open && body.classList.contains('at-menu') && !body.classList.contains('in-page'))) return;
       if (!page) {
         const wasOpen = !!open;
         open = null;
-        if (wasOpen || body.classList.contains('in-page')) moveMenu(() => setMode(false), sel); else setMode(false);
+        if (wasOpen || body.classList.contains('in-page')) moveMenu(() => setMode(false), sel, false); else setMode(false);
         pages.forEach(p => p.classList.remove('on'));
         window.scrollTo(0, 0);
         return;
@@ -663,7 +697,7 @@
       const wasMenu = !open;
       open = key;
       const lead = items.findIndex(a => keyOf(a) === key);
-      if (!body.classList.contains('in-page')) moveMenu(() => setMode(true), lead);
+      if (!body.classList.contains('in-page')) moveMenu(() => setMode(true), lead, true);
       pages.forEach(p => p.classList.remove('on', 'quick'));
       page.querySelectorAll('.in').forEach((el, n) => el.style.setProperty('--i', n));
       void page.offsetWidth;
@@ -678,6 +712,7 @@
       if (location.hash) { history.pushState(null, '', location.pathname + location.search); render(); }
     });
     addEventListener('popstate', render);
+    document.getElementById('back').addEventListener('click', () => home.click());
     // a direct link like /#kontakt makes the browser jump to that section; a screen always starts at the top
     addEventListener('load', () => { if (open) requestAnimationFrame(() => window.scrollTo(0, 0)); });
 
