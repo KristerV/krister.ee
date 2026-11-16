@@ -791,7 +791,7 @@
         ['...xxxxx...', '.xxxxxxxxx.', 'xx..xxx..xx', 'xxxxxxxxxxx', 'x.x.x.x.x.x', '.x.x.x.x.x.'],
       ];
       const AW = 11 * PX, AH = 6 * PX;
-      const DIR = { ArrowLeft: 'L', a: 'L', A: 'L', ArrowRight: 'R', d: 'R', D: 'R', ArrowUp: 'U', w: 'U', W: 'U', ArrowDown: 'D', s: 'D', S: 'D' };
+      const DIR = { ArrowLeft: 'L', ArrowRight: 'R', ArrowUp: 'U', ArrowDown: 'D' };
       let state = 'off', x = 0, y = 0, vx = 0, vy = 0, onEl = null, keys = {}, last = 0, t = 0, cool = 0;
       let parts = [], shots = [], bombs = [], aliens = [], adir = 1, score = 0, waveDue = 0, toastT, respawnT;
       const dmg = new Map();                                   // element -> set of destroyed CELLxCELL squares
@@ -970,11 +970,14 @@
     })();
 
     // ---- keyboard: like a game menu (arrows or WASD) ----
-    const KEY = { ArrowUp: 'up', w: 'up', W: 'up', ArrowDown: 'down', s: 'down', S: 'down', ArrowLeft: 'back', a: 'back', A: 'back', Backspace: 'back', Escape: 'back', ArrowRight: 'open', d: 'open', D: 'open', Enter: 'open' };
-    addEventListener('keyup', e => { if (ufo.on) ufo.key(e.key, false); });
+    // W A S D are the arrows, by key position, so they work the same on any keyboard layout and with Caps Lock
+    const WASD = { KeyW: 'ArrowUp', KeyA: 'ArrowLeft', KeyS: 'ArrowDown', KeyD: 'ArrowRight' };
+    const keyName = e => WASD[e.code] || e.key;
+    const KEY = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'back', Backspace: 'back', Escape: 'back', ArrowRight: 'open', Enter: 'open' };
+    addEventListener('keyup', e => { if (ufo.on) ufo.key(keyName(e), false); });
     addEventListener('keydown', e => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
-      const k = e.key;
+      const k = keyName(e);
       // while the UFO is in play it owns the keyboard; Esc ends the game
       if (ufo.on) {
         e.preventDefault();
