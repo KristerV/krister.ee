@@ -151,21 +151,29 @@
       padding: 18px 22px; border: 1px solid var(--edge); color: var(--ink); outline: none;
       transition: border-color .2s, transform .2s;
     }
-    a.card:hover .go, a.card:focus-visible .go { color: var(--ink); }
+    :is(a, button).card:hover .go, :is(a, button).card:focus-visible .go { color: var(--ink); }
 
     /* hover: four border lines spin in from further out and snap into a rhombus */
     .snap-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
     .snap-lines line { stroke: var(--ink); stroke-width: 1.5; stroke-linecap: square; opacity: 0; transform-box: fill-box; transform-origin: center; transition: opacity .15s; }
-    a.card.snap { border-color: transparent; }
-    a.card.snap .snap-lines line { opacity: 1; animation: snap-in .52s cubic-bezier(.2, 1.35, .35, 1) both; animation-delay: calc(var(--k) * 45ms); }
+    :is(a, button).card.snap { border-color: transparent; }
+    :is(a, button).card.snap .snap-lines line { opacity: 1; animation: snap-in .9s cubic-bezier(.22, .61, .36, 1) both; animation-delay: calc(var(--k) * 70ms); }
     @keyframes snap-in {
-      from { opacity: 0; transform: translate(var(--fx), var(--fy)) rotate(var(--fr)) scale(1.25); }
-      30%  { opacity: 1; }
+      from { opacity: 0; transform: translate(var(--fx), var(--fy)) rotate(var(--fr)); }
+      40%  { opacity: 1; }
       to   { opacity: 1; transform: none; }
     }
     a.card.dark:hover { transform: translateY(-2px); background: #000; }
     a.card.dark:hover .go { color: var(--hi-text); }
     a.card { cursor: pointer; }
+    button.card { font: inherit; text-align: left; background: var(--paper); cursor: pointer; width: 100%; }
+    /* copied: the card flashes black for a moment */
+    button.card { transition: border-color .2s, background .35s, color .35s; }
+    button.card.copied { background: var(--hi); border-color: var(--hi); color: var(--hi-text); clip-path: var(--rh); }
+    button.card.copied .snap-lines { display: none; }
+    button.card.copied .lbl, button.card.copied .go, button.card.copied .big { color: var(--hi-text); }
+    button.card.copied .go::after { content: " ✓"; }
+    button.card:not(.copied) .go::after { content: ""; }
     .card .lbl { font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
     .card .big { font-size: 1.25rem; line-height: 1.25; color: var(--ink); }
     .card .meta { font-size: .86rem; color: var(--soft); line-height: 1.45; }
@@ -179,9 +187,6 @@
 
     .chip { display: inline-block; align-self: flex-start; font-size: .68rem; letter-spacing: .06em; padding: 2px 10px; background: var(--chip); color: var(--soft); clip-path: polygon(5px 0, 100% 0, calc(100% - 5px) 100%, 0 100%); }
 
-    /* topics as tags */
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tags li { padding: 7px 18px; background: var(--chip); color: var(--ink); font-size: .9rem; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%); }
 
     /* training cards */
     .ev .date { display: flex; align-items: baseline; gap: 6px; }
@@ -228,15 +233,16 @@
     .line .title { flex: 1; min-width: 0; font-weight: 700; color: var(--ink); }
     .line .meta { flex: none; }
     .line .chip { flex: none; align-self: center; }
+    .card.line.past .when, .card.line.past .when b, .card.line.past .title, .card.line.past .meta { color: var(--dim); }
+    .card.line.past .chip { opacity: .6; }
+    .line .chip { width: 6.2rem; text-align: center; }
+    .line.rec .when { font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
     .rows { display: flex; flex-direction: column; gap: 8px; }
     .rows .card { flex-direction: row; align-items: baseline; gap: 14px; padding: 12px 20px; }
     .rows .card .big { font-size: 1.02rem; font-weight: 700; flex: none; }
     .rows .card .meta { min-width: 0; }
 
     /* contact */
-    .copy-btn { margin-top: 8px; align-self: flex-start; font: inherit; font-size: .78rem; color: var(--soft); background: none; border: 1px solid var(--edge); padding: 3px 12px; cursor: pointer; }
-    .copy-btn:hover { border-color: var(--ink); color: var(--ink); }
-    .gl.lit .copy-btn { color: #ddd; border-color: #555; }
     .small-links { font-size: .82rem; color: var(--dim); }
     .small-links a { color: var(--soft); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 
@@ -279,7 +285,7 @@
     @media (prefers-reduced-motion: reduce) {
       .gl.lit.glitch::before, .gl.lit.glitch::after, .gl.lit.glitch .t { animation: none; }
       .page.on .in { animation: none; }
-      a.card.snap .snap-lines line { animation: none; }
+      :is(a, button).card.snap .snap-lines line { animation: none; }
     }
   </style>
 </head>
@@ -313,20 +319,7 @@
         <h1 id="h-koolitused">Tehisaru, turvaliselt.</h1>
       </header>
 
-      <div class="in">
-        <p class="row-title">Mida saalis näitan</p>
-        <ul class="tags">
-          <li>Mida AI-le anda</li>
-          <li>Promptisüst</li>
-          <li>Agendid ja õigused</li>
-          <li>Hallutsinatsioonid</li>
-          <li>Vaibkooditud äppide turvalisus</li>
-        </ul>
-      </div>
-
-      <div>
-        <p class="row-title in">Tulekul</p>
-        <div class="lines" id="events">
+      <div class="lines" id="events" data-past-label="toimunud">
           <a class="card line in" data-date="2026-11-18" href="https://fienta.com/et/viimsi-turvaline-tehisaru-kasutus-ja-riskide-maandamine">
             <span class="when"><b>18</b> nov</span>
             <span class="title">Turvaline tehisaru kasutus ja riskide maandamine</span>
@@ -341,23 +334,34 @@
           </a>
           <a class="card line in" data-date="2026-11-20" href="https://fienta.com/et/tallinn-tehisaru-ja-loovus-voimalused-riskid-ja-vastutus">
             <span class="when"><b>20</b> nov</span>
-            <span class="title">Tehisaru ja loovus</span>
+            <span class="title">Tehisaru ja loovus: võimalused, riskid ja vastutus</span>
             <span class="meta">Tallinn</span>
             <span class="chip">Eesti.ai</span>
           </a>
           <a class="card line in" data-date="2027-01-12" href="https://veebikool.ee/opiprogramm-programmeerimine/">
             <span class="when"><b>12</b> jaan</span>
             <span class="title">Programmeerimise õpiprogramm</span>
-            <span class="meta">Veebis</span>
+            <span class="meta">Veebis, 12 nädalat</span>
             <span class="chip">Veebikool</span>
           </a>
           <a class="card line in" data-date="2026-10-13" href="https://veebikool.ee/kasuta-ai-targalt/">
             <span class="when"><b>13</b> okt</span>
-            <span class="title">Kasuta tehisaru targalt</span>
-            <span class="meta">Veebis</span>
+            <span class="title">Kasuta tehisaru targalt. Väldi ohukohti.</span>
+            <span class="meta">Veebiseminar</span>
             <span class="chip">Veebikool</span>
           </a>
-        </div>
+          <a class="card line in" href="https://veebikool.ee/toode/programmeerimine-vaibkoodijatele-praktiline-tootuba/">
+            <span class="when">Salvestus</span>
+            <span class="title">Programmeerimine vaibkoodijatele</span>
+            <span class="meta">4-tunnine töötuba</span>
+            <span class="chip">Veebikool</span>
+          </a>
+          <a class="card line in" href="https://veebikool.ee/vaibkoodimise-opiprogramm/">
+            <span class="when">Salvestus</span>
+            <span class="title">Vaibkoodimise meistriklass</span>
+            <span class="meta">Algoritmiline mõtlemine</span>
+            <span class="chip">Veebikool</span>
+          </a>
       </div>
 
       <p class="small-links in">Kõik koolitused: <a href="https://fienta.com/et/o/eestiai">Eesti.ai Fientas</a> · <a href="https://veebikool.ee/koolituskalender/">Veebikooli kalender</a></p>
@@ -525,11 +529,11 @@
         <span class="go">cal.com</span>
       </a>
       <div class="grid feat">
-        <div class="card in">
+        <button class="card in" type="button" data-copy="krister.viirsaar@gmail.com">
           <span class="lbl">E-post</span>
           <span class="big t" style="font-size:1rem; overflow-wrap:anywhere;">krister.viirsaar@gmail.com</span>
-          <button class="copy-btn" type="button" data-copy="krister.viirsaar@gmail.com">Kopeeri</button>
-        </div>
+          <span class="go" data-label="Kopeeri">Kopeeri</span>
+        </button>
         <a class="card in" href="https://www.linkedin.com/in/kristerv/">
           <span class="lbl">Võrgustik</span>
           <span class="big t">LinkedIn</span>
@@ -545,11 +549,11 @@
           <span class="big t">Intervjuu</span>
           <span class="go">YouTube</span>
         </a>
-        <div class="card in">
+        <button class="card in" type="button" data-copy="EE987700771001379001">
           <span class="lbl">IBAN</span>
           <span class="big t" style="font-size:1rem; font-variant-numeric: tabular-nums;">EE987700771001379001</span>
-          <button class="copy-btn" type="button" data-copy="EE987700771001379001">Kopeeri</button>
-        </div>
+          <span class="go" data-label="Kopeeri">Kopeeri</span>
+        </button>
       </div>
     </section>
 
@@ -610,7 +614,7 @@
     const SVG = 'http://www.w3.org/2000/svg';
     const rnd = (a, b) => a + Math.random() * (b - a);
     const NORMALS = [[0, -1], [1, 0], [0, 1], [-1, 0]];   // top, right, bottom, left: the way each side flies in from
-    document.querySelectorAll('.pages a.card:not(.dark)').forEach(card => {
+    document.querySelectorAll('.pages :is(a, button).card:not(.dark)').forEach(card => {
       const svg = document.createElementNS(SVG, 'svg');
       svg.setAttribute('class', 'snap-lines'); svg.setAttribute('aria-hidden', 'true');
       const lines = NORMALS.map(() => { const l = document.createElementNS(SVG, 'line'); svg.appendChild(l); return l; });
@@ -619,14 +623,15 @@
         const w = card.offsetWidth, h = card.offsetHeight, s = 10;
         svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
         const pts = [[s, 0, w, 0], [w, 0, w - s, h], [w - s, h, 0, h], [0, h, s, 0]];
-        // every hover rolls new dice: spin direction and amount (up to ~90°), distance, sideways drift, arrival order
+        // every hover rolls new dice (kept small): tilt, distance, sideways drift, arrival order
         const order = [0, 1, 2, 3].sort(() => Math.random() - .5);
         lines.forEach((l, k) => {
           const [x1, y1, x2, y2] = pts[k]; l.setAttribute('x1', x1); l.setAttribute('y1', y1); l.setAttribute('x2', x2); l.setAttribute('y2', y2);
-          const [nx, ny] = NORMALS[k], d = rnd(22, 60), drift = rnd(-24, 24);
+          const [nx, ny] = NORMALS[k], d = rnd(4, 9), drift = rnd(-4, 4);
           l.style.setProperty('--fx', (nx * d + ny * drift).toFixed(1) + 'px');
           l.style.setProperty('--fy', (ny * d + nx * drift).toFixed(1) + 'px');
-          l.style.setProperty('--fr', ((Math.random() < .5 ? -1 : 1) * rnd(55, 100)).toFixed(0) + 'deg');
+          const half = Math.hypot(x2 - x1, y2 - y1) / 2;             // tilt so the line's ends move only ~3–7px, whatever its length
+          l.style.setProperty('--fr', ((Math.random() < .5 ? -1 : 1) * Math.atan2(rnd(3, 7), half) * 180 / Math.PI).toFixed(2) + 'deg');
           l.style.setProperty('--k', order[k]);
         });
         card.classList.remove('snap'); void card.offsetWidth; card.classList.add('snap');
@@ -696,21 +701,29 @@
       }
     });
 
-    // ---- copy buttons ----
-    document.querySelectorAll('[data-copy]').forEach(b => b.addEventListener('click', () => {
-      const done = () => { b.textContent = 'Kopeeritud'; setTimeout(() => b.textContent = 'Kopeeri', 1600); };
-      const pick = () => { const r = document.createRange(); r.selectNodeContents(b.previousElementSibling); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
-      if (navigator.clipboard) navigator.clipboard.writeText(b.dataset.copy).then(done, pick); else pick();
+    // ---- copy cards: the whole card copies, then says so ----
+    document.querySelectorAll('button.card[data-copy]').forEach(b => b.addEventListener('click', () => {
+      const go = b.querySelector('.go');
+      const done = () => {
+        b.classList.add('copied'); go.textContent = 'Kopeeritud';
+        clearTimeout(b._t); b._t = setTimeout(() => { b.classList.remove('copied'); go.textContent = go.dataset.label; }, 1600);
+      };
+      const pick = () => { const r = document.createRange(); r.selectNodeContents(b.querySelector('.big')); const s = getSelection(); s.removeAllRanges(); s.addRange(r); go.textContent = 'Vali ja kopeeri'; };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(b.dataset.copy).then(done, pick); else pick();
     }));
 
-    // ---- trainings: drop past ones, soonest first ----
+    // ---- trainings: upcoming (soonest first), then past (latest first, dimmed), then recordings ----
     (function () {
       const today = new Date().toISOString().slice(0, 10);
-      const grid = document.getElementById('events');
-      [...grid.children]
-        .filter(c => { if (c.dataset.date < today) { c.remove(); return false; } return true; })
-        .sort((a, b) => a.dataset.date.localeCompare(b.dataset.date))
-        .forEach(c => grid.appendChild(c));
+      const list = document.getElementById('events');
+      const els = [...list.children];
+      const rank = el => { const d = el.dataset.date; return !d ? 2 : d < today ? 1 : 0; };
+      els.forEach(el => {
+        if (rank(el) === 1) { el.classList.add('past'); el.querySelector('.meta').textContent += ' · ' + list.dataset.pastLabel; }
+        if (!el.dataset.date) el.classList.add('rec');
+      });
+      els.sort((a, b) => rank(a) - rank(b) || (rank(a) === 0 ? -1 : 1) * ((b.dataset.date || '').localeCompare(a.dataset.date || '')))
+         .forEach(el => list.appendChild(el));
     })();
 
     render();
