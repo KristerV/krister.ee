@@ -3,11 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Krister Viirsaar</title>
+  <title>Krister Viirsaar — developer, trainer, entrepreneur</title>
   <meta name="description" content="Software developer since 2014. I train people to use AI safely, teach programming, help vibe coders and build my own things." />
-  <meta property="og:title" content="Krister Viirsaar" />
+  <meta name="author" content="Krister Viirsaar" />
+  <link rel="canonical" href="https://krister.ee/en/" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="Krister Viirsaar" />
+  <meta property="og:url" content="https://krister.ee/en/" />
+  <meta property="og:title" content="Krister Viirsaar — developer, trainer, entrepreneur" />
   <meta property="og:description" content="I train people to use AI safely, teach programming, help vibe coders and build my own things." />
+  <meta property="og:image" content="https://krister.ee/img/og-en.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Menu of krister.ee: AI trainings, vibe coders’ friend, programming teacher, my projects, experience, contact" />
   <meta property="og:locale" content="en_GB" />
+  <meta property="og:locale:alternate" content="et_EE" />
+  <meta property="profile:first_name" content="Krister" />
+  <meta property="profile:last_name" content="Viirsaar" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Krister Viirsaar — developer, trainer, entrepreneur" />
+  <meta name="twitter:description" content="I train people to use AI safely, teach programming, help vibe coders and build my own things." />
+  <meta name="twitter:image" content="https://krister.ee/img/og-en.png" />
+  <meta name="twitter:image:alt" content="Menu of krister.ee: AI trainings, vibe coders’ friend, programming teacher, my projects, experience, contact" />
+  <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "Person", "name": "Krister Viirsaar", "url": "https://krister.ee/", "image": "https://krister.ee/img/profile1.jpg", "jobTitle": "Developer, trainer, entrepreneur", "description": "Software developer since 2014. I train people to use AI safely, teach programming, help vibe coders and build my own things.", "knowsAbout": ["AI safety", "Vibe coding", "Software development", "Programming education", "Data warehousing", "Business intelligence"], "knowsLanguage": ["et", "en"], "address": {"@type": "PostalAddress", "addressLocality": "Tallinn", "addressCountry": "EE"}, "sameAs": ["https://www.linkedin.com/in/kristerv/", "https://github.com/KristerV", "https://code.krister.ee", "https://www.thingiverse.com/kristerv/designs"]}, {"@context": "https://schema.org", "@type": "WebSite", "name": "Krister Viirsaar", "url": "https://krister.ee/", "inLanguage": "en"}]</script>
   <link rel="alternate" hreflang="et" href="https://krister.ee/" />
   <link rel="alternate" hreflang="en" href="https://krister.ee/en/" />
   <link rel="alternate" hreflang="x-default" href="https://krister.ee/" />
@@ -61,7 +81,7 @@
     body.in-page .menu { left: var(--nav-left); transform: translate(0, -50%); }
 
     .who { display: block; color: var(--ink); margin: 0 0 30px 24px; }
-    .who b { display: block; font-size: 1.5rem; font-weight: 400; letter-spacing: -.01em; line-height: 1.2; }
+    .who .nm { display: block; color: var(--ink); font-size: 1.5rem; font-weight: 400; letter-spacing: -.01em; line-height: 1.2; }
     .who small { display: block; margin-top: 6px; font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
 
     .items { display: flex; flex-direction: column; gap: 4px; }
@@ -136,7 +156,7 @@
     @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 
     .head .lbl { display: block; font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-bottom: 10px; }
-    .head h1 { font-size: clamp(1.9rem, 3.2vw, 2.6rem); font-weight: 400; line-height: 1.12; letter-spacing: -.014em; color: var(--ink); text-wrap: balance; }
+    .head h2 { font-size: clamp(1.9rem, 3.2vw, 2.6rem); font-weight: 400; line-height: 1.12; letter-spacing: -.014em; color: var(--ink); text-wrap: balance; }
 
     .row-title { font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); margin-bottom: 12px; }
 
@@ -314,7 +334,7 @@
 
   <nav class="menu" id="menu" aria-label="Topics">
     <a class="who" href="#" id="home">
-      <b>Krister Viirsaar</b>
+      <h1 class="nm">Krister Viirsaar</h1>
       <small>Developer · trainer · entrepreneur</small>
     </a>
     <ul class="items" id="items">
@@ -335,7 +355,7 @@
     <section class="page" id="trainings" aria-labelledby="h-trainings">
       <header class="head in">
         <span class="lbl">Eesti.ai · Veebikool</span>
-        <h1 id="h-trainings">AI, safely.</h1>
+        <h2 id="h-trainings">AI, safely.</h2>
       </header>
 
       <div class="lines" id="events" data-past-label="done">
@@ -390,7 +410,7 @@
     <section class="page" id="vibe-coders" aria-labelledby="h-vaib">
       <header class="head in">
         <span class="lbl">Co-op</span>
-        <h1 id="h-vaib">You build it. I keep it standing.</h1>
+        <h2 id="h-vaib">You build it. I keep it standing.</h2>
       </header>
 
       <div class="vs">
@@ -436,7 +456,7 @@
     <section class="page" id="teaching" aria-labelledby="h-teaching">
       <header class="head in">
         <span class="lbl">In class and online</span>
-        <h1 id="h-teaching">I teach programming.</h1>
+        <h2 id="h-teaching">I teach programming.</h2>
       </header>
       <div class="lines">
         <a class="card line in" href="https://technotln.ee" target="_blank" rel="noopener">
@@ -471,7 +491,7 @@
     <section class="page" id="projects" aria-labelledby="h-projects">
       <header class="head in">
         <span class="lbl">Built by me</span>
-        <h1 id="h-projects">My projects.</h1>
+        <h2 id="h-projects">My projects.</h2>
       </header>
       <div class="grid two">
         <a class="card in" href="https://tinkr.tech" target="_blank" rel="noopener">
@@ -517,7 +537,7 @@
     <section class="page" id="experience" aria-labelledby="h-experience">
       <header class="head in">
         <span class="lbl">Software, teaching and business</span>
-        <h1 id="h-experience">Since 2014.</h1>
+        <h2 id="h-experience">Since 2014.</h2>
       </header>
       <div class="xp-cols">
         <p class="row-title in" style="--c:1;--r:1">Teaching <span>· since 2016</span></p>
@@ -553,7 +573,7 @@
     <section class="page" id="contact" aria-labelledby="h-contact">
       <header class="head in">
         <span class="lbl">Contact</span>
-        <h1 id="h-contact">Let’s talk.</h1>
+        <h2 id="h-contact">Let’s talk.</h2>
       </header>
       <div class="grid two meet">
         <a class="card dark in" href="https://cal.com/krister-viirsaar-zho32l/1h" target="_blank" rel="noopener">
