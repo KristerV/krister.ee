@@ -201,9 +201,11 @@
 
     /* list rows (experience) */
     /* experience: three columns, every entry the same rhombus; black = appears in more than one column */
-    .xp-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    /* one grid, fixed rows: an entry that sits in several columns shares a row with its copies */
+    .xp-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 22px; row-gap: 6px; }
+    .xp-cols > * { grid-column: var(--c); grid-row: var(--r); min-width: 0; }
+    .xp-cols .row-title { margin-bottom: 6px; }
     .xp-cols .row-title span { letter-spacing: .06em; text-transform: none; }
-    .xp-list { display: flex; flex-direction: column; gap: 6px; }
     .xp {
       display: flex; flex-direction: column; gap: 1px; padding: 9px 22px; min-height: 3.6rem; justify-content: center;
       background: var(--chip); color: var(--ink); clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
@@ -263,7 +265,9 @@
       .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
       .grid.two, .vs { grid-template-columns: 1fr; }
       .grid.feat { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .xp-cols { grid-template-columns: 1fr; gap: 26px; }
+      .xp-cols { grid-template-columns: 1fr; }
+      .xp-cols > * { grid-column: 1; grid-row: auto; order: calc(var(--c) * 100 + var(--r)); }
+      .xp-cols .row-title:not([style*="--c:1"]) { margin-top: 22px; }
       .vs .plus { justify-self: center; }
       .rows .card { flex-direction: column; gap: 2px; }
       .card.line { flex-wrap: wrap; gap: 2px 12px; padding: 12px 18px; }
@@ -481,42 +485,30 @@
         <h1 id="h-kogemus">Alates 2014.</h1>
       </header>
       <div class="xp-cols">
-        <div class="xp-col">
-          <p class="row-title in">Õpetamine <span>· alates 2016</span></p>
-          <ul class="xp-list">
-            <li><a class="xp in" href="https://technotln.ee"><b>TechnoTLN</b><span>programmeerimise õpetaja</span></a></li>
-            <li><a class="xp in" href="https://eesti.ai"><b>Eesti.ai</b><span>tehisaru turvalise kasutamise koolitused</span></a></li>
-            <li><a class="xp in" href="https://veebikool.ee"><b>Veebikool</b><span>programmeerimine ja vaibkoodimine</span></a></li>
-            <li><div class="xp in"><b>IT Kolledž</b><span>Java kursus</span></div></li>
-            <li><div class="xp in"><b>Vali-IT</b><span>programmeerimise õpetamine</span></div></li>
-            <li><a class="xp in multi" href="https://tinkr.tech" data-twin="tinkr"><b>Tinkr.tech</b><span>õpi programmeerima projekte ehitades</span></a></li>
-          </ul>
-        </div>
-        <div class="xp-col">
-          <p class="row-title in">Tarkvara <span>· alates 2014</span></p>
-          <ul class="xp-list">
-            <li><div class="xp in"><b>Viru Keskus</b><span>andmelao ja BI-platvormi meeskonna juht</span></div></li>
-            <li><a class="xp in" href="https://goldadam.ee"><b>Gold Adam</b><span>siseäpi tehniline partner</span></a></li>
-            <li><a class="xp in multi" href="https://tinkr.tech" data-twin="tinkr"><b>Tinkr.tech</b><span>Elixir, LiveView, PostgreSQL</span></a></li>
-            <li><a class="xp in multi" href="https://randomforest.ee/" data-twin="rf"><b>random forest OÜ</b><span>tarkvaraarenduse agentuur</span></a></li>
-            <li><div class="xp in multi" data-twin="toitla"><b>Toitla</b><span>„Uber toitlustusele“</span></div></li>
-            <li><div class="xp in multi" data-twin="savvy"><b>SavvyBooks</b><span>krüpto jälgimine ja USA maksud</span></div></li>
-            <li><a class="xp in" href="https://github.com/KristerV/HNSince/"><b>HNSince.com</b><span>Elixir, Phoenix</span></a></li>
-            <li><a class="xp in" href="https://code.krister.ee"><b>code.krister.ee</b><span>tehniline blogi</span></a></li>
-          </ul>
-        </div>
-        <div class="xp-col">
-          <p class="row-title in">Ettevõtlus</p>
-          <ul class="xp-list">
-            <li><a class="xp in multi" href="https://randomforest.ee/" data-twin="rf"><b>random forest OÜ</b><span>asutaja</span></a></li>
-            <li><div class="xp in multi" data-twin="toitla"><b>Toitla</b><span>idufirma, 2016</span></div></li>
-            <li><div class="xp in multi" data-twin="savvy"><b>SavvyBooks</b><span>krüpto ja USA maksud</span></div></li>
-            <li><a class="xp in multi" href="https://tinkr.tech" data-twin="tinkr"><b>Tinkr.tech</b><span>programmeerimise õppeplatvorm</span></a></li>
-            <li><a class="xp in" href="https://kirbs.ee"><b>Kirbs.ee</b><span>müü oma laste riided vaevata</span></a></li>
-            <li><a class="xp in" href="https://liid.ee"><b>Liid.ee</b><span>AI-põhised müügivihjed</span></a></li>
-            <li><a class="xp in" href="https://kogupere.ee"><b>Kogupere.ee</b><span>peresündmused ühes kohas</span></a></li>
-          </ul>
-        </div>
+        <p class="row-title in" style="--c:1;--r:1">Õpetamine <span>· alates 2016</span></p>
+        <p class="row-title in" style="--c:2;--r:1">Tarkvara <span>· alates 2014</span></p>
+        <p class="row-title in" style="--c:3;--r:1">Ettevõtlus</p>
+        <a class="xp in multi" style="--c:1;--r:2" href="https://tinkr.tech" data-twin="tinkr"><b>Tinkr.tech</b><span>õpi programmeerima projekte ehitades</span></a>
+        <a class="xp in multi" style="--c:2;--r:2" href="https://tinkr.tech" data-twin="tinkr"><b>Tinkr.tech</b><span>Elixir, LiveView, PostgreSQL</span></a>
+        <a class="xp in multi" style="--c:3;--r:2" href="https://tinkr.tech" data-twin="tinkr"><b>Tinkr.tech</b><span>programmeerimise õppeplatvorm</span></a>
+        <a class="xp in" style="--c:1;--r:3" href="https://technotln.ee"><b>TechnoTLN</b><span>programmeerimise õpetaja</span></a>
+        <div class="xp in" style="--c:2;--r:3"><b>Viru Keskus</b><span>andmelao ja BI-platvormi meeskonna juht</span></div>
+        <a class="xp in" style="--c:3;--r:3" href="https://kirbs.ee"><b>Kirbs.ee</b><span>müü oma laste riided vaevata</span></a>
+        <a class="xp in" style="--c:1;--r:4" href="https://eesti.ai"><b>Eesti.ai</b><span>tehisaru turvalise kasutamise koolitused</span></a>
+        <a class="xp in" style="--c:2;--r:4" href="https://goldadam.ee"><b>Gold Adam</b><span>siseäpi tehniline partner</span></a>
+        <a class="xp in" style="--c:3;--r:4" href="https://liid.ee"><b>Liid.ee</b><span>AI-põhised müügivihjed</span></a>
+        <a class="xp in" style="--c:1;--r:5" href="https://veebikool.ee"><b>Veebikool</b><span>programmeerimine ja vaibkoodimine</span></a>
+        <a class="xp in" style="--c:2;--r:5" href="https://code.krister.ee"><b>code.krister.ee</b><span>tehniline blogi</span></a>
+        <a class="xp in" style="--c:3;--r:5" href="https://kogupere.ee"><b>Kogupere.ee</b><span>peresündmused ühes kohas</span></a>
+        <div class="xp in" style="--c:1;--r:6"><b>IT Kolledž</b><span>Java kursus</span></div>
+        <a class="xp in multi" style="--c:2;--r:6" href="https://randomforest.ee/" data-twin="rf"><b>random forest OÜ</b><span>tarkvaraarenduse agentuur</span></a>
+        <a class="xp in multi" style="--c:3;--r:6" href="https://randomforest.ee/" data-twin="rf"><b>random forest OÜ</b><span>asutaja</span></a>
+        <div class="xp in" style="--c:1;--r:7"><b>Vali-IT</b><span>programmeerimise õpetamine</span></div>
+        <div class="xp in multi" style="--c:2;--r:7" data-twin="toitla"><b>Toitla</b><span>„Uber toitlustusele“</span></div>
+        <div class="xp in multi" style="--c:3;--r:7" data-twin="toitla"><b>Toitla</b><span>idufirma, 2016</span></div>
+        <div class="xp in multi" style="--c:2;--r:8" data-twin="savvy"><b>SavvyBooks</b><span>krüpto jälgimine ja USA maksud</span></div>
+        <div class="xp in multi" style="--c:3;--r:8" data-twin="savvy"><b>SavvyBooks</b><span>krüpto ja USA maksud</span></div>
+        <a class="xp in" style="--c:2;--r:9" href="https://github.com/KristerV/HNSince/"><b>HNSince.com</b><span>Elixir, Phoenix</span></a>
       </div>
       <p class="small-links in"><span class="key"></span> must on mitmes tulbas korraga</p>
     </section>
