@@ -218,10 +218,10 @@
     .xp {
       display: flex; flex-direction: column; gap: 1px; padding: 9px 22px; min-height: 3.6rem; justify-content: center;
       background: var(--chip); color: var(--ink); clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
-      transition: background .25s, translate .35s cubic-bezier(.2, .8, .3, 1);
+      transition: background .25s, translate .35s cubic-bezier(.2, .8, .3, 1), rotate .25s ease-out;
     }
     /* hover: the entry (and its copies in other columns) rises toward the viewer */
-    .xp.lift { translate: 0 0 46px; z-index: 2; position: relative; }
+    .xp.lift { translate: 0 0 46px; rotate: var(--ax, 0) var(--ay, 1) 0 var(--ang, 0deg); z-index: 2; position: relative; }
     .xp.lift:not(.multi) { background: #e4e4e1; }
     .xp b { font-size: .92rem; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .xp span { font-size: .76rem; line-height: 1.35; color: var(--soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -692,8 +692,16 @@
     document.querySelectorAll('.xp').forEach(x => {
       const group = () => x.dataset.twin ? document.querySelectorAll(`.xp[data-twin="${x.dataset.twin}"]`) : [x];
       const up = () => group().forEach(y => y.classList.add('lift'));
-      const down = () => group().forEach(y => y.classList.remove('lift'));
+      const down = () => group().forEach(y => { y.classList.remove('lift'); y.style.removeProperty('--ang'); });
+      // a little 3D tilt that follows the pointer; copies tilt the same way
+      const tilt = e => {
+        const r = x.getBoundingClientRect();
+        const dx = ((e.clientX - r.left) / r.width) * 2 - 1, dy = ((e.clientY - r.top) / r.height) * 2 - 1;
+        const ang = Math.min(1, Math.hypot(dx * .6, dy)) * 9;
+        group().forEach(y => { y.style.setProperty('--ax', (dy).toFixed(3)); y.style.setProperty('--ay', (-dx * .6).toFixed(3)); y.style.setProperty('--ang', ang.toFixed(2) + 'deg'); });
+      };
       x.addEventListener('mouseenter', up); x.addEventListener('mouseleave', down);
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) x.addEventListener('mousemove', tilt);
       x.addEventListener('focus', up); x.addEventListener('blur', down);
     });
 
