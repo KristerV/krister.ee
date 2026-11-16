@@ -200,6 +200,24 @@
     .vs .plus { align-self: center; font-size: 1.6rem; color: var(--dim); }
 
     /* list rows (experience) */
+    /* experience: three columns, every entry the same rhombus; black = appears in more than one column */
+    .xp-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+    .xp-cols .row-title span { letter-spacing: .06em; text-transform: none; }
+    .xp-list { display: flex; flex-direction: column; gap: 6px; }
+    .xp {
+      display: flex; flex-direction: column; gap: 1px; padding: 9px 22px; min-height: 3.6rem; justify-content: center;
+      background: var(--chip); color: var(--ink); clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+      transition: background .2s, transform .2s;
+    }
+    .xp b { font-size: .92rem; line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .xp span { font-size: .76rem; line-height: 1.35; color: var(--soft); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    a.xp:hover { background: #e6e6e4; }
+    .xp.multi { background: var(--hi); }
+    .xp.multi b { color: var(--hi-text); }
+    .xp.multi span { color: var(--hi-dim); }
+    a.xp.multi:hover, .xp.multi.twin { background: #000; transform: translateX(4px); }
+    .small-links .key { display: inline-block; width: 18px; height: 10px; background: var(--hi); clip-path: polygon(3px 0, 100% 0, calc(100% - 3px) 100%, 0 100%); vertical-align: -1px; margin-right: 4px; }
+
     /* list rows: one line per item */
     .lines { display: flex; flex-direction: column; gap: 8px; max-width: 46rem; }
     .card.line { flex-direction: row; align-items: baseline; gap: 18px; padding: 13px 24px; }
@@ -245,6 +263,7 @@
       .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
       .grid.two, .vs { grid-template-columns: 1fr; }
       .grid.feat { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .xp-cols { grid-template-columns: 1fr; gap: 26px; }
       .vs .plus { justify-self: center; }
       .rows .card { flex-direction: column; gap: 2px; }
       .card.line { flex-wrap: wrap; gap: 2px 12px; padding: 12px 18px; }
@@ -458,30 +477,48 @@
     <!-- 05 -->
     <section class="page" id="kogemus" aria-labelledby="h-kogemus">
       <header class="head in">
-        <span class="lbl">Tarkvara ja äri</span>
+        <span class="lbl">Tarkvara, õpetamine ja ettevõtlus</span>
         <h1 id="h-kogemus">Alates 2014.</h1>
       </header>
-      <div class="grid two">
-        <div class="in">
-          <p class="row-title">Praegu</p>
-          <ul class="rows">
-            <li><div class="card"><span class="big t">Viru Keskus</span><span class="meta">andmelao ja BI-platvormi meeskonna juht</span></div></li>
-            <li><a class="card" href="https://goldadam.ee"><span class="big t">Gold Adam</span><span class="meta">siseäpi tehniline partner</span></a></li>
-            <li><a class="card" href="https://eesti.ai"><span class="big t">Eesti.ai</span><span class="meta">tehisaru koolitaja</span></a></li>
-            <li><a class="card" href="https://veebikool.ee"><span class="big t">Veebikool</span><span class="meta">koolitaja</span></a></li>
-            <li><a class="card" href="https://technotln.ee"><span class="big t">TechnoTLN</span><span class="meta">programmeerimise õpetaja</span></a></li>
+      <div class="xp-cols">
+        <div class="xp-col">
+          <p class="row-title in">Õpetamine <span>· alates 2016</span></p>
+          <ul class="xp-list">
+            <li><a class="xp in" href="https://technotln.ee"><b>TechnoTLN</b><span>programmeerimise õpetaja</span></a></li>
+            <li><a class="xp in" href="https://eesti.ai"><b>Eesti.ai</b><span>tehisaru turvalise kasutamise koolitused</span></a></li>
+            <li><a class="xp in" href="https://veebikool.ee"><b>Veebikool</b><span>programmeerimine ja vaibkoodimine</span></a></li>
+            <li><div class="xp in"><b>IT Kolledž</b><span>Java kursus</span></div></li>
+            <li><div class="xp in"><b>Vali-IT</b><span>programmeerimise õpetamine</span></div></li>
+            <li><a class="xp in multi" href="https://tinkr.tech" data-twin="tinkr"><b>Tinkr.tech</b><span>õpi programmeerima projekte ehitades</span></a></li>
           </ul>
         </div>
-        <div class="in">
-          <p class="row-title">Varem</p>
-          <ul class="rows">
-            <li><a class="card" href="https://randomforest.ee/"><span class="big t">random forest OÜ</span><span class="meta">asutaja, tarkvaraarenduse agentuur</span></a></li>
-            <li><div class="card"><span class="big t">Toitla</span><span class="meta">„Uber toitlustusele“, 2016</span></div></li>
-            <li><div class="card"><span class="big t">SavvyBooks</span><span class="meta">krüpto jälgimine ja USA maksud</span></div></li>
-            <li><a class="card" href="https://code.krister.ee"><span class="big t">code.krister.ee</span><span class="meta">tehniline blogi</span></a></li>
+        <div class="xp-col">
+          <p class="row-title in">Tarkvara <span>· alates 2014</span></p>
+          <ul class="xp-list">
+            <li><div class="xp in"><b>Viru Keskus</b><span>andmelao ja BI-platvormi meeskonna juht</span></div></li>
+            <li><a class="xp in" href="https://goldadam.ee"><b>Gold Adam</b><span>siseäpi tehniline partner</span></a></li>
+            <li><a class="xp in multi" href="https://tinkr.tech" data-twin="tinkr"><b>Tinkr.tech</b><span>Elixir, LiveView, PostgreSQL</span></a></li>
+            <li><a class="xp in multi" href="https://randomforest.ee/" data-twin="rf"><b>random forest OÜ</b><span>tarkvaraarenduse agentuur</span></a></li>
+            <li><div class="xp in multi" data-twin="toitla"><b>Toitla</b><span>„Uber toitlustusele“</span></div></li>
+            <li><div class="xp in multi" data-twin="savvy"><b>SavvyBooks</b><span>krüpto jälgimine ja USA maksud</span></div></li>
+            <li><a class="xp in" href="https://github.com/KristerV/HNSince/"><b>HNSince.com</b><span>Elixir, Phoenix</span></a></li>
+            <li><a class="xp in" href="https://code.krister.ee"><b>code.krister.ee</b><span>tehniline blogi</span></a></li>
+          </ul>
+        </div>
+        <div class="xp-col">
+          <p class="row-title in">Ettevõtlus</p>
+          <ul class="xp-list">
+            <li><a class="xp in multi" href="https://randomforest.ee/" data-twin="rf"><b>random forest OÜ</b><span>asutaja</span></a></li>
+            <li><div class="xp in multi" data-twin="toitla"><b>Toitla</b><span>idufirma, 2016</span></div></li>
+            <li><div class="xp in multi" data-twin="savvy"><b>SavvyBooks</b><span>krüpto ja USA maksud</span></div></li>
+            <li><a class="xp in multi" href="https://tinkr.tech" data-twin="tinkr"><b>Tinkr.tech</b><span>programmeerimise õppeplatvorm</span></a></li>
+            <li><a class="xp in" href="https://kirbs.ee"><b>Kirbs.ee</b><span>müü oma laste riided vaevata</span></a></li>
+            <li><a class="xp in" href="https://liid.ee"><b>Liid.ee</b><span>AI-põhised müügivihjed</span></a></li>
+            <li><a class="xp in" href="https://kogupere.ee"><b>Kogupere.ee</b><span>peresündmused ühes kohas</span></a></li>
           </ul>
         </div>
       </div>
+      <p class="small-links in"><span class="key"></span> must on mitmes tulbas korraga</p>
     </section>
 
     <!-- 06 -->
@@ -605,6 +642,13 @@
       const off = () => card.classList.remove('snap');
       card.addEventListener('mouseenter', on); card.addEventListener('mouseleave', off);
       card.addEventListener('focus', on); card.addEventListener('blur', off);
+    });
+
+    // ---- experience: hovering a black entry lights up its copies in the other columns ----
+    document.querySelectorAll('.xp[data-twin]').forEach(x => {
+      const twins = () => document.querySelectorAll(`.xp[data-twin="${x.dataset.twin}"]`);
+      x.addEventListener('mouseenter', () => twins().forEach(y => y.classList.add('twin')));
+      x.addEventListener('mouseleave', () => twins().forEach(y => y.classList.remove('twin')));
     });
 
     // ---- open / close ----
