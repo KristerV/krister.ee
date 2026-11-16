@@ -149,9 +149,12 @@
       --slant: 10px;
       display: flex; flex-direction: column; gap: 4px; min-width: 0;
       padding: 18px 22px; border: 1px solid var(--edge); color: var(--ink); outline: none;
-      transition: border-color .15s;
+      transition: border-color .2s, transform .2s;
     }
-    .card.lit { border-color: transparent; }
+    a.card:hover, a.card:focus-visible { border-color: var(--ink); transform: translateY(-2px); }
+    a.card:hover .go, a.card:focus-visible .go { color: var(--ink); }
+    a.card.dark:hover { transform: translateY(-2px); background: #000; }
+    a.card.dark:hover .go { color: var(--hi-text); }
     a.card { cursor: pointer; }
     .card .lbl { font-size: .66rem; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
     .card .big { font-size: 1.25rem; line-height: 1.25; color: var(--ink); }
@@ -279,31 +282,31 @@
       <div>
         <p class="row-title in">Tulekul</p>
         <div class="grid" id="events">
-          <a class="card gl ev in" data-date="2026-11-18" href="https://fienta.com/et/viimsi-turvaline-tehisaru-kasutus-ja-riskide-maandamine">
+          <a class="card ev in" data-date="2026-11-18" href="https://fienta.com/et/viimsi-turvaline-tehisaru-kasutus-ja-riskide-maandamine">
             <span class="date t"><b>18</b><span>nov · K 17–20</span></span>
             <span class="big">Turvaline tehisaru kasutus ja riskide maandamine</span>
             <span class="meta">Viimsi Raamatukogu</span>
             <span class="go">Tasuta · Eesti.ai</span>
           </a>
-          <a class="card gl ev in" data-date="2026-11-19" href="https://fienta.com/et/tallinn-tehisaru-kontoritoos">
+          <a class="card ev in" data-date="2026-11-19" href="https://fienta.com/et/tallinn-tehisaru-kontoritoos">
             <span class="date t"><b>19</b><span>nov · N 16–19</span></span>
             <span class="big">Tehisaru kontoritöös</span>
             <span class="meta">Kadaka Konverentsikeskus, Tallinn</span>
             <span class="go">Tasuta · Eesti.ai</span>
           </a>
-          <a class="card gl ev in" data-date="2026-11-20" href="https://fienta.com/et/tallinn-tehisaru-ja-loovus-voimalused-riskid-ja-vastutus">
+          <a class="card ev in" data-date="2026-11-20" href="https://fienta.com/et/tallinn-tehisaru-ja-loovus-voimalused-riskid-ja-vastutus">
             <span class="date t"><b>20</b><span>nov · R 16–19</span></span>
             <span class="big">Tehisaru ja loovus: võimalused, riskid ja vastutus</span>
             <span class="meta">Kadaka Konverentsikeskus, Tallinn</span>
             <span class="go">Tasuta · Eesti.ai</span>
           </a>
-          <a class="card gl ev in" data-date="2027-01-12" href="https://veebikool.ee/opiprogramm-programmeerimine/">
+          <a class="card ev in" data-date="2027-01-12" href="https://veebikool.ee/opiprogramm-programmeerimine/">
             <span class="date t"><b>12</b><span>jaan 2027 · 12 nädalat</span></span>
             <span class="big">Programmeerimise õpiprogramm</span>
             <span class="meta">Veebis, live teisipäeviti</span>
             <span class="go">Veebikool</span>
           </a>
-          <a class="card gl ev in" data-date="2026-10-13" href="https://veebikool.ee/kasuta-ai-targalt/">
+          <a class="card ev in" data-date="2026-10-13" href="https://veebikool.ee/kasuta-ai-targalt/">
             <span class="date t"><b>13</b><span>okt · T 19–22</span></span>
             <span class="big">Kasuta tehisaru targalt. Väldi ohukohti.</span>
             <span class="meta">Veebiseminar</span>
@@ -346,13 +349,13 @@
       </div>
 
       <div class="grid two">
-        <a class="card gl in" href="https://goldadam.ee">
+        <a class="card in" href="https://goldadam.ee">
           <span class="lbl">Praegu koos</span>
           <span class="big t">Gold Adam</span>
           <span class="meta">Nende meeskond vaibkoodib siseäppi, mina hoian selle töökindla.</span>
           <span class="go">goldadam.ee</span>
         </a>
-        <a class="card gl in" href="https://cal.com/krister-viirsaar-zho32l/1h">
+        <a class="card in" href="https://cal.com/krister-viirsaar-zho32l/1h">
           <span class="lbl">Jäid hätta?</span>
           <span class="big t">Vaatame koos üle</span>
           <span class="meta">Esimene reaktsioon ei ole „kirjuta nullist ümber“.</span>
@@ -368,31 +371,31 @@
         <h1 id="h-opetaja">Õpetan programmeerimist.</h1>
       </header>
       <div class="grid feat">
-        <a class="card gl in" href="https://technotln.ee">
+        <a class="card in" href="https://technotln.ee">
           <span class="lbl">Kool</span>
           <span class="big t">TechnoTLN</span>
           <span class="meta">Programmeerimise õpetaja. Endine Polütehnikum.</span>
           <span class="go">technotln.ee</span>
         </a>
-        <a class="card gl in" href="https://veebikool.ee/opiprogramm-programmeerimine/">
+        <a class="card in" href="https://veebikool.ee/opiprogramm-programmeerimine/">
           <span class="lbl">12 nädalat</span>
           <span class="big t">Programmeerimise õpiprogramm</span>
           <span class="meta">Algab 12. jaanuaril 2027. Live teisipäeviti.</span>
           <span class="go">Veebikool</span>
         </a>
-        <a class="card gl in" href="https://veebikool.ee/toode/programmeerimine-vaibkoodijatele-praktiline-tootuba/">
+        <a class="card in" href="https://veebikool.ee/toode/programmeerimine-vaibkoodijatele-praktiline-tootuba/">
           <span class="lbl">4 tundi · salvestus</span>
           <span class="big t">Programmeerimine vaibkoodijatele</span>
           <span class="meta">Loogika-, struktuuri- ja koodivead.</span>
           <span class="go">Veebikool</span>
         </a>
-        <a class="card gl in" href="https://veebikool.ee/vaibkoodimise-opiprogramm/">
+        <a class="card in" href="https://veebikool.ee/vaibkoodimise-opiprogramm/">
           <span class="lbl">Salvestus</span>
           <span class="big t">Vaibkoodimise meistriklass</span>
           <span class="meta">Minu osa: algoritmiline mõtlemine.</span>
           <span class="go">Veebikool</span>
         </a>
-        <a class="card gl in" href="https://tinkr.tech">
+        <a class="card in" href="https://tinkr.tech">
           <span class="lbl">Platvorm</span>
           <span class="big t">Tinkr.tech</span>
           <span class="meta">Õpi programmeerima projekte ehitades.</span>
@@ -408,25 +411,25 @@
         <h1 id="h-projektid">Oma projektid.</h1>
       </header>
       <div class="grid two">
-        <a class="card gl in" href="https://tinkr.tech">
+        <a class="card in" href="https://tinkr.tech">
           <span class="chip">Haridus</span>
           <span class="big t">Tinkr.tech</span>
           <span class="meta">Õpi programmeerima projekte ehitades.</span>
           <span class="go">tinkr.tech</span>
         </a>
-        <a class="card gl in" href="https://kirbs.ee">
+        <a class="card in" href="https://kirbs.ee">
           <span class="chip">Lapsevanematele</span>
           <span class="big t">Kirbs.ee</span>
           <span class="meta">Müü oma laste riided vaevata.</span>
           <span class="go">kirbs.ee</span>
         </a>
-        <a class="card gl in" href="https://liid.ee">
+        <a class="card in" href="https://liid.ee">
           <span class="chip">Müük · AI</span>
           <span class="big t">Liid.ee</span>
           <span class="meta">Müügivihjed Baltikumi ja Põhjamaade ettevõtetele.</span>
           <span class="go">liid.ee</span>
         </a>
-        <a class="card gl in" href="https://www.thingiverse.com/kristerv/designs">
+        <a class="card in" href="https://www.thingiverse.com/kristerv/designs">
           <span class="chip">Hobi</span>
           <span class="big t">3D-printimine</span>
           <span class="meta">Minu disainid Thingiverse'is.</span>
@@ -445,20 +448,20 @@
         <div class="in">
           <p class="row-title">Praegu</p>
           <ul class="rows">
-            <li><div class="card gl"><span class="big t">Viru Keskus</span><span class="meta">andmelao ja BI-platvormi meeskonna juht</span></div></li>
-            <li><a class="card gl" href="https://goldadam.ee"><span class="big t">Gold Adam</span><span class="meta">siseäpi tehniline partner</span></a></li>
-            <li><a class="card gl" href="https://eesti.ai"><span class="big t">Eesti.ai</span><span class="meta">tehisaru koolitaja</span></a></li>
-            <li><a class="card gl" href="https://veebikool.ee"><span class="big t">Veebikool</span><span class="meta">koolitaja</span></a></li>
-            <li><a class="card gl" href="https://technotln.ee"><span class="big t">TechnoTLN</span><span class="meta">programmeerimise õpetaja</span></a></li>
+            <li><div class="card"><span class="big t">Viru Keskus</span><span class="meta">andmelao ja BI-platvormi meeskonna juht</span></div></li>
+            <li><a class="card" href="https://goldadam.ee"><span class="big t">Gold Adam</span><span class="meta">siseäpi tehniline partner</span></a></li>
+            <li><a class="card" href="https://eesti.ai"><span class="big t">Eesti.ai</span><span class="meta">tehisaru koolitaja</span></a></li>
+            <li><a class="card" href="https://veebikool.ee"><span class="big t">Veebikool</span><span class="meta">koolitaja</span></a></li>
+            <li><a class="card" href="https://technotln.ee"><span class="big t">TechnoTLN</span><span class="meta">programmeerimise õpetaja</span></a></li>
           </ul>
         </div>
         <div class="in">
           <p class="row-title">Varem</p>
           <ul class="rows">
-            <li><a class="card gl" href="https://randomforest.ee/"><span class="big t">random forest OÜ</span><span class="meta">asutaja, tarkvaraarenduse agentuur</span></a></li>
-            <li><div class="card gl"><span class="big t">Toitla</span><span class="meta">„Uber toitlustusele“, 2016</span></div></li>
-            <li><div class="card gl"><span class="big t">SavvyBooks</span><span class="meta">krüpto jälgimine ja USA maksud</span></div></li>
-            <li><a class="card gl" href="https://code.krister.ee"><span class="big t">code.krister.ee</span><span class="meta">tehniline blogi</span></a></li>
+            <li><a class="card" href="https://randomforest.ee/"><span class="big t">random forest OÜ</span><span class="meta">asutaja, tarkvaraarenduse agentuur</span></a></li>
+            <li><div class="card"><span class="big t">Toitla</span><span class="meta">„Uber toitlustusele“, 2016</span></div></li>
+            <li><div class="card"><span class="big t">SavvyBooks</span><span class="meta">krüpto jälgimine ja USA maksud</span></div></li>
+            <li><a class="card" href="https://code.krister.ee"><span class="big t">code.krister.ee</span><span class="meta">tehniline blogi</span></a></li>
           </ul>
         </div>
       </div>
@@ -470,33 +473,33 @@
         <span class="lbl">Kontakt</span>
         <h1 id="h-kontakt">Räägime.</h1>
       </header>
-      <a class="card dark gl in" href="https://cal.com/krister-viirsaar-zho32l/1h" style="max-width: 32rem;">
+      <a class="card dark in" href="https://cal.com/krister-viirsaar-zho32l/1h" style="max-width: 32rem;">
         <span class="lbl">1 tund · videokõne · tasuta</span>
         <span class="big t">Broneeri kõne</span>
         <span class="go">cal.com</span>
       </a>
       <div class="grid feat">
-        <div class="card gl in">
+        <div class="card in">
           <span class="lbl">E-post</span>
           <span class="big t" style="font-size:1rem; overflow-wrap:anywhere;">krister.viirsaar@gmail.com</span>
           <button class="copy-btn" type="button" data-copy="krister.viirsaar@gmail.com">Kopeeri</button>
         </div>
-        <a class="card gl in" href="https://www.linkedin.com/in/kristerv/">
+        <a class="card in" href="https://www.linkedin.com/in/kristerv/">
           <span class="lbl">Võrgustik</span>
           <span class="big t">LinkedIn</span>
           <span class="go">kristerv</span>
         </a>
-        <a class="card gl in" href="https://discord.com/users/kristerv">
+        <a class="card in" href="https://discord.com/users/kristerv">
           <span class="lbl">Jutt</span>
           <span class="big t">Discord</span>
           <span class="go">kristerv</span>
         </a>
-        <a class="card gl in" href="https://www.youtube.com/watch?v=tjrc4RemiSE">
+        <a class="card in" href="https://www.youtube.com/watch?v=tjrc4RemiSE">
           <span class="lbl">Video</span>
           <span class="big t">Intervjuu</span>
           <span class="go">YouTube</span>
         </a>
-        <div class="card gl in">
+        <div class="card in">
           <span class="lbl">IBAN</span>
           <span class="big t" style="font-size:1rem; font-variant-numeric: tabular-nums;">EE987700771001379001</span>
           <button class="copy-btn" type="button" data-copy="EE987700771001379001">Kopeeri</button>
@@ -534,16 +537,6 @@
     // on the main menu the last one stays lit, like a game cursor
     document.getElementById('items').addEventListener('mouseleave', () => {
       if (open) light(items.findIndex(a => keyOf(a) === open));
-    });
-
-    // ---- cards: same glitch on hover / focus ----
-    document.querySelectorAll('.pages .gl').forEach(c => {
-      c.addEventListener('mouseenter', () => glitch(c));
-      c.addEventListener('mouseleave', () => c.classList.remove('lit', 'glitch'));
-      if (c.matches('a')) {
-        c.addEventListener('focus', () => glitch(c));
-        c.addEventListener('blur', () => c.classList.remove('lit', 'glitch'));
-      }
     });
 
     // ---- the menu moves row by row: the chosen one first, then its neighbours outward, the name last ----
@@ -588,7 +581,6 @@
       void page.offsetWidth;
       page.classList.add('on');
       if (!wasMenu) page.classList.add('quick');
-      page.querySelectorAll('.gl').forEach(c => c.classList.remove('lit', 'glitch'));
       light(items.findIndex(a => keyOf(a) === key), false);
       window.scrollTo(0, 0);
     }
