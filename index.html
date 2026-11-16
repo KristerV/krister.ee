@@ -126,7 +126,7 @@
     /* ---------- screens ---------- */
     .pages { position: relative; z-index: 1; margin-left: calc(var(--nav-left) + var(--nav-w) + 56px); padding-right: max(48px, env(safe-area-inset-right, 0px)); }
     body.at-menu .pages { visibility: hidden; }
-    .page { display: none; min-height: 100vh; flex-direction: column; justify-content: center; gap: 30px; padding-block: 72px; max-width: 64rem; }
+    .page { scroll-margin-top: 100vh; display: none; min-height: 100vh; flex-direction: column; justify-content: center; gap: 30px; padding-block: 72px; max-width: 64rem; }
     .page.on { display: flex; }
 
     /* stagger: header first, then each card */
@@ -200,6 +200,14 @@
     .vs .plus { align-self: center; font-size: 1.6rem; color: var(--dim); }
 
     /* list rows (experience) */
+    /* list rows: one line per item */
+    .lines { display: flex; flex-direction: column; gap: 8px; max-width: 46rem; }
+    .card.line { flex-direction: row; align-items: baseline; gap: 18px; padding: 13px 24px; }
+    .line .when { flex: none; width: 5.6rem; font-size: .82rem; color: var(--soft); white-space: nowrap; }
+    .line .when b { font-size: 1.35rem; font-weight: 400; color: var(--ink); margin-right: 2px; }
+    .line .title { flex: 1; min-width: 0; font-weight: 700; color: var(--ink); }
+    .line .meta { flex: none; }
+    .line .chip { flex: none; align-self: center; }
     .rows { display: flex; flex-direction: column; gap: 8px; }
     .rows .card { flex-direction: row; align-items: baseline; gap: 14px; padding: 12px 20px; }
     .rows .card .big { font-size: 1.02rem; font-weight: 700; flex: none; }
@@ -239,6 +247,9 @@
       .grid.feat { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .vs .plus { justify-self: center; }
       .rows .card { flex-direction: column; gap: 2px; }
+      .card.line { flex-wrap: wrap; gap: 2px 12px; padding: 12px 18px; }
+      .line .title { flex-basis: 100%; order: 3; }
+      .line .when { width: auto; }
       .hint { display: none; }
     }
 
@@ -292,36 +303,36 @@
 
       <div>
         <p class="row-title in">Tulekul</p>
-        <div class="grid" id="events">
-          <a class="card ev in" data-date="2026-11-18" href="https://fienta.com/et/viimsi-turvaline-tehisaru-kasutus-ja-riskide-maandamine">
-            <span class="date t"><b>18</b><span>nov · K 17–20</span></span>
-            <span class="big">Turvaline tehisaru kasutus ja riskide maandamine</span>
-            <span class="meta">Viimsi Raamatukogu</span>
-            <span class="go">Tasuta · Eesti.ai</span>
+        <div class="lines" id="events">
+          <a class="card line in" data-date="2026-11-18" href="https://fienta.com/et/viimsi-turvaline-tehisaru-kasutus-ja-riskide-maandamine">
+            <span class="when"><b>18</b> nov</span>
+            <span class="title">Turvaline tehisaru kasutus ja riskide maandamine</span>
+            <span class="meta">Viimsi</span>
+            <span class="chip">Eesti.ai</span>
           </a>
-          <a class="card ev in" data-date="2026-11-19" href="https://fienta.com/et/tallinn-tehisaru-kontoritoos">
-            <span class="date t"><b>19</b><span>nov · N 16–19</span></span>
-            <span class="big">Tehisaru kontoritöös</span>
-            <span class="meta">Kadaka Konverentsikeskus, Tallinn</span>
-            <span class="go">Tasuta · Eesti.ai</span>
+          <a class="card line in" data-date="2026-11-19" href="https://fienta.com/et/tallinn-tehisaru-kontoritoos">
+            <span class="when"><b>19</b> nov</span>
+            <span class="title">Tehisaru kontoritöös</span>
+            <span class="meta">Tallinn</span>
+            <span class="chip">Eesti.ai</span>
           </a>
-          <a class="card ev in" data-date="2026-11-20" href="https://fienta.com/et/tallinn-tehisaru-ja-loovus-voimalused-riskid-ja-vastutus">
-            <span class="date t"><b>20</b><span>nov · R 16–19</span></span>
-            <span class="big">Tehisaru ja loovus: võimalused, riskid ja vastutus</span>
-            <span class="meta">Kadaka Konverentsikeskus, Tallinn</span>
-            <span class="go">Tasuta · Eesti.ai</span>
+          <a class="card line in" data-date="2026-11-20" href="https://fienta.com/et/tallinn-tehisaru-ja-loovus-voimalused-riskid-ja-vastutus">
+            <span class="when"><b>20</b> nov</span>
+            <span class="title">Tehisaru ja loovus</span>
+            <span class="meta">Tallinn</span>
+            <span class="chip">Eesti.ai</span>
           </a>
-          <a class="card ev in" data-date="2027-01-12" href="https://veebikool.ee/opiprogramm-programmeerimine/">
-            <span class="date t"><b>12</b><span>jaan 2027 · 12 nädalat</span></span>
-            <span class="big">Programmeerimise õpiprogramm</span>
-            <span class="meta">Veebis, live teisipäeviti</span>
-            <span class="go">Veebikool</span>
+          <a class="card line in" data-date="2027-01-12" href="https://veebikool.ee/opiprogramm-programmeerimine/">
+            <span class="when"><b>12</b> jaan</span>
+            <span class="title">Programmeerimise õpiprogramm</span>
+            <span class="meta">Veebis</span>
+            <span class="chip">Veebikool</span>
           </a>
-          <a class="card ev in" data-date="2026-10-13" href="https://veebikool.ee/kasuta-ai-targalt/">
-            <span class="date t"><b>13</b><span>okt · T 19–22</span></span>
-            <span class="big">Kasuta tehisaru targalt. Väldi ohukohti.</span>
-            <span class="meta">Veebiseminar</span>
-            <span class="go">Veebikool</span>
+          <a class="card line in" data-date="2026-10-13" href="https://veebikool.ee/kasuta-ai-targalt/">
+            <span class="when"><b>13</b> okt</span>
+            <span class="title">Kasuta tehisaru targalt</span>
+            <span class="meta">Veebis</span>
+            <span class="chip">Veebikool</span>
           </a>
         </div>
       </div>
@@ -381,36 +392,31 @@
         <span class="lbl">Klassis ja veebis</span>
         <h1 id="h-opetaja">Õpetan programmeerimist.</h1>
       </header>
-      <div class="grid feat">
-        <a class="card in" href="https://technotln.ee">
-          <span class="lbl">Kool</span>
-          <span class="big t">TechnoTLN</span>
-          <span class="meta">Programmeerimise õpetaja. Endine Polütehnikum.</span>
-          <span class="go">technotln.ee</span>
+      <div class="lines">
+        <a class="card line in" href="https://technotln.ee">
+          <span class="when">Kool</span>
+          <span class="title">TechnoTLN</span>
+          <span class="meta">endine Polütehnikum</span>
         </a>
-        <a class="card in" href="https://veebikool.ee/opiprogramm-programmeerimine/">
-          <span class="lbl">12 nädalat</span>
-          <span class="big t">Programmeerimise õpiprogramm</span>
-          <span class="meta">Algab 12. jaanuaril 2027. Live teisipäeviti.</span>
-          <span class="go">Veebikool</span>
+        <a class="card line in" href="https://veebikool.ee/opiprogramm-programmeerimine/">
+          <span class="when">12 nädalat</span>
+          <span class="title">Programmeerimise õpiprogramm</span>
+          <span class="meta">Veebikool</span>
         </a>
-        <a class="card in" href="https://veebikool.ee/toode/programmeerimine-vaibkoodijatele-praktiline-tootuba/">
-          <span class="lbl">4 tundi · salvestus</span>
-          <span class="big t">Programmeerimine vaibkoodijatele</span>
-          <span class="meta">Loogika-, struktuuri- ja koodivead.</span>
-          <span class="go">Veebikool</span>
+        <a class="card line in" href="https://veebikool.ee/toode/programmeerimine-vaibkoodijatele-praktiline-tootuba/">
+          <span class="when">4 tundi</span>
+          <span class="title">Programmeerimine vaibkoodijatele</span>
+          <span class="meta">Veebikool</span>
         </a>
-        <a class="card in" href="https://veebikool.ee/vaibkoodimise-opiprogramm/">
-          <span class="lbl">Salvestus</span>
-          <span class="big t">Vaibkoodimise meistriklass</span>
-          <span class="meta">Minu osa: algoritmiline mõtlemine.</span>
-          <span class="go">Veebikool</span>
+        <a class="card line in" href="https://veebikool.ee/vaibkoodimise-opiprogramm/">
+          <span class="when">Salvestus</span>
+          <span class="title">Vaibkoodimise meistriklass</span>
+          <span class="meta">Veebikool</span>
         </a>
-        <a class="card in" href="https://tinkr.tech">
-          <span class="lbl">Platvorm</span>
-          <span class="big t">Tinkr.tech</span>
-          <span class="meta">Õpi programmeerima projekte ehitades.</span>
-          <span class="go">tinkr.tech</span>
+        <a class="card line in" href="https://tinkr.tech">
+          <span class="when">Platvorm</span>
+          <span class="title">Tinkr.tech</span>
+          <span class="meta">õpi projekte ehitades</span>
         </a>
       </div>
     </section>
@@ -573,26 +579,27 @@
 
     // ---- cards: rhombus outline snaps in on hover ----
     const SVG = 'http://www.w3.org/2000/svg';
-    const SIDES = [   // which side, where it flies in from, how much it spins
-      { fx: '0px',   fy: '-34px', fr: '-20deg' },
-      { fx: '34px',  fy: '0px',   fr: '24deg' },
-      { fx: '0px',   fy: '34px',  fr: '18deg' },
-      { fx: '-34px', fy: '0px',   fr: '-26deg' },
-    ];
+    const rnd = (a, b) => a + Math.random() * (b - a);
+    const NORMALS = [[0, -1], [1, 0], [0, 1], [-1, 0]];   // top, right, bottom, left: the way each side flies in from
     document.querySelectorAll('.pages a.card:not(.dark)').forEach(card => {
       const svg = document.createElementNS(SVG, 'svg');
       svg.setAttribute('class', 'snap-lines'); svg.setAttribute('aria-hidden', 'true');
-      const lines = SIDES.map((s, k) => {
-        const l = document.createElementNS(SVG, 'line');
-        l.style.setProperty('--fx', s.fx); l.style.setProperty('--fy', s.fy); l.style.setProperty('--fr', s.fr); l.style.setProperty('--k', k);
-        svg.appendChild(l); return l;
-      });
+      const lines = NORMALS.map(() => { const l = document.createElementNS(SVG, 'line'); svg.appendChild(l); return l; });
       card.appendChild(svg);
       const on = () => {
         const w = card.offsetWidth, h = card.offsetHeight, s = 10;
         svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
         const pts = [[s, 0, w, 0], [w, 0, w - s, h], [w - s, h, 0, h], [0, h, s, 0]];
-        lines.forEach((l, k) => { const [x1, y1, x2, y2] = pts[k]; l.setAttribute('x1', x1); l.setAttribute('y1', y1); l.setAttribute('x2', x2); l.setAttribute('y2', y2); });
+        // every hover rolls new dice: spin direction and amount (up to ~90°), distance, sideways drift, arrival order
+        const order = [0, 1, 2, 3].sort(() => Math.random() - .5);
+        lines.forEach((l, k) => {
+          const [x1, y1, x2, y2] = pts[k]; l.setAttribute('x1', x1); l.setAttribute('y1', y1); l.setAttribute('x2', x2); l.setAttribute('y2', y2);
+          const [nx, ny] = NORMALS[k], d = rnd(22, 60), drift = rnd(-24, 24);
+          l.style.setProperty('--fx', (nx * d + ny * drift).toFixed(1) + 'px');
+          l.style.setProperty('--fy', (ny * d + nx * drift).toFixed(1) + 'px');
+          l.style.setProperty('--fr', ((Math.random() < .5 ? -1 : 1) * rnd(55, 100)).toFixed(0) + 'deg');
+          l.style.setProperty('--k', order[k]);
+        });
         card.classList.remove('snap'); void card.offsetWidth; card.classList.add('snap');
       };
       const off = () => card.classList.remove('snap');
@@ -630,6 +637,8 @@
       if (location.hash) { history.pushState(null, '', location.pathname + location.search); render(); }
     });
     addEventListener('popstate', render);
+    // a direct link like /#kontakt makes the browser jump to that section; a screen always starts at the top
+    addEventListener('load', () => { if (open) requestAnimationFrame(() => window.scrollTo(0, 0)); });
 
     // ---- keyboard: like a game menu ----
     addEventListener('keydown', e => {
