@@ -151,8 +151,18 @@
       padding: 18px 22px; border: 1px solid var(--edge); color: var(--ink); outline: none;
       transition: border-color .2s, transform .2s;
     }
-    a.card:hover, a.card:focus-visible { border-color: var(--ink); transform: translateY(-2px); }
     a.card:hover .go, a.card:focus-visible .go { color: var(--ink); }
+
+    /* hover: four border lines spin in from further out and snap into a rhombus */
+    .snap-lines { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+    .snap-lines line { stroke: var(--ink); stroke-width: 1.5; stroke-linecap: square; opacity: 0; transform-box: fill-box; transform-origin: center; transition: opacity .15s; }
+    a.card.snap { border-color: transparent; }
+    a.card.snap .snap-lines line { opacity: 1; animation: snap-in .52s cubic-bezier(.2, 1.35, .35, 1) both; animation-delay: calc(var(--k) * 45ms); }
+    @keyframes snap-in {
+      from { opacity: 0; transform: translate(var(--fx), var(--fy)) rotate(var(--fr)) scale(1.25); }
+      30%  { opacity: 1; }
+      to   { opacity: 1; transform: none; }
+    }
     a.card.dark:hover { transform: translateY(-2px); background: #000; }
     a.card.dark:hover .go { color: var(--hi-text); }
     a.card { cursor: pointer; }
@@ -235,6 +245,7 @@
     @media (prefers-reduced-motion: reduce) {
       .gl.lit.glitch::before, .gl.lit.glitch::after, .gl.lit.glitch .t { animation: none; }
       .page.on .in { animation: none; }
+      a.card.snap .snap-lines line { animation: none; }
     }
   </style>
 </head>
@@ -559,6 +570,35 @@
       });
     }
     const setMode = inPage => { body.classList.toggle('in-page', inPage); body.classList.toggle('at-menu', !inPage); };
+
+    // ---- cards: rhombus outline snaps in on hover ----
+    const SVG = 'http://www.w3.org/2000/svg';
+    const SIDES = [   // which side, where it flies in from, how much it spins
+      { fx: '0px',   fy: '-34px', fr: '-20deg' },
+      { fx: '34px',  fy: '0px',   fr: '24deg' },
+      { fx: '0px',   fy: '34px',  fr: '18deg' },
+      { fx: '-34px', fy: '0px',   fr: '-26deg' },
+    ];
+    document.querySelectorAll('.pages a.card:not(.dark)').forEach(card => {
+      const svg = document.createElementNS(SVG, 'svg');
+      svg.setAttribute('class', 'snap-lines'); svg.setAttribute('aria-hidden', 'true');
+      const lines = SIDES.map((s, k) => {
+        const l = document.createElementNS(SVG, 'line');
+        l.style.setProperty('--fx', s.fx); l.style.setProperty('--fy', s.fy); l.style.setProperty('--fr', s.fr); l.style.setProperty('--k', k);
+        svg.appendChild(l); return l;
+      });
+      card.appendChild(svg);
+      const on = () => {
+        const w = card.offsetWidth, h = card.offsetHeight, s = 10;
+        svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+        const pts = [[s, 0, w, 0], [w, 0, w - s, h], [w - s, h, 0, h], [0, h, s, 0]];
+        lines.forEach((l, k) => { const [x1, y1, x2, y2] = pts[k]; l.setAttribute('x1', x1); l.setAttribute('y1', y1); l.setAttribute('x2', x2); l.setAttribute('y2', y2); });
+        card.classList.remove('snap'); void card.offsetWidth; card.classList.add('snap');
+      };
+      const off = () => card.classList.remove('snap');
+      card.addEventListener('mouseenter', on); card.addEventListener('mouseleave', off);
+      card.addEventListener('focus', on); card.addEventListener('blur', off);
+    });
 
     // ---- open / close ----
     function render() {
